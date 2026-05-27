@@ -10,6 +10,7 @@ import consult from "@/assets/consult.jpg";
 import library from "@/assets/library.jpg";
 import miami from "@/assets/miami.jpg";
 import jlLogo from "@/assets/jl-logo.png";
+import { CaterpillarCarousel } from "@/components/CaterpillarCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -295,38 +296,23 @@ function Index() {
         <div className="text-center mb-20">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Custom Storage Solutions</span>
         </div>
-        <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-          <div className="md:col-span-4 md:col-start-1 md:pl-2 max-w-xs">
-            <p className="font-sans text-[15px] md:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
-              <span className="underline decoration-foreground/60 underline-offset-4">
-                From custom closets to garages, pantries, home offices and more, JL Closets designs tailored storage solutions for every space in your home—guided
-              </span>{" "}
-              by a simplee process, expert installation, and over 30 years of award-winning experience.
-            </p>
-          </div>
-          <div className="md:col-span-4 md:col-start-6">
-            <img
-              src={closetImg}
-              alt="Custom walk-in closet"
-              className="w-full aspect-[4/5] object-cover"
-              loading="lazy"
-            />
-            <p className="mt-4 text-xs">Custom Closets</p>
-          </div>
-          <div className="md:col-span-3 md:col-start-10">
-            <img
-              src={pantryImg}
-              alt="Modern pantry"
-              className="w-full aspect-[3/4] object-cover"
-              loading="lazy"
-            />
-            <p className="mt-4 text-xs">
-              Pantry,
-              <br />
-              Walk-in
-            </p>
-          </div>
+        <div className="max-w-xs mx-auto md:mx-0 mb-12">
+          <p className="font-sans text-[15px] md:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
+            <span className="underline decoration-foreground/60 underline-offset-4">
+              From custom closets to garages, pantries, home offices and more, JL Closets designs tailored storage solutions for every space in your home—guided
+            </span>{" "}
+            by a simple process, expert installation, and over 30 years of award-winning experience.
+          </p>
         </div>
+        <CaterpillarCarousel
+          slides={[
+            { src: closetImg, label: "Custom Closets" },
+            { src: pantryImg, label: "Pantry" },
+            { src: library, label: "Library" },
+            { src: showroom, label: "Showroom" },
+            { src: darkOffice, label: "Home Office" },
+          ]}
+        />
       </Section>
 
       {/* SECTION 02 — Process */}
