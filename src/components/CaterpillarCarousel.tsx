@@ -7,13 +7,12 @@ gsap.registerPlugin(Flip);
 type Slide = { src: string; label?: string };
 
 function useVisibleCount() {
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(3);
   useEffect(() => {
     const compute = () => {
       const w = window.innerWidth;
       if (w < 768) setCount(2);
-      else if (w < 1024) setCount(3);
-      else setCount(4);
+      else setCount(3);
     };
     compute();
     window.addEventListener("resize", compute);
