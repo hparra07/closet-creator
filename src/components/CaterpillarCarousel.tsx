@@ -15,7 +15,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
     if (!container || isAnimating.current) return;
     isAnimating.current = true;
 
-    const cards = gsap.utils.toArray<HTMLImageElement>("img", container);
+    const cards = gsap.utils.toArray<HTMLElement>(".cat-card", container);
     if (cards.length === 0) {
       isAnimating.current = false;
       return;
@@ -25,23 +25,34 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
 
     const state = Flip.getState(cards);
 
-    const newCard = document.createElement("img");
-    newCard.alt = "";
+    const source = forward ? first : last;
+    const img = source.querySelector("img");
+    const label = source.querySelector(".cat-label");
+
+    const newCard = document.createElement("div");
+    newCard.className = "cat-card";
+    const newImg = document.createElement("img");
+    newImg.src = img?.getAttribute("src") ?? "";
+    newImg.alt = img?.getAttribute("alt") ?? "";
+    newCard.appendChild(newImg);
+    if (label?.textContent) {
+      const newLabel = document.createElement("span");
+      newLabel.className = "cat-label";
+      newLabel.textContent = label.textContent;
+      newCard.appendChild(newLabel);
+    }
     gsap.set(newCard, { scale: 0, opacity: 0 });
 
     if (forward) {
-      newCard.src = first.src;
       container.append(newCard);
       first.classList.add("hide");
     } else {
-      newCard.src = last.src;
-      newCard.innerText = last.innerText;
       container.prepend(newCard);
       last.classList.add("hide");
     }
 
     Flip.from(state, {
-      targets: gsap.utils.toArray("img", container),
+      targets: gsap.utils.toArray(".cat-card", container),
       fade: true,
       absoluteOnLeave: true,
       onEnter: (els) => {
@@ -67,27 +78,15 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
 
   return (
     <div className="caterpillar-wrapper">
-      <div
-        ref={containerRef}
-        className="caterpillar-container"
-      >
+      <div ref={containerRef} className="caterpillar-container">
         {slides.slice(0, 4).map((s, i) => (
-          <img
-            key={`${s.src}-${i}`}
-            src={s.src}
-            alt={s.label ?? ""}
-          />
+          <div key={`${s.src}-${i}`} className="cat-card">
+            <img src={s.src} alt={s.label ?? ""} />
+            {s.label ? <span className="cat-label">{s.label}</span> : null}
+          </div>
         ))}
       </div>
       <div className="caterpillar-buttons">
-        <button
-          type="button"
-          id="next"
-          onClick={() => updateCaterpillar(true)}
-          className="bg-foreground px-5 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-80"
-        >
-          Next
-        </button>
         <button
           type="button"
           id="prev"
@@ -95,6 +94,14 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           className="bg-foreground px-5 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-80"
         >
           Previous
+        </button>
+        <button
+          type="button"
+          id="next"
+          onClick={() => updateCaterpillar(true)}
+          className="bg-foreground px-5 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-80"
+        >
+          Next
         </button>
       </div>
       <style>{`
@@ -114,11 +121,31 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           border-radius: 10px;
         }
 
-        .caterpillar-container img {
+        .caterpillar-container .cat-card {
+          position: relative;
           width: 20vw;
           aspect-ratio: 4 / 5;
+          overflow: hidden;
+        }
+
+        .caterpillar-container .cat-card img {
+          width: 100%;
+          height: 100%;
           object-fit: cover;
-          position: relative;
+          display: block;
+        }
+
+        .caterpillar-container .cat-label {
+          position: absolute;
+          left: 16px;
+          bottom: 16px;
+          color: #fff;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.2;
+          text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+          max-width: 80%;
+          white-space: pre-line;
         }
 
         .caterpillar-buttons {
@@ -132,7 +159,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
         }
 
         @media (max-width: 767px) {
-          .caterpillar-container img {
+          .caterpillar-container .cat-card {
             width: 22vw;
           }
         }
