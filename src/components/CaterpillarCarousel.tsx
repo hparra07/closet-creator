@@ -177,6 +177,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           left: 16px;
           right: 16px;
           bottom: 16px;
+          z-index: 2;
           color: #fff;
           font-size: 18px;
           font-weight: 600;
