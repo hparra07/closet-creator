@@ -141,7 +141,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
 
         .caterpillar-container .cat-card {
           position: relative;
-          width: 11vw;
+          width: 20vw;
           aspect-ratio: 4 / 5;
           overflow: hidden;
         }
