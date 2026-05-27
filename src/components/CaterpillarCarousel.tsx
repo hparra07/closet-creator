@@ -79,7 +79,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
   return (
     <div className="caterpillar-wrapper">
       <div ref={containerRef} className="caterpillar-container">
-        {slides.slice(0, 4).map((s, i) => (
+        {slides.map((s, i) => (
           <div key={`${s.src}-${i}`} className="cat-card">
             <img src={s.src} alt={s.label ?? ""} />
             {s.label ? <span className="cat-label">{s.label}</span> : null}
@@ -91,7 +91,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           type="button"
           id="prev"
           onClick={() => updateCaterpillar(false)}
-          className="bg-foreground px-5 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-80"
+          className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
         >
           Previous
         </button>
@@ -99,7 +99,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           type="button"
           id="next"
           onClick={() => updateCaterpillar(true)}
-          className="bg-foreground px-5 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-80"
+          className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
         >
           Next
         </button>
@@ -117,13 +117,13 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           display: flex;
           padding: 5px;
           gap: 5px;
-          border: 2px dashed color-mix(in oklab, var(--foreground) 20%, transparent);
-          border-radius: 10px;
+          border: 1px solid color-mix(in oklab, var(--foreground) 30%, transparent);
+          border-radius: 0;
         }
 
         .caterpillar-container .cat-card {
           position: relative;
-          width: 20vw;
+          width: 11vw;
           aspect-ratio: 4 / 5;
           overflow: hidden;
         }
@@ -140,18 +140,18 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           left: 16px;
           bottom: 16px;
           color: #fff;
-          font-size: 14px;
+          font-size: 18px;
           font-weight: 600;
-          line-height: 1.2;
+          line-height: 1.15;
           text-shadow: 0 1px 8px rgba(0,0,0,0.5);
-          max-width: 80%;
+          max-width: 85%;
           white-space: pre-line;
         }
 
         .caterpillar-buttons {
-          margin-top: 20px;
+          margin-top: 24px;
           display: flex;
-          gap: 20px;
+          gap: 16px;
         }
 
         .hide {
@@ -160,7 +160,10 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
 
         @media (max-width: 767px) {
           .caterpillar-container .cat-card {
-            width: 22vw;
+            width: 28vw;
+          }
+          .caterpillar-container .cat-label {
+            font-size: 14px;
           }
         }
       `}</style>
