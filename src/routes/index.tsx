@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Phone, ChevronDown, Menu, X, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import closetImg from "@/assets/closet.jpg";
