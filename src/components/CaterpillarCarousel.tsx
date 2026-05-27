@@ -77,10 +77,10 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
   }, [slides]);
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col items-center">
       <div
         ref={containerRef}
-        className="flex gap-3 md:gap-4 p-2 md:p-3 border-2 border-dashed border-foreground/15 rounded-xl overflow-hidden"
+        className="inline-flex gap-3 md:gap-4 p-2 md:p-3 border-2 border-dashed border-foreground/15 rounded-xl"
       >
         {order.map((s, i) => (
           <img
