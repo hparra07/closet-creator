@@ -157,7 +157,7 @@ function Section({
   className?: string;
 }) {
   return (
-    <section className={`relative px-6 md:px-16 py-24 md:py-32 ${className}`}>
+    <section className={`relative px-5 md:px-10 lg:px-16 py-24 md:py-32 ${className}`}>
       {children}
     </section>
   );
