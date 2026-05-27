@@ -170,7 +170,7 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
 
         .caterpillar-container .cat-card {
           position: relative;
-          width: ${cardWidthVw}vw;
+          width: ${cardWidth};
           aspect-ratio: 3 / 5;
           overflow: hidden;
         }
