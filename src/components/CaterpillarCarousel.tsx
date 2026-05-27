@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 
@@ -15,6 +15,14 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
   const nextIndex = useRef(VISIBLE % slides.length);
   // index of the slide to prepend on "prev"
   const prevIndex = useRef((slides.length - 1) % slides.length);
+
+  // Preload all slide images so they appear instantly when navigating
+  useEffect(() => {
+    slides.forEach((s) => {
+      const img = new Image();
+      img.src = s.src;
+    });
+  }, [slides]);
 
   const buildCard = (slide: Slide) => {
     const card = document.createElement("div");
@@ -141,7 +149,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
 
         .caterpillar-container .cat-card {
           position: relative;
-          width: 11vw;
+          width: 20vw;
           aspect-ratio: 4 / 5;
           overflow: hidden;
         }
