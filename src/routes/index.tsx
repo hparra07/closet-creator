@@ -297,7 +297,7 @@ function Index() {
         </div>
         <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
           <div className="md:col-span-4 md:col-start-1 md:pl-2 max-w-xs">
-            <p className="font-sans text-[15px] leading-relaxed text-foreground/80">
+            <p className="font-sans text-[15px] md:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
               <span className="underline decoration-foreground/60 underline-offset-4">
                 From custom closets to garages, pantries, home offices and more, JL Closets designs tailored storage solutions for every space in your home—guided
               </span>{" "}
