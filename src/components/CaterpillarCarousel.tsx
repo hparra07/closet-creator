@@ -181,7 +181,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           font-size: 18px;
           font-weight: 600;
           line-height: 1.15;
-          white-space: nowrap;
+          white-space: normal;
         }
 
         .caterpillar-buttons {
