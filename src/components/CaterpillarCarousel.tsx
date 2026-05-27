@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(Flip);
 
@@ -10,106 +9,134 @@ type Slide = { src: string; label?: string };
 export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
-  const [order, setOrder] = useState(slides);
 
-  const move = (forward: boolean) => {
+  const updateCaterpillar = (forward: boolean) => {
     const container = containerRef.current;
     if (!container || isAnimating.current) return;
     isAnimating.current = true;
 
-    const imgs = Array.from(container.querySelectorAll<HTMLImageElement>("img"));
-    if (imgs.length === 0) {
+    const cards = gsap.utils.toArray<HTMLImageElement>("img", container);
+    if (cards.length === 0) {
       isAnimating.current = false;
       return;
     }
-    const first = imgs[0];
-    const last = imgs[imgs.length - 1];
+    const first = cards[0];
+    const last = cards[cards.length - 1];
 
-    const state = Flip.getState(imgs);
+    const state = Flip.getState(cards);
 
     const newCard = document.createElement("img");
-    newCard.className = first.className;
     newCard.alt = "";
     gsap.set(newCard, { scale: 0, opacity: 0 });
 
     if (forward) {
       newCard.src = first.src;
-      container.appendChild(newCard);
-      first.classList.add("cc-hide");
+      container.append(newCard);
+      first.classList.add("hide");
     } else {
       newCard.src = last.src;
+      newCard.innerText = last.innerText;
       container.prepend(newCard);
-      last.classList.add("cc-hide");
+      last.classList.add("hide");
     }
 
     Flip.from(state, {
-      targets: container.querySelectorAll("img"),
+      targets: gsap.utils.toArray("img", container),
       fade: true,
       absoluteOnLeave: true,
-      onEnter: (els) =>
+      onEnter: (els) => {
         gsap.to(els, {
           opacity: 1,
           scale: 1,
-          duration: 0.6,
           transformOrigin: forward ? "bottom right" : "bottom left",
-        }),
-      onLeave: (els) =>
+        });
+      },
+      onLeave: (els) => {
         gsap.to(els, {
           opacity: 0,
           scale: 0,
-          duration: 0.6,
           transformOrigin: forward ? "bottom left" : "bottom right",
           onComplete: () => {
-            els.forEach((el) => el.remove());
+            els[0].remove();
             isAnimating.current = false;
           },
-        }),
-      onComplete: () => {
-        setTimeout(() => {
-          isAnimating.current = false;
-        }, 50);
+        });
       },
     });
   };
 
-  useEffect(() => {
-    setOrder(slides);
-  }, [slides]);
-
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="caterpillar-wrapper">
       <div
         ref={containerRef}
-        className="inline-flex gap-3 md:gap-4 p-2 md:p-3 border-2 border-dashed border-foreground/15 rounded-xl"
+        className="caterpillar-container"
       >
-        {order.map((s, i) => (
+        {slides.slice(0, 4).map((s, i) => (
           <img
-            key={i}
+            key={`${s.src}-${i}`}
             src={s.src}
             alt={s.label ?? ""}
-            className="w-[28vw] md:w-[20vw] aspect-[4/5] object-cover rounded-md flex-shrink-0"
           />
         ))}
       </div>
-      <div className="mt-6 flex items-center justify-center gap-3">
+      <div className="caterpillar-buttons">
         <button
           type="button"
-          aria-label="Previous"
-          onClick={() => move(false)}
-          className="h-10 w-10 inline-flex items-center justify-center border border-foreground/20 hover:bg-foreground hover:text-background transition-colors rounded-full"
+          id="next"
+          onClick={() => updateCaterpillar(true)}
+          className="bg-foreground px-5 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-80"
         >
-          <ArrowLeft className="h-4 w-4" />
+          Next
         </button>
         <button
           type="button"
-          aria-label="Next"
-          onClick={() => move(true)}
-          className="h-10 w-10 inline-flex items-center justify-center border border-foreground/20 hover:bg-foreground hover:text-background transition-colors rounded-full"
+          id="prev"
+          onClick={() => updateCaterpillar(false)}
+          className="bg-foreground px-5 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-80"
         >
-          <ArrowRight className="h-4 w-4" />
+          Previous
         </button>
       </div>
-      <style>{`.cc-hide{display:none!important}`}</style>
+      <style>{`
+        .caterpillar-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .caterpillar-container {
+          display: flex;
+          padding: 5px;
+          gap: 5px;
+          border: 2px dashed color-mix(in oklab, var(--foreground) 20%, transparent);
+          border-radius: 10px;
+        }
+
+        .caterpillar-container img {
+          width: 20vw;
+          aspect-ratio: 4 / 5;
+          object-fit: cover;
+          position: relative;
+        }
+
+        .caterpillar-buttons {
+          margin-top: 20px;
+          display: flex;
+          gap: 20px;
+        }
+
+        .hide {
+          display: none;
+        }
+
+        @media (max-width: 767px) {
+          .caterpillar-container img {
+            width: 22vw;
+          }
+        }
+      `}</style>
     </div>
   );
 }
