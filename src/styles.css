@@ -161,9 +161,9 @@
     -webkit-font-smoothing: antialiased;
   }
   .font-display { font-family: var(--font-display); font-weight: 300; letter-spacing: -0.01em; }
-  .eyebrow { font-family: var(--font-display); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; }
+  .eyebrow { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; }
   .rule { display: inline-flex; align-items: center; gap: 14px; }
-  .rule::before, .rule::after { content: ""; width: 36px; height: 1px; background: currentColor; opacity: .35; }
+  .rule::before, .rule::after { content: ""; width: 36px; height: 1px; background: currentColor; }
   .badge-num {
     display: inline-flex; align-items: center; justify-content: center;
     width: 22px; height: 22px; font-size: 11px; font-weight: 500;
