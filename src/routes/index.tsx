@@ -314,11 +314,14 @@ function Index() {
         </div>
         <CaterpillarCarousel
           slides={[
-            { src: closetImg, label: "Custom Closets" },
-            { src: pantryImg, label: "Pantry" },
-            { src: library, label: "Library" },
-            { src: showroom, label: "Showroom" },
-            { src: darkOffice, label: "Home Office" },
+            { src: storageCloset, label: "Custom Closets" },
+            { src: storagePantry, label: "Pantry\nOrganization" },
+            { src: storageEntertainment, label: "Entertainment\nCenters &\nWall Units" },
+            { src: storageMudroom, label: "Mudroom\nStorage" },
+            { src: storageLaundry, label: "Laundry Room\nOrganization" },
+            { src: storageGarage, label: "Garage\nStorage" },
+            { src: storageOffice, label: "Home\nOffice" },
+            { src: storageMore, label: "More\nStorage Ideas" },
           ]}
         />
       </Section>
