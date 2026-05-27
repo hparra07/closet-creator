@@ -328,6 +328,7 @@ function Index() {
             />
           </div>
         </div>
+      </Section>
 
       {/* SECTION 02 — Process */}
       <Section num="02">
