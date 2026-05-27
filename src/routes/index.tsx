@@ -157,7 +157,7 @@ function Section({
   className?: string;
 }) {
   return (
-    <section className={`relative px-6 md:px-16 py-24 md:py-32 ${className}`}>
+    <section className={`relative px-5 md:px-10 lg:px-16 py-24 md:py-32 ${className}`}>
       {children}
     </section>
   );
@@ -289,9 +289,9 @@ function Index() {
         )}
 
         {/* hero copy */}
-        <div className="absolute left-6 md:left-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground">
+        <div className="absolute left-5 right-5 md:left-16 md:right-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground">
           <p className="mb-6 opacity-90 text-[15px] font-medium">Let Us Create Your Calm™</p>
-          <h1 className="font-sans font-medium text-3xl md:text-5xl leading-[1.1] mb-8">
+          <h1 className="font-sans font-medium text-[26px] sm:text-3xl md:text-5xl leading-[1.15] mb-8">
             Custom Closet Systems &amp;<br />
             Storage Solutions in South Florida.
           </h1>
@@ -304,7 +304,7 @@ function Index() {
         <div className="text-center mb-20">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Custom Storage Solutions</span>
         </div>
-        <div className="max-w-xs mx-auto md:mx-0 mb-12">
+        <div className="max-w-xs mx-auto lg:mx-0 mb-12">
           <p className="font-sans text-[15px] md:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
             <span className="underline decoration-foreground/60 underline-offset-4">
               From custom closets to garages, pantries, home offices and more, JL Closets designs tailored storage solutions for every space in your home—guided

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 
@@ -6,23 +6,38 @@ gsap.registerPlugin(Flip);
 
 type Slide = { src: string; label?: string };
 
-const VISIBLE = 4;
+function useVisibleCount() {
+  const [count, setCount] = useState(4);
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      if (w < 768) setCount(2);
+      else if (w < 1024) setCount(3);
+      else setCount(4);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
+  return count;
+}
 
 export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
+  const visible = useVisibleCount();
+  return <CarouselInner key={visible} slides={slides} visible={visible} />;
+}
+
+function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
-  // index of the next slide to append on "next"
-  const nextIndex = useRef(VISIBLE % slides.length);
-  // index of the slide to prepend on "prev"
+  const nextIndex = useRef(visible % slides.length);
   const prevIndex = useRef((slides.length - 1) % slides.length);
 
-  // Preload + decode all slide images and keep refs alive so they stay cached
   const preloadedRef = useRef<HTMLImageElement[]>([]);
   useEffect(() => {
     preloadedRef.current = slides.map((s) => {
       const img = new Image();
       img.src = s.src;
-      // decode() ensures the image is fully ready for instant paint
       if (typeof img.decode === "function") {
         img.decode().catch(() => {});
       }
@@ -70,14 +85,13 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
     if (forward) {
       container.append(newCard);
       first.classList.add("hide");
-      // advance pointers
-      prevIndex.current = nextIndex.current - VISIBLE;
+      prevIndex.current = nextIndex.current - visible;
       if (prevIndex.current < 0) prevIndex.current += slides.length;
       nextIndex.current = (nextIndex.current + 1) % slides.length;
     } else {
       container.prepend(newCard);
       last.classList.add("hide");
-      nextIndex.current = prevIndex.current + VISIBLE;
+      nextIndex.current = prevIndex.current + visible;
       if (nextIndex.current >= slides.length) nextIndex.current -= slides.length;
       prevIndex.current = (prevIndex.current - 1 + slides.length) % slides.length;
     }
@@ -107,10 +121,12 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
     });
   };
 
+  const cardWidthVw = visible === 2 ? 42 : visible === 3 ? 28 : 20;
+
   return (
     <div className="caterpillar-wrapper">
       <div ref={containerRef} className="caterpillar-container">
-        {slides.slice(0, VISIBLE).map((s, i) => (
+        {slides.slice(0, visible).map((s, i) => (
           <div key={`${s.src}-${i}`} className="cat-card">
             <img src={s.src} alt={s.label ?? ""} />
             {s.label ? <span className="cat-label">{s.label}</span> : null}
@@ -155,7 +171,7 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
 
         .caterpillar-container .cat-card {
           position: relative;
-          width: 20vw;
+          width: ${cardWidthVw}vw;
           aspect-ratio: 3 / 5;
           overflow: hidden;
         }
@@ -201,12 +217,12 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           display: none;
         }
 
-        @media (max-width: 767px) {
-          .caterpillar-container .cat-card {
-            width: 28vw;
-          }
+        @media (max-width: 1023px) {
           .caterpillar-container .cat-label {
-            font-size: 14px;
+            font-size: 15px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
           }
         }
       `}</style>
