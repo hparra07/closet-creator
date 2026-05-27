@@ -16,11 +16,17 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
   // index of the slide to prepend on "prev"
   const prevIndex = useRef((slides.length - 1) % slides.length);
 
-  // Preload all slide images so they appear instantly when navigating
+  // Preload + decode all slide images and keep refs alive so they stay cached
+  const preloadedRef = useRef<HTMLImageElement[]>([]);
   useEffect(() => {
-    slides.forEach((s) => {
+    preloadedRef.current = slides.map((s) => {
       const img = new Image();
       img.src = s.src;
+      // decode() ensures the image is fully ready for instant paint
+      if (typeof img.decode === "function") {
+        img.decode().catch(() => {});
+      }
+      return img;
     });
   }, [slides]);
 
