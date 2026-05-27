@@ -166,71 +166,78 @@ function Section({
 function Index() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
   return (
     <main className="bg-background text-foreground overflow-x-hidden">
+      {/* STICKY NAV */}
+      <nav
+        className={`sticky top-0 z-50 flex items-center justify-between px-6 md:px-12 py-4 font-medium transition-all duration-300 border-b ${
+          scrolled
+            ? "bg-background/95 backdrop-blur-sm border-border/50 shadow-sm text-foreground"
+            : "bg-transparent border-transparent text-ink-foreground"
+        }`}
+      >
+        <img
+          src={jlLogo}
+          alt="JL Closets"
+          className={`h-12 md:h-14 w-auto transition-all duration-300 ${scrolled ? "" : "brightness-0 invert"}`}
+        />
+        <ul className="hidden lg:flex items-center gap-10 text-[16px] font-medium">
+          {NAV.map((n) => (
+            <li key={n.label} className="relative cursor-pointer group py-6">
+              <span className="hover:opacity-70 transition-opacity inline-flex items-center gap-1">
+                {n.label}
+                {n.submenu && (
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+                )}
+              </span>
+              {n.submenu && (
+                <div className={`invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity absolute left-0 top-full bg-background text-foreground shadow-xl border border-foreground/10 p-6 z-50 ${n.submenu.length > 1 ? "grid grid-cols-2 gap-x-10 gap-y-4 w-[560px]" : "w-[280px]"}`}>
+                  {n.submenu.map((col) => (
+                    <div key={col.heading}>
+                      <p className="text-[12px] font-medium text-foreground/50 mb-2">{col.heading}</p>
+                      <ul className="space-y-0.5">
+                        {col.items.map((it) => (
+                          <li key={it} className="text-[15px] font-semibold leading-tight hover:text-primary py-0.5">
+                            {it}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+        <div className="hidden lg:flex items-center gap-3 font-medium">
+          <Yellow>FREE Consultation</Yellow>
+          <button
+            aria-label="Call Us"
+            className="bg-ink text-ink-foreground px-7 py-2.5 inline-flex items-center gap-2 text-sm font-semibold font-sans"
+          >
+            <Phone className="w-4 h-4" />
+            CALL US!
+          </button>
+        </div>
+        <button
+          aria-label="Open menu"
+          className={`lg:hidden p-2 ${scrolled ? "text-foreground" : "text-ink-foreground"}`}
+          onClick={() => setMobileOpen(true)}
+        >
+          <Menu className="w-7 h-7" />
+        </button>
+      </nav>
+
       {/* HERO */}
-      <header className="relative h-screen min-h-[640px] w-full overflow-hidden">
+      <header className="relative h-screen min-h-[640px] w-full overflow-hidden -mt-[88px] md:-mt-[96px]">
         <img
           src={heroKitchen}
           alt="Custom kitchen with bespoke wood cabinetry"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
-
-        {/* top nav */}
-        <nav className="relative z-10 flex items-center justify-between px-6 md:px-12 pt-8 text-ink-foreground font-medium">
-          <img
-            src={jlLogo}
-            alt="JL Closets"
-            className="h-12 md:h-14 w-auto brightness-0 invert"
-          />
-          <ul className="hidden lg:flex items-center gap-10 text-[16px] font-medium">
-            {NAV.map((n) => (
-              <li key={n.label} className="relative cursor-pointer group py-6">
-                <span className="hover:opacity-70 transition-opacity inline-flex items-center gap-1">
-                  {n.label}
-                  {n.submenu && (
-                    <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
-                  )}
-                </span>
-                {n.submenu && (
-                  <div className={`invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity absolute left-0 top-full bg-background text-foreground shadow-xl border border-foreground/10 p-6 z-50 ${n.submenu.length > 1 ? "grid grid-cols-2 gap-x-10 gap-y-4 w-[560px]" : "w-[280px]"}`}>
-                    {n.submenu.map((col) => (
-                      <div key={col.heading}>
-                        <p className="text-[12px] font-medium text-foreground/50 mb-2">{col.heading}</p>
-                        <ul className="space-y-0.5">
-                          {col.items.map((it) => (
-                            <li key={it} className="text-[15px] font-semibold leading-tight hover:text-primary py-0.5">
-                              {it}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-          <div className="hidden lg:flex items-center gap-3 font-medium">
-            <Yellow>FREE Consultation</Yellow>
-            <button
-              aria-label="Call Us"
-              className="bg-ink text-ink-foreground px-7 py-2.5 inline-flex items-center gap-2 text-sm font-semibold font-sans"
-            >
-              <Phone className="w-4 h-4" />
-              CALL US!
-            </button>
-          </div>
-          <button
-            aria-label="Open menu"
-            className="lg:hidden text-ink-foreground p-2"
-            onClick={() => setMobileOpen(true)}
-          >
-            <Menu className="w-7 h-7" />
-          </button>
-        </nav>
 
         {/* MOBILE MENU */}
         {mobileOpen && (
