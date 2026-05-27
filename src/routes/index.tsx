@@ -10,6 +10,7 @@ import consult from "@/assets/consult.jpg";
 import library from "@/assets/library.jpg";
 import miami from "@/assets/miami.jpg";
 import jlLogo from "@/assets/jl-logo.png";
+import { CaterpillarCarousel } from "@/components/CaterpillarCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
