@@ -6,13 +6,35 @@ gsap.registerPlugin(Flip);
 
 type Slide = { src: string; label?: string };
 
+const VISIBLE = 4;
+
 export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
+  // index of the next slide to append on "next"
+  const nextIndex = useRef(VISIBLE % slides.length);
+  // index of the slide to prepend on "prev"
+  const prevIndex = useRef((slides.length - 1) % slides.length);
+
+  const buildCard = (slide: Slide) => {
+    const card = document.createElement("div");
+    card.className = "cat-card";
+    const img = document.createElement("img");
+    img.src = slide.src;
+    img.alt = slide.label ?? "";
+    card.appendChild(img);
+    if (slide.label) {
+      const label = document.createElement("span");
+      label.className = "cat-label";
+      label.textContent = slide.label;
+      card.appendChild(label);
+    }
+    return card;
+  };
 
   const updateCaterpillar = (forward: boolean) => {
     const container = containerRef.current;
-    if (!container || isAnimating.current) return;
+    if (!container || isAnimating.current || slides.length === 0) return;
     isAnimating.current = true;
 
     const cards = gsap.utils.toArray<HTMLElement>(".cat-card", container);
@@ -25,30 +47,25 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
 
     const state = Flip.getState(cards);
 
-    const source = forward ? first : last;
-    const img = source.querySelector("img");
-    const label = source.querySelector(".cat-label");
-
-    const newCard = document.createElement("div");
-    newCard.className = "cat-card";
-    const newImg = document.createElement("img");
-    newImg.src = img?.getAttribute("src") ?? "";
-    newImg.alt = img?.getAttribute("alt") ?? "";
-    newCard.appendChild(newImg);
-    if (label?.textContent) {
-      const newLabel = document.createElement("span");
-      newLabel.className = "cat-label";
-      newLabel.textContent = label.textContent;
-      newCard.appendChild(newLabel);
-    }
+    const slide = forward
+      ? slides[nextIndex.current]
+      : slides[prevIndex.current];
+    const newCard = buildCard(slide);
     gsap.set(newCard, { scale: 0, opacity: 0 });
 
     if (forward) {
       container.append(newCard);
       first.classList.add("hide");
+      // advance pointers
+      prevIndex.current = nextIndex.current - VISIBLE;
+      if (prevIndex.current < 0) prevIndex.current += slides.length;
+      nextIndex.current = (nextIndex.current + 1) % slides.length;
     } else {
       container.prepend(newCard);
       last.classList.add("hide");
+      nextIndex.current = prevIndex.current + VISIBLE;
+      if (nextIndex.current >= slides.length) nextIndex.current -= slides.length;
+      prevIndex.current = (prevIndex.current - 1 + slides.length) % slides.length;
     }
 
     Flip.from(state, {
@@ -79,13 +96,14 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
   return (
     <div className="caterpillar-wrapper">
       <div ref={containerRef} className="caterpillar-container">
-        {slides.map((s, i) => (
+        {slides.slice(0, VISIBLE).map((s, i) => (
           <div key={`${s.src}-${i}`} className="cat-card">
             <img src={s.src} alt={s.label ?? ""} />
             {s.label ? <span className="cat-label">{s.label}</span> : null}
           </div>
         ))}
       </div>
+
       <div className="caterpillar-buttons">
         <button
           type="button"
