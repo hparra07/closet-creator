@@ -180,7 +180,7 @@ function Index() {
       <nav
         className={`sticky top-0 z-50 flex items-center justify-between px-6 md:px-12 py-4 font-medium transition-all duration-300 border-b ${
           scrolled
-            ? "bg-background/95 backdrop-blur-sm border-border/50 shadow-sm text-foreground"
+            ? "bg-white border-black/10 shadow-sm text-black"
             : "bg-transparent border-transparent text-ink-foreground"
         }`}
       >
