@@ -731,7 +731,7 @@ function Index() {
           <div className="mt-20 pt-6 border-t border-ink-foreground/15 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-ink-foreground">
             <p>© {new Date().getFullYear()} JL Closets. All rights reserved.</p>
             <div className="flex gap-6">
-              <span>Terms</span>
+              <span>Terms & Conditions</span>
               <span>Privacy</span>
             </div>
           </div>
