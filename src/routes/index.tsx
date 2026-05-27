@@ -304,26 +304,30 @@ function Index() {
         <div className="text-center mb-20">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Custom Storage Solutions</span>
         </div>
-        <div className="max-w-xs mx-auto lg:mx-0 mb-12">
-          <p className="font-sans text-[15px] md:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
-            <span className="underline decoration-foreground/60 underline-offset-4">
-              From custom closets to garages, pantries, home offices and more, JL Closets designs tailored storage solutions for every space in your home—guided
-            </span>{" "}
-            by a simple process, expert installation, and over 30 years of award-winning experience.
-          </p>
+        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-10">
+          <div className="max-w-xs md:max-w-lg lg:max-w-xs mx-auto lg:mx-0 mb-12 lg:mb-0 lg:shrink-0">
+            <p className="font-sans text-[15px] md:text-[18px] lg:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
+              <span className="underline decoration-foreground/60 underline-offset-4">
+                From custom closets to garages, pantries, home offices and more, JL Closets designs tailored storage solutions for every space in your home—guided
+              </span>{" "}
+              by a simple process, expert installation, and over 30 years of award-winning experience.
+            </p>
+          </div>
+          <div className="flex-1 min-w-0">
+            <CaterpillarCarousel
+              slides={[
+                { src: storageCloset, label: "Custom Closets" },
+                { src: storagePantry, label: "Pantry Organization" },
+                { src: storageMudroom, label: "Mudroom Storage" },
+                { src: storageLaundry, label: "Laundry Room Organization" },
+                { src: storageEntertainment, label: "Entertainment Centers & Wall Units" },
+                { src: storageGarage, label: "Garage Storage" },
+                { src: storageOffice, label: "Home Office" },
+                { src: storageMore, label: "More Storage Ideas" },
+              ]}
+            />
+          </div>
         </div>
-        <CaterpillarCarousel
-          slides={[
-            { src: storageCloset, label: "Custom Closets" },
-            { src: storagePantry, label: "Pantry Organization" },
-            { src: storageMudroom, label: "Mudroom Storage" },
-            { src: storageLaundry, label: "Laundry Room Organization" },
-            { src: storageEntertainment, label: "Entertainment Centers & Wall Units" },
-            { src: storageGarage, label: "Garage Storage" },
-            { src: storageOffice, label: "Home Office" },
-            { src: storageMore, label: "More Storage Ideas" },
-          ]}
-        />
       </Section>
 
       {/* SECTION 02 — Process */}
