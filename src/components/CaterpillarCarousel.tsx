@@ -120,7 +120,7 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
     });
   };
 
-  const cardWidthVw = visible === 2 ? 42 : visible === 3 ? 28 : 20;
+  const cardWidth = visible === 2 ? "calc((100% - 5px) / 2)" : "calc((100% - 10px) / 3)";
 
   return (
     <div className="caterpillar-wrapper">
