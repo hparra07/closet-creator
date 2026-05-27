@@ -166,13 +166,13 @@ function Section({
 function Index() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const [scrolled, setScrolled] = useState(false);
 
   return (
     <main className="bg-background text-foreground overflow-x-hidden">
