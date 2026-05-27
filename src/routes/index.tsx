@@ -315,13 +315,13 @@ function Index() {
         <CaterpillarCarousel
           slides={[
             { src: storageCloset, label: "Custom Closets" },
-            { src: storagePantry, label: "Pantry\nOrganization" },
-            { src: storageEntertainment, label: "Entertainment\nCenters &\nWall Units" },
-            { src: storageMudroom, label: "Mudroom\nStorage" },
-            { src: storageLaundry, label: "Laundry Room\nOrganization" },
-            { src: storageGarage, label: "Garage\nStorage" },
-            { src: storageOffice, label: "Home\nOffice" },
-            { src: storageMore, label: "More\nStorage Ideas" },
+            { src: storagePantry, label: "Pantry Organization" },
+            { src: storageEntertainment, label: "Entertainment Centers & Wall Units" },
+            { src: storageMudroom, label: "Mudroom Storage" },
+            { src: storageLaundry, label: "Laundry Room Organization" },
+            { src: storageGarage, label: "Garage Storage" },
+            { src: storageOffice, label: "Home Office" },
+            { src: storageMore, label: "More Storage Ideas" },
           ]}
         />
       </Section>
