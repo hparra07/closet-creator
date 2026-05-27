@@ -289,9 +289,9 @@ function Index() {
         )}
 
         {/* hero copy */}
-        <div className="absolute left-6 md:left-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground">
+        <div className="absolute left-5 right-5 md:left-16 md:right-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground">
           <p className="mb-6 opacity-90 text-[15px] font-medium">Let Us Create Your Calm™</p>
-          <h1 className="font-sans font-medium text-3xl md:text-5xl leading-[1.1] mb-8">
+          <h1 className="font-sans font-medium text-[26px] sm:text-3xl md:text-5xl leading-[1.15] mb-8">
             Custom Closet Systems &amp;<br />
             Storage Solutions in South Florida.
           </h1>
