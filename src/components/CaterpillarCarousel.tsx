@@ -7,13 +7,12 @@ gsap.registerPlugin(Flip);
 type Slide = { src: string; label?: string };
 
 function useVisibleCount() {
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(3);
   useEffect(() => {
     const compute = () => {
       const w = window.innerWidth;
       if (w < 768) setCount(2);
-      else if (w < 1024) setCount(3);
-      else setCount(4);
+      else setCount(3);
     };
     compute();
     window.addEventListener("resize", compute);
@@ -121,7 +120,7 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
     });
   };
 
-  const cardWidthVw = visible === 2 ? 42 : visible === 3 ? 28 : 20;
+  const cardWidth = visible === 2 ? "calc((100% - 5px) / 2)" : "calc((100% - 10px) / 3)";
 
   return (
     <div className="caterpillar-wrapper">
@@ -163,6 +162,7 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
 
         .caterpillar-container {
           display: flex;
+          width: 100%;
           padding: 5px;
           gap: 5px;
           border: 1px solid color-mix(in oklab, var(--foreground) 30%, transparent);
@@ -171,7 +171,7 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
 
         .caterpillar-container .cat-card {
           position: relative;
-          width: ${cardWidthVw}vw;
+          width: ${cardWidth};
           aspect-ratio: 3 / 5;
           overflow: hidden;
         }
