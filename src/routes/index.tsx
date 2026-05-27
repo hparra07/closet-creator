@@ -304,7 +304,7 @@ function Index() {
         <div className="text-center mb-20">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Custom Storage Solutions</span>
         </div>
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-10">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
           <div className="max-w-xs md:max-w-lg lg:max-w-xs mx-auto lg:mx-0 mb-12 lg:mb-0 lg:shrink-0">
             <p className="font-sans text-[15px] md:text-[18px] lg:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
               <span className="underline decoration-foreground/60 underline-offset-4">
