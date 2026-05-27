@@ -175,7 +175,7 @@ function Index() {
   }, []);
 
   return (
-    <main className="bg-background text-foreground overflow-x-hidden">
+    <main className="bg-background text-foreground overflow-x-clip">
       {/* STICKY NAV */}
       <nav
         className={`sticky top-0 z-50 flex items-center justify-between px-6 md:px-12 py-4 font-medium transition-all duration-300 border-b ${
