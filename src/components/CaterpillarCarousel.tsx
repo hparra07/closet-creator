@@ -161,17 +161,27 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
           display: block;
         }
 
+        .caterpillar-container .cat-card::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 45%;
+          background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+          pointer-events: none;
+        }
+
         .caterpillar-container .cat-label {
           position: absolute;
           left: 16px;
+          right: 16px;
           bottom: 16px;
           color: #fff;
           font-size: 18px;
           font-weight: 600;
           line-height: 1.15;
-          text-shadow: 0 1px 8px rgba(0,0,0,0.5);
-          max-width: 85%;
-          white-space: pre-line;
+          white-space: nowrap;
         }
 
         .caterpillar-buttons {
