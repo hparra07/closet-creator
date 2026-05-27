@@ -304,7 +304,7 @@ function Index() {
         <div className="text-center mb-20">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Custom Storage Solutions</span>
         </div>
-        <div className="max-w-xs mx-auto md:mx-0 mb-12">
+        <div className="max-w-xs mx-auto lg:mx-0 mb-12">
           <p className="font-sans text-[15px] md:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
             <span className="underline decoration-foreground/60 underline-offset-4">
               From custom closets to garages, pantries, home offices and more, JL Closets designs tailored storage solutions for every space in your home—guided
