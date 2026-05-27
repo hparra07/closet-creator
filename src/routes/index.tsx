@@ -229,7 +229,7 @@ function Index() {
         </div>
         <button
           aria-label="Open menu"
-          className={`lg:hidden p-2 ${scrolled ? "text-foreground" : "text-ink-foreground"}`}
+          className={`lg:hidden p-2 ${scrolled ? "text-black" : "text-ink-foreground"}`}
           onClick={() => setMobileOpen(true)}
         >
           <Menu className="w-7 h-7" />
