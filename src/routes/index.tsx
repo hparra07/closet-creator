@@ -316,8 +316,8 @@ function Index() {
           slides={[
             { src: storageCloset, label: "Custom Closets" },
             { src: storagePantry, label: "Pantry Organization" },
-            { src: storageEntertainment, label: "Entertainment Centers & Wall Units" },
             { src: storageMudroom, label: "Mudroom Storage" },
+            { src: storageEntertainment, label: "Entertainment Centers & Wall Units" },
             { src: storageLaundry, label: "Laundry Room Organization" },
             { src: storageGarage, label: "Garage Storage" },
             { src: storageOffice, label: "Home Office" },
