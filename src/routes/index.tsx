@@ -598,8 +598,8 @@ function Index() {
         />
         <div className="relative px-6 md:px-16 py-20">
           {/* Top: Logo left, Newsletter right */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 mb-20">
-            <img src={jlLogo} alt="JL Closets" className="h-24 w-auto brightness-0 invert" />
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 mb-20">
+            <img src={jlLogo} alt="JL Closets" className="h-24 w-auto brightness-0 invert block self-start" />
             <div className="lg:max-w-xl w-full">
               <h3 className="font-display text-2xl md:text-3xl leading-tight mb-5">
                 Design Inspiration, Expert Tips<br />& Exclusive Updates
