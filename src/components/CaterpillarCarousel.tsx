@@ -16,6 +16,14 @@ export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
   // index of the slide to prepend on "prev"
   const prevIndex = useRef((slides.length - 1) % slides.length);
 
+  // Preload all slide images so they appear instantly when navigating
+  useEffect(() => {
+    slides.forEach((s) => {
+      const img = new Image();
+      img.src = s.src;
+    });
+  }, [slides]);
+
   const buildCard = (slide: Slide) => {
     const card = document.createElement("div");
     card.className = "cat-card";
