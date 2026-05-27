@@ -732,7 +732,7 @@ function Index() {
             <p>© {new Date().getFullYear()} JL Closets. All rights reserved.</p>
             <div className="flex gap-6">
               <span>Terms & Conditions</span>
-              <span>Privacy</span>
+              <span>Privacy Policy</span>
             </div>
           </div>
         </div>
