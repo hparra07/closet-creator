@@ -8,6 +8,14 @@ import darkOffice from "@/assets/dark-office.jpg";
 import showroom from "@/assets/showroom.jpg";
 import consult from "@/assets/consult.jpg";
 import library from "@/assets/library.jpg";
+import storageCloset from "@/assets/storage-closet.png";
+import storagePantry from "@/assets/storage-pantry.png";
+import storageEntertainment from "@/assets/storage-entertainment.png";
+import storageMudroom from "@/assets/storage-mudroom.png";
+import storageLaundry from "@/assets/storage-laundry.png";
+import storageGarage from "@/assets/storage-garage.png";
+import storageOffice from "@/assets/storage-office.png";
+import storageMore from "@/assets/storage-more.png";
 import miami from "@/assets/miami.jpg";
 import jlLogo from "@/assets/jl-logo.png";
 import { CaterpillarCarousel } from "@/components/CaterpillarCarousel";
@@ -306,11 +314,14 @@ function Index() {
         </div>
         <CaterpillarCarousel
           slides={[
-            { src: closetImg, label: "Custom Closets" },
-            { src: pantryImg, label: "Pantry" },
-            { src: library, label: "Library" },
-            { src: showroom, label: "Showroom" },
-            { src: darkOffice, label: "Home Office" },
+            { src: storageCloset, label: "Custom Closets" },
+            { src: storagePantry, label: "Pantry\nOrganization" },
+            { src: storageEntertainment, label: "Entertainment\nCenters &\nWall Units" },
+            { src: storageMudroom, label: "Mudroom\nStorage" },
+            { src: storageLaundry, label: "Laundry Room\nOrganization" },
+            { src: storageGarage, label: "Garage\nStorage" },
+            { src: storageOffice, label: "Home\nOffice" },
+            { src: storageMore, label: "More\nStorage Ideas" },
           ]}
         />
       </Section>
