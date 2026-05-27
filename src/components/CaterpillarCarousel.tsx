@@ -162,6 +162,7 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
 
         .caterpillar-container {
           display: flex;
+          width: 100%;
           padding: 5px;
           gap: 5px;
           border: 1px solid color-mix(in oklab, var(--foreground) 30%, transparent);
