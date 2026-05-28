@@ -235,12 +235,21 @@ function Index() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 50);
+      const heroH = heroRef.current?.offsetHeight ?? window.innerHeight;
+      setScrollY(Math.min(Math.max(y, 0), heroH));
+    };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   return (
     <main className="bg-background text-foreground overflow-x-clip">
