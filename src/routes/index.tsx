@@ -435,7 +435,7 @@ function Index() {
               img: darkOffice,
             },
             {
-              k: "iii.",
+              k: "3.",
               t: "Expert Installations",
               d: "A small, dedicated team installs on-site with the patience and finish of a fine cabinetmaker.",
               img: library,
