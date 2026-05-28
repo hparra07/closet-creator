@@ -414,7 +414,7 @@ function Index() {
       {/* SECTION 02 — Process */}
       <Section num="02">
         <div className="text-center mb-12">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>Process</span>
+          <span className="rule eyebrow" style={{ color: "#313131" }}>Our Process</span>
         </div>
         <p className="text-center max-w-xl mx-auto font-display text-2xl md:text-3xl leading-snug mb-24">
           Four considered steps — from a quiet conversation in your home to the moment your space
