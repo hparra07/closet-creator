@@ -5,6 +5,10 @@ import heroKitchen from "@/assets/hero-kitchen.jpg";
 import closetImg from "@/assets/closet.jpg";
 import pantryImg from "@/assets/pantry.jpg";
 import darkOffice from "@/assets/dark-office.jpg";
+import whyFrame1 from "@/assets/why-frame-1.jpg";
+import whyFrame2 from "@/assets/why-frame-2.jpg";
+import whyFrame3 from "@/assets/why-frame-3.jpg";
+import whyFrame4 from "@/assets/why-frame-4.jpg";
 import showroom from "@/assets/showroom.jpg";
 import consult from "@/assets/consult.jpg";
 import library from "@/assets/library.jpg";
@@ -245,6 +249,82 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
         </div>
       </div>
     </>
+  );
+}
+
+function WhyChooseUs() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = el.offsetHeight - vh;
+      const scrolled = Math.min(Math.max(-rect.top, 0), total);
+      setProgress(total > 0 ? scrolled / total : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  const frames = [whyFrame1, whyFrame2, whyFrame3, whyFrame4];
+  // Map progress (0..1) to frame opacities. Each frame dominates a quadrant with crossfade.
+  const frameOpacity = (i: number) => {
+    const p = progress * 3; // 0..3 across 4 frames
+    const d = Math.abs(p - i);
+    return Math.max(0, 1 - d);
+  };
+
+  return (
+    <section ref={sectionRef} className="relative text-ink-foreground" style={{ height: "200vh" }}>
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {frames.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200"
+            style={{ opacity: frameOpacity(i) }}
+            loading="lazy"
+          />
+        ))}
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="relative h-full w-full overflow-y-auto">
+          <p className="eyebrow text-center pt-12 text-ink-foreground rule mx-auto w-fit">
+            WHY CHOOSE US
+          </p>
+          <div className="px-6 md:px-16 py-10 max-w-6xl mx-auto">
+            <p className="font-sans font-normal text-2xl md:text-3xl leading-snug max-w-3xl mb-12 text-ink-foreground">
+              With over <strong className="font-bold">30 years of expertise</strong>, we are <strong className="font-bold">South Florida’s most awarded</strong> custom storage provider.
+              Our commitment to quality, innovative design, and expert craftsmanship ensures a seamless
+              experience tailored to your home.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 border-t border-ink-foreground/30 pt-8">
+              {[
+                ["Same-day or Next-day Free Consultation", "Get expert design at your doorstep with same-day or\nnext-day appointments."],
+                ["Over 30 Years of Expertise", "South Florida’s oldest closet company, delivering inmatched reliability and professional service."],
+                ["Florida’s Most Awarded", "8-Time Best Pick Top-rated for 8 consecutive years, reflecting our unwavering commitment to excellence."],
+                ["Standing Behind Our Work", "Our quality extends for years, offering dedicated support and peace of mind after installation."],
+                ["Customer-centric Aproach", "Professional and accommodating service designed to ensure a superior experience at every step."],
+              ].map(([k, d]) => (
+                <div key={k}>
+                  <p className="font-display text-lg mb-3 leading-tight text-ink-foreground font-bold">{k}</p>
+                  <p className="text-xs leading-relaxed text-ink-foreground/70 whitespace-pre-line text-white">{d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -496,42 +576,8 @@ function Index() {
         />
       </Section>
 
-      {/* SECTION 03 — Dark editorial */}
-      <section className="relative text-ink-foreground overflow-hidden">
-        <img
-          src={darkOffice}
-          alt="Dark home office"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative">
-          <p className="eyebrow text-center pt-12 text-ink-foreground rule mx-auto w-fit">
-            WHY CHOOSE US
-          </p>
-          <div className="px-6 md:px-16 py-14 max-w-6xl mx-auto">
-            <p className="font-sans font-normal text-2xl md:text-3xl leading-snug max-w-3xl mb-16 text-ink-foreground">
-              With over <strong className="font-bold">30 years of expertise</strong>, we are <strong className="font-bold">South Florida’s most awarded</strong> custom storage provider.
-              Our commitment to quality, innovative design, and expert craftsmanship ensures a seamless
-              experience tailored to your home.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-10 border-t border-ink-foreground/30 pt-10">
-              {[
-                ["Same-day or Next-day Free Consultation", "Get expert design at your doorstep with same-day or\nnext-day appointments."],
-                ["Over 30 Years of Expertise", "South Florida’s oldest closet company, delivering inmatched reliability and professional service."],
-                ["Florida’s Most Awarded", "8-Time Best Pick Top-rated for 8 consecutive years, reflecting our unwavering commitment to excellence."],
-                ["Standing Behind Our Work", "Our quality extends for years, offering dedicated support and peace of mind after installation."],
-                ["Customer-centric Aproach", "Professional and accommodating service designed to ensure a superior experience at every step."],
-              ].map(([k, d]) => (
-                <div key={k}>
-                  <p className="font-display text-lg mb-3 leading-tight text-ink-foreground font-bold">{k}</p>
-                  <p className="text-xs leading-relaxed text-ink-foreground/70 whitespace-pre-line text-white">{d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SECTION 03 — Why Choose Us (scroll-driven cinematic) */}
+      <WhyChooseUs />
 
 
       {/* SECTION 04 — Gallery row */}
