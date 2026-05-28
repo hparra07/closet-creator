@@ -330,10 +330,18 @@ function Index() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/55" />
         </div>
 
-        {/* Hero copy — scrolls naturally with the page, following the section
-            until it reaches the bottom of the hero. Always fully visible while
-            inside the section. */}
-        <div className="absolute left-5 right-5 md:left-16 md:right-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground">
+        {/* Hero copy — starts near the top and translates downward with scroll
+            so it stays in the viewport as the user scrolls through the hero,
+            stopping near the bottom of the section. */}
+        <div
+          className="absolute left-5 right-5 md:left-16 md:right-16 top-28 md:top-36 max-w-3xl text-ink-foreground will-change-transform"
+          style={{
+            transform: `translate3d(0, ${Math.min(
+              scrollY,
+              Math.max(0, (heroRef.current?.offsetHeight ?? 1100) - 560)
+            )}px, 0)`,
+          }}
+        >
           <p className="mb-6 opacity-90 text-[15px] font-medium">Let Us Create Your Calm™</p>
           <h1 className="font-sans font-medium text-[26px] sm:text-3xl md:text-5xl leading-[1.15] mb-8">
             Custom Closet Systems &amp;<br />
