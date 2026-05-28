@@ -157,7 +157,7 @@ function Section({
   className?: string;
 }) {
   return (
-    <section className={`relative px-5 md:px-10 lg:px-16 py-24 md:py-32 ${className}`}>
+    <section className={`relative px-5 md:px-10 lg:px-16 py-14 md:py-20 ${className}`}>
       {children}
     </section>
   );
@@ -428,7 +428,7 @@ function Index() {
 
       {/* SECTION 01 — Intro + two images */}
       <Section num="01">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Custom Storage Solutions</span>
         </div>
         <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
@@ -459,10 +459,10 @@ function Index() {
 
       {/* SECTION 02 — Process */}
       <Section num="02">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Our Process</span>
         </div>
-        <p className="text-center max-w-2xl mx-auto font-display text-2xl md:text-3xl leading-snug mb-24">
+        <p className="text-center max-w-2xl mx-auto font-display text-2xl md:text-3xl leading-snug mb-14">
           From the first sketch to the final installation, our step-by-step approach ensures a seamless experience and a storage solution tailored to your life.
         </p>
 
@@ -504,7 +504,7 @@ function Index() {
         <div className="relative">
           <img src={darkOffice} alt="Dark home office" className="w-full h-[80vh] object-cover" loading="lazy" />
         </div>
-        <div className="px-6 md:px-16 py-20 max-w-6xl mx-auto">
+        <div className="px-6 md:px-16 py-14 max-w-6xl mx-auto">
           <p className="font-display text-2xl md:text-3xl leading-snug max-w-3xl mb-16">
             We approach every commission as an architectural problem — a study of proportion, light,
             and the small choreographies of daily life. Each piece is drawn, prototyped and built in
@@ -530,7 +530,7 @@ function Index() {
 
       {/* SECTION 04 — Gallery row */}
       <Section num="04">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Selected Work</span>
         </div>
         <div className="flex gap-3 md:gap-5 overflow-x-auto -mx-6 md:-mx-16 px-6 md:px-16 pb-4">
@@ -564,7 +564,7 @@ function Index() {
 
       {/* SECTION 05 — Service area + pricing card */}
       <Section num="05">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Service Area</span>
         </div>
         <div className="grid md:grid-cols-12 gap-10 items-start">
@@ -616,10 +616,10 @@ function Index() {
 
       {/* SECTION 07 — Testimonials */}
       <Section num="07" className="min-h-[1100px]">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Clients</span>
         </div>
-        <div className="max-w-md mx-auto text-center mb-24">
+        <div className="max-w-md mx-auto text-center mb-14">
           <p className="eyebrow mb-4 text-foreground/60">— Testimonials</p>
           <p className="font-display text-3xl md:text-4xl leading-snug">
             Honest words from families we've built for.
@@ -666,7 +666,7 @@ function Index() {
 
       {/* SECTION 08 — Contact form */}
       <Section num="08">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Begin a Project</span>
         </div>
         <div className="grid md:grid-cols-12 gap-12 max-w-6xl mx-auto">
@@ -714,7 +714,7 @@ function Index() {
           alt=""
           className="absolute inset-0 h-full w-full object-cover opacity-10"
         />
-        <div className="relative px-6 md:px-16 py-20">
+        <div className="relative px-6 md:px-16 py-14">
           {/* Top: Logo left, Newsletter right */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 mb-20">
             <img src={jlLogo} alt="JL Closets" className="h-24 w-auto brightness-0 invert block self-start" />
