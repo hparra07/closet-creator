@@ -443,7 +443,7 @@ function Index() {
             {
               k: "4.",
               t: "Enjoy Organized Living",
-              d: "Years of quiet utility — a piece of architecture that gives your day back to you.",
+              d: "Step into a beautifully organized space where every item has its place, designed for flawless performance and lasting style.",
               img: closetImg,
             },
           ]}
