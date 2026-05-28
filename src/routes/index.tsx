@@ -441,7 +441,7 @@ function Index() {
               img: library,
             },
             {
-              k: "iv.",
+              k: "4.",
               t: "Enjoy Organized Living",
               d: "Years of quiet utility — a piece of architecture that gives your day back to you.",
               img: closetImg,
