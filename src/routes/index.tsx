@@ -197,8 +197,8 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
 
   return (
     <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
-      <div className="md:sticky md:top-0 md:h-screen md:flex md:items-end md:pb-12">
-        <div className="relative w-full aspect-[4/5] overflow-hidden">
+      <div className="md:sticky md:top-0 md:h-screen md:max-h-[900px] md:flex md:items-end md:pb-12">
+        <div className="relative w-full aspect-[4/5] max-h-full overflow-hidden">
           {steps.map((s, i) => (
             <img
               key={i}
