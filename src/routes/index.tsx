@@ -334,7 +334,7 @@ function Index() {
             so it stays in the viewport as the user scrolls through the hero,
             stopping near the bottom of the section. */}
         <div
-          className="absolute left-5 right-5 md:left-16 md:right-16 top-28 md:top-36 max-w-3xl text-ink-foreground will-change-transform"
+          className="absolute left-5 right-5 md:left-16 md:right-16 top-[50vh] max-w-3xl text-ink-foreground will-change-transform"
           style={{
             transform: `translate3d(0, ${Math.min(
               scrollY,
