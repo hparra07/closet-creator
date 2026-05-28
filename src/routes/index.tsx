@@ -513,7 +513,7 @@ function Index() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-10 border-t border-ink-foreground/15 pt-10">
             {[
               ["Same-day or Next-day Free Consultation", "Twenty-Two Years", "Get expert design at your doorstep with same-day or\nnext-day appointments."],
-              ["Over 30 Years of Expertise", "12,400+", "Closets, pantries and built-ins delivered."],
+              ["Over 30 Years of Expertise", "12,400+", "South Florida’s oldest closet company, delivering inmatched reliability and professional service."],
               ["Florida’s Most Awarded", "South Florida", "Miami · Boca · Naples · Palm Beach"],
               ["Standing Behind Our Work", "Warranty", "Every install backed for life."],
               ["Customer-centric Aproach", "Top Rated", "4.97 average across 800+ reviews."],
