@@ -416,9 +416,8 @@ function Index() {
         <div className="text-center mb-12">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Our Process</span>
         </div>
-        <p className="text-center max-w-xl mx-auto font-display text-2xl md:text-3xl leading-snug mb-24">
-          Four considered steps — from a quiet conversation in your home to the moment your space
-          becomes a craft of clarity and calm.
+        <p className="text-center max-w-2xl mx-auto font-display text-2xl md:text-3xl leading-snug mb-24">
+          From the first sketch to the final installation, our step-by-step approach ensures a seamless experience and a storage solution tailored to your life.
         </p>
 
         <ProcessScroller
