@@ -296,13 +296,12 @@ function WhyChooseUs() {
             loading="lazy"
           />
         ))}
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="relative h-full w-full overflow-y-auto">
+        <div className="relative h-full w-full flex flex-col">
           <p className="eyebrow text-center pt-12 text-ink-foreground rule mx-auto w-fit">
             WHY CHOOSE US
           </p>
-          <div className="px-6 md:px-16 py-10 max-w-6xl mx-auto">
-            <p className="font-sans font-normal text-2xl md:text-3xl leading-snug max-w-3xl mb-12 text-ink-foreground">
+          <div className="mt-auto px-6 md:px-16 pb-12 pt-8 max-w-6xl mx-auto w-full">
+            <p className="font-sans font-normal text-2xl md:text-3xl leading-snug max-w-3xl mb-10 text-ink-foreground">
               With over <strong className="font-bold">30 years of expertise</strong>, we are <strong className="font-bold">South Florida’s most awarded</strong> custom storage provider.
               Our commitment to quality, innovative design, and expert craftsmanship ensures a seamless
               experience tailored to your home.
@@ -317,7 +316,7 @@ function WhyChooseUs() {
               ].map(([k, d]) => (
                 <div key={k}>
                   <p className="font-display text-lg mb-3 leading-tight text-ink-foreground font-bold">{k}</p>
-                  <p className="text-xs leading-relaxed text-ink-foreground/70 whitespace-pre-line text-white">{d}</p>
+                  <p className="text-xs leading-relaxed whitespace-pre-line text-white">{d}</p>
                 </div>
               ))}
             </div>
