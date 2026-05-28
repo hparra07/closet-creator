@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Phone, ChevronDown, Menu, X, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import closetImg from "@/assets/closet.jpg";
@@ -160,6 +160,65 @@ function Section({
     <section className={`relative px-5 md:px-10 lg:px-16 py-24 md:py-32 ${className}`}>
       {children}
     </section>
+  );
+}
+
+type ProcessStep = { k: string; t: string; d: string; img: string };
+
+function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
+  const [active, setActive] = useState(0);
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          const idx = Number((visible.target as HTMLElement).dataset.idx);
+          setActive(idx);
+        }
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+    refs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, [steps.length]);
+
+  return (
+    <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
+      <div className="md:sticky md:top-0 md:h-screen md:flex md:items-end md:pb-12">
+        <div className="relative w-full aspect-[4/5] overflow-hidden">
+          {steps.map((s, i) => (
+            <img
+              key={i}
+              src={s.img}
+              alt={s.t}
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+              style={{ opacity: active === i ? 1 : 0 }}
+              loading="lazy"
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-[40vh] md:py-[20vh]">
+        {steps.map((s, i) => (
+          <div
+            key={i}
+            data-idx={i}
+            ref={(el) => { refs.current[i] = el; }}
+            className="transition-opacity duration-500"
+            style={{ opacity: active === i ? 1 : 0.25 }}
+          >
+            <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
+            <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4">{s.t}</h3>
+            <p className="text-[14px] leading-relaxed max-w-md text-foreground/70">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
