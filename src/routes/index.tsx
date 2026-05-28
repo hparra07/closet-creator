@@ -353,43 +353,34 @@ function Index() {
           becomes a craft of clarity and calm.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
-          <div className="md:sticky md:top-24">
-            <img src={consult} alt="In home consultation" className="w-full object-cover" loading="lazy" />
-          </div>
-
-          <div className="space-y-20">
-            {[
-              {
-                k: "i.",
-                t: "In-Home Consultation",
-                d: "We meet in your space, listen to how you live, and measure every contour with care.",
-                accent: true,
-              },
-              {
-                k: "ii.",
-                t: "Design & Precision Drafting",
-                d: "Our studio drafts every shelf, drawer and detail to the millimeter — reviewed with you, refined together.",
-              },
-              {
-                k: "iii.",
-                t: "Expert Installations",
-                d: "A small, dedicated team installs on-site with the patience and finish of a fine cabinetmaker.",
-              },
-              {
-                k: "iv.",
-                t: "Enjoy Organized Living",
-                d: "Years of quiet utility — a piece of architecture that gives your day back to you.",
-              },
-            ].map((s, i) => (
-              <div key={i} className={s.accent ? "" : "opacity-60"}>
-                <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
-                <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4">{s.t}</h3>
-                <p className="text-[14px] leading-relaxed max-w-md text-foreground/70">{s.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ProcessScroller
+          steps={[
+            {
+              k: "i.",
+              t: "In-Home Consultation",
+              d: "We meet in your space, listen to how you live, and measure every contour with care.",
+              img: consult,
+            },
+            {
+              k: "ii.",
+              t: "Design & Precision Drafting",
+              d: "Our studio drafts every shelf, drawer and detail to the millimeter — reviewed with you, refined together.",
+              img: darkOffice,
+            },
+            {
+              k: "iii.",
+              t: "Expert Installations",
+              d: "A small, dedicated team installs on-site with the patience and finish of a fine cabinetmaker.",
+              img: library,
+            },
+            {
+              k: "iv.",
+              t: "Enjoy Organized Living",
+              d: "Years of quiet utility — a piece of architecture that gives your day back to you.",
+              img: closetImg,
+            },
+          ]}
+        />
       </Section>
 
       {/* SECTION 03 — Dark editorial */}
