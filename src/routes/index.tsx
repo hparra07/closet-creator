@@ -423,7 +423,7 @@ function Index() {
         <ProcessScroller
           steps={[
             {
-              k: "i.",
+              k: "1.",
               t: "In-Home Consultation",
               d: "We meet in your space, listen to how you live, and measure every contour with care.",
               img: consult,
