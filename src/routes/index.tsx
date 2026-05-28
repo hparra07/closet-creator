@@ -222,7 +222,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
             style={{ opacity: active === i ? 1 : 0.2 }}
           >
             <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
-            <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4 font-bold">{s.t}</h3>
+            <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4 font-bold text-[#474747]">{s.t}</h3>
             <p className="text-[14px] leading-relaxed max-w-md text-foreground/70">{s.d}</p>
           </div>
         ))}
