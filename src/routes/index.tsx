@@ -514,7 +514,7 @@ function Index() {
             {[
               ["Same-day or Next-day Free Consultation", "Twenty-Two Years", "Get expert design at your doorstep with same-day or\nnext-day appointments."],
               ["Over 30 Years of Expertise", "12,400+", "Closets, pantries and built-ins delivered."],
-              ["Coverage", "South Florida", "Miami · Boca · Naples · Palm Beach"],
+              ["Florida’s Most Awarded", "South Florida", "Miami · Boca · Naples · Palm Beach"],
               ["Lifetime Limited", "Warranty", "Every install backed for life."],
               ["Customer Service", "Top Rated", "4.97 average across 800+ reviews."],
             ].map(([k, t, d]) => (
