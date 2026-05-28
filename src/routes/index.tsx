@@ -235,12 +235,21 @@ function Index() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 50);
+      const heroH = heroRef.current?.offsetHeight ?? window.innerHeight;
+      setScrollY(Math.min(Math.max(y, 0), heroH));
+    };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   return (
     <main className="bg-background text-foreground overflow-x-clip">
@@ -305,13 +314,15 @@ function Index() {
       </nav>
 
       {/* HERO */}
-      <header className="relative h-screen min-h-[640px] w-full overflow-hidden">
+      <header ref={heroRef} className="relative h-screen min-h-[640px] w-full overflow-hidden">
         <img
           src={heroKitchen}
           alt="Custom kitchen with bespoke wood cabinetry"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-[120%] w-full object-cover will-change-transform"
+          style={{ transform: `translate3d(0, ${scrollY * 0.4}px, 0)` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
+
 
         {/* MOBILE MENU */}
         {mobileOpen && (
@@ -370,7 +381,10 @@ function Index() {
         )}
 
         {/* hero copy */}
-        <div className="absolute left-5 right-5 md:left-16 md:right-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground">
+        <div
+          className="absolute left-5 right-5 md:left-16 md:right-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground will-change-transform"
+          style={{ transform: `translate3d(0, ${scrollY * 0.85}px, 0)`, opacity: Math.max(0, 1 - scrollY / ((heroRef.current?.offsetHeight ?? 800) * 0.9)) }}
+        >
           <p className="mb-6 opacity-90 text-[15px] font-medium">Let Us Create Your Calm™</p>
           <h1 className="font-sans font-medium text-[26px] sm:text-3xl md:text-5xl leading-[1.15] mb-8">
             Custom Closet Systems &amp;<br />
