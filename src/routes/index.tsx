@@ -170,37 +170,20 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    let ticking = false;
-    const compute = () => {
-      ticking = false;
-      const mid = window.innerHeight / 2;
-      let bestIdx = 0;
-      let bestDist = Infinity;
-      refs.current.forEach((el, i) => {
-        if (!el) return;
-        const r = el.getBoundingClientRect();
-        const c = r.top + r.height / 2;
-        const d = Math.abs(c - mid);
-        if (d < bestDist) {
-          bestDist = d;
-          bestIdx = i;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          const idx = Number((visible.target as HTMLElement).dataset.idx);
+          setActive(idx);
         }
-      });
-      setActive(bestIdx);
-    };
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(compute);
-      }
-    };
-    compute();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+    refs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
   }, [steps.length]);
 
   return (
@@ -212,7 +195,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
               key={i}
               src={s.img}
               alt={s.t}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ease-out"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
               style={{ opacity: active === i ? 1 : 0 }}
               loading="lazy"
             />
@@ -226,7 +209,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
             key={i}
             data-idx={i}
             ref={(el) => { refs.current[i] = el; }}
-            className="transition-opacity duration-300 ease-out"
+            className="transition-opacity duration-500"
             style={{ opacity: active === i ? 1 : 0.25 }}
           >
             <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
