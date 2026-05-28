@@ -437,7 +437,7 @@ function Index() {
             {
               k: "3.",
               t: "Expert Installations",
-              d: "A small, dedicated team installs on-site with the patience and finish of a fine cabinetmaker.",
+              d: "Highly trained professionals handle your installation with the utmost care, keeping your informed until you are entirely satisfied.",
               img: library,
             },
             {
