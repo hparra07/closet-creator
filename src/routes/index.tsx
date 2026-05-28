@@ -506,9 +506,9 @@ function Index() {
         </div>
         <div className="px-6 md:px-16 py-14 max-w-6xl mx-auto">
           <p className="font-display text-2xl md:text-3xl leading-snug max-w-3xl mb-16">
-            We approach every commission as an architectural problem — a study of proportion, light,
-            and the small choreographies of daily life. Each piece is drawn, prototyped and built in
-            our South Florida atelier.
+            With over 30 years of expertise , we are South Florida’s most awarded custom storage provider. 
+            Our commitment to quality, innovative design, and expert craftsmanship ensures a seamless 
+            experience tailored to your home.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-10 border-t border-ink-foreground/15 pt-10">
             {[
