@@ -314,13 +314,15 @@ function Index() {
       </nav>
 
       {/* HERO */}
-      <header className="relative h-screen min-h-[640px] w-full overflow-hidden">
+      <header ref={heroRef} className="relative h-screen min-h-[640px] w-full overflow-hidden">
         <img
           src={heroKitchen}
           alt="Custom kitchen with bespoke wood cabinetry"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-[120%] w-full object-cover will-change-transform"
+          style={{ transform: `translate3d(0, ${scrollY * 0.4}px, 0)` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
+
 
         {/* MOBILE MENU */}
         {mobileOpen && (
