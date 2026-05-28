@@ -314,25 +314,32 @@ function Index() {
       </nav>
 
       {/* HERO */}
-      <header ref={heroRef} className="relative h-[160vh] min-h-[1100px] w-full">
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <header ref={heroRef} className="relative h-[130vh] min-h-[900px] w-full overflow-hidden">
+        {/* Parallax background: image is taller than the header and translates
+            upward at a slower rate than the page scroll, creating real parallax
+            (foreground content scrolls faster than the background). */}
+        <div
+          className="absolute inset-x-0 top-0 h-[160%] will-change-transform"
+          style={{ transform: `translate3d(0, ${scrollY * -0.35}px, 0)` }}
+        >
           <img
             src={heroKitchen}
             alt="Custom kitchen with bespoke wood cabinetry"
-            className="absolute inset-0 h-[115%] w-full object-cover will-change-transform"
-            style={{ transform: `translate3d(0, ${Math.min(scrollY * 0.25, 120)}px, 0)` }}
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/55" />
+        </div>
 
-          {/* hero copy — pinned within sticky viewport, always visible while scrolling the hero */}
-          <div className="absolute left-5 right-5 md:left-16 md:right-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground">
-            <p className="mb-6 opacity-90 text-[15px] font-medium">Let Us Create Your Calm™</p>
-            <h1 className="font-sans font-medium text-[26px] sm:text-3xl md:text-5xl leading-[1.15] mb-8">
-              Custom Closet Systems &amp;<br />
-              Storage Solutions in South Florida.
-            </h1>
-            <Yellow>Schedule a FREE Consultation</Yellow>
-          </div>
+        {/* Hero copy — scrolls naturally with the page, following the section
+            until it reaches the bottom of the hero. Always fully visible while
+            inside the section. */}
+        <div className="absolute left-5 right-5 md:left-16 md:right-16 bottom-20 md:bottom-28 max-w-3xl text-ink-foreground">
+          <p className="mb-6 opacity-90 text-[15px] font-medium">Let Us Create Your Calm™</p>
+          <h1 className="font-sans font-medium text-[26px] sm:text-3xl md:text-5xl leading-[1.15] mb-8">
+            Custom Closet Systems &amp;<br />
+            Storage Solutions in South Florida.
+          </h1>
+          <Yellow>Schedule a FREE Consultation</Yellow>
         </div>
 
 
