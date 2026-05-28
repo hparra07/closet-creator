@@ -431,7 +431,7 @@ function Index() {
             {
               k: "2.",
               t: "Design & Precision Drafting",
-              d: "Our studio drafts every shelf, drawer and detail to the millimeter — reviewed with you, refined together.",
+              d: "We transform your vision into a detailed 3D designs and meticulously craft your system using premium materials.",
               img: darkOffice,
             },
             {
