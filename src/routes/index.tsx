@@ -211,10 +211,10 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
         ))}
       </div>
 
-      {/* DESKTOP: sticky scroller with shorter image */}
+      {/* TABLET + DESKTOP: sticky scroller */}
       <div className="hidden md:grid md:grid-cols-2 gap-16 md:gap-24 items-start">
-        <div className="md:sticky md:top-24 md:flex md:items-start">
-          <div className="relative w-full aspect-[4/3] overflow-hidden">
+        <div className="md:sticky md:top-0 md:h-screen md:max-h-[900px] md:flex md:items-center md:pt-24">
+          <div className="relative w-full aspect-[4/5] max-h-full overflow-hidden">
             {steps.map((s, i) => (
               <img
                 key={i}
