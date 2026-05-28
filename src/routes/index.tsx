@@ -429,7 +429,7 @@ function Index() {
               img: consult,
             },
             {
-              k: "ii.",
+              k: "2.",
               t: "Design & Precision Drafting",
               d: "Our studio drafts every shelf, drawer and detail to the millimeter — reviewed with you, refined together.",
               img: darkOffice,
