@@ -524,8 +524,8 @@ function Index() {
                 ["Customer-centric Aproach", "Professional and accommodating service designed to ensure a superior experience at every step."],
               ].map(([k, d]) => (
                 <div key={k}>
-                  <p className="font-display font-medium text-lg mb-3 leading-tight text-ink-foreground">{k}</p>
-                  <p className="text-xs leading-relaxed text-ink-foreground/80 whitespace-pre-line">{d}</p>
+                  <p className="font-display text-lg mb-3 leading-tight text-ink-foreground font-bold">{k}</p>
+                  <p className="text-xs leading-relaxed text-ink-foreground/70 whitespace-pre-line text-white">{d}</p>
                 </div>
               ))}
             </div>
