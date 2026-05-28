@@ -237,7 +237,7 @@ function Index() {
       </nav>
 
       {/* HERO */}
-      <header className="relative h-screen min-h-[640px] w-full overflow-hidden -mt-[96px]">
+      <header className="relative h-screen min-h-[640px] w-full overflow-hidden">
         <img
           src={heroKitchen}
           alt="Custom kitchen with bespoke wood cabinetry"
