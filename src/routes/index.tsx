@@ -514,7 +514,7 @@ function Index() {
             {[
               ["Same-day or Next-day Free Consultation", "Twenty-Two Years", "Get expert design at your doorstep with same-day or\nnext-day appointments."],
               ["Over 30 Years of Expertise", "12,400+", "South Florida’s oldest closet company, delivering inmatched reliability and professional service."],
-              ["Florida’s Most Awarded", "South Florida", "Miami · Boca · Naples · Palm Beach"],
+              ["Florida’s Most Awarded", "South Florida", "8-Time Best Pick Top-rated for 8 consecutive years, reflecting our unwavering commitment to excellence."],
               ["Standing Behind Our Work", "Warranty", "Every install backed for life."],
               ["Customer-centric Aproach", "Top Rated", "4.97 average across 800+ reviews."],
             ].map(([k, t, d]) => (
