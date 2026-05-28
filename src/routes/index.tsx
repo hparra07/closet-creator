@@ -516,7 +516,7 @@ function Index() {
               ["Over 30 Years of Expertise", "12,400+", "South Florida’s oldest closet company, delivering inmatched reliability and professional service."],
               ["Florida’s Most Awarded", "South Florida", "8-Time Best Pick Top-rated for 8 consecutive years, reflecting our unwavering commitment to excellence."],
               ["Standing Behind Our Work", "Warranty", "Our quality extends for years, offering dedicated support and peace of mind after installation."],
-              ["Customer-centric Aproach", "Top Rated", "4.97 average across 800+ reviews."],
+              ["Customer-centric Aproach", "Top Rated", "Professional and accommodating service designed to ensure a superior experience at every step."],
             ].map(([k, t, d]) => (
               <div key={k}>
                 <p className="eyebrow text-ink-foreground/60 mb-3">{k}</p>
