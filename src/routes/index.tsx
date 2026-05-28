@@ -425,7 +425,7 @@ function Index() {
             {
               k: "1.",
               t: "In-Home Consultation",
-              d: "We meet in your space, listen to how you live, and measure every contour with care.",
+              d: "We assess your space and vision to design a tailored storage solution that fits your lifestyle.",
               img: consult,
             },
             {
