@@ -516,7 +516,7 @@ function Index() {
               ["Over 30 Years of Expertise", "12,400+", "Closets, pantries and built-ins delivered."],
               ["Florida’s Most Awarded", "South Florida", "Miami · Boca · Naples · Palm Beach"],
               ["Standing Behind Our Work", "Warranty", "Every install backed for life."],
-              ["Customer Service", "Top Rated", "4.97 average across 800+ reviews."],
+              ["Customer-centric Aproach", "Top Rated", "4.97 average across 800+ reviews."],
             ].map(([k, t, d]) => (
               <div key={k}>
                 <p className="eyebrow text-ink-foreground/60 mb-3">{k}</p>
