@@ -499,7 +499,7 @@ function Index() {
       {/* SECTION 03 — Dark editorial */}
       <section className="relative bg-ink text-ink-foreground">
         <p className="eyebrow text-center pt-12 text-ink-foreground/70 rule mx-auto block w-fit">
-          The Studio
+          WHY CHOOSE US
         </p>
         <div className="relative">
           <img src={darkOffice} alt="Dark home office" className="w-full h-[80vh] object-cover" loading="lazy" />
