@@ -196,38 +196,55 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
   }, [steps.length]);
 
   return (
-    <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
-      <div className="md:sticky md:top-0 md:h-screen md:max-h-[900px] md:flex md:items-end md:pb-12">
-        <div className="relative w-full aspect-[4/5] max-h-full overflow-hidden">
-          {steps.map((s, i) => (
-            <img
-              key={i}
-              src={s.img}
-              alt={s.t}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-              style={{ opacity: active === i ? 1 : 0 }}
-              loading="lazy"
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="md:py-[30vh] space-y-[30vh]">
+    <>
+      {/* MOBILE: image directly above each step, no sticky effect */}
+      <div className="md:hidden space-y-16">
         {steps.map((s, i) => (
-          <div
-            key={i}
-            data-idx={i}
-            ref={(el) => { refs.current[i] = el; }}
-            className="transition-opacity duration-300"
-            style={{ opacity: active === i ? 1 : 0.2 }}
-          >
+          <div key={i}>
+            <div className="relative w-full aspect-[4/3] overflow-hidden mb-6">
+              <img src={s.img} alt={s.t} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+            </div>
             <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
-            <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4 font-bold text-[#474747]">{s.t}</h3>
-            <p className="text-[14px] leading-relaxed max-w-md text-foreground/70">{s.d}</p>
+            <h3 className="font-display text-3xl leading-tight mb-4 font-bold text-[#474747]">{s.t}</h3>
+            <p className="text-[14px] leading-relaxed text-foreground/70">{s.d}</p>
           </div>
         ))}
       </div>
-    </div>
+
+      {/* DESKTOP: sticky scroller with shorter image */}
+      <div className="hidden md:grid md:grid-cols-2 gap-16 md:gap-24 items-start">
+        <div className="md:sticky md:top-24 md:flex md:items-start">
+          <div className="relative w-full aspect-[4/3] overflow-hidden">
+            {steps.map((s, i) => (
+              <img
+                key={i}
+                src={s.img}
+                alt={s.t}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                style={{ opacity: active === i ? 1 : 0 }}
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="md:py-[25vh] space-y-[25vh]">
+          {steps.map((s, i) => (
+            <div
+              key={i}
+              data-idx={i}
+              ref={(el) => { refs.current[i] = el; }}
+              className="transition-opacity duration-300"
+              style={{ opacity: active === i ? 1 : 0.2 }}
+            >
+              <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
+              <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4 font-bold text-[#474747]">{s.t}</h3>
+              <p className="text-[14px] leading-relaxed max-w-md text-foreground/70">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
