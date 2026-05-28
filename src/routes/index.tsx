@@ -338,7 +338,7 @@ function Index() {
           style={{
             transform: `translate3d(0, ${Math.min(
               scrollY,
-              Math.max(0, (heroRef.current?.offsetHeight ?? 1100) - 560)
+              Math.max(0, (heroRef.current?.offsetHeight ?? 1100) - (typeof window !== "undefined" ? window.innerHeight : 800) * 0.55 - 320)
             )}px, 0)`,
           }}
         >
