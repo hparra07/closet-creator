@@ -178,7 +178,7 @@ function Index() {
     <main className="bg-background text-foreground overflow-x-clip">
       {/* STICKY NAV */}
       <nav
-        className={`fixed top-3 left-4 right-4 z-50 flex items-center justify-between px-6 md:px-12 pt-0 pb-4 font-medium transition-all duration-300 border-b rounded-b-2xl ${
+        className={`fixed top-3 left-4 right-4 z-50 flex items-center justify-between px-6 md:px-12 py-4 font-medium transition-all duration-300 border rounded-2xl ${
           scrolled
             ? "bg-white border-black/10 shadow-lg text-black"
             : "bg-transparent border-transparent text-ink-foreground"
