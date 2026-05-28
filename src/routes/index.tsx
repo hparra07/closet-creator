@@ -170,20 +170,29 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) {
-          const idx = Number((visible.target as HTMLElement).dataset.idx);
-          setActive(idx);
+    const compute = () => {
+      const anchor = window.innerHeight * 0.55;
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      refs.current.forEach((el, i) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const dist = Math.abs(center - anchor);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIdx = i;
         }
-      },
-      { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
-    );
-    refs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
+      });
+      setActive(bestIdx);
+    };
+    compute();
+    window.addEventListener("scroll", compute, { passive: true });
+    window.addEventListener("resize", compute);
+    return () => {
+      window.removeEventListener("scroll", compute);
+      window.removeEventListener("resize", compute);
+    };
   }, [steps.length]);
 
   return (
@@ -195,7 +204,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
               key={i}
               src={s.img}
               alt={s.t}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
               style={{ opacity: active === i ? 1 : 0 }}
               loading="lazy"
             />
@@ -203,14 +212,14 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
         </div>
       </div>
 
-      <div className="space-y-[40vh] md:py-[20vh]">
+      <div className="md:py-[30vh] space-y-[30vh]">
         {steps.map((s, i) => (
           <div
             key={i}
             data-idx={i}
             ref={(el) => { refs.current[i] = el; }}
-            className="transition-opacity duration-500"
-            style={{ opacity: active === i ? 1 : 0.25 }}
+            className="transition-opacity duration-300"
+            style={{ opacity: active === i ? 1 : 0.2 }}
           >
             <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
             <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4">{s.t}</h3>
