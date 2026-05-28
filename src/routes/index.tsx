@@ -300,8 +300,8 @@ function WhyChooseUs() {
           <p className="eyebrow text-center pt-12 text-ink-foreground rule mx-auto w-fit">
             WHY CHOOSE US
           </p>
-          <div className="mt-auto px-6 md:px-16 pb-12 pt-8 max-w-6xl mx-auto w-full">
-            <p className="font-sans font-normal text-2xl md:text-3xl leading-snug max-w-3xl mb-10 text-ink-foreground">
+          <div className="mt-auto px-6 md:px-12 pb-12 pt-8 max-w-[1600px] mx-auto w-full">
+            <p className="font-sans font-normal text-base md:text-lg leading-snug max-w-5xl mb-10 text-ink-foreground">
               With over <strong className="font-bold">30 years of expertise</strong>, we are <strong className="font-bold">South Florida’s most awarded</strong> custom storage provider.
               Our commitment to quality, innovative design, and expert craftsmanship ensures a seamless
               experience tailored to your home.
