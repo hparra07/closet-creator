@@ -512,7 +512,7 @@ function Index() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-10 border-t border-ink-foreground/15 pt-10">
             {[
-              ["Established", "Twenty-Two Years", "Family run since 2002, serving Florida coast to coast."],
+              ["Same-day or Next-day Free Consultation", "Twenty-Two Years", "Family run since 2002, serving Florida coast to coast."],
               ["Pieces Built", "12,400+", "Closets, pantries and built-ins delivered."],
               ["Coverage", "South Florida", "Miami · Boca · Naples · Palm Beach"],
               ["Lifetime Limited", "Warranty", "Every install backed for life."],
