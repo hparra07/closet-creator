@@ -576,42 +576,8 @@ function Index() {
         />
       </Section>
 
-      {/* SECTION 03 — Dark editorial */}
-      <section className="relative text-ink-foreground overflow-hidden">
-        <img
-          src={darkOffice}
-          alt="Dark home office"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative">
-          <p className="eyebrow text-center pt-12 text-ink-foreground rule mx-auto w-fit">
-            WHY CHOOSE US
-          </p>
-          <div className="px-6 md:px-16 py-14 max-w-6xl mx-auto">
-            <p className="font-sans font-normal text-2xl md:text-3xl leading-snug max-w-3xl mb-16 text-ink-foreground">
-              With over <strong className="font-bold">30 years of expertise</strong>, we are <strong className="font-bold">South Florida’s most awarded</strong> custom storage provider.
-              Our commitment to quality, innovative design, and expert craftsmanship ensures a seamless
-              experience tailored to your home.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-10 border-t border-ink-foreground/30 pt-10">
-              {[
-                ["Same-day or Next-day Free Consultation", "Get expert design at your doorstep with same-day or\nnext-day appointments."],
-                ["Over 30 Years of Expertise", "South Florida’s oldest closet company, delivering inmatched reliability and professional service."],
-                ["Florida’s Most Awarded", "8-Time Best Pick Top-rated for 8 consecutive years, reflecting our unwavering commitment to excellence."],
-                ["Standing Behind Our Work", "Our quality extends for years, offering dedicated support and peace of mind after installation."],
-                ["Customer-centric Aproach", "Professional and accommodating service designed to ensure a superior experience at every step."],
-              ].map(([k, d]) => (
-                <div key={k}>
-                  <p className="font-display text-lg mb-3 leading-tight text-ink-foreground font-bold">{k}</p>
-                  <p className="text-xs leading-relaxed text-ink-foreground/70 whitespace-pre-line text-white">{d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SECTION 03 — Why Choose Us (scroll-driven cinematic) */}
+      <WhyChooseUs />
 
 
       {/* SECTION 04 — Gallery row */}
