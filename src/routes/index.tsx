@@ -513,7 +513,7 @@ function Index() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-10 border-t border-ink-foreground/15 pt-10">
             {[
               ["Same-day or Next-day Free Consultation", "Twenty-Two Years", "Get expert design at your doorstep with same-day or\nnext-day appointments."],
-              ["Pieces Built", "12,400+", "Closets, pantries and built-ins delivered."],
+              ["Over 30 Years of Expertise", "12,400+", "Closets, pantries and built-ins delivered."],
               ["Coverage", "South Florida", "Miami · Boca · Naples · Palm Beach"],
               ["Lifetime Limited", "Warranty", "Every install backed for life."],
               ["Customer Service", "Top Rated", "4.97 average across 800+ reviews."],
