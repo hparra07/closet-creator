@@ -1,15 +1,21 @@
 import { useRef, useState, type MouseEvent } from "react";
 
 export function WorksCarousel({ images }: { images: string[] }) {
-  const [active, setActive] = useState(Math.floor(images.length / 2));
+  const [active, setActive] = useState(0);
+  const [dir, setDir] = useState<"next" | "prev" | null>(null);
+  const [animKey, setAnimKey] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
-  const [showNav, setShowNav] = useState(false);
 
-  const prev = () => setActive((a) => (a - 1 + images.length) % images.length);
-  const next = () => setActive((a) => (a + 1) % images.length);
+  const wrap = (i: number) => (i + images.length) % images.length;
+
+  const go = (d: "next" | "prev") => {
+    setDir(d);
+    setAnimKey((k) => k + 1);
+    setActive((a) => wrap(a + (d === "next" ? 1 : -1)));
+  };
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const vp = viewportRef.current;
@@ -24,13 +30,10 @@ export function WorksCarousel({ images }: { images: string[] }) {
       target.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
       target.style.opacity = "1";
     }
-    if (other) {
-      other.style.opacity = "0";
-    }
+    if (other) other.style.opacity = "0";
   };
 
   const handleLeave = () => {
-    setShowNav(false);
     [prevBtnRef.current, nextBtnRef.current].forEach((b) => {
       if (b) b.style.opacity = "0";
     });
@@ -41,34 +44,36 @@ export function WorksCarousel({ images }: { images: string[] }) {
     if (!vp) return;
     const rect = vp.getBoundingClientRect();
     const isLeft = e.clientX - rect.left < rect.width / 2;
-    if (isLeft) prev();
-    else next();
+    go(isLeft ? "prev" : "next");
   };
+
+  const visible = [wrap(active - 1), active, wrap(active + 1)];
 
   return (
     <>
       <div
         ref={viewportRef}
         className="works-viewport"
-        onMouseEnter={() => setShowNav(true)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleLeave}
         onClick={handleViewportClick}
       >
-        <div className="works-track">
-          {images.map((src, i) => {
-            const isActive = i === active;
+        <div
+          key={animKey}
+          className={`works-track ${dir ? `slide-${dir}` : ""}`}
+        >
+          {visible.map((idx, pos) => {
+            const isActive = pos === 1;
             return (
               <figure
-                key={i}
+                key={`${idx}-${pos}`}
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (isActive) setLightbox(i);
-                  else setActive(i);
+                  if (isActive) setLightbox(idx);
                 }}
                 className={`works-item ${isActive ? "is-active" : ""}`}
               >
-                <img src={src} alt="" loading="lazy" draggable={false} />
+                <img src={images[idx]} alt="" loading="lazy" draggable={false} />
               </figure>
             );
           })}
@@ -78,10 +83,9 @@ export function WorksCarousel({ images }: { images: string[] }) {
           ref={prevBtnRef}
           type="button"
           aria-label="Previous"
-          onClick={(e) => { e.stopPropagation(); prev(); }}
+          onClick={(e) => { e.stopPropagation(); go("prev"); }}
           className="works-nav"
           style={{ opacity: 0 }}
-          tabIndex={showNav ? 0 : -1}
         >
           prev
         </button>
@@ -89,10 +93,9 @@ export function WorksCarousel({ images }: { images: string[] }) {
           ref={nextBtnRef}
           type="button"
           aria-label="Next"
-          onClick={(e) => { e.stopPropagation(); next(); }}
+          onClick={(e) => { e.stopPropagation(); go("next"); }}
           className="works-nav"
           style={{ opacity: 0 }}
-          tabIndex={showNav ? 0 : -1}
         >
           next
         </button>
@@ -117,7 +120,7 @@ export function WorksCarousel({ images }: { images: string[] }) {
             type="button"
             aria-label="Previous"
             className="works-lightbox-arrow works-lightbox-prev"
-            onClick={(e) => { e.stopPropagation(); setLightbox((l) => ((l ?? 0) - 1 + images.length) % images.length); }}
+            onClick={(e) => { e.stopPropagation(); setLightbox((l) => wrap((l ?? 0) - 1)); }}
           >
             ‹
           </button>
@@ -126,7 +129,7 @@ export function WorksCarousel({ images }: { images: string[] }) {
             type="button"
             aria-label="Next"
             className="works-lightbox-arrow works-lightbox-next"
-            onClick={(e) => { e.stopPropagation(); setLightbox((l) => ((l ?? 0) + 1) % images.length); }}
+            onClick={(e) => { e.stopPropagation(); setLightbox((l) => wrap((l ?? 0) + 1)); }}
           >
             ›
           </button>
@@ -146,21 +149,30 @@ export function WorksCarousel({ images }: { images: string[] }) {
 
         .works-track {
           display: flex;
-          gap: 16px;
-          align-items: stretch;
+          gap: 24px;
+          align-items: center;
           justify-content: center;
           height: 480px;
         }
+        .works-track.slide-next { animation: slide-from-right 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+        .works-track.slide-prev { animation: slide-from-left 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+        @keyframes slide-from-right {
+          from { transform: translateX(40px); opacity: 0.4; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slide-from-left {
+          from { transform: translateX(-40px); opacity: 0.4; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+
         .works-item {
           position: relative;
-          flex: 0 0 200px;
-          height: 100%;
+          flex: 0 0 220px;
+          height: 80%;
           overflow: hidden;
-          cursor: pointer;
           margin: 0;
-          transition: flex-basis 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-                      filter 0.6s ease;
-          filter: grayscale(100%) brightness(0.9);
+          filter: grayscale(100%) brightness(0.92);
+          transition: flex-basis 0.5s ease, height 0.5s ease, filter 0.5s ease;
         }
         .works-item img {
           width: 100%;
@@ -171,8 +183,10 @@ export function WorksCarousel({ images }: { images: string[] }) {
           -webkit-user-drag: none;
         }
         .works-item.is-active {
-          flex: 0 0 640px;
+          flex: 0 0 560px;
+          height: 100%;
           filter: grayscale(0%) brightness(1);
+          cursor: zoom-in;
           z-index: 2;
         }
 
@@ -181,33 +195,36 @@ export function WorksCarousel({ images }: { images: string[] }) {
           top: 0;
           left: 0;
           z-index: 10;
-          padding: 18px 28px;
+          padding: 10px 22px;
           background: var(--color-primary);
           color: var(--color-primary-foreground);
           border: none;
           font-family: var(--font-sans);
-          font-size: 13px;
+          font-size: 12px;
           font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+          letter-spacing: 0.02em;
+          text-transform: capitalize;
           cursor: pointer;
           pointer-events: auto;
-          transition: opacity 0.25s ease, background 0.2s ease;
+          transition: opacity 0.2s ease, background 0.2s ease;
           will-change: transform;
         }
         .works-nav:hover { background: color-mix(in oklab, var(--color-primary) 85%, black); }
 
         @media (max-width: 767px) {
-          .works-track { height: 360px; gap: 8px; }
-          .works-item { flex: 0 0 34vw; }
-          .works-item.is-active { flex: 0 0 78vw; }
+          .works-track { height: 360px; gap: 10px; }
+          .works-item { flex: 0 0 22vw; height: 70%; }
+          .works-item.is-active { flex: 0 0 70vw; height: 100%; }
           .works-nav {
-            position: static;
-            transform: none !important;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) !important;
             opacity: 1 !important;
-            padding: 12px 20px;
-            font-size: 12px;
+            padding: 8px 16px;
+            font-size: 11px;
           }
+          .works-nav:first-of-type { left: 8px; }
+          .works-nav:last-of-type { left: auto; right: 8px; }
         }
 
         .works-lightbox {
