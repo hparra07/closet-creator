@@ -312,7 +312,7 @@ function WhyChooseUs() {
             className="absolute left-1/2 -translate-x-1/2 top-28 flex flex-col items-center gap-2 text-ink-foreground/80 pointer-events-none transition-opacity duration-300"
             style={{ opacity: Math.max(0, 1 - progress * 4) }}
           >
-            <span className="text-[10px] tracking-[0.3em] uppercase">Scroll to reveal</span>
+            <span className="text-[10px] uppercase">Scroll to reveal</span>
             <span className="relative block w-5 h-8 rounded-full border border-ink-foreground/70">
               <span className="absolute left-1/2 top-1.5 -translate-x-1/2 w-0.5 h-1.5 bg-ink-foreground/80 rounded-full animate-[scroll-wheel_1.5s_ease-in-out_infinite]" />
             </span>
@@ -753,14 +753,14 @@ function Index() {
 
       {/* SECTION 06 — Showroom hero */}
       <section className="relative">
-        <img src={showroom} alt="JL Closets showroom in Boca Raton at dusk" className="w-full h-[78vh] object-cover" loading="lazy" />
+        <img src={showroom} alt="JL Closets showroom in Boca Raton at dusk" className="w-full h-screen md:h-[110vh] object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/20" />
 
         <div className="absolute inset-0 flex items-end">
-          <div className="px-6 md:px-16 pb-12 md:pb-16 text-ink-foreground w-full max-w-6xl">
-            <p className="eyebrow mb-6 opacity-80 text-white reveal-up" style={{ animationDelay: "0ms" }}>— SHOWROOM —</p>
-            <h2 className="font-display text-4xl md:text-6xl leading-[1.05] mb-10 max-w-2xl reveal-up" style={{ animationDelay: "120ms" }}>
-              Experience Quality Firsthand visit our Boca Raton showroom to explore our custom systems up close.
+          <div className="px-6 md:px-16 pb-12 md:pb-20 text-ink-foreground w-full max-w-6xl">
+            <p className="eyebrow mb-6 opacity-80 text-white reveal-up" style={{ animationDelay: "0ms", letterSpacing: 0 }}>— SHOWROOM —</p>
+            <h2 className="font-sans text-xl md:text-2xl leading-snug mb-10 max-w-3xl reveal-up" style={{ animationDelay: "120ms", letterSpacing: 0 }}>
+              <strong className="font-bold">Experience Quality Firsthand</strong> visit our Boca Raton showroom to explore our custom systems up close.
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-6 text-sm mb-8 max-w-4xl">
