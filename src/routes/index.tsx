@@ -630,7 +630,7 @@ function Index() {
                 <p className="font-medium">Collier County</p>
                 <p>Indian River County</p>
                 <p>Indian River County</p>
-                <p>Martin County</p>
+                <p>Miami Dade County</p>
                 <p>Delray</p>
                 <p>Brickell</p>
                 <p>Jupiter</p>
