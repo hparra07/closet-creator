@@ -629,7 +629,7 @@ function Index() {
                 <p className="font-medium">Broward County</p>
                 <p className="font-medium">Collier County</p>
                 <p>Indian River County</p>
-                <p>Boca Raton</p>
+                <p>Indian River County</p>
                 <p>Coconut Grove</p>
                 <p>Delray</p>
                 <p>Brickell</p>
