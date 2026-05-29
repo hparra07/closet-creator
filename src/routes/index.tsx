@@ -305,7 +305,10 @@ function WhyChooseUs() {
             style={{ opacity: Math.max(0, 1 - progress * 4) }}
           >
             <span className="text-[10px] tracking-[0.3em] uppercase">Scroll to reveal</span>
-            <span className="block w-px h-10 bg-ink-foreground/60 animate-pulse" />
+            <span className="relative block w-5 h-8 rounded-full border border-ink-foreground/70">
+              <span className="absolute left-1/2 top-1.5 -translate-x-1/2 w-0.5 h-1.5 bg-ink-foreground/80 rounded-full animate-[scroll-wheel_1.5s_ease-in-out_infinite]" />
+            </span>
+            <ChevronDown className="w-4 h-4 animate-bounce" />
           </div>
 
           <div className="mt-auto px-5 md:px-12 pb-8 md:pb-12 pt-6 max-w-[1600px] mx-auto w-full">
