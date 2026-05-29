@@ -284,16 +284,15 @@ function WhyChooseUs() {
   };
 
   return (
-    <section ref={sectionRef} className="relative text-ink-foreground" style={{ height: "200vh" }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+    <section ref={sectionRef} className="relative text-ink-foreground" style={{ height: "150vh" }}>
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
         {frames.map((src, i) => (
           <img
             key={i}
             src={src}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200"
-            style={{ opacity: frameOpacity(i) }}
-            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ opacity: frameOpacity(i), willChange: "opacity" }}
           />
         ))}
         <div className="relative h-full w-full flex flex-col">
