@@ -355,11 +355,12 @@ function WhyChooseUs() {
 const SERVICE_AREAS: { name: string; image: string }[] = [
   { name: "Broward County", image: countyBroward },
   { name: "Collier County", image: countyCollier },
-  { name: "Lee County", image: countyIndianRiver },
   { name: "Indian River County", image: countyIndianRiver },
+  { name: "Lee County", image: countyIndianRiver },
+  { name: "Martin County", image: countyBrickell },
+  { name: "Miami Dade County", image: countyPalmBeach },
   { name: "Okeechobee County", image: countyOkeechobee },
   { name: "Palm Beach County", image: countyPalmBeach },
-  { name: "Martin County", image: countyBrickell },
   { name: "Port ST Lucie County", image: countyJupiter },
 ];
 
