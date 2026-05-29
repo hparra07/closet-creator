@@ -300,6 +300,14 @@ function WhyChooseUs() {
           <p className="eyebrow text-center pt-12 text-ink-foreground rule mx-auto w-fit">
             WHY CHOOSE US
           </p>
+          <div
+            className="absolute left-1/2 -translate-x-1/2 top-28 flex flex-col items-center gap-2 text-ink-foreground/80 pointer-events-none transition-opacity duration-300"
+            style={{ opacity: Math.max(0, 1 - progress * 4) }}
+          >
+            <span className="text-[10px] tracking-[0.3em] uppercase">Scroll to reveal</span>
+            <span className="block w-px h-10 bg-ink-foreground/60 animate-pulse" />
+          </div>
+
           <div className="mt-auto px-5 md:px-12 pb-10 md:pb-12 pt-8 max-w-[1600px] mx-auto w-full">
 
             <p className="font-sans font-normal text-base md:text-lg leading-snug max-w-5xl mb-10 text-ink-foreground">
