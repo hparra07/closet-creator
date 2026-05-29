@@ -97,7 +97,7 @@ const NAV: { label: string; submenu?: { heading: string; items: string[] }[] }[]
         items: [
           "Broward County",
           "Collier County",
-          "Indian River County",
+          "Lee County",
           "Lee County",
           "Martin County",
           "Miami Dade County",
@@ -355,7 +355,7 @@ function WhyChooseUs() {
 const SERVICE_AREAS: { name: string; image: string }[] = [
   { name: "Broward County", image: countyBroward },
   { name: "Collier County", image: countyCollier },
-  { name: "Indian River County", image: countyIndianRiver },
+  { name: "Lee County", image: countyIndianRiver },
   { name: "Indian River County", image: countyIndianRiver },
   { name: "Okeechobee County", image: countyOkeechobee },
   { name: "Palm Beach County", image: countyPalmBeach },
@@ -892,7 +892,7 @@ function Index() {
                 items: [
                   "Broward County",
                   "Collier County",
-                  "Indian River County",
+                  "Lee County",
                   "Lee County",
                   "Martin County",
                   "Miami Dade County",
