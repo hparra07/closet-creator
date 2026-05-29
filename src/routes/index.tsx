@@ -308,14 +308,14 @@ function WhyChooseUs() {
             <span className="block w-px h-10 bg-ink-foreground/60 animate-pulse" />
           </div>
 
-          <div className="mt-auto px-5 md:px-12 pb-10 md:pb-12 pt-8 max-w-[1600px] mx-auto w-full">
+          <div className="mt-auto px-5 md:px-12 pb-8 md:pb-12 pt-6 max-w-[1600px] mx-auto w-full">
 
-            <p className="font-sans font-normal text-base md:text-lg leading-snug max-w-5xl mb-10 text-ink-foreground">
+            <p className="font-sans font-normal text-sm md:text-lg leading-snug max-w-5xl mb-5 md:mb-10 text-ink-foreground">
               With over <strong className="font-bold">30 years of expertise</strong>, we are <strong className="font-bold">South Florida’s most awarded</strong> custom storage provider.
               Our commitment to quality, innovative design, and expert craftsmanship ensures a seamless
               experience tailored to your home.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 border-t border-ink-foreground/30 pt-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-4 md:gap-8 border-t border-ink-foreground/30 pt-4 md:pt-8">
               {[
                 ["Same-day or Next-day Free Consultation", "Get expert design at your doorstep with same-day or\nnext-day appointments."],
                 ["Over 30 Years of Expertise", "South Florida’s oldest closet company, delivering inmatched reliability and professional service."],
@@ -324,12 +324,13 @@ function WhyChooseUs() {
                 ["Customer-centric Aproach", "Professional and accommodating service designed to ensure a superior experience at every step."],
               ].map(([k, d]) => (
                 <div key={k}>
-                  <p className="font-display text-lg mb-3 leading-tight text-ink-foreground font-bold">{k}</p>
-                  <p className="text-xs leading-relaxed whitespace-pre-line text-white">{d}</p>
+                  <p className="font-display text-sm md:text-lg mb-1 md:mb-3 leading-tight text-ink-foreground font-bold">{k}</p>
+                  <p className="text-[11px] md:text-xs leading-snug whitespace-pre-line text-white/90">{d}</p>
                 </div>
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>
