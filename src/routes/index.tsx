@@ -359,7 +359,7 @@ const SERVICE_AREAS: { name: string; image: string }[] = [
   { name: "Indian River County", image: countyIndianRiver },
   { name: "Okeechobee County", image: countyOkeechobee },
   { name: "Palm Beach County", image: countyPalmBeach },
-  { name: "Brickell", image: countyBrickell },
+  { name: "Martin County", image: countyBrickell },
   { name: "Jupiter", image: countyJupiter },
 ];
 
