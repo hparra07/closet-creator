@@ -599,7 +599,7 @@ function Index() {
       {/* SECTION 04 — Gallery row */}
       <Section num="04">
         <div className="text-center mb-10">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>Selected Work</span>
+          <span className="rule eyebrow" style={{ color: "#313131" }}>Works</span>
         </div>
         <div className="flex gap-3 md:gap-5 overflow-x-auto -mx-6 md:-mx-16 px-6 md:px-16 pb-4">
           {[closetImg, pantryImg, darkOffice, library, hero(heroKitchen), pantryImg].map((src, i) => {
