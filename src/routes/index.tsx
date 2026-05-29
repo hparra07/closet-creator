@@ -291,15 +291,17 @@ function WhyChooseUs() {
             key={i}
             src={src}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-[70%_center] md:object-center"
             style={{ opacity: frameOpacity(i), willChange: "opacity" }}
           />
         ))}
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/40 to-transparent md:hidden" />
         <div className="relative h-full w-full flex flex-col">
           <p className="eyebrow text-center pt-12 text-ink-foreground rule mx-auto w-fit">
             WHY CHOOSE US
           </p>
-          <div className="mt-auto px-6 md:px-12 pb-12 pt-8 max-w-[1600px] mx-auto w-full">
+          <div className="mt-auto px-5 md:px-12 pb-10 md:pb-12 pt-8 max-w-[1600px] mx-auto w-full">
+
             <p className="font-sans font-normal text-base md:text-lg leading-snug max-w-5xl mb-10 text-ink-foreground">
               With over <strong className="font-bold">30 years of expertise</strong>, we are <strong className="font-bold">South Florida’s most awarded</strong> custom storage provider.
               Our commitment to quality, innovative design, and expert craftsmanship ensures a seamless
