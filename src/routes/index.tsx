@@ -626,7 +626,7 @@ function Index() {
           <div className="md:col-span-4 md:col-start-9 relative">
             <div className="bg-primary text-primary-foreground p-8">
               <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-[13px]">
-                <p className="font-medium">Miami</p>
+                <p className="font-medium">Broward County</p>
                 <p className="font-medium">Palm Beach</p>
                 <p>Coral Gables</p>
                 <p>Boca Raton</p>
