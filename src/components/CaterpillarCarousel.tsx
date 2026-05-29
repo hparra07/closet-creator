@@ -263,6 +263,7 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
             right: 12px;
             bottom: 12px;
           }
+          .cat-nav { opacity: 1; width: 44px; height: 44px; font-size: 18px; }
         }
       `}</style>
     </div>
