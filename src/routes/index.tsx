@@ -620,32 +620,7 @@ function Index() {
         <div className="text-center mb-12">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Service Areas</span>
         </div>
-        <div className="grid md:grid-cols-12 gap-10 items-start">
-          <div className="md:col-span-3 md:col-start-2">
-            <p className="eyebrow mb-3">Where we work</p>
-            <p className="font-display text-2xl leading-snug">
-              We proudly serve the entire South Florida region, including:
-            </p>
-          </div>
-          <div className="md:col-span-3 md:col-start-6">
-            <img src={miami} alt="Miami skyline" className="w-full aspect-square object-cover" loading="lazy" />
-          </div>
-          <div className="md:col-span-4 md:col-start-9 relative">
-            <div className="bg-primary text-primary-foreground p-8">
-              <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-[13px]">
-                <p className="font-medium">Broward County</p>
-                <p className="font-medium">Collier County</p>
-                <p>Indian River County</p>
-                <p>Indian River County</p>
-                <p>Okeechobee County</p>
-                <p>Palm Beach County</p>
-                <p>Brickell</p>
-                <p>Jupiter</p>
-              </div>
-            </div>
-            <div className="absolute -bottom-4 -right-4 w-32 h-12 bg-primary -z-0" />
-          </div>
-        </div>
+        <ServiceAreas />
       </Section>
 
       {/* SECTION 06 — Showroom hero */}
