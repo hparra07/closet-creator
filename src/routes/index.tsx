@@ -628,7 +628,7 @@ function Index() {
               <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-[13px]">
                 <p className="font-medium">Broward County</p>
                 <p className="font-medium">Collier County</p>
-                <p>Coral Gables</p>
+                <p>Indian River County</p>
                 <p>Boca Raton</p>
                 <p>Coconut Grove</p>
                 <p>Delray</p>
