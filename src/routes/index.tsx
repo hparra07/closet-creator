@@ -311,7 +311,10 @@ function WhyChooseUs() {
             <ChevronDown className="w-4 h-4 animate-bounce" />
           </div>
 
-          <div className="mt-auto px-5 md:px-12 pb-8 md:pb-12 pt-6 max-w-[1600px] mx-auto w-full">
+          <div
+            className="mt-auto px-5 md:px-12 pb-8 md:pb-12 pt-6 max-w-[1600px] mx-auto w-full"
+            style={{ textShadow: `0 2px 18px rgba(0,0,0,${Math.min(0.85, progress * 1.2)}), 0 1px 3px rgba(0,0,0,${Math.min(0.7, progress)})` }}
+          >
 
             <p className="font-sans font-normal text-sm md:text-lg leading-snug max-w-5xl mb-5 md:mb-10 text-ink-foreground">
               With over <strong className="font-bold">30 years of expertise</strong>, we are <strong className="font-bold">South Florida’s most awarded</strong> custom storage provider.
@@ -333,6 +336,7 @@ function WhyChooseUs() {
               ))}
             </div>
           </div>
+
 
         </div>
       </div>
