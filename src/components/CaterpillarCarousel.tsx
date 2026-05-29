@@ -120,37 +120,40 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
     });
   };
 
-  const cardWidth = visible === 2 ? "calc((100% - 5px) / 2)" : "calc((100% - 10px) / 3)";
+  const focusIndex = visible === 2 ? 0 : 1;
+  const sideBasis = visible === 2 ? "calc((100% - 5px) / 2)" : "calc((100% - 10px - 30%) / 2)";
+  const focusBasis = visible === 2 ? "calc((100% - 5px) / 2)" : "calc(30% + 10%)";
 
   return (
     <div className="caterpillar-wrapper">
-      <div ref={containerRef} className="caterpillar-container">
-        {slides.slice(0, visible).map((s, i) => (
-          <div key={`${s.src}-${i}`} className="cat-card">
-            <img src={s.src} alt={s.label ?? ""} />
-            {s.label ? <span className="cat-label">{s.label}</span> : null}
-          </div>
-        ))}
+      <div className="caterpillar-viewport">
+        <div ref={containerRef} className="caterpillar-container">
+          {slides.slice(0, visible).map((s, i) => (
+            <div key={`${s.src}-${i}`} className="cat-card">
+              <img src={s.src} alt={s.label ?? ""} />
+              {s.label ? <span className="cat-label">{s.label}</span> : null}
+            </div>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          aria-label="Previous"
+          onClick={() => updateCaterpillar(false)}
+          className="cat-nav cat-nav-prev"
+        >
+          ←
+        </button>
+        <button
+          type="button"
+          aria-label="Next"
+          onClick={() => updateCaterpillar(true)}
+          className="cat-nav cat-nav-next"
+        >
+          →
+        </button>
       </div>
 
-      <div className="caterpillar-buttons">
-        <button
-          type="button"
-          id="prev"
-          onClick={() => updateCaterpillar(false)}
-          className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
-        >
-          Previous
-        </button>
-        <button
-          type="button"
-          id="next"
-          onClick={() => updateCaterpillar(true)}
-          className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
-        >
-          Next
-        </button>
-      </div>
       <style>{`
         .caterpillar-wrapper {
           width: 100%;
@@ -160,6 +163,11 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
           align-items: center;
         }
 
+        .caterpillar-viewport {
+          position: relative;
+          width: 100%;
+        }
+
         .caterpillar-container {
           display: flex;
           width: 100%;
@@ -167,13 +175,22 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
           gap: 5px;
           border: 1px solid color-mix(in oklab, var(--foreground) 30%, transparent);
           border-radius: 0;
+          align-items: stretch;
         }
 
         .caterpillar-container .cat-card {
           position: relative;
-          width: ${cardWidth};
+          width: ${sideBasis};
           aspect-ratio: 3 / 5;
           overflow: hidden;
+          transition: filter 0.6s ease, width 0.6s ease;
+          filter: grayscale(100%) brightness(0.85);
+        }
+
+        .caterpillar-container .cat-card:nth-child(${focusIndex + 1}) {
+          width: ${focusBasis};
+          filter: grayscale(0%) brightness(1);
+          z-index: 2;
         }
 
         .caterpillar-container .cat-card img {
@@ -207,10 +224,32 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
           white-space: normal;
         }
 
-        .caterpillar-buttons {
-          margin-top: 24px;
+        .cat-nav {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          width: 52px;
+          height: 52px;
           display: flex;
-          gap: 16px;
+          align-items: center;
+          justify-content: center;
+          background: var(--color-primary);
+          color: var(--color-primary-foreground);
+          border: none;
+          font-size: 22px;
+          font-weight: 600;
+          cursor: pointer;
+          opacity: 0;
+          transition: opacity 0.3s ease, background 0.2s ease;
+        }
+        .cat-nav-prev { left: 16px; }
+        .cat-nav-next { right: 16px; }
+        .cat-nav:hover { background: color-mix(in oklab, var(--color-primary) 85%, black); }
+
+        .caterpillar-viewport:hover .cat-nav,
+        .cat-nav:focus-visible {
+          opacity: 1;
         }
 
         .hide {
