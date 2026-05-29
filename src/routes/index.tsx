@@ -23,6 +23,7 @@ import storageMore from "@/assets/storage-more.png";
 import miami from "@/assets/miami.jpg";
 import jlLogo from "@/assets/jl-logo.png";
 import { CaterpillarCarousel } from "@/components/CaterpillarCarousel";
+import { WorksCarousel } from "@/components/WorksCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
