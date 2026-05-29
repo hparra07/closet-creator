@@ -611,7 +611,7 @@ function Index() {
       {/* SECTION 05 — Service area + pricing card */}
       <Section num="05">
         <div className="text-center mb-12">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>Service Area</span>
+          <span className="rule eyebrow" style={{ color: "#313131" }}>Service Areas</span>
         </div>
         <div className="grid md:grid-cols-12 gap-10 items-start">
           <div className="md:col-span-3 md:col-start-2">
