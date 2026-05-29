@@ -352,6 +352,74 @@ function WhyChooseUs() {
   );
 }
 
+const SERVICE_AREAS: { name: string; image: string }[] = [
+  { name: "Broward County", image: countyBroward },
+  { name: "Collier County", image: countyCollier },
+  { name: "Indian River County", image: countyIndianRiver },
+  { name: "Martin County", image: countyIndianRiver },
+  { name: "Miami-Dade County", image: countyBrickell },
+  { name: "Okeechobee County", image: countyOkeechobee },
+  { name: "Palm Beach County", image: countyPalmBeach },
+  { name: "St. Lucie County", image: countyJupiter },
+];
+
+function ServiceAreas() {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const activeIndex = hovered ?? 0;
+  const activeArea = SERVICE_AREAS[activeIndex];
+  return (
+    <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
+      <div className="max-w-xs md:max-w-lg lg:max-w-xs mx-auto lg:mx-0 mb-12 lg:mb-0 lg:shrink-0">
+        <p className="font-sans text-[15px] md:text-[18px] lg:text-[20px] leading-relaxed" style={{ color: "#474747" }}>
+          <span className="underline decoration-foreground/60 underline-offset-4">
+            We proudly serve the entire South Florida region
+          </span>
+          , bringing custom storage craftsmanship to homes across every county we touch.
+        </p>
+      </div>
+      <div className="flex-1 min-w-0 grid md:grid-cols-2 gap-8 items-start">
+        <div className="relative aspect-square w-full max-w-sm mx-auto md:mx-0 overflow-hidden bg-muted">
+          {SERVICE_AREAS.map((area, i) => (
+            <img
+              key={area.name + i}
+              src={area.image}
+              alt={area.name}
+              width={512}
+              height={512}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              style={{ opacity: i === activeIndex ? 1 : 0 }}
+            />
+          ))}
+          <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent">
+            <p className="text-white font-display text-lg leading-tight">{activeArea.name}</p>
+          </div>
+        </div>
+        <div className="relative">
+          <div className="bg-primary text-primary-foreground p-8">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-[14px]">
+              {SERVICE_AREAS.map((area, i) => (
+                <li
+                  key={area.name + i}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  className={`cursor-default transition-opacity ${
+                    hovered === null || hovered === i ? "opacity-100" : "opacity-50"
+                  } ${i === activeIndex ? "font-medium" : ""}`}
+                >
+                  {area.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="absolute -bottom-4 -right-4 w-32 h-12 bg-primary -z-0" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 function Index() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
