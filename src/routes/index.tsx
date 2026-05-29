@@ -284,7 +284,7 @@ function WhyChooseUs() {
   };
 
   return (
-    <section ref={sectionRef} className="relative text-ink-foreground" style={{ height: "350vh" }}>
+    <section ref={sectionRef} className="relative text-ink-foreground h-[220vh] md:h-[350vh]">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
         {frames.map((src, i) => (
           <img
