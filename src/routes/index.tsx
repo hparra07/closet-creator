@@ -23,6 +23,7 @@ import storageMore from "@/assets/storage-more.png";
 import miami from "@/assets/miami.jpg";
 import jlLogo from "@/assets/jl-logo.png";
 import { CaterpillarCarousel } from "@/components/CaterpillarCarousel";
+import { WorksCarousel } from "@/components/WorksCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -601,33 +602,10 @@ function Index() {
         <div className="text-center mb-10">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Works</span>
         </div>
-        <div className="flex gap-3 md:gap-5 overflow-x-auto -mx-6 md:-mx-16 px-6 md:px-16 pb-4">
-          {[closetImg, pantryImg, darkOffice, library, hero(heroKitchen), pantryImg].map((src, i) => {
-            const featured = i === 2;
-            return (
-              <figure
-                key={i}
-                className={`relative shrink-0 ${
-                  featured ? "w-[44vw] md:w-[520px]" : "w-[24vw] md:w-[260px]"
-                }`}
-              >
-                <img
-                  src={src}
-                  alt=""
-                  className={`w-full object-cover grayscale ${
-                    featured ? "aspect-[4/3]" : "aspect-[3/4]"
-                  }`}
-                  loading="lazy"
-                />
-                {featured && (
-                  <span className="absolute top-4 right-4 bg-primary text-primary-foreground text-[10px] px-3 py-1">
-                    Featured
-                  </span>
-                )}
-              </figure>
-            );
-          })}
-        </div>
+        <WorksCarousel
+          images={[closetImg, pantryImg, darkOffice, library, hero(heroKitchen), pantryImg]}
+        />
+
       </Section>
 
       {/* SECTION 05 — Service area + pricing card */}
