@@ -1,37 +1,65 @@
-import { useRef, useState, type MouseEvent } from "react";
+import { useLayoutEffect, useRef, useState, type MouseEvent } from "react";
+import gsap from "gsap";
+import { Flip } from "gsap/Flip";
+
+gsap.registerPlugin(Flip);
 
 export function WorksCarousel({ images }: { images: string[] }) {
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const [hoverSide, setHoverSide] = useState<"prev" | "next" | null>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const flipStateRef = useRef<Flip.FlipState | null>(null);
+  const animatingRef = useRef(false);
+  const hoverSideRef = useRef<"prev" | "next" | null>(null);
 
   const wrap = (i: number) => (i + images.length) % images.length;
-  const go = (d: "next" | "prev") =>
-    setActive((a) => wrap(a + (d === "next" ? 1 : -1)));
 
-  // Layout constants (desktop)
+  const go = (d: "next" | "prev") => {
+    if (animatingRef.current) return;
+    const track = trackRef.current;
+    if (!track) return;
+    const cards = gsap.utils.toArray<HTMLElement>(".works-item", track);
+    flipStateRef.current = Flip.getState(cards, { props: "filter,opacity" });
+    animatingRef.current = true;
+    setActive((a) => wrap(a + (d === "next" ? 1 : -1)));
+  };
+
+  useLayoutEffect(() => {
+    const track = trackRef.current;
+    const state = flipStateRef.current;
+    if (!track || !state) return;
+    const cards = gsap.utils.toArray<HTMLElement>(".works-item", track);
+    Flip.from(state, {
+      targets: cards,
+      duration: 0.85,
+      ease: "power3.inOut",
+      absolute: false,
+      onComplete: () => {
+        animatingRef.current = false;
+      },
+    });
+    flipStateRef.current = null;
+  }, [active]);
+
+  // Layout constants
   const ACTIVE_W = 560;
   const NEAR_W = 200;
   const FAR_W = 130;
   const GAP = 18;
   const HEIGHT = 520;
 
-  // x-position (center) of each slot relative to track center
   const slotX = (off: number) => {
     if (off === 0) return 0;
     const sign = off > 0 ? 1 : -1;
     const a = Math.abs(off);
-    // distance from center to the center of the |off|=1 image
     const d1 = ACTIVE_W / 2 + GAP + NEAR_W / 2;
     if (a === 1) return sign * d1;
-    // |off| = 2
     const d2 = d1 + NEAR_W / 2 + GAP + FAR_W / 2;
     return sign * d2;
   };
-
   const slotW = (off: number) =>
     off === 0 ? ACTIVE_W : Math.abs(off) === 1 ? NEAR_W : FAR_W;
   const slotH = (off: number) =>
@@ -44,15 +72,13 @@ export function WorksCarousel({ images }: { images: string[] }) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const center = rect.width / 2;
-    // Side zone: only outside the active image's half-width
     const sideThreshold = ACTIVE_W / 2 + 12;
     const offsetFromCenter = x - center;
 
     if (Math.abs(offsetFromCenter) < sideThreshold) {
-      // Over center image — hide both buttons
       if (prevBtnRef.current) prevBtnRef.current.style.opacity = "0";
       if (nextBtnRef.current) nextBtnRef.current.style.opacity = "0";
-      setHoverSide(null);
+      hoverSideRef.current = null;
       return;
     }
 
@@ -64,28 +90,26 @@ export function WorksCarousel({ images }: { images: string[] }) {
       target.style.opacity = "1";
     }
     if (other) other.style.opacity = "0";
-    setHoverSide(isLeft ? "prev" : "next");
+    hoverSideRef.current = isLeft ? "prev" : "next";
   };
 
   const handleLeave = () => {
     [prevBtnRef.current, nextBtnRef.current].forEach((b) => {
       if (b) b.style.opacity = "0";
     });
-    setHoverSide(null);
+    hoverSideRef.current = null;
   };
 
   const handleViewportClick = (e: MouseEvent<HTMLDivElement>) => {
-    // Only react to side-zone clicks; center click is handled by the figure itself
-    if (hoverSide === "prev") {
+    if (hoverSideRef.current === "prev") {
       e.stopPropagation();
       go("prev");
-    } else if (hoverSide === "next") {
+    } else if (hoverSideRef.current === "next") {
       e.stopPropagation();
       go("next");
     }
   };
 
-  // Render 5 slots
   const offsets = [-2, -1, 0, 1, 2];
 
   return (
@@ -98,7 +122,7 @@ export function WorksCarousel({ images }: { images: string[] }) {
         onClick={handleViewportClick}
         style={{ height: HEIGHT }}
       >
-        <div className="works-track">
+        <div ref={trackRef} className="works-track">
           {offsets.map((off) => {
             const idx = wrap(active + off);
             const w = slotW(off);
@@ -111,7 +135,7 @@ export function WorksCarousel({ images }: { images: string[] }) {
                 : "is-far";
             return (
               <figure
-                key={off}
+                key={idx}
                 className={`works-item ${cls}`}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -234,12 +258,6 @@ export function WorksCarousel({ images }: { images: string[] }) {
           overflow: hidden;
           cursor: pointer;
           will-change: transform, width, height, filter;
-          transition:
-            transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-            width 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-            height 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-            filter 0.7s ease,
-            opacity 0.6s ease;
         }
         .works-item img {
           width: 100%;
