@@ -753,21 +753,43 @@ function Index() {
 
       {/* SECTION 06 — Showroom hero */}
       <section className="relative">
-        <img src={showroom} alt="Studio showroom" className="w-full h-[78vh] object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/40 to-transparent" />
-        
+        <img src={showroom} alt="JL Closets showroom in Boca Raton at dusk" className="w-full h-[78vh] object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/20" />
+
         <div className="absolute inset-0 flex items-end">
-          <div className="px-6 md:px-16 pb-16 text-ink-foreground max-w-xl">
-            <p className="eyebrow mb-6 opacity-80">— Visit</p>
-            <h2 className="font-display text-4xl md:text-6xl leading-[1.05] mb-6">
+          <div className="px-6 md:px-16 pb-12 md:pb-16 text-ink-foreground w-full max-w-6xl">
+            <p className="eyebrow mb-5 opacity-80 reveal-up" style={{ animationDelay: "0ms" }}>— Visit</p>
+            <h2 className="font-display text-4xl md:text-6xl leading-[1.05] mb-10 max-w-2xl reveal-up" style={{ animationDelay: "120ms" }}>
               Experience the studio in Boca Raton.
             </h2>
-            <p className="text-sm opacity-80 mb-8 max-w-md">
-              By appointment. Open Mon–Sat. 901 N Federal Hwy, Suite 4.
-            </p>
-            <Yellow>Book a Visit</Yellow>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-6 text-sm mb-8 max-w-4xl">
+              <div className="reveal-up" style={{ animationDelay: "240ms" }}>
+                <p className="eyebrow font-bold mb-2">Phone</p>
+                <p className="opacity-90">(561) 912 9881</p>
+              </div>
+              <div className="reveal-up" style={{ animationDelay: "320ms" }}>
+                <p className="eyebrow font-bold mb-2">Email</p>
+                <p className="opacity-90">leads@jlclosets.com</p>
+              </div>
+              <div className="reveal-up" style={{ animationDelay: "400ms" }}>
+                <p className="eyebrow font-bold mb-2">Showroom</p>
+                <p className="opacity-90">160 NW 16th St,<br />Boca Raton, FL 33432</p>
+              </div>
+              <div className="reveal-up" style={{ animationDelay: "480ms" }}>
+                <p className="eyebrow font-bold mb-2">Opening Hours</p>
+                <p className="opacity-90">Monday–Friday 9:00AM–6:00PM</p>
+                <p className="opacity-90">Saturday 9:00AM–1:00PM</p>
+                <p className="opacity-90">Sunday by appointment</p>
+              </div>
+            </div>
+
+            <div className="reveal-up" style={{ animationDelay: "600ms" }}>
+              <Yellow>Google Maps</Yellow>
+            </div>
           </div>
         </div>
+
       </section>
 
       {/* SECTION 07 — Testimonials */}
