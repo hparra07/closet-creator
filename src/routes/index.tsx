@@ -631,7 +631,7 @@ function Index() {
                 <p>Indian River County</p>
                 <p>Indian River County</p>
                 <p>Okeechobee County</p>
-                <p>Delray</p>
+                <p>Palm Beach County</p>
                 <p>Brickell</p>
                 <p>Jupiter</p>
               </div>
