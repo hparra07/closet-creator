@@ -413,7 +413,7 @@ function ServiceAreas() {
               ))}
             </ul>
           </div>
-          <div className="absolute -bottom-4 -right-4 w-32 h-12 bg-primary -z-0" />
+          
         </div>
       </div>
     </div>
