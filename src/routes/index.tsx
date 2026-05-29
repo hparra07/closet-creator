@@ -360,7 +360,7 @@ const SERVICE_AREAS: { name: string; image: string }[] = [
   { name: "Okeechobee County", image: countyOkeechobee },
   { name: "Palm Beach County", image: countyPalmBeach },
   { name: "Martin County", image: countyBrickell },
-  { name: "Jupiter", image: countyJupiter },
+  { name: "Port ST Lucie County", image: countyJupiter },
 ];
 
 function ServiceAreas() {
