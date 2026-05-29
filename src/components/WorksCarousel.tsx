@@ -2,8 +2,6 @@ import { useRef, useState, type MouseEvent } from "react";
 
 export function WorksCarousel({ images }: { images: string[] }) {
   const [active, setActive] = useState(0);
-  const [dir, setDir] = useState<"next" | "prev" | null>(null);
-  const [animKey, setAnimKey] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const prevBtnRef = useRef<HTMLButtonElement>(null);
@@ -12,8 +10,6 @@ export function WorksCarousel({ images }: { images: string[] }) {
   const wrap = (i: number) => (i + images.length) % images.length;
 
   const go = (d: "next" | "prev") => {
-    setDir(d);
-    setAnimKey((k) => k + 1);
     setActive((a) => wrap(a + (d === "next" ? 1 : -1)));
   };
 
@@ -39,15 +35,8 @@ export function WorksCarousel({ images }: { images: string[] }) {
     });
   };
 
-  const handleViewportClick = (e: MouseEvent<HTMLDivElement>) => {
-    const vp = viewportRef.current;
-    if (!vp) return;
-    const rect = vp.getBoundingClientRect();
-    const isLeft = e.clientX - rect.left < rect.width / 2;
-    go(isLeft ? "prev" : "next");
-  };
-
-  const visible = [wrap(active - 1), active, wrap(active + 1)];
+  // Render 5 slots: -2, -1, 0 (center), +1, +2
+  const offsets = [-2, -1, 0, 1, 2];
 
   return (
     <>
@@ -56,22 +45,31 @@ export function WorksCarousel({ images }: { images: string[] }) {
         className="works-viewport"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleLeave}
-        onClick={handleViewportClick}
       >
-        <div
-          key={animKey}
-          className={`works-track ${dir ? `slide-${dir}` : ""}`}
-        >
-          {visible.map((idx, pos) => {
-            const isActive = pos === 1;
+        <div className="works-track">
+          {offsets.map((off) => {
+            const idx = wrap(active + off);
+            const cls =
+              off === 0
+                ? "is-active"
+                : Math.abs(off) === 1
+                  ? "is-near"
+                  : "is-far";
+            const onClick = (e: MouseEvent) => {
+              e.stopPropagation();
+              if (off === 0) {
+                setLightbox(idx);
+              } else if (off < 0) {
+                go("prev");
+              } else {
+                go("next");
+              }
+            };
             return (
               <figure
-                key={`${idx}-${pos}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (isActive) setLightbox(idx);
-                }}
-                className={`works-item ${isActive ? "is-active" : ""}`}
+                key={`${idx}-${off}`}
+                onClick={onClick}
+                className={`works-item ${cls}`}
               >
                 <img src={images[idx]} alt="" loading="lazy" draggable={false} />
               </figure>
@@ -87,7 +85,7 @@ export function WorksCarousel({ images }: { images: string[] }) {
           className="works-nav"
           style={{ opacity: 0 }}
         >
-          prev
+          Prev
         </button>
         <button
           ref={nextBtnRef}
@@ -97,7 +95,7 @@ export function WorksCarousel({ images }: { images: string[] }) {
           className="works-nav"
           style={{ opacity: 0 }}
         >
-          next
+          Next
         </button>
       </div>
 
@@ -140,39 +138,30 @@ export function WorksCarousel({ images }: { images: string[] }) {
         .works-viewport {
           position: relative;
           width: 100%;
-          cursor: none;
           overflow: hidden;
         }
-        @media (max-width: 767px) {
-          .works-viewport { cursor: default; }
+        @media (min-width: 768px) {
+          .works-viewport { cursor: none; }
         }
 
         .works-track {
           display: flex;
-          gap: 24px;
+          gap: 18px;
           align-items: center;
           justify-content: center;
-          height: 480px;
+          height: 520px;
         }
-        .works-track.slide-next { animation: slide-from-right 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
-        .works-track.slide-prev { animation: slide-from-left 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
-        @keyframes slide-from-right {
-          from { transform: translateX(40px); opacity: 0.4; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slide-from-left {
-          from { transform: translateX(-40px); opacity: 0.4; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-
         .works-item {
           position: relative;
-          flex: 0 0 220px;
-          height: 80%;
           overflow: hidden;
           margin: 0;
-          filter: grayscale(100%) brightness(0.92);
-          transition: flex-basis 0.5s ease, height 0.5s ease, filter 0.5s ease;
+          cursor: pointer;
+          will-change: flex-basis, height, filter;
+          transition:
+            flex-basis 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+            height 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+            filter 0.6s ease,
+            opacity 0.5s ease;
         }
         .works-item img {
           width: 100%;
@@ -181,6 +170,19 @@ export function WorksCarousel({ images }: { images: string[] }) {
           display: block;
           user-select: none;
           -webkit-user-drag: none;
+        }
+
+        .works-item.is-far {
+          flex: 0 0 130px;
+          height: 55%;
+          filter: grayscale(100%) brightness(0.85);
+          opacity: 0.75;
+        }
+        .works-item.is-near {
+          flex: 0 0 200px;
+          height: 78%;
+          filter: grayscale(100%) brightness(0.92);
+          opacity: 0.95;
         }
         .works-item.is-active {
           flex: 0 0 560px;
@@ -203,7 +205,6 @@ export function WorksCarousel({ images }: { images: string[] }) {
           font-size: 12px;
           font-weight: 600;
           letter-spacing: 0.02em;
-          text-transform: capitalize;
           cursor: pointer;
           pointer-events: auto;
           transition: opacity 0.2s ease, background 0.2s ease;
@@ -211,10 +212,16 @@ export function WorksCarousel({ images }: { images: string[] }) {
         }
         .works-nav:hover { background: color-mix(in oklab, var(--color-primary) 85%, black); }
 
+        @media (max-width: 1023px) {
+          .works-item.is-far { flex: 0 0 80px; }
+          .works-item.is-near { flex: 0 0 140px; }
+          .works-item.is-active { flex: 0 0 44vw; }
+        }
         @media (max-width: 767px) {
-          .works-track { height: 360px; gap: 10px; }
-          .works-item { flex: 0 0 22vw; height: 70%; }
-          .works-item.is-active { flex: 0 0 70vw; height: 100%; }
+          .works-track { height: 380px; gap: 8px; }
+          .works-item.is-far { display: none; }
+          .works-item.is-near { flex: 0 0 18vw; height: 65%; }
+          .works-item.is-active { flex: 0 0 64vw; }
           .works-nav {
             position: absolute;
             top: 50%;
