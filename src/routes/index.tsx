@@ -617,7 +617,7 @@ function Index() {
           <div className="md:col-span-3 md:col-start-2">
             <p className="eyebrow mb-3">Where we work</p>
             <p className="font-display text-2xl leading-snug">
-              Across the South Florida coastline.
+              We proudly serve the entire South Florida region, including:
             </p>
           </div>
           <div className="md:col-span-3 md:col-start-6">
