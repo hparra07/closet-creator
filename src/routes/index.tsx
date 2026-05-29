@@ -366,8 +366,24 @@ const SERVICE_AREAS: { name: string; image: string }[] = [
 
 function ServiceAreas() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
   const activeIndex = hovered ?? 0;
   const activeArea = SERVICE_AREAS[activeIndex];
+
+  const onScroll = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const i = Math.round(el.scrollLeft / el.clientWidth);
+    if (i !== mobileIndex) setMobileIndex(i);
+  };
+
+  const goTo = (i: number) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+  };
+
   return (
     <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
       <div className="max-w-xs md:max-w-lg lg:max-w-xs mx-auto lg:mx-0 mb-12 lg:mb-0 lg:shrink-0">
@@ -378,8 +394,51 @@ function ServiceAreas() {
           , bringing custom storage craftsmanship to homes across every county we touch.
         </p>
       </div>
-      <div className="flex-1 min-w-0 grid md:grid-cols-2 gap-8 items-start">
-        <div className="relative aspect-square w-full max-w-sm mx-auto md:mx-0 overflow-hidden bg-muted">
+
+      {/* MOBILE CAROUSEL */}
+      <div className="md:hidden flex-1 min-w-0">
+        <div
+          ref={scrollerRef}
+          onScroll={onScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth -mx-4 px-4 gap-4"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {SERVICE_AREAS.map((area) => (
+            <div key={area.name} className="snap-center shrink-0 w-full">
+              <div className="relative aspect-square w-full overflow-hidden bg-muted">
+                <img
+                  src={area.image}
+                  alt={area.name}
+                  width={512}
+                  height={512}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/70 to-transparent">
+                  <p className="text-white font-display text-lg leading-tight">{area.name}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 flex items-center justify-center gap-2">
+          {SERVICE_AREAS.map((area, i) => (
+            <button
+              key={area.name}
+              type="button"
+              aria-label={`Go to ${area.name}`}
+              onClick={() => goTo(i)}
+              className={`h-1.5 rounded-full transition-all ${
+                i === mobileIndex ? "w-6 bg-primary" : "w-1.5 bg-foreground/30"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* DESKTOP / TABLET */}
+      <div className="hidden md:grid flex-1 min-w-0 md:grid-cols-2 gap-8 items-start">
+        <div className="relative aspect-square w-full max-w-sm md:mx-0 overflow-hidden bg-muted">
           {SERVICE_AREAS.map((area, i) => (
             <img
               key={area.name + i}
@@ -413,12 +472,12 @@ function ServiceAreas() {
               ))}
             </ul>
           </div>
-          
         </div>
       </div>
     </div>
   );
 }
+
 
 
 function Index() {
