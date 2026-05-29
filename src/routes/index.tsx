@@ -599,7 +599,7 @@ function Index() {
 
       {/* SECTION 04 — Gallery row */}
       <Section num="04">
-        <div className="text-center mb-10">
+        <div className="text-center mb-10 mt-12 md:mt-20">
           <span className="rule eyebrow" style={{ color: "#313131" }}>Works</span>
         </div>
         <WorksCarousel
