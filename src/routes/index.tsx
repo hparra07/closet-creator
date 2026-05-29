@@ -758,7 +758,7 @@ function Index() {
 
         <div className="absolute inset-0 flex items-end">
           <div className="px-6 md:px-16 pb-12 md:pb-16 text-ink-foreground w-full max-w-6xl">
-            <p className="eyebrow mb-5 opacity-80 reveal-up" style={{ animationDelay: "0ms" }}>— Visit</p>
+            <p className="eyebrow mb-6 opacity-80 text-white reveal-up" style={{ animationDelay: "0ms" }}>— SHOWROOM —</p>
             <h2 className="font-display text-4xl md:text-6xl leading-[1.05] mb-10 max-w-2xl reveal-up" style={{ animationDelay: "120ms" }}>
               Experience the studio in Boca Raton.
             </h2>
