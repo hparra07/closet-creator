@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Familjen+Grotesk:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Familjen+Grotesk:wght@300;400;500;600;700&display=swap");
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Variable.ttf") format("truetype-variations");
@@ -78,14 +78,14 @@
   --radius: 0.125rem;
   /* Cream / off-white editorial background */
   --background: oklch(0.975 0.008 85);
-  --foreground: oklch(0.18 0.01 60);
+  --foreground: oklch(0.31 0 0);
   --card: oklch(0.985 0.006 85);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
   /* Amber/yellow accent matching design */
   --primary: oklch(0.82 0.17 88);
-  --primary-foreground: oklch(0.18 0.01 60);
+  --primary-foreground: oklch(0.31 0 0);
   --ink: oklch(0.16 0.01 60);
   --ink-foreground: oklch(0.96 0.008 85);
   --muted-cream: oklch(0.94 0.012 85);
@@ -172,10 +172,32 @@
   }
 }
 
+.review-source-btn {
+  background-color: transparent;
+}
+.review-source-btn:hover {
+  background-color: #1D1D1D;
+  color: #F6931D !important;
+}
+.review-source-btn:hover svg { color: #F6931D; }
+
 @keyframes scroll-wheel {
   0% { transform: translate(-50%, 0); opacity: 0; }
   30% { opacity: 1; }
   100% { transform: translate(-50%, 12px); opacity: 0; }
+}
+
+@keyframes card-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -12px; }
+}
+.card-floating {
+  animation-name: card-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-floating { animation: none; }
 }
 
 @keyframes reveal-up {
@@ -184,9 +206,25 @@
 }
 .reveal-up {
   opacity: 0;
+}
+.reveal-up.in-view {
   animation: reveal-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+.underline-animate {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 3px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  padding-bottom: 3px;
+  transition: background-size 0s;
+}
+.reveal-up.in-view .underline-animate {
+  background-size: 100% 3px;
+  transition: background-size 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.6s;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal-up { animation: none; opacity: 1; }
+  .reveal-up, .reveal-up.in-view { animation: none; opacity: 1; }
+  .underline-animate { background-size: 100% 3px; }
 }
 

@@ -176,6 +176,17 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
           overflow: hidden;
         }
 
+        @media (min-width: 768px) {
+          .caterpillar-container .cat-card {
+            aspect-ratio: 3 / 4;
+          }
+        }
+        @media (min-width: 1280px) {
+          .caterpillar-container .cat-card {
+            aspect-ratio: 4 / 5;
+          }
+        }
+
         .caterpillar-container .cat-card img {
           width: 100%;
           height: 100%;
