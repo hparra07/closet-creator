@@ -74,16 +74,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Custom Closets & Storage Systems in Florida | JL Closets" },
       { name: "description", content: "South Florida's highest-rated custom closet company, providing expertly crafted custom closets and storage systems. Schedule your free design consultation" },
-      { name: "author", content: "Lovable" },
+      { name: "author", content: "JL Closets" },
       { property: "og:title", content: "Custom Closets & Storage Systems in Florida | JL Closets" },
       { property: "og:description", content: "South Florida's highest-rated custom closet company, providing expertly crafted custom closets and storage systems. Schedule your free design consultation" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Custom Closets & Storage Systems in Florida | JL Closets" },
       { name: "twitter:description", content: "South Florida's highest-rated custom closet company, providing expertly crafted custom closets and storage systems. Schedule your free design consultation" },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0b2ecfb9-f5ae-4eee-855e-922afc7edefc/id-preview-4545ab25--c96cf51f-cf1d-4d44-8e00-a61840e9f395.lovable.app-1778593396711.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0b2ecfb9-f5ae-4eee-855e-922afc7edefc/id-preview-4545ab25--c96cf51f-cf1d-4d44-8e00-a61840e9f395.lovable.app-1778593396711.png" },
     ],
     links: [
       {
