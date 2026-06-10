@@ -3,7 +3,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { cloudflare } from "@cloudflare/vite-plugin";
+import { nitro } from "nitro/vite";
 
 export default defineConfig({
   resolve: {
@@ -24,6 +24,10 @@ export default defineConfig({
       server: { entry: "server" },
     }),
     viteReact(),
-    cloudflare(),
+    nitro({
+      preset: "cloudflare-module",
+      output: { dir: "dist", serverDir: "dist/server", publicDir: "dist/client" },
+      cloudflare: { nodeCompat: true, deployConfig: true },
+    }),
   ],
 });
