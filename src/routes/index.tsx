@@ -800,10 +800,11 @@ function ServiceAreas() {
                     />
                   </div>
                   <div
-                    className="pin-icon cursor-pointer"
-                    style={{ transform: `scale(${1 / zoom})`, transformOrigin: "bottom center" }}
+                    style={zoom !== 1 ? { transform: `scale(${1 / zoom})`, transformOrigin: "bottom center" } : undefined}
                   >
-                    <MapPin className="w-6 h-6 md:w-7 md:h-7 drop-shadow-md" />
+                    <div className="pin-icon cursor-pointer">
+                      <MapPin className="w-6 h-6 md:w-7 md:h-7 drop-shadow-md" />
+                    </div>
                   </div>
                 </div>
               ))}
