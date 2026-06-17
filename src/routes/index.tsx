@@ -589,38 +589,58 @@ function ServiceAreas() {
     svg.style.display = "block";
 
     // Tag service area counties with a "service" class for CSS rules
-    const computed: { xPct: number; yPct: number }[] = [];
     SERVICE_COUNTIES.forEach((c, i) => {
       const node = svg.querySelector(`[id="${c.id}"]`) as SVGGraphicsElement | null;
       if (!node) {
-        computed.push({ xPct: 50, yPct: 50 });
         countyPaths.current[i] = null;
         return;
       }
       const el = node as unknown as SVGPathElement;
       countyPaths.current[i] = el;
       el.classList.add("service");
-      try {
-        const bbox = node.getBBox();
-        const cx = bbox.x + bbox.width / 2;
-        const cy = bbox.y + bbox.height / 2;
-        // Apply parent transforms via getCTM to get viewBox-space coords
-        const ctm = node.getCTM();
-        let vx = cx, vy = cy;
-        if (ctm) {
-          vx = ctm.a * cx + ctm.c * cy + ctm.e;
-          vy = ctm.b * cx + ctm.d * cy + ctm.f;
-        }
-        computed.push({
-          xPct: (vx / VB_W) * 100 - 3,
-          yPct: (vy / VB_H) * 100 - 2,
-        });
-      } catch {
-        computed.push({ xPct: 50, yPct: 50 });
-      }
     });
 
-    setPins(computed);
+    // Compute pin positions via requestAnimationFrame so SVG is fully laid out.
+    // Re-run on resize so mobile orientation changes / responsive layouts stay aligned.
+    const computePins = () => {
+      const computed: { xPct: number; yPct: number }[] = [];
+      SERVICE_COUNTIES.forEach((c) => {
+        const node = svg.querySelector(`[id="${c.id}"]`) as SVGGraphicsElement | null;
+        if (!node) {
+          computed.push({ xPct: 50, yPct: 50 });
+          return;
+        }
+        try {
+          const bbox = node.getBBox();
+          if (bbox.width === 0 && bbox.height === 0) {
+            computed.push({ xPct: 50, yPct: 50 });
+            return;
+          }
+          const cx = bbox.x + bbox.width / 2;
+          const cy = bbox.y + bbox.height / 2;
+          const ctm = node.getCTM();
+          let vx = cx, vy = cy;
+          if (ctm) {
+            vx = ctm.a * cx + ctm.c * cy + ctm.e;
+            vy = ctm.b * cx + ctm.d * cy + ctm.f;
+          }
+          computed.push({
+            xPct: (vx / VB_W) * 100 - 3,
+            yPct: (vy / VB_H) * 100 - 2,
+          });
+        } catch {
+          computed.push({ xPct: 50, yPct: 50 });
+        }
+      });
+      setPins(computed);
+    };
+
+    const raf = requestAnimationFrame(computePins);
+    window.addEventListener("resize", computePins);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", computePins);
+    };
   }, []);
 
   // Hover animations
@@ -779,7 +799,10 @@ function ServiceAreas() {
                       }}
                     />
                   </div>
-                  <div className="pin-icon cursor-pointer">
+                  <div
+                    className="pin-icon cursor-pointer"
+                    style={{ transform: `scale(${1 / zoom})`, transformOrigin: "bottom center" }}
+                  >
                     <MapPin className="w-6 h-6 md:w-7 md:h-7 drop-shadow-md" />
                   </div>
                 </div>
