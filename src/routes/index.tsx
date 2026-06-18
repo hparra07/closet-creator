@@ -30,7 +30,6 @@ import countyPalmBeach from "@/assets/county-palmbeach.jpg";
 import countyBrickell from "@/assets/county-brickell.jpg";
 import countyJupiter from "@/assets/county-jupiter.jpg";
 import jlLogo from "@/assets/jl-logo.png";
-import gsap from "gsap";
 import floridaSvgRawOriginal from "@/assets/florida-counties-names.svg?raw";
 
 const SERVICE_IDS = ["Indian_River", "St._Lucie", "Martin", "Okeechobee", "Palm_Beach_County", "Lee", "Broward", "Collier", "Miami-Dade"];
@@ -545,37 +544,20 @@ const SERVICE_COUNTIES: { id: string; name: string }[] = [
   { id: "Miami-Dade",        name: "Miami-Dade County" },
 ];
 
-function MapPin({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 32" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20c0-6.6-5.4-12-12-12z"
-        fill="#DC2626"
-        stroke="#7f1d1d"
-        strokeWidth="1"
-      />
-      <circle cx="12" cy="12" r="4.5" fill="#fff" />
-    </svg>
-  );
-}
 
 function ServiceAreas() {
   const [hovered, setHovered] = useState<number | null>(null);
-  const [pins, setPins] = useState<{ xPct: number; yPct: number }[]>([]);
+  const mapRef = useRef<HTMLDivElement | null>(null);
+  const [badges, setBadges] = useState<{ cx: number; cy: number }[]>([]);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
-  const mapRef = useRef<HTMLDivElement | null>(null);
-  const pinRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dragState = useRef<{ x: number; y: number; startPanX: number; startPanY: number } | null>(null);
   const pinchState = useRef<{ startDist: number; startZoom: number } | null>(null);
-  const countyPaths = useRef<(SVGPathElement | null)[]>([]);
 
-  // SVG's native viewBox dims — used to compute pin %s and lock container aspect
   const VB_W = 990;
   const VB_H = 765;
   const mapAspect = `${VB_W} / ${VB_H}`;
 
-  // Paint counties + compute pin centroids relative to the SVG viewBox
   useEffect(() => {
     const root = mapRef.current;
     if (!root) return;
@@ -588,87 +570,24 @@ function ServiceAreas() {
     svg.removeAttribute("style");
     svg.style.display = "block";
 
-    // Tag service area counties with a "service" class for CSS rules
-    SERVICE_COUNTIES.forEach((c, i) => {
+    SERVICE_COUNTIES.forEach((c) => {
       const node = svg.querySelector(`[id="${c.id}"]`) as SVGGraphicsElement | null;
-      if (!node) {
-        countyPaths.current[i] = null;
-        return;
-      }
-      const el = node as unknown as SVGPathElement;
-      countyPaths.current[i] = el;
-      el.classList.add("service");
+      if (node) node.classList.add("service");
     });
 
-    // Compute pin positions via requestAnimationFrame so SVG is fully laid out.
-    // Re-run on resize so mobile orientation changes / responsive layouts stay aligned.
-    const computePins = () => {
-      const computed: { xPct: number; yPct: number }[] = [];
+    requestAnimationFrame(() => {
+      const computed: { cx: number; cy: number }[] = [];
       SERVICE_COUNTIES.forEach((c) => {
         const node = svg.querySelector(`[id="${c.id}"]`) as SVGGraphicsElement | null;
-        if (!node) {
-          computed.push({ xPct: 50, yPct: 50 });
-          return;
-        }
+        if (!node) { computed.push({ cx: 0, cy: 0 }); return; }
         try {
           const bbox = node.getBBox();
-          if (bbox.width === 0 && bbox.height === 0) {
-            computed.push({ xPct: 50, yPct: 50 });
-            return;
-          }
-          const cx = bbox.x + bbox.width / 2;
-          const cy = bbox.y + bbox.height / 2;
-          const ctm = node.getCTM();
-          let vx = cx, vy = cy;
-          if (ctm) {
-            vx = ctm.a * cx + ctm.c * cy + ctm.e;
-            vy = ctm.b * cx + ctm.d * cy + ctm.f;
-          }
-          computed.push({
-            xPct: (vx / VB_W) * 100 - 3,
-            yPct: (vy / VB_H) * 100 - 2,
-          });
-        } catch {
-          computed.push({ xPct: 50, yPct: 50 });
-        }
+          computed.push({ cx: bbox.x + bbox.width / 2, cy: bbox.y + bbox.height / 2 });
+        } catch { computed.push({ cx: 0, cy: 0 }); }
       });
-      setPins(computed);
-    };
-
-    const raf = requestAnimationFrame(computePins);
-    window.addEventListener("resize", computePins);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", computePins);
-    };
-  }, []);
-
-  // Hover animations
-  useEffect(() => {
-    pinRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const tip = el.querySelector(".pin-tip") as HTMLElement | null;
-      const icon = el.querySelector(".pin-icon") as HTMLElement | null;
-      const isActive = i === hovered;
-      if (icon) {
-        gsap.to(icon, {
-          scale: isActive ? 1.3 : 1,
-          y: isActive ? -4 : 0,
-          duration: 0.35,
-          ease: "power3.out",
-        });
-      }
-      if (tip) {
-        gsap.to(tip, {
-          opacity: isActive ? 1 : 0,
-          y: isActive ? 0 : 6,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
+      setBadges(computed);
     });
-
-  }, [hovered]);
+  }, []);
 
   return (
     <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12">
@@ -682,9 +601,7 @@ function ServiceAreas() {
       </div>
 
       <div className="flex-1 min-w-0 flex flex-col md:flex-row gap-8 items-center md:items-start justify-start">
-        {/* MAP — fluid, fills available width */}
         <div className="relative w-full flex-1 min-w-0 mx-auto md:mx-0">
-          {/* Dynamic hover styles regenerate when `hovered` changes */}
           {hovered !== null && (
             <style>{`
               svg path[id="${SERVICE_COUNTIES[hovered].id}"] {
@@ -696,7 +613,6 @@ function ServiceAreas() {
               }
             `}</style>
           )}
-          {/* Mobile-only zoom controls */}
           <div className="md:hidden absolute top-2 right-2 z-30 flex flex-col gap-1">
             <button
               type="button"
@@ -754,7 +670,6 @@ function ServiceAreas() {
               pinchState.current = null;
             }}
           >
-            {/* Transform wrapper: holds SVG + pins so they zoom/pan together */}
             <div
               className="relative w-full h-full"
               style={{
@@ -768,51 +683,39 @@ function ServiceAreas() {
                 className="absolute inset-0 w-full h-full"
                 dangerouslySetInnerHTML={{ __html: floridaSvgRaw }}
               />
-              {/* Pins on top, at real county centroids */}
-              {pins.map((p, i) => (
-                <div
-                  key={SERVICE_COUNTIES[i].id}
-                  ref={(el) => { pinRefs.current[i] = el; }}
-                  className="absolute z-10"
-                  style={{
-                    left: `${p.xPct}%`,
-                    top: `${p.yPct}%`,
-                    transform: "translate(-50%, -100%)",
-                    pointerEvents: "auto",
-                  }}
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
+              {badges.length > 0 && (
+                <svg
+                  viewBox={`0 0 ${VB_W} ${VB_H}`}
+                  className="absolute inset-0 w-full h-full"
+                  preserveAspectRatio="xMidYMid meet"
+                  style={{ pointerEvents: "none" }}
                 >
-                  <div
-                    className="pin-tip absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-1.5 bg-ink text-ink-foreground text-xs font-semibold whitespace-nowrap shadow-xl pointer-events-none"
-                    style={{ opacity: 0, borderRadius: "4px" }}
-                  >
-                    {SERVICE_COUNTIES[i].name}
-                    <div
-                      className="absolute left-1/2 -translate-x-1/2 top-full"
-                      style={{
-                        width: 0,
-                        height: 0,
-                        borderLeft: "6px solid transparent",
-                        borderRight: "6px solid transparent",
-                        borderTop: "6px solid var(--color-ink)",
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={zoom !== 1 ? { transform: `scale(${1 / zoom})`, transformOrigin: "bottom center" } : undefined}
-                  >
-                    <div className="pin-icon cursor-pointer">
-                      <MapPin className="w-6 h-6 md:w-7 md:h-7 drop-shadow-md" />
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  <g transform="translate(0,473.10044)">
+                    {badges.map((b, i) => (
+                      <g
+                        key={SERVICE_COUNTIES[i].id}
+                        transform={`translate(${b.cx - 10}, ${b.cy - 28})`}
+                        style={{ pointerEvents: "auto", cursor: "pointer", transition: "transform 0.2s" }}
+                        onMouseEnter={() => setHovered(i)}
+                        onMouseLeave={() => setHovered(null)}
+                      >
+                        <path
+                          d="M10 0C4.5 0 0 4.5 0 10c0 7.5 10 18 10 18s10-10.5 10-18C20 4.5 15.5 0 10 0z"
+                          fill={i === hovered ? "#b91c1c" : "#DC2626"}
+                          stroke="#7f1d1d"
+                          strokeWidth={0.8}
+                          style={{ transition: "fill 0.2s", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.35))" }}
+                        />
+                        <circle cx={10} cy={10} r={3.5} fill="#fff" />
+                      </g>
+                    ))}
+                  </g>
+                </svg>
+              )}
             </div>
           </div>
         </div>
 
-        {/* LIST */}
         <div className="bg-primary text-primary-foreground p-6 w-full max-w-xs">
           <p className="eyebrow mb-4" style={{ color: "#313131" }}>Counties we serve</p>
           <ul className="flex flex-col gap-2.5 text-[14px]">
