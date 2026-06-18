@@ -548,15 +548,25 @@ const SERVICE_COUNTIES: { id: string; name: string }[] = [
 function ServiceAreas() {
   const [hovered, setHovered] = useState<number | null>(null);
   const mapRef = useRef<HTMLDivElement | null>(null);
+  const transformRef = useRef<HTMLDivElement | null>(null);
   const [badges, setBadges] = useState<{ cx: number; cy: number }[]>([]);
-  const [zoom, setZoom] = useState(1);
-  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const zoomRef = useRef(1);
+  const panRef = useRef({ x: 0, y: 0 });
   const dragState = useRef<{ x: number; y: number; startPanX: number; startPanY: number } | null>(null);
   const pinchState = useRef<{ startDist: number; startZoom: number } | null>(null);
 
   const VB_W = 990;
   const VB_H = 765;
+  const MOBILE_VB = "520 300 470 465";
+  const MOBILE_ASPECT = "470 / 465";
   const mapAspect = `${VB_W} / ${VB_H}`;
+
+  const applyTransform = () => {
+    if (!transformRef.current) return;
+    const z = zoomRef.current;
+    const p = panRef.current;
+    transformRef.current.style.transform = `translate(${p.x}px, ${p.y}px) scale(${z})`;
+  };
 
   useEffect(() => {
     const root = mapRef.current;
@@ -564,8 +574,8 @@ function ServiceAreas() {
     const svg = root.querySelector("svg");
     if (!svg) return;
 
-    svg.setAttribute("width", "100%");
-    svg.setAttribute("height", "100%");
+    svg.setAttribute("width", "990");
+    svg.setAttribute("height", "765");
     svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
     svg.removeAttribute("style");
     svg.style.display = "block";
@@ -613,73 +623,109 @@ function ServiceAreas() {
               }
             `}</style>
           )}
-          <div className="md:hidden absolute top-2 right-2 z-30 flex flex-col gap-1">
-            <button
-              type="button"
-              onClick={() => setZoom((z) => Math.min(z * 1.3, 4))}
-              className="w-9 h-9 bg-ink text-ink-foreground text-lg font-semibold shadow-lg cursor-pointer flex items-center justify-center"
-              aria-label="Zoom in"
-            >+</button>
-            <button
-              type="button"
-              onClick={() => setZoom((z) => Math.max(z / 1.3, 1))}
-              className="w-9 h-9 bg-ink text-ink-foreground text-lg font-semibold shadow-lg cursor-pointer flex items-center justify-center"
-              aria-label="Zoom out"
-            >−</button>
-            <button
-              type="button"
-              onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}
-              className="w-9 h-9 bg-ink text-ink-foreground text-xs font-semibold shadow-lg cursor-pointer flex items-center justify-center"
-              aria-label="Reset"
-            >⤾</button>
-          </div>
-          <div
-            className="relative w-full overflow-hidden touch-none"
-            style={{ aspectRatio: mapAspect }}
-            onTouchStart={(e) => {
-              if (e.touches.length === 2) {
-                const dx = e.touches[0].clientX - e.touches[1].clientX;
-                const dy = e.touches[0].clientY - e.touches[1].clientY;
-                pinchState.current = { startDist: Math.hypot(dx, dy), startZoom: zoom };
-              } else if (e.touches.length === 1 && zoom > 1) {
-                dragState.current = {
-                  x: e.touches[0].clientX,
-                  y: e.touches[0].clientY,
-                  startPanX: pan.x,
-                  startPanY: pan.y,
-                };
-              }
-            }}
-            onTouchMove={(e) => {
-              if (e.touches.length === 2 && pinchState.current) {
-                const dx = e.touches[0].clientX - e.touches[1].clientX;
-                const dy = e.touches[0].clientY - e.touches[1].clientY;
-                const dist = Math.hypot(dx, dy);
-                const ratio = dist / pinchState.current.startDist;
-                setZoom(Math.max(1, Math.min(4, pinchState.current.startZoom * ratio)));
-              } else if (e.touches.length === 1 && dragState.current) {
-                const t = e.touches[0];
-                setPan({
-                  x: dragState.current.startPanX + (t.clientX - dragState.current.x),
-                  y: dragState.current.startPanY + (t.clientY - dragState.current.y),
-                });
-              }
-            }}
-            onTouchEnd={() => {
-              dragState.current = null;
-              pinchState.current = null;
-            }}
-          >
+          {/* MOBILE MAP — cropped to south Florida */}
+          <div className="md:hidden">
+            <div className="md:hidden absolute top-2 right-2 z-30 flex flex-col gap-1">
+              <button
+                type="button"
+                onClick={() => { zoomRef.current = Math.min(zoomRef.current * 1.3, 4); applyTransform(); }}
+                className="w-9 h-9 bg-ink text-ink-foreground text-lg font-semibold shadow-lg cursor-pointer flex items-center justify-center"
+                aria-label="Zoom in"
+              >+</button>
+              <button
+                type="button"
+                onClick={() => { zoomRef.current = Math.max(zoomRef.current / 1.3, 1); applyTransform(); }}
+                className="w-9 h-9 bg-ink text-ink-foreground text-lg font-semibold shadow-lg cursor-pointer flex items-center justify-center"
+                aria-label="Zoom out"
+              >−</button>
+              <button
+                type="button"
+                onClick={() => { zoomRef.current = 1; panRef.current = { x: 0, y: 0 }; applyTransform(); }}
+                className="w-9 h-9 bg-ink text-ink-foreground text-xs font-semibold shadow-lg cursor-pointer flex items-center justify-center"
+                aria-label="Reset"
+              >⤾</button>
+            </div>
             <div
-              className="relative w-full h-full"
-              style={{
-                transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
-                transformOrigin: "center center",
-                transition: dragState.current || pinchState.current ? "none" : "transform 0.2s ease-out",
+              className="relative w-full overflow-hidden touch-none"
+              style={{ aspectRatio: MOBILE_ASPECT }}
+              onTouchStart={(e) => {
+                if (transformRef.current) transformRef.current.style.transition = "none";
+                if (e.touches.length === 2) {
+                  const dx = e.touches[0].clientX - e.touches[1].clientX;
+                  const dy = e.touches[0].clientY - e.touches[1].clientY;
+                  pinchState.current = { startDist: Math.hypot(dx, dy), startZoom: zoomRef.current };
+                } else if (e.touches.length === 1 && zoomRef.current > 1) {
+                  dragState.current = {
+                    x: e.touches[0].clientX,
+                    y: e.touches[0].clientY,
+                    startPanX: panRef.current.x,
+                    startPanY: panRef.current.y,
+                  };
+                }
+              }}
+              onTouchMove={(e) => {
+                if (e.touches.length === 2 && pinchState.current) {
+                  const dx = e.touches[0].clientX - e.touches[1].clientX;
+                  const dy = e.touches[0].clientY - e.touches[1].clientY;
+                  const dist = Math.hypot(dx, dy);
+                  const ratio = dist / pinchState.current.startDist;
+                  zoomRef.current = Math.max(1, Math.min(4, pinchState.current.startZoom * ratio));
+                  applyTransform();
+                } else if (e.touches.length === 1 && dragState.current) {
+                  const t = e.touches[0];
+                  panRef.current = {
+                    x: dragState.current.startPanX + (t.clientX - dragState.current.x),
+                    y: dragState.current.startPanY + (t.clientY - dragState.current.y),
+                  };
+                  applyTransform();
+                }
+              }}
+              onTouchEnd={() => {
+                dragState.current = null;
+                pinchState.current = null;
+                if (transformRef.current) transformRef.current.style.transition = "transform 0.2s ease-out";
               }}
             >
+              <div ref={transformRef} className="relative w-full h-full will-change-transform" style={{ transformOrigin: "center center" }}>
+                <div className="w-full h-full [&>svg]:w-full [&>svg]:h-full" dangerouslySetInnerHTML={{ __html: floridaSvgRaw.replace(/viewBox="[^"]*"/, `viewBox="${MOBILE_VB}"`) }} />
+                {badges.length > 0 && (
+                  <svg viewBox={MOBILE_VB} className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid meet" style={{ pointerEvents: "none" }}>
+                    <g transform="translate(0,473.10044)">
+                      {badges.map((b, i) => (
+                        <g
+                          key={SERVICE_COUNTIES[i].id}
+                          transform={`translate(${b.cx - 10}, ${b.cy - 28})`}
+                          style={{ pointerEvents: "auto", cursor: "pointer" }}
+                          onMouseEnter={() => setHovered(i)}
+                          onMouseLeave={() => setHovered(null)}
+                        >
+                          <path
+                            d="M10 0C4.5 0 0 4.5 0 10c0 7.5 10 18 10 18s10-10.5 10-18C20 4.5 15.5 0 10 0z"
+                            fill={i === hovered ? "#b91c1c" : "#DC2626"}
+                            stroke="#7f1d1d"
+                            strokeWidth={0.8}
+                            style={{ transition: "fill 0.2s", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.35))" }}
+                          />
+                          <circle cx={10} cy={10} r={3.5} fill="#fff" />
+                        </g>
+                      ))}
+                    </g>
+                  </svg>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Hidden computation div for getBBox — always rendered */}
+          <div ref={mapRef} className="absolute w-px h-px overflow-hidden opacity-0 pointer-events-none" style={{ left: -9999 }} dangerouslySetInnerHTML={{ __html: floridaSvgRaw }} />
+
+          {/* DESKTOP MAP — full Florida */}
+          <div className="hidden md:block">
+            <div
+              className="relative w-full overflow-hidden"
+              style={{ aspectRatio: mapAspect }}
+            >
               <div
-                ref={mapRef}
                 className="absolute inset-0 w-full h-full"
                 dangerouslySetInnerHTML={{ __html: floridaSvgRaw }}
               />
@@ -695,7 +741,7 @@ function ServiceAreas() {
                       <g
                         key={SERVICE_COUNTIES[i].id}
                         transform={`translate(${b.cx - 10}, ${b.cy - 28})`}
-                        style={{ pointerEvents: "auto", cursor: "pointer", transition: "transform 0.2s" }}
+                        style={{ pointerEvents: "auto", cursor: "pointer" }}
                         onMouseEnter={() => setHovered(i)}
                         onMouseLeave={() => setHovered(null)}
                       >
