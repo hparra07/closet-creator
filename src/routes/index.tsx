@@ -1465,6 +1465,49 @@ function Index() {
   const [consultOpen, setConsultOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement | null>(null);
+  const mobileMenuTl = useRef<ReturnType<typeof import("gsap")["default"]["timeline"]> | null>(null);
+  const mobileMenuOpen = useRef(false);
+
+  const toggleMobileMenu = useRef(() => {});
+  useEffect(() => {
+    let gsap: typeof import("gsap")["default"] | null = null;
+
+    (async () => {
+      const mod = await import("gsap");
+      gsap = mod.default;
+      mobileMenuTl.current = gsap.timeline({ paused: true });
+
+      toggleMobileMenu.current = () => {
+        mobileMenuOpen.current = !mobileMenuOpen.current;
+        const open = mobileMenuOpen.current;
+        setMobileOpen(open);
+        const tl = mobileMenuTl.current!;
+        tl.clear();
+
+        if (open) {
+          tl.set("#mobile-nav", { visibility: "visible", pointerEvents: "auto" })
+            .fromTo(".mnav-bg", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0)
+            .fromTo(".mnav-panel", { x: "101%", y: 0, rotation: 0 }, { x: "0%", duration: 0.6, ease: "back.out", stagger: 0.15 }, 0)
+            .fromTo(".mnav-item", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 1.2, ease: "expo.out", stagger: 0.03 }, 0.1)
+            .fromTo(".mbar-top", { stroke: "currentColor", attr: { x1: 3, y1: 7, x2: 17, y2: 7 } }, { stroke: "#000", attr: { x1: 5, y1: 5, x2: 15, y2: 15 }, duration: 0.35, ease: "back.out(1.4)" }, 0.06)
+            .fromTo(".mbar-bot", { stroke: "currentColor", attr: { x1: 3, y1: 13, x2: 17, y2: 13 } }, { stroke: "#000", attr: { x1: 15, y1: 5, x2: 5, y2: 15 }, duration: 0.35, ease: "back.out(1.4)" }, 0.06)
+            .fromTo(".mbar-mid", { opacity: 1 }, { opacity: 0, duration: 0.15 }, 0)
+            .fromTo(".mnav-bottom-content", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.4);
+          tl.restart();
+        } else {
+          tl.to(".mbar-top", { attr: { x1: 3, y1: 7, x2: 17, y2: 7 }, duration: 0.2, ease: "power3.in" }, 0)
+            .to(".mbar-bot", { attr: { x1: 3, y1: 13, x2: 17, y2: 13 }, duration: 0.2, ease: "power3.in" }, 0)
+            .to(".mbar-mid", { opacity: 1, duration: 0.15 }, 0.1)
+            .to(".mnav-panel", { y: "160vh", rotation: "random(-15, 15)", duration: 1, ease: "power3.in", stagger: { from: "end", each: 0.02 } }, 0)
+            .to(".mnav-bg", { opacity: 0, duration: 0.3, ease: "power2.in" }, 0.1)
+            .set("#mobile-nav", { visibility: "hidden", pointerEvents: "none" });
+          tl.restart();
+        }
+      };
+    })();
+
+    return () => { mobileMenuTl.current?.kill(); };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -1500,10 +1543,12 @@ function Index() {
     <main className="bg-background text-foreground overflow-x-clip">
       {/* STICKY NAV */}
       <nav
-        className={`fixed top-3 left-4 right-4 z-50 flex items-center justify-between px-6 md:px-12 py-4 font-medium transition-all duration-300 border rounded-2xl ${
-          scrolled
+        className={`fixed top-3 left-4 right-4 flex items-center justify-between md:px-12 py-4 font-medium transition-all duration-300 border rounded-2xl ${
+          mobileOpen ? "z-[200] bg-transparent border-transparent px-3" : "z-50 px-6"
+        } ${
+          !mobileOpen && scrolled
             ? "bg-white border-black/10 shadow-lg text-black"
-            : "bg-transparent border-transparent text-ink-foreground"
+            : !mobileOpen ? "bg-transparent border-transparent text-ink-foreground" : ""
         }`}
       >
         <img
@@ -1550,11 +1595,15 @@ function Index() {
           </button>
         </div>
         <button
-          aria-label="Open menu"
-          className={`lg:hidden p-2 cursor-pointer ${scrolled ? "text-black" : "text-ink-foreground"}`}
-          onClick={() => setMobileOpen(true)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          className={`lg:hidden p-2.5 cursor-pointer z-[310] rounded-full ${mobileOpen ? "bg-white shadow-md" : ""}`}
+          onClick={() => toggleMobileMenu.current()}
         >
-          <Menu className="w-7 h-7" />
+          <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
+            <line className="mbar-top" x1="3" y1="7" x2="17" y2="7" stroke={mobileOpen ? "#000" : scrolled ? "#000" : "#fff"} strokeWidth="1.5" strokeLinecap="round" />
+            <line className="mbar-mid" x1="3" y1="10" x2="17" y2="10" stroke={mobileOpen ? "#000" : scrolled ? "#000" : "#fff"} strokeWidth="1.5" strokeLinecap="round" />
+            <line className="mbar-bot" x1="3" y1="13" x2="17" y2="13" stroke={mobileOpen ? "#000" : scrolled ? "#000" : "#fff"} strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
         </button>
       </nav>
 
@@ -1596,43 +1645,34 @@ function Index() {
         </div>
 
 
-        {/* MOBILE MENU */}
-        {mobileOpen && (
-          <div className="lg:hidden fixed inset-0 z-[100] bg-background text-foreground overflow-y-auto">
-            <div className="flex items-center justify-between px-6 pt-8">
-              <img src={jlLogo} alt="JL Closets" className="h-12 w-auto" />
-              <button
-                aria-label="Close menu"
-                className="p-2 cursor-pointer"
-                onClick={() => { setMobileOpen(false); setOpenSection(null); }}
-              >
-                <X className="w-7 h-7" />
-              </button>
-            </div>
-            <ul className="px-6 pt-10 pb-12 divide-y divide-foreground/10">
+        {/* MOBILE MENU — GSAP animated panels */}
+        <div id="mobile-nav" className="lg:hidden fixed inset-0 z-[100] flex flex-col gap-2 p-3 pt-20" style={{ visibility: "hidden", pointerEvents: "none" }}>
+          <div className="mnav-bg absolute inset-0 bg-black/50" style={{ opacity: 0 }} onClick={() => toggleMobileMenu.current()} />
+
+          {/* Top panel — nav links */}
+          <div className="mnav-panel relative flex-1 bg-background text-foreground rounded-xl border border-foreground/10 flex flex-col px-7 pt-6 pb-6 overflow-y-auto" style={{ transform: "translateX(101%)" }}>
+            <ul className="flex flex-col flex-1 justify-center">
               {NAV.map((n) => {
-                const isOpen = openSection === n.label;
+                const isSectionOpen = openSection === n.label;
                 return (
-                  <li key={n.label} className="py-1">
+                  <li key={n.label} className="mnav-item overflow-hidden">
                     <button
-                      className="w-full flex items-center justify-between py-4 text-left text-[18px] font-medium cursor-pointer"
-                      onClick={() => n.submenu ? setOpenSection(isOpen ? null : n.label) : setMobileOpen(false)}
+                      className="w-full flex items-center justify-between py-3 text-left text-[22px] font-semibold tracking-tight cursor-pointer"
+                      onClick={() => n.submenu ? setOpenSection(isSectionOpen ? null : n.label) : toggleMobileMenu.current()}
                     >
                       <span>{n.label}</span>
                       {n.submenu && (
-                        <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform ${isSectionOpen ? "rotate-180" : ""}`} />
                       )}
                     </button>
-                    {n.submenu && isOpen && (
-                      <div className="pb-6 space-y-5">
+                    {n.submenu && isSectionOpen && (
+                      <div className="pb-4 space-y-4">
                         {n.submenu.map((col, idx) => (
                           <div key={col.heading ?? `col-${idx}`}>
                             {col.heading && <p className="text-[12px] font-medium text-foreground/50 mb-2">• {col.heading}</p>}
                             <ul className="space-y-1">
                               {col.items.map((it) => (
-                                <li key={it} className="text-[15px] font-semibold py-1">
-                                  {it}
-                                </li>
+                                <li key={it} className="text-[15px] font-semibold py-1">{it}</li>
                               ))}
                             </ul>
                           </div>
@@ -1643,14 +1683,35 @@ function Index() {
                 );
               })}
             </ul>
-            <div className="px-6 pb-10 flex flex-col gap-3">
-              <Yellow className="!w-full" onClick={() => { setMobileOpen(false); setConsultOpen(true); }}>FREE Consultation</Yellow>
-              <button className="bg-ink text-ink-foreground px-7 py-2.5 inline-flex justify-center items-center gap-2 text-sm font-semibold font-sans w-full cursor-pointer">
+          </div>
+
+          {/* Middle panel — CTA */}
+          <div className="mnav-panel relative bg-primary text-primary-foreground rounded-xl border border-primary px-7 py-6" style={{ transform: "translateX(101%)" }}>
+            <div className="mnav-bottom-content flex flex-col gap-3">
+              <Yellow className="!w-full" onClick={() => { toggleMobileMenu.current(); setConsultOpen(true); }}>FREE Consultation</Yellow>
+              <button
+                className="bg-ink text-ink-foreground px-7 py-2.5 inline-flex justify-center items-center gap-2 text-sm font-semibold font-sans w-full cursor-pointer rounded-lg"
+                onClick={() => toggleMobileMenu.current()}
+              >
                 <Phone className="w-4 h-4" /> CALL US!
               </button>
             </div>
           </div>
-        )}
+
+          {/* Bottom panel — social / info */}
+          <div className="mnav-panel relative bg-ink text-ink-foreground rounded-xl border border-ink-foreground/20 px-7 py-5" style={{ transform: "translateX(101%)" }}>
+            <div className="mnav-bottom-content flex items-center justify-between">
+              <p className="text-xs text-ink-foreground/60">(561) 912 9881</p>
+              <div className="flex gap-3">
+                {[Facebook, Instagram, Youtube, Linkedin].map((Icon, idx) => (
+                  <a key={idx} href="#" className="w-8 h-8 rounded-full border border-ink-foreground/30 flex items-center justify-center">
+                    <Icon className="w-3.5 h-3.5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
 
       </header>
 
@@ -1892,7 +1953,7 @@ function Index() {
         <div className="relative px-6 md:px-16 py-14">
           {/* Top: Logo left, Newsletter right */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 mb-20">
-            <img src={jlLogo} alt="JL Closets" className="h-24 w-auto brightness-0 invert block self-start" />
+            <img src={jlLogo} alt="JL Closets" className="h-14 md:h-24 w-auto brightness-0 invert block self-start" />
             <div className="lg:max-w-xl w-full">
               <h3 className="font-display text-2xl md:text-3xl leading-tight mb-5">
                 Design Inspiration, Expert Tips<br />& Exclusive Updates
@@ -1909,26 +1970,30 @@ function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 text-sm">
             {/* Contact column — separated */}
-            <div className="md:col-span-4 md:pr-10 space-y-5 text-ink-foreground/75">
-              <div>
-                <p className="eyebrow mb-1 font-bold text-ink-foreground">Telephone</p>
-                <p>(561) 912 9881</p>
+            <div className="md:col-span-4 md:pr-10 text-ink-foreground/75">
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
+                <div>
+                  <p className="eyebrow mb-1 font-bold text-ink-foreground">Telephone</p>
+                  <p>(561) 912 9881</p>
+                </div>
+                <div>
+                  <p className="eyebrow mb-1 font-bold text-ink-foreground">Email</p>
+                  <p>leads@jlclosets.com</p>
+                </div>
+                <div>
+                  <p className="eyebrow mb-1 font-bold text-ink-foreground">Opening Hours</p>
+                  <p>Monday–Friday 9:00AM–6:00PM</p>
+                  <p>Saturday 9:00AM–1:00PM</p>
+                  <p>Sunday by appointment</p>
+                </div>
+                <div>
+                  <p className="eyebrow mb-1 font-bold text-ink-foreground">Showroom</p>
+                  <p>160 NW 16th St, Boca Raton, FL 33432</p>
+                </div>
               </div>
-              <div>
-                <p className="eyebrow mb-1 font-bold text-ink-foreground">Email</p>
-                <p>leads@jlclosets.com</p>
+              <div className="mt-5">
+                <Yellow>Google Maps</Yellow>
               </div>
-              <div>
-                <p className="eyebrow mb-1 font-bold text-ink-foreground">Showroom</p>
-                <p>160 NW 16th St, Boca Raton, FL 33432</p>
-              </div>
-              <div>
-                <p className="eyebrow mb-1 font-bold text-ink-foreground">Opening Hours</p>
-                <p>Monday–Friday 9:00AM–6:00PM</p>
-                <p>Saturday 9:00AM–1:00PM</p>
-                <p>Sunday by appointment</p>
-              </div>
-              <Yellow>Google Maps</Yellow>
             </div>
 
             <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-10">
