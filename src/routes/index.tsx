@@ -396,9 +396,29 @@ function StarSparkle({ className = "" }: { className?: string }) {
 
 function WhyChooseUsV2() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const mobileWrapperRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const cards: { title: string; desc: string }[] = [
+    { title: "Same-day or Next-day Free Consultation", desc: "Get expert design at your doorstep with same-day or next-day appointments." },
+    { title: "Over 30 Years of Expertise", desc: "South Florida's oldest closet company, delivering unmatched reliability and professional service." },
+    { title: "Florida's Most Awarded", desc: "8-Time Best Pick top-rated for 8 consecutive years, reflecting our commitment to excellence." },
+    { title: "Standing Behind Our Work", desc: "Our quality extends for years, offering dedicated support and peace of mind after installation." },
+    { title: "Customer-centric Approach", desc: "Professional and accommodating service designed to ensure a superior experience at every step." },
+  ];
 
   useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  // Desktop: vanilla scroll progress for rising cards
+  useEffect(() => {
+    if (isMobile) return;
     const onScroll = () => {
       const el = sectionRef.current;
       if (!el) return;
@@ -415,17 +435,61 @@ function WhyChooseUsV2() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [isMobile]);
 
-  const cards: { title: string; desc: string }[] = [
-    { title: "Same-day or Next-day Free Consultation", desc: "Get expert design at your doorstep with same-day or next-day appointments." },
-    { title: "Over 30 Years of Expertise", desc: "South Florida's oldest closet company, delivering unmatched reliability and professional service." },
-    { title: "Florida's Most Awarded", desc: "8-Time Best Pick top-rated for 8 consecutive years, reflecting our commitment to excellence." },
-    { title: "Standing Behind Our Work", desc: "Our quality extends for years, offering dedicated support and peace of mind after installation." },
-    { title: "Customer-centric Approach", desc: "Professional and accommodating service designed to ensure a superior experience at every step." },
-  ];
+  // Mobile: GSAP pinned panels effect
+  useEffect(() => {
+    if (!isMobile || !mobileWrapperRef.current) return;
+    let gsapModule: typeof import("gsap") | null = null;
+    let stModule: typeof import("gsap/ScrollTrigger") | null = null;
+    let ctx: ReturnType<typeof import("gsap")["default"]["context"]> | null = null;
 
-  // Cards rise continuously with the scroll — all settle right as section ends
+    (async () => {
+      gsapModule = await import("gsap");
+      stModule = await import("gsap/ScrollTrigger");
+      const gsap = gsapModule.default;
+      const { ScrollTrigger } = stModule;
+      gsap.registerPlugin(ScrollTrigger);
+
+      ctx = gsap.context(() => {
+        const panels = gsap.utils.toArray<HTMLElement>(".why-panel", mobileWrapperRef.current!);
+        panels.pop();
+
+        panels.forEach((panel) => {
+          const inner = panel.querySelector<HTMLElement>(".why-panel-inner")!;
+          const panelHeight = inner.offsetHeight;
+          const windowHeight = window.innerHeight;
+          const difference = panelHeight - windowHeight;
+          const fakeScrollRatio = difference > 0 ? difference / (difference + windowHeight) : 0;
+
+          if (fakeScrollRatio) {
+            panel.style.marginBottom = panelHeight * fakeScrollRatio + "px";
+          }
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: panel,
+              start: "bottom bottom",
+              end: () => fakeScrollRatio ? `+=${inner.offsetHeight}` : "bottom top",
+              pinSpacing: false,
+              pin: true,
+              scrub: true,
+            },
+          });
+
+          if (fakeScrollRatio) {
+            tl.to(inner, { yPercent: -100, y: window.innerHeight, duration: 1 / (1 - fakeScrollRatio) - 1, ease: "none" });
+          }
+          tl.fromTo(panel, { scale: 1, opacity: 1 }, { scale: 0.7, opacity: 0.5, duration: 0.9 })
+            .to(panel, { opacity: 0, duration: 0.1 });
+        });
+      }, mobileWrapperRef.current!);
+    })();
+
+    return () => { ctx?.revert(); };
+  }, [isMobile]);
+
+  // Desktop card timings
   const timings = [
     { start: 0.00, end: 0.95 },
     { start: 0.08, end: 1.00 },
@@ -438,84 +502,129 @@ function WhyChooseUsV2() {
     const t = timings[i];
     const p = (progress - t.start) / (t.end - t.start);
     const clamped = Math.min(Math.max(p, 0), 1);
-    // Sinusoidal ease-out for smoothness, no "settled" pause afterwards
     const eased = Math.sin((clamped * Math.PI) / 2);
-    // Enter from 110vh below, end 35vh above the resting bottom — cards land higher in the viewport
     return (1 - eased) * 110 + eased * -35;
   };
 
+  const getCardStyle = (i: number) => {
+    const isDark = i === 0 || i === 4;
+    const isYellow = i === 1 || i === 3;
+    const bg = isDark ? "rgba(0, 0, 0, 0.86)" : isYellow ? "rgba(241, 195, 58, 0.94)" : undefined;
+    const textColor = isDark ? "#FFFFFF" : "#313131";
+    const descOpacity = isYellow ? 1 : isDark ? 0.85 : 0.75;
+    return { bg, textColor, descOpacity, isDark, isYellow };
+  };
+
   return (
-    <section ref={sectionRef} className="relative h-[200vh] md:h-[240vh]">
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Background image */}
-        <img
-          src={whyBg}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        {/* Light overlay so background stays visible */}
-        <div className="absolute inset-0 bg-black/60" />
-
-        {/* Centered big title with star rows */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-5 gap-14 md:gap-20">
-          <div className="flex items-center justify-between w-full px-8 md:px-16 opacity-90 text-white">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <StarSparkle key={`top-${i}`} className="w-4 h-4 md:w-6 md:h-6" />
-            ))}
+    <>
+      {/* ——— MOBILE: GSAP pinned panels ——— */}
+      <div ref={mobileWrapperRef} className="md:hidden">
+        {/* First panel: hero with image, title & stars */}
+        <section
+          className="why-panel w-full h-screen flex items-center justify-center relative overflow-hidden"
+          style={{ borderRadius: "10px" }}
+        >
+          <div className="why-panel-inner h-full w-full">
+            <img src={whyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-5 gap-14">
+              <div className="flex items-center justify-between w-full px-8 opacity-90 text-white">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <StarSparkle key={`mtop-${i}`} className="w-4 h-4" />
+                ))}
+              </div>
+              <h2 className="font-sans font-bold text-center leading-none text-white" style={{ fontSize: "clamp(48px, 13vw, 120px)" }}>
+                Why JL Closets?
+              </h2>
+              <div className="flex items-center justify-between w-full px-8 opacity-90 text-white mt-6">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <StarSparkle key={`mbot-${i}`} className="w-4 h-4" />
+                ))}
+              </div>
+            </div>
           </div>
-          <h2
-            className="font-sans font-bold text-center leading-none text-white"
-            style={{ fontSize: "clamp(60px, 13vw, 220px)" }}
-          >
-            Why JL Closets?
-          </h2>
-          <div className="flex items-center justify-between w-full px-8 md:px-16 opacity-90 text-white mt-6 md:mt-10">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <StarSparkle key={`bot-${i}`} className="w-4 h-4 md:w-6 md:h-6" />
-            ))}
-          </div>
-        </div>
+        </section>
 
-        {/* Cards row at bottom — full width */}
-        <div className="absolute left-0 right-0 bottom-0 px-4 pb-10 md:pb-14">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 w-full items-end">
-            {cards.map((c, i) => {
-              // Mixed: 0 & 4 = black, 1 & 3 = yellow, 2 = default cream
-              const isDark = i === 0 || i === 4;
-              const isYellow = i === 1 || i === 3;
-              const bg = isDark
-                ? "rgba(0, 0, 0, 0.86)"
-                : isYellow
-                ? "rgba(241, 195, 58, 0.94)"
-                : undefined;
-              const textColor = isDark ? "#FFFFFF" : "#313131";
-              const descOpacity = isYellow ? 1 : isDark ? 0.85 : 0.75;
-              return (
-                <div
-                  key={i}
-                  className={`backdrop-blur-sm p-6 md:p-8 flex flex-col ${!bg ? "bg-card/95" : ""}`}
-                  style={{
-                    transform: `translateY(${cardOffset(i)}vh)`,
-                    willChange: "transform",
-                    borderRadius: "10px",
-                    minHeight: "320px",
-                    background: bg,
-                    boxShadow: "0 24px 48px -12px rgba(0,0,0,0.45), 0 8px 16px -8px rgba(0,0,0,0.35)",
-                  }}
-                >
-                  <p className="font-display text-2xl md:text-3xl lg:text-4xl font-bold leading-tight" style={{ color: textColor }}>
+        {/* Card panels */}
+        {cards.map((c, i) => {
+          const s = getCardStyle(i);
+          return (
+            <section
+              key={i}
+              className="why-panel w-full h-screen flex items-center justify-center relative overflow-hidden"
+              style={{
+                background: s.bg || "#F5F0E8",
+                borderRadius: "10px",
+              }}
+            >
+              <div className="why-panel-inner h-full flex flex-col items-center justify-center px-8 text-center">
+                <div className="flex flex-col items-center gap-6">
+                  <p className="font-display text-3xl font-bold leading-tight" style={{ color: s.textColor }}>
                     {c.title}
                   </p>
-                  <p className="font-sans text-sm md:text-base leading-snug mt-auto pt-6" style={{ color: textColor, opacity: descOpacity }}>
+                  <p className="font-sans text-base leading-relaxed max-w-xs" style={{ color: s.textColor, opacity: s.descOpacity }}>
                     {c.desc}
                   </p>
                 </div>
-              );
-            })}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {/* ——— DESKTOP: original rising cards ——— */}
+      <section ref={sectionRef} className="relative hidden md:block h-[240vh]">
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
+          <img src={whyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/60" />
+
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-5 gap-20">
+            <div className="flex items-center justify-between w-full px-16 opacity-90 text-white">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <StarSparkle key={`top-${i}`} className="w-6 h-6" />
+              ))}
+            </div>
+            <h2 className="font-sans font-bold text-center leading-none text-white" style={{ fontSize: "clamp(60px, 13vw, 220px)" }}>
+              Why JL Closets?
+            </h2>
+            <div className="flex items-center justify-between w-full px-16 opacity-90 text-white mt-10">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <StarSparkle key={`bot-${i}`} className="w-6 h-6" />
+              ))}
+            </div>
+          </div>
+
+          <div className="absolute left-0 right-0 bottom-0 px-4 pb-14">
+            <div className="grid grid-cols-5 gap-6 w-full items-end">
+              {cards.map((c, i) => {
+                const s = getCardStyle(i);
+                return (
+                  <div
+                    key={i}
+                    className={`backdrop-blur-sm p-8 flex flex-col ${!s.bg ? "bg-card/95" : ""}`}
+                    style={{
+                      transform: `translateY(${cardOffset(i)}vh)`,
+                      willChange: "transform",
+                      borderRadius: "10px",
+                      minHeight: "320px",
+                      background: s.bg,
+                      boxShadow: "0 24px 48px -12px rgba(0,0,0,0.45), 0 8px 16px -8px rgba(0,0,0,0.35)",
+                    }}
+                  >
+                    <p className="font-display text-3xl lg:text-4xl font-bold leading-tight" style={{ color: s.textColor }}>
+                      {c.title}
+                    </p>
+                    <p className="font-sans text-base leading-snug mt-auto pt-6" style={{ color: s.textColor, opacity: s.descOpacity }}>
+                      {c.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
