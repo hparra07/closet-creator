@@ -409,7 +409,7 @@ function WhyChooseUsV2() {
   ];
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
+    const mq = window.matchMedia("(max-width: 1023px)");
     setIsMobile(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mq.addEventListener("change", handler);
@@ -517,8 +517,8 @@ function WhyChooseUsV2() {
 
   return (
     <>
-      {/* ——— MOBILE: GSAP pinned panels ——— */}
-      <div ref={mobileWrapperRef} className="md:hidden">
+      {/* ——— MOBILE + TABLET: GSAP pinned panels ——— */}
+      <div ref={mobileWrapperRef} className="lg:hidden">
         {/* First panel: hero with image, title & stars */}
         <section
           className="why-panel w-full h-screen flex items-center justify-center relative overflow-hidden"
@@ -573,7 +573,7 @@ function WhyChooseUsV2() {
       </div>
 
       {/* ——— DESKTOP: original rising cards ——— */}
-      <section ref={sectionRef} className="relative hidden md:block h-[240vh]">
+      <section ref={sectionRef} className="relative hidden lg:block h-[240vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           <img src={whyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
@@ -611,10 +611,10 @@ function WhyChooseUsV2() {
                       boxShadow: "0 24px 48px -12px rgba(0,0,0,0.45), 0 8px 16px -8px rgba(0,0,0,0.35)",
                     }}
                   >
-                    <p className="font-display text-3xl lg:text-4xl font-bold leading-tight" style={{ color: s.textColor }}>
+                    <p className="font-display text-xl xl:text-3xl 2xl:text-4xl font-bold leading-tight" style={{ color: s.textColor }}>
                       {c.title}
                     </p>
-                    <p className="font-sans text-base leading-snug mt-auto pt-6" style={{ color: s.textColor, opacity: s.descOpacity }}>
+                    <p className="font-sans text-sm xl:text-base leading-snug mt-auto pt-6" style={{ color: s.textColor, opacity: s.descOpacity }}>
                       {c.desc}
                     </p>
                   </div>
@@ -710,17 +710,40 @@ function ServiceAreas() {
 
   return (
     <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12">
-      <div className="max-w-xs md:max-w-lg lg:max-w-xs mx-auto lg:mx-0 mb-12 lg:mb-0 lg:shrink-0">
-        <p className="font-sans text-[15px] md:text-[18px] lg:text-[20px] leading-relaxed reveal-up" style={{ color: "#313131" }}>
+      {/* Left column: text + county list */}
+      <div className="lg:max-w-xs lg:shrink-0 mb-12 lg:mb-0">
+        <p className="font-sans text-[15px] lg:text-[20px] leading-relaxed reveal-up max-w-xs mx-auto lg:mx-0" style={{ color: "#313131" }}>
           <span className="underline-animate">
             We proudly serve the entire South Florida region
           </span>
           , bringing custom storage craftsmanship to homes across every county we touch.
         </p>
+
+        {/* County list — below text on desktop, below map on mobile */}
+        <div className="hidden lg:block mt-8">
+          <div className="bg-primary text-primary-foreground p-6 w-full">
+            <p className="eyebrow mb-4" style={{ color: "#313131" }}>Counties we serve</p>
+            <ul className="flex flex-col gap-2.5 text-[14px]">
+              {SERVICE_COUNTIES.map((area, i) => (
+                <li
+                  key={area.id}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  className={`cursor-default transition-opacity ${
+                    hovered === null || hovered === i ? "opacity-100" : "opacity-50"
+                  } ${i === hovered ? "font-semibold" : ""}`}
+                >
+                  {area.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <div className="flex-1 min-w-0 flex flex-col md:flex-row gap-8 items-center md:items-start justify-start">
-        <div className="relative w-full flex-1 min-w-0 mx-auto md:mx-0">
+      {/* Right column: map */}
+      <div className="flex-1 min-w-0 flex flex-col gap-8 items-center lg:-mt-10">
+        <div className="relative w-full flex-1 min-w-0 mx-auto lg:mx-0">
           {hovered !== null && (
             <style>{`
               svg path[id="${SERVICE_COUNTIES[hovered].id}"] {
@@ -732,9 +755,9 @@ function ServiceAreas() {
               }
             `}</style>
           )}
-          {/* MOBILE MAP — cropped to south Florida */}
-          <div className="md:hidden">
-            <div className="md:hidden absolute top-2 right-2 z-30 flex flex-col gap-1">
+          {/* MOBILE + TABLET MAP — cropped to south Florida */}
+          <div className="lg:hidden">
+            <div className="lg:hidden absolute top-2 right-2 z-30 flex flex-col gap-1">
               <button
                 type="button"
                 onClick={() => { zoomRef.current = Math.min(zoomRef.current * 1.3, 4); applyTransform(); }}
@@ -763,7 +786,7 @@ function ServiceAreas() {
                   const dx = e.touches[0].clientX - e.touches[1].clientX;
                   const dy = e.touches[0].clientY - e.touches[1].clientY;
                   pinchState.current = { startDist: Math.hypot(dx, dy), startZoom: zoomRef.current };
-                } else if (e.touches.length === 1 && zoomRef.current > 1) {
+                } else if (e.touches.length === 1) {
                   dragState.current = {
                     x: e.touches[0].clientX,
                     y: e.touches[0].clientY,
@@ -829,7 +852,7 @@ function ServiceAreas() {
           <div ref={mapRef} className="absolute w-px h-px overflow-hidden opacity-0 pointer-events-none" style={{ left: -9999 }} dangerouslySetInnerHTML={{ __html: floridaSvgRaw }} />
 
           {/* DESKTOP MAP — full Florida */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div
               className="relative w-full overflow-hidden"
               style={{ aspectRatio: mapAspect }}
@@ -871,7 +894,8 @@ function ServiceAreas() {
           </div>
         </div>
 
-        <div className="bg-primary text-primary-foreground p-6 w-full max-w-xs">
+        {/* County list — mobile/tablet only */}
+        <div className="lg:hidden bg-primary text-primary-foreground p-6 w-full max-w-xs">
           <p className="eyebrow mb-4" style={{ color: "#313131" }}>Counties we serve</p>
           <ul className="flex flex-col gap-2.5 text-[14px]">
             {SERVICE_COUNTIES.map((area, i) => (
@@ -947,7 +971,7 @@ function ContactForm() {
   };
 
   const inputCls =
-    "w-full bg-transparent text-foreground placeholder:text-foreground/40 px-5 py-3.5 text-base border border-foreground/30 hover:border-foreground/60 focus:border-foreground focus:outline-none focus:ring-0 transition font-sans";
+    "w-full bg-transparent text-foreground placeholder:text-foreground/40 px-4 py-2 md:px-5 md:py-3.5 text-base border border-foreground/30 hover:border-foreground/60 focus:border-foreground focus:outline-none focus:ring-0 transition font-sans";
 
   // Phone formatting + validation
   const formatPhone = (raw: string) => {
@@ -995,7 +1019,7 @@ function ContactForm() {
     <button
       type="button"
       onClick={onClick}
-      className={`px-5 py-3 text-sm font-medium border transition cursor-pointer ${
+      className={`px-4 py-2 md:px-5 md:py-3 text-sm font-medium border transition cursor-pointer ${
         active
           ? "bg-ink text-ink-foreground border-ink"
           : "bg-transparent text-foreground border-foreground/30 hover:border-foreground"
@@ -1141,10 +1165,15 @@ function ContactForm() {
         )}
 
         {current.key === "find" && (
-          <div className="flex flex-wrap gap-3">
-            {["Google", "Email", "Facebook", "Instagram", "LinkedIn", "Pinterest", "Realtor Referral Program", "Referral", "Repeat Customer", "TikTok", "YouTube"].map((opt) => (
-              <Pill key={opt} active={findUs.includes(opt)} onClick={() => toggle(findUs, setFindUs, opt)}>{opt}</Pill>
-            ))}
+          <div>
+            <div className="flex flex-wrap gap-3">
+              {["Google", "Email", "Facebook", "Instagram", "LinkedIn", "Pinterest", "Realtor Referral Program", "Referral", "Repeat Customer", "TikTok", "YouTube"].map((opt) => (
+                <Pill key={opt} active={findUs.includes(opt)} onClick={() => toggle(findUs, setFindUs, opt)}>{opt}</Pill>
+              ))}
+            </div>
+            <p className="text-sm text-foreground/60 mt-8">
+              We'll get in touch shortly to schedule your free consultation.
+            </p>
           </div>
         )}
       </div>
@@ -1268,8 +1297,8 @@ function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => void })
 
   return (
     <section ref={sectionRef} className="relative py-24 md:py-32 overflow-hidden">
-      {/* Mobile: stacked title above cards */}
-      <div className="md:hidden flex flex-col items-center justify-center text-center px-4 mb-10">
+      {/* Mobile + tablet: stacked title above cards */}
+      <div className="xl:hidden flex flex-col items-center justify-center text-center px-4 mb-10">
         <span className="rule eyebrow mb-6" style={{ color: "#313131", fontSize: "20px" }}>SUCCESS STORIES</span>
         <p className="font-sans text-lg leading-snug max-w-md" style={{ color: "#313131" }}>
           <strong className="font-bold">Experience home transformation</strong> through our client's eyes. <strong className="font-bold">Quality and trust</strong> in every project.
@@ -1277,7 +1306,7 @@ function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => void })
       </div>
 
       {/* Desktop: text in center + scattered floating cards */}
-      <div className="hidden md:block relative mx-auto" style={{ maxWidth: "1400px", height: "780px" }}>
+      <div className="hidden xl:block relative mx-auto" style={{ maxWidth: "1400px", height: "780px" }}>
         {/* Central text + button — outer wrapper does not intercept clicks */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-20 pointer-events-none">
           <span className="rule eyebrow mb-8 pointer-events-auto" style={{ color: "#313131", fontSize: "22px" }}>SUCCESS STORIES</span>
@@ -1357,8 +1386,8 @@ function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => void })
         })}
       </div>
 
-      {/* Mobile: two carousels (text + videos) + button below */}
-      <div className="md:hidden mt-4 space-y-8">
+      {/* Mobile + tablet: two carousels (text + videos) + button below */}
+      <div className="xl:hidden mt-4 space-y-8">
         {/* Text reviews carousel */}
         <div
           ref={textScrollerRef}
@@ -1367,7 +1396,7 @@ function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => void })
           style={{ scrollbarWidth: "none" }}
         >
           {TEXT_REVIEWS.map((r, i) => (
-            <div key={i} className="snap-center shrink-0 w-[82vw] max-w-[340px] p-6" style={{ backgroundColor: "#F1F1F1", borderRadius: "10px", color: "#313131", userSelect: "text" }}>
+            <div key={i} className="snap-center shrink-0 w-[82vw] md:w-[55vw] lg:w-[42vw] max-w-[420px] p-6" style={{ backgroundColor: "#F1F1F1", borderRadius: "10px", color: "#313131", userSelect: "text" }}>
               <div className="flex items-start justify-between gap-3 mb-3">
                 <div>
                   <p className="font-sans text-lg font-semibold leading-tight">{r.a}</p>
@@ -1415,7 +1444,7 @@ function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => void })
             <button
               type="button"
               key={i}
-              className="snap-center shrink-0 w-[60vw] max-w-[240px] relative group overflow-hidden focus:outline-none block cursor-pointer"
+              className="snap-center shrink-0 w-[60vw] md:w-[40vw] lg:w-[30vw] max-w-[280px] relative group overflow-hidden focus:outline-none block cursor-pointer"
               style={{ borderRadius: "10px" }}
               onClick={() => onVideoOpen(v.video)}
             >
@@ -1465,6 +1494,7 @@ function Index() {
   const [consultOpen, setConsultOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement | null>(null);
+  const scrolledRef = useRef(false);
   const mobileMenuTl = useRef<ReturnType<typeof import("gsap")["default"]["timeline"]> | null>(null);
   const mobileMenuOpen = useRef(false);
 
@@ -1495,12 +1525,19 @@ function Index() {
             .fromTo(".mnav-bottom-content", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.4);
           tl.restart();
         } else {
-          tl.to(".mbar-top", { attr: { x1: 3, y1: 7, x2: 17, y2: 7 }, duration: 0.2, ease: "power3.in" }, 0)
+          tl.to([".mbar-top", ".mbar-mid", ".mbar-bot"], { stroke: scrolledRef.current ? "#000" : "#fff", duration: 0.2 }, 0)
+            .to(".mbar-top", { attr: { x1: 3, y1: 7, x2: 17, y2: 7 }, duration: 0.2, ease: "power3.in" }, 0)
             .to(".mbar-bot", { attr: { x1: 3, y1: 13, x2: 17, y2: 13 }, duration: 0.2, ease: "power3.in" }, 0)
             .to(".mbar-mid", { opacity: 1, duration: 0.15 }, 0.1)
             .to(".mnav-panel", { y: "160vh", rotation: "random(-15, 15)", duration: 1, ease: "power3.in", stagger: { from: "end", each: 0.02 } }, 0)
             .to(".mnav-bg", { opacity: 0, duration: 0.3, ease: "power2.in" }, 0.1)
-            .set("#mobile-nav", { visibility: "hidden", pointerEvents: "none" });
+            .set("#mobile-nav", { visibility: "hidden", pointerEvents: "none" })
+            .add(() => {
+              document.querySelectorAll(".mbar-top, .mbar-mid, .mbar-bot").forEach((el) => {
+                (el as HTMLElement).style.removeProperty("stroke");
+                (el as HTMLElement).style.removeProperty("opacity");
+              });
+            });
           tl.restart();
         }
       };
@@ -1512,7 +1549,9 @@ function Index() {
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 50);
+      const s = y > 50;
+      setScrolled(s);
+      scrolledRef.current = s;
       const heroH = heroRef.current?.offsetHeight ?? window.innerHeight;
       setScrollY(Math.min(Math.max(y, 0), heroH));
     };
@@ -1543,7 +1582,7 @@ function Index() {
     <main className="bg-background text-foreground overflow-x-clip">
       {/* STICKY NAV */}
       <nav
-        className={`fixed top-3 left-4 right-4 flex items-center justify-between md:px-12 py-4 font-medium transition-all duration-300 border rounded-2xl ${
+        className={`fixed top-3 left-4 right-4 flex items-center justify-between md:px-6 xl:px-12 py-4 font-medium transition-all duration-300 border rounded-2xl ${
           mobileOpen ? "z-[200] bg-transparent border-transparent px-3" : "z-50 px-6"
         } ${
           !mobileOpen && scrolled
@@ -1556,10 +1595,10 @@ function Index() {
           alt="JL Closets"
           className={`h-12 md:h-14 w-auto transition-all duration-300 ${scrolled ? "" : "brightness-0 invert"}`}
         />
-        <ul className="hidden lg:flex items-center gap-10 text-[16px] font-medium">
+        <ul className="hidden lg:flex flex-1 items-center justify-center gap-4 xl:gap-8 text-[13px] xl:text-[16px] font-medium">
           {NAV.map((n) => (
             <li key={n.label} className="relative cursor-pointer group py-6">
-              <span className="hover:opacity-70 transition-opacity inline-flex items-center gap-1">
+              <span className="hover:opacity-70 transition-opacity inline-flex items-center gap-1 whitespace-nowrap">
                 {n.label}
                 {n.submenu && (
                   <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
@@ -1584,14 +1623,14 @@ function Index() {
             </li>
           ))}
         </ul>
-        <div className="hidden lg:flex items-center gap-3 font-medium">
-          <Yellow onClick={() => setConsultOpen(true)}>FREE Consultation</Yellow>
+        <div className="hidden lg:flex items-center gap-0 xl:gap-3 font-medium ml-2">
+          <Yellow onClick={() => setConsultOpen(true)} className="!text-xs xl:!text-sm !px-4 xl:!px-7 !py-2 xl:!py-2.5 !rounded-none xl:!rounded-md !rounded-l-md">FREE Consultation</Yellow>
           <button
             aria-label="Call Us"
-            className="bg-ink text-ink-foreground px-7 py-2.5 inline-flex items-center gap-2 text-sm font-semibold font-sans cursor-pointer"
+            className="bg-ink text-ink-foreground px-3 xl:px-7 py-2 xl:py-2.5 inline-flex items-center justify-center gap-1.5 text-xs xl:text-sm font-semibold font-sans cursor-pointer whitespace-nowrap rounded-none rounded-r-md xl:!rounded-md"
           >
             <Phone className="w-4 h-4" />
-            CALL US!
+            <span className="hidden xl:inline">CALL US!</span>
           </button>
         </div>
         <button
@@ -1599,7 +1638,7 @@ function Index() {
           className={`lg:hidden p-2.5 cursor-pointer z-[310] rounded-full ${mobileOpen ? "bg-white shadow-md" : ""}`}
           onClick={() => toggleMobileMenu.current()}
         >
-          <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
+          <svg width="26" height="26" viewBox="0 0 20 20" fill="none">
             <line className="mbar-top" x1="3" y1="7" x2="17" y2="7" stroke={mobileOpen ? "#000" : scrolled ? "#000" : "#fff"} strokeWidth="1.5" strokeLinecap="round" />
             <line className="mbar-mid" x1="3" y1="10" x2="17" y2="10" stroke={mobileOpen ? "#000" : scrolled ? "#000" : "#fff"} strokeWidth="1.5" strokeLinecap="round" />
             <line className="mbar-bot" x1="3" y1="13" x2="17" y2="13" stroke={mobileOpen ? "#000" : scrolled ? "#000" : "#fff"} strokeWidth="1.5" strokeLinecap="round" />
@@ -1877,23 +1916,19 @@ function Index() {
               className="relative bg-background w-full max-w-4xl my-8 p-6 md:p-12 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                aria-label="Close"
-                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center hover:bg-foreground/5 transition cursor-pointer"
-                onClick={() => setConsultOpen(false)}
-              >
-                <X className="w-5 h-5" />
-              </button>
-              <div className="text-center mb-8 md:mb-12 pt-2">
-                <span className="rule eyebrow" style={{ color: "#313131" }}>Start your transformation</span>
+              <div className="flex justify-end mb-2">
+                <button
+                  aria-label="Close"
+                  className="w-9 h-9 flex items-center justify-center hover:bg-foreground/5 transition cursor-pointer"
+                  onClick={() => setConsultOpen(false)}
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
               <div className="grid md:grid-cols-12 gap-8 md:gap-12">
                 <div className="md:col-span-3">
                   <p className="font-sans text-2xl md:text-3xl leading-snug mb-4">
                     Get your custom design and quote <strong className="font-bold">in just a few steps.</strong>
-                  </p>
-                  <p className="text-sm text-foreground/60">
-                    We'll get in touch shortly to schedule your free consultation.
                   </p>
                 </div>
                 <ContactForm />
@@ -1935,9 +1970,6 @@ function Index() {
             <p className="font-sans text-3xl leading-snug mb-4">
               Get your custom design and quote <strong className="font-bold">in just a few steps.</strong>
             </p>
-            <p className="text-sm text-foreground/60">
-              We'll get in touch shortly to schedule your free consultation.
-            </p>
           </div>
           <ContactForm />
         </div>
@@ -1950,12 +1982,12 @@ function Index() {
           alt=""
           className="absolute inset-0 h-full w-full object-cover opacity-10"
         />
-        <div className="relative px-6 md:px-16 py-14">
+        <div className="relative px-6 lg:px-16 py-14">
           {/* Top: Logo left, Newsletter right */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 mb-20">
-            <img src={jlLogo} alt="JL Closets" className="h-14 md:h-24 w-auto brightness-0 invert block self-start" />
+            <img src={jlLogo} alt="JL Closets" className="h-14 lg:h-24 w-auto brightness-0 invert block self-start" />
             <div className="lg:max-w-xl w-full">
-              <h3 className="font-display text-2xl md:text-3xl leading-tight mb-5">
+              <h3 className="font-display text-2xl lg:text-3xl leading-tight mb-5">
                 Design Inspiration, Expert Tips<br />& Exclusive Updates
               </h3>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
@@ -1968,10 +2000,10 @@ function Index() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 text-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 text-sm">
             {/* Contact column — separated */}
-            <div className="md:col-span-4 md:pr-10 text-ink-foreground/75">
-              <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
+            <div className="lg:col-span-4 lg:pr-10 text-ink-foreground/75">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-5">
                 <div>
                   <p className="eyebrow mb-1 font-bold text-ink-foreground">Telephone</p>
                   <p>(561) 912 9881</p>
@@ -1996,7 +2028,7 @@ function Index() {
               </div>
             </div>
 
-            <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-10">
+            <div className="lg:col-span-8 grid grid-cols-2 lg:grid-cols-4 gap-10">
             {[
               {
                 heading: "About JL Closets",
@@ -2086,7 +2118,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-20 pt-6 border-t border-ink-foreground/15 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-ink-foreground">
+          <div className="mt-20 pt-6 border-t border-ink-foreground/15 flex flex-col lg:flex-row justify-between items-center gap-4 text-xs font-bold text-ink-foreground">
             <p>© {new Date().getFullYear()} JL Closets. All rights reserved.</p>
             <div className="flex gap-6">
               <span>Terms & Conditions</span>
