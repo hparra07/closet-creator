@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import closetImg from "@/assets/closet.jpg";
-import darkOffice from "@/assets/dark-office.jpg";
-import library from "@/assets/library.jpg";
-import consult from "@/assets/consult.jpg";
+import enjoyLife from "@/assets/enjoy-life.jpg";
+import designAndDrafting from "@/assets/design-and-drafting.jpg";
+import expertInstallations from "@/assets/expert-installations.jpg";
+import inHomeConsultation from "@/assets/in-home-consultation.jpg";
 
 type ProcessStep = { k: string; t: string; d: string; img: string };
 
@@ -12,25 +12,25 @@ const STEPS: ProcessStep[] = [
     k: "1.",
     t: "In-Home Consultation",
     d: "We assess your space and vision to design a tailored storage solution that fits your lifestyle.",
-    img: consult,
+    img: inHomeConsultation,
   },
   {
     k: "2.",
     t: "Design & Precision Drafting",
     d: "We transform your vision into a detailed 3D designs and meticulously craft your system using premium materials.",
-    img: darkOffice,
+    img: designAndDrafting,
   },
   {
     k: "3.",
     t: "Expert Installations",
     d: "Highly trained professionals handle your installation with the utmost care, keeping your informed until you are entirely satisfied.",
-    img: library,
+    img: expertInstallations,
   },
   {
     k: "4.",
     t: "Enjoy Organized Living",
     d: "Step into a beautifully organized space where every item has its place, designed for flawless performance and lasting style.",
-    img: closetImg,
+    img: enjoyLife,
   },
 ];
 

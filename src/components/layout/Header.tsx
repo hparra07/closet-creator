@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Phone, ChevronDown, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
+import { Phone, ChevronDown } from "lucide-react";
 import jlLogo from "@/assets/jl-logo.png";
 import { NAV } from "@/lib/nav";
 import { YellowButton } from "@/components/common/YellowButton";
+import { SOCIAL_LINKS } from "@/lib/social";
 
 export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: () => void; variant?: "dark" | "light" }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -220,8 +221,8 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
           <div className="mnav-bottom-content flex items-center justify-between">
             <p className="text-xs text-ink-foreground/60">(561) 912 9881</p>
             <div className="flex gap-3">
-              {[Facebook, Instagram, Youtube, Linkedin].map((Icon, idx) => (
-                <a key={idx} href="#" className="w-8 h-8 rounded-full border border-ink-foreground/30 flex items-center justify-center">
+              {SOCIAL_LINKS.filter((s) => ["Facebook", "Instagram", "YouTube", "LinkedIn"].includes(s.label)).map(({ Icon, label, url }) => (
+                <a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-8 h-8 rounded-full border border-ink-foreground/30 flex items-center justify-center">
                   <Icon className="w-3.5 h-3.5" />
                 </a>
               ))}

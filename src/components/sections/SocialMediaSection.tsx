@@ -1,16 +1,5 @@
-import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
-import { XIcon, TikTokIcon, PinterestIcon } from "@/components/common/SocialIcons";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-
-const SOCIALS = [
-  { Icon: Facebook, label: "Facebook", url: "#" },
-  { Icon: Instagram, label: "Instagram", url: "#" },
-  { Icon: XIcon, label: "X", url: "#" },
-  { Icon: Youtube, label: "YouTube", url: "#" },
-  { Icon: TikTokIcon, label: "TikTok", url: "#" },
-  { Icon: Linkedin, label: "LinkedIn", url: "#" },
-  { Icon: PinterestIcon, label: "Pinterest", url: "#" },
-];
+import { SOCIAL_LINKS } from "@/lib/social";
 
 export function SocialMediaSection() {
   return (
@@ -20,10 +9,12 @@ export function SocialMediaSection() {
           <span className="rule eyebrow" style={{ color: "#313131" }}>Connect With Us On Social Media</span>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-4 gsap-stagger">
-          {SOCIALS.map(({ Icon, label, url }) => (
+          {SOCIAL_LINKS.map(({ Icon, label, url }) => (
             <a
               key={label}
               href={url}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
               className="w-12 h-12 rounded-full bg-ink text-ink-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition"
             >

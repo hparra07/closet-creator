@@ -1,9 +1,8 @@
-import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import jlLogo from "@/assets/jl-logo.png";
 import library from "@/assets/library.jpg";
 import { YellowButton } from "@/components/common/YellowButton";
-import { XIcon, TikTokIcon, PinterestIcon } from "@/components/common/SocialIcons";
+import { SOCIAL_LINKS } from "@/lib/social";
 
 const FOOTER_LINKS: Record<string, string> = {
   "About Us": "/about",
@@ -131,18 +130,12 @@ export function Footer() {
         <div className="mt-16">
           <p className="eyebrow mb-4 !font-bold text-ink-foreground">Connect With Us</p>
           <div className="flex flex-wrap gap-3">
-            {[
-              { Icon: Facebook, label: "Facebook" },
-              { Icon: Instagram, label: "Instagram" },
-              { Icon: XIcon, label: "X" },
-              { Icon: Youtube, label: "YouTube" },
-              { Icon: TikTokIcon, label: "TikTok" },
-              { Icon: Linkedin, label: "LinkedIn" },
-              { Icon: PinterestIcon, label: "Pinterest" },
-            ].map(({ Icon, label }) => (
+            {SOCIAL_LINKS.map(({ Icon, label, url }) => (
               <a
                 key={label}
-                href="#"
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={label}
                 className="w-9 h-9 rounded-full border border-ink-foreground/40 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-primary-foreground transition"
               >

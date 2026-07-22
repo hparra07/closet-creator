@@ -1,12 +1,24 @@
-import { useLayoutEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from "react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 
 gsap.registerPlugin(Flip);
 
-export function WorksCarousel({ images }: { images: string[] }) {
+export type WorksItem = { src: string; label?: string };
+
+export function WorksCarousel({ items }: { items: WorksItem[] }) {
+  const images = items.map((i) => i.src);
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   const viewportRef = useRef<HTMLDivElement>(null);
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
@@ -45,11 +57,11 @@ export function WorksCarousel({ images }: { images: string[] }) {
   }, [active]);
 
   // Layout constants
-  const ACTIVE_W = 560;
-  const NEAR_W = 200;
-  const FAR_W = 130;
-  const GAP = 18;
-  const HEIGHT = 520;
+  const ACTIVE_W = isMobile ? 280 : 560;
+  const NEAR_W = isMobile ? 100 : 200;
+  const FAR_W = isMobile ? 65 : 130;
+  const GAP = isMobile ? 10 : 18;
+  const HEIGHT = isMobile ? 340 : 520;
 
   const slotX = (off: number) => {
     if (off === 0) return 0;
@@ -154,6 +166,9 @@ export function WorksCarousel({ images }: { images: string[] }) {
                 }}
               >
                 <img src={images[idx]} alt="" loading="lazy" draggable={false} />
+                {isActive && items[idx].label && (
+                  <figcaption className="works-caption">{items[idx].label}</figcaption>
+                )}
               </figure>
             );
           })}
@@ -216,11 +231,12 @@ export function WorksCarousel({ images }: { images: string[] }) {
           >
             ‹
           </button>
-          <img
-            src={images[lightbox]}
-            alt=""
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div className="works-lightbox-figure" onClick={(e) => e.stopPropagation()}>
+            <img src={images[lightbox]} alt="" />
+            {items[lightbox].label && (
+              <p className="works-lightbox-caption">{items[lightbox].label}</p>
+            )}
+          </div>
           <button
             type="button"
             aria-label="Next"
@@ -269,6 +285,25 @@ export function WorksCarousel({ images }: { images: string[] }) {
           pointer-events: none;
         }
 
+        .works-caption {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: 0;
+          padding: 28px 20px 18px;
+          background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+          color: #fff;
+          font-family: var(--font-sans);
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.01em;
+          pointer-events: none;
+        }
+        @media (min-width: 768px) {
+          .works-caption { font-size: 18px; padding: 40px 24px 22px; }
+        }
+
         .works-item.is-far {
           filter: grayscale(100%) brightness(0.85);
           opacity: 0.7;
@@ -306,7 +341,6 @@ export function WorksCarousel({ images }: { images: string[] }) {
         }
 
         @media (max-width: 767px) {
-          .works-viewport { height: 380px !important; }
           .works-item.is-far { display: none; }
           .works-nav {
             position: absolute;
@@ -332,11 +366,26 @@ export function WorksCarousel({ images }: { images: string[] }) {
           padding: 40px;
           animation: works-fade 0.25s ease;
         }
-        .works-lightbox img {
+        .works-lightbox-figure {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           max-width: 92vw;
           max-height: 88vh;
+        }
+        .works-lightbox img {
+          max-width: 92vw;
+          max-height: 80vh;
           object-fit: contain;
           display: block;
+        }
+        .works-lightbox-caption {
+          margin: 14px 0 0;
+          color: #fff;
+          font-family: var(--font-sans);
+          font-size: 15px;
+          font-weight: 600;
+          text-align: center;
         }
         .works-lightbox-close {
           position: absolute;
