@@ -79,7 +79,7 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
   return (
     <header>
       <nav
-        className={`fixed top-3 left-4 right-4 flex items-center justify-between md:px-6 xl:px-12 py-4 font-medium transition-all duration-300 border rounded-2xl ${
+        className={`fixed top-3 left-4 right-4 flex items-center justify-between md:px-6 lg:px-[clamp(24px,calc(7.362vw_-_51.39px),48px)] py-2 font-medium transition-all duration-300 border rounded-2xl ${
           mobileOpen ? "z-[200] bg-transparent border-transparent px-3" : "z-50 px-6"
         } ${
           !mobileOpen && scrolled
@@ -94,7 +94,7 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
             className={`h-12 md:h-14 w-auto transition-all duration-300 ${usesDarkText ? "" : "brightness-0 invert"}`}
           />
         </Link>
-        <ul className="hidden lg:flex flex-1 items-center justify-center gap-4 xl:gap-8 text-[13px] xl:text-[16px] font-medium">
+        <ul className="hidden lg:flex flex-1 items-center justify-center gap-[clamp(12px,calc(6.135vw_-_50.822px),32px)] text-[clamp(12px,calc(1.227vw_-_0.564px),16px)] font-medium">
           {NAV.map((n) => (
             <li key={n.label} className="relative cursor-pointer group py-6">
               {n.href && !n.submenu ? (
@@ -128,14 +128,14 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
             </li>
           ))}
         </ul>
-        <div className="hidden lg:flex items-center gap-0 xl:gap-3 font-medium ml-2">
-          <YellowButton onClick={openConsult} className="!text-xs xl:!text-sm !px-4 xl:!px-7 !py-2 xl:!py-2.5 !rounded-none xl:!rounded-md !rounded-l-md">FREE Consultation</YellowButton>
+        <div className="hidden lg:flex items-center gap-[clamp(0px,calc(3.681vw_-_37.69px),12px)] font-medium ml-2">
+          <YellowButton onClick={openConsult} className="![font-size:clamp(12px,calc(0.614vw_+_5.718px),14px)] !px-[clamp(12px,calc(4.908vw_-_38.256px),28px)] !py-[clamp(8px,calc(0.614vw_+_1.718px),10px)] !rounded-none min-[1350px]:!rounded-md !rounded-l-md whitespace-nowrap">FREE Consultation</YellowButton>
           <button
             aria-label="Call Us"
-            className="bg-ink text-ink-foreground px-3 xl:px-7 py-2 xl:py-2.5 inline-flex items-center justify-center gap-1.5 text-xs xl:text-sm font-semibold font-sans cursor-pointer whitespace-nowrap rounded-none rounded-r-md xl:!rounded-md"
+            className="bg-ink text-ink-foreground px-[clamp(12px,calc(4.908vw_-_38.256px),28px)] py-[clamp(8px,calc(0.614vw_+_1.718px),10px)] inline-flex items-center justify-center gap-1.5 [font-size:clamp(12px,calc(0.614vw_+_5.718px),14px)] font-semibold font-sans cursor-pointer whitespace-nowrap rounded-none min-[1350px]:!rounded-md rounded-r-md"
           >
             <Phone className="w-4 h-4" />
-            <span className="hidden xl:inline">CALL US!</span>
+            <span className="hidden min-[1350px]:inline">CALL US!</span>
           </button>
         </div>
         <button

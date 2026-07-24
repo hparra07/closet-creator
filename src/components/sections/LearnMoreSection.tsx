@@ -1,13 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import darkOffice from "@/assets/dark-office.jpg";
-import library from "@/assets/library.jpg";
-import consult from "@/assets/consult.jpg";
+import carrers from "@/assets/carrers.jpg";
+import faq from "@/assets/faq.jpg";
+import warranty from "@/assets/warranty.jpg";
 
 const CARDS = [
-  { title: "Careers", desc: "Join our growing team of experts", img: darkOffice, href: "#" },
-  { title: "FAQ", desc: "Answers to common questions", img: library, href: "/about" },
-  { title: "Warranty", desc: "Our commitment to quality", img: consult, href: "#" },
+  { title: "Careers", desc: "Join our growing team of experts", img: carrers, href: "#" },
+  { title: "FAQ", desc: "Answers to common questions", img: faq, href: "/about" },
+  { title: "Warranty", desc: "Our commitment to quality", img: warranty, href: "#" },
 ];
 
 export function LearnMoreSection() {

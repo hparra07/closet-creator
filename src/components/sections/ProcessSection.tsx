@@ -118,7 +118,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
 export function ProcessSection() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-10 md:mb-14">
+      <div className="text-center mb-10 md:mb-14 reveal-up">
         <span className="rule eyebrow" style={{ color: "#313131" }}>Our Process</span>
       </div>
       <p className="text-center max-w-2xl mx-auto font-sans text-2xl md:text-3xl leading-snug mb-10 md:mb-14 reveal-up">

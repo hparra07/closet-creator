@@ -6,7 +6,7 @@ export const NAV: NavEntry[] = [
   {
     label: "Closets & Storage",
     submenu: [
-      { heading: "Custom Storage", items: [{ label: "Walk-In Closets" }, { label: "Reach-In Closets" }, { label: "Shoe Storage" }] },
+      { heading: "Custom Storage", items: [{ label: "Custom Closets", href: "/custom-closets" }, { label: "Walk-In Closets" }, { label: "Reach-In Closets" }, { label: "Shoe Storage" }] },
       { heading: "Pantries", items: [{ label: "Pantry Cabinets" }, { label: "Pantry Shelving" }] },
       { heading: "Laundry Room", items: [{ label: "Laundry Room Cabinets" }, { label: "Laundry Room Shelving" }] },
       { heading: "Garage", items: [{ label: "Garage Cabinets & Shelving" }] },

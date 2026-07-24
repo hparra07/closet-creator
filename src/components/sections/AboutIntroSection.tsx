@@ -1,5 +1,5 @@
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import consult from "@/assets/consult.jpg";
+import ourStory from "@/assets/our-story.jpg";
 
 export function AboutIntroSection() {
   return (
@@ -21,7 +21,7 @@ export function AboutIntroSection() {
         </div>
         <div className="relative reveal-up">
           <img
-            src={consult}
+            src={ourStory}
             alt="JL Closets designer during an in-home consultation"
             className="w-full aspect-[4/5] object-cover"
             loading="lazy"

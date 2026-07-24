@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import library from "@/assets/library.jpg";
+import aboutBanner from "@/assets/about-new.jpg";
 import { YellowButton } from "@/components/common/YellowButton";
 
 export function AboutHeroSection({ onConsultOpen }: { onConsultOpen?: () => void }) {
@@ -18,17 +18,17 @@ export function AboutHeroSection({ onConsultOpen }: { onConsultOpen?: () => void
   }, []);
 
   return (
-    <section ref={heroRef} className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+    <section ref={heroRef} className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
       <div
         className="absolute inset-x-0 top-0 h-[140%] will-change-transform"
         style={{ transform: `translate3d(0, ${scrollY * -0.3}px, 0)` }}
       >
         <img
-          src={library}
+          src={aboutBanner}
           alt="Custom built-in library and shelving by JL Closets"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
       </div>
 
       <div className="absolute inset-0 flex flex-col justify-end px-5 md:px-16 pb-16 md:pb-24 max-w-4xl">
