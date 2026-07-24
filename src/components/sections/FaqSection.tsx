@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 
-export type FaqItem = { q: string; a: string };
+export type FaqItem = { q: string; a: React.ReactNode };
 
 const DEFAULT_FAQS: FaqItem[] = [
   {
@@ -27,14 +27,29 @@ const DEFAULT_FAQS: FaqItem[] = [
   },
 ];
 
-export function FaqSection({ faqs = DEFAULT_FAQS, footer }: { faqs?: FaqItem[]; footer?: React.ReactNode } = {}) {
+export function FaqSection({
+  faqs = DEFAULT_FAQS,
+  footer,
+  title = "Frequently Asked Questions",
+  subtitle,
+}: {
+  faqs?: FaqItem[];
+  footer?: React.ReactNode;
+  title?: string;
+  subtitle?: string;
+} = {}) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
     <SectionWrapper>
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10 md:mb-14">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>Frequently Asked Questions</span>
+          <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
+          {subtitle && (
+            <p className="mt-4 font-sans text-lg md:text-xl leading-snug" style={{ color: "#313131" }}>
+              {subtitle}
+            </p>
+          )}
         </div>
 
         <div className="divide-y divide-foreground/10">
@@ -56,13 +71,13 @@ export function FaqSection({ faqs = DEFAULT_FAQS, footer }: { faqs?: FaqItem[]; 
                 <div
                   className="overflow-hidden transition-all duration-300"
                   style={{
-                    maxHeight: isOpen ? "300px" : "0px",
+                    maxHeight: isOpen ? "2000px" : "0px",
                     opacity: isOpen ? 1 : 0,
                   }}
                 >
-                  <p className="pb-6 text-base leading-relaxed pr-12" style={{ color: "#313131" }}>
+                  <div className="pb-6 text-base leading-relaxed pr-12 space-y-3" style={{ color: "#313131" }}>
                     {faq.a}
-                  </p>
+                  </div>
                 </div>
               </div>
             );

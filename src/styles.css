@@ -200,6 +200,24 @@
   .card-floating { animation: none; }
 }
 
+@keyframes slide-text-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slide-text-down {
+  from { transform: translateY(-24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.slide-text-up {
+  animation: slide-text-up 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.slide-text-down {
+  animation: slide-text-down 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide-text-up, .slide-text-down { animation: none; }
+}
+
 @keyframes reveal-up {
   0% { opacity: 0; transform: translateY(14px); filter: blur(4px); }
   100% { opacity: 1; transform: translateY(0); filter: blur(0); }

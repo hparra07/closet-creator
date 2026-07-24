@@ -6,14 +6,27 @@ import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
 import { ProductSolutionsSection, type ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ProductFeaturesSection } from "@/components/sections/ProductFeaturesSection";
+import { FullscreenCarouselSection, type CarouselSlide } from "@/components/sections/FullscreenCarouselSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSection";
+import { FaqSection, type FaqItem } from "@/components/sections/FaqSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
 import customClosetsImg from "@/assets/custom-closets-img.jpg";
 import closetImg from "@/assets/closet.jpg";
 import storageCloset from "@/assets/storage-closet.png";
-import library from "@/assets/library.jpg";
-import darkOffice from "@/assets/dark-office.jpg";
-import consult from "@/assets/consult.jpg";
+import storagePantry from "@/assets/storage-pantry.png";
+import storageMudroom from "@/assets/storage-mudroom.png";
+import storageLaundry from "@/assets/storage-laundry.png";
+import storageEntertainment from "@/assets/storage-entertainment.png";
+import storageGarage from "@/assets/storage-garage.png";
+import storageOffice from "@/assets/storage-office.png";
+import storageMore from "@/assets/storage-more.png";
+import banner1 from "@/assets/banner-1.webp";
+import banner2 from "@/assets/banner-2.webp";
+import banner3 from "@/assets/banner-3.webp";
+import banner4 from "@/assets/banner-4.jpg";
+import banner5 from "@/assets/banner-5.webp";
+import banner6 from "@/assets/banner-6.jpg";
 
 const SOLUTIONS: ProductSolution[] = [
   {
@@ -34,11 +47,78 @@ const SOLUTIONS: ProductSolution[] = [
 ];
 
 const FEATURES = [
-  { src: library, label: "Closet with Island & Integrated Lighting" },
-  { src: storageCloset, label: "Shoe Storage with Modular & Adjustable Components" },
-  { src: darkOffice, label: "Closet with Natural Light, High Gloss Finishes, and Built-In Storage" },
-  { src: consult, label: "Closet with Integrated Shoe Storage and Slanted Racks" },
-  { src: closetImg, label: "Reach-In Closet with Drawers and Led Lighting" },
+  { src: storageCloset, label: "Custom Closets" },
+  { src: storagePantry, label: "Pantry Organization" },
+  { src: storageMudroom, label: "Mudroom Storage" },
+  { src: storageLaundry, label: "Laundry Room Organization" },
+  { src: storageEntertainment, label: "Entertainment Centers & Wall Units" },
+  { src: storageGarage, label: "Garage Storage" },
+  { src: storageOffice, label: "Home Office" },
+  { src: storageMore, label: "More Storage Ideas" },
+];
+
+const SHOWCASE_SLIDES: CarouselSlide[] = [
+  { image: banner1, title: "Walk-In Closets", subtitle: "Custom Storage", description: "Luxury walk-in designs meticulously crafted to transform your space into a personal sanctuary." },
+  { image: banner2, title: "Reach-In Closets", subtitle: "Custom Storage", description: "Maximize every inch of your space with smart, tailored reach-in designs for your daily routine." },
+  { image: banner3, title: "Pantry Organization", subtitle: "Kitchen & Pantry", description: "Smart shelving and storage systems that keep your kitchen essentials organized and within reach." },
+  { image: banner4, title: "Home Office", subtitle: "Work Spaces", description: "Productive workspaces with built-in desks, shelving, and filing storage designed around your workflow." },
+  { image: banner5, title: "Garage Storage", subtitle: "Utility Spaces", description: "Durable cabinetry and overhead systems to reclaim your garage and keep everything in its place." },
+  { image: banner6, title: "Laundry Room", subtitle: "Utility Spaces", description: "Efficient cabinetry and folding stations that streamline laundry day from start to finish." },
+];
+
+const FAQS: FaqItem[] = [
+  {
+    q: "How much do custom closets cost in South Florida?",
+    a: "Custom closet costs in South Florida can vary widely depending on factors such as size, materials, and complexity of design. A basic reach-in closet might start at around $1,000, while a luxurious walk-in closet could cost way over $10,000, depending on your preferences, level of customization, and accessories.",
+  },
+  {
+    q: "Do custom closets increase home value?",
+    a: "Yes, custom closets can significantly increase home value. Well-designed storage solutions are highly attractive to potential buyers, often offering a return on investment of 100% or more. Custom closets not only add functional space but also create a sense of luxury and organization that can set a home apart in the competitive South Florida real estate market.",
+  },
+  {
+    q: "How much does it cost to put built-ins in a closet?",
+    a: "The cost of adding built-ins to a closet can range from $1,000 to $5,000 or more, depending on the size of the closet and the complexity of the built-in design. Basic built-in shelving and rods might be on the lower end of this range, while custom cabinetry, drawers, and specialized storage solutions will increase the cost. The investment in built-ins can greatly enhance the functionality and value of your closet space.",
+  },
+  {
+    q: "What's the difference between reach-in and walk-in closets?",
+    a: "Reach-in closets are typically smaller, shallower spaces accessed from outside the closet area. They're commonly found in bedrooms, hallways, and entryways, offering storage that can be easily reached without stepping into the closet. Walk-in closets, on the other hand, are larger, room-sized spaces that you can physically enter. They offer more extensive storage options, often including built-in organizers, seating areas, and even dressing spaces. Walk-in closets provide a more luxurious and spacious storage solution, while reach-in closets maximize storage in smaller areas.",
+  },
+  {
+    q: "What makes JL Closets the best custom closet company in Florida?",
+    a: (
+      <>
+        <p>
+          At JL Closets, we've earned our title as Florida's best custom closet company through a combination of exceptional service, quality, and customer satisfaction. Here's what sets us apart:
+        </p>
+        <ol className="list-decimal pl-5 space-y-2">
+          <li><strong className="font-semibold">Top-rated by customers:</strong> We've received the highest ratings not just for our custom closets, but for our entire service package. This includes our free design consultations (both virtual and in-home), professional measurements, cutting-edge 3D designs, and expert installation.</li>
+          <li><strong className="font-semibold">Award-winning expertise:</strong> We've been honored with the most professional industry awards for custom closet design, production, installation, and customer service. It's like winning the Olympics of closet design!</li>
+          <li><strong className="font-semibold">Unbeatable customer loyalty:</strong> We're proud to have an 82% customer return rate – the highest in the entire United States! That means more than 8 out of 10 clients come back for multiple projects. Plus, our 80% referral rate shows that our happy customers love to spread the word.</li>
+          <li><strong className="font-semibold">Attention to detail:</strong> Our installers are not just skilled – they're considerate too. They complete most installations in 1-2 days, clean up thoroughly (yes, we bring our own vacuum cleaners!), and respect your privacy throughout the process.</li>
+          <li><strong className="font-semibold">Tailored solutions:</strong> We believe your closet should be as unique as you are. Each design is thoughtfully crafted to reflect your personal style while solving your specific storage challenges.</li>
+        </ol>
+        <p>
+          So, when we say we're the best, it's not just talk – it's backed by facts, figures, and a whole lot of happy customers with beautiful, functional closets!
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "What materials do you use for custom closets?",
+    a: "JL Closets uses high-quality materials, including premium wood finishes, durable laminate, and soft-close hardware to ensure longevity and a luxurious appearance.",
+  },
+  {
+    q: "How long does it take to install a custom closet?",
+    a: "The installation process varies based on the project size but typically takes one to two days for standard designs and three to five days for highly customized projects.",
+  },
+  {
+    q: "Can I customize my closet with lighting, accessories, and special features?",
+    a: "Absolutely! JL Closets offers LED lighting, jewelry drawers, pull-out accessories, and more to make your custom closet both functional and stylish.",
+  },
+  {
+    q: "Do you offer financing for custom closets?",
+    a: "Yes! We offer flexible financing options so you can get your dream closet without upfront costs.",
+  },
 ];
 
 export const Route = createFileRoute("/custom-closets")({
@@ -97,8 +177,19 @@ function CustomClosets() {
         />
 
         <ProcessSection />
-        <ProductFeaturesSection slides={FEATURES} />
+        <FullscreenCarouselSection slides={SHOWCASE_SLIDES} />
+        <SuccessStoriesSection />
         <ContactSection />
+        <FaqSection
+          faqs={FAQS}
+          title="FAQ: Your Custom Closet Questions Answered"
+          subtitle="You have questions, we have the answers."
+        />
+        <ProductFeaturesSection
+          title="Recommended For You"
+          subtitle="More Storage Solutions for Your Home"
+          slides={FEATURES}
+        />
       </main>
 
       <Footer />

@@ -40,7 +40,7 @@ function SolutionCard({ solution }: { solution: ProductSolution }) {
           <img src={img} alt={solution.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         </div>
       ))}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent pointer-events-none" />
 
       <div className="absolute inset-x-0 bottom-0 px-6 pb-20">
         <p className="font-sans text-2xl font-bold text-white mb-2">{solution.title}</p>
