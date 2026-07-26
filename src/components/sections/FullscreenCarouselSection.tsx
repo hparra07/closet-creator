@@ -4,6 +4,8 @@ import { YellowButton } from "@/components/common/YellowButton";
 
 export type CarouselSlide = {
   image: string;
+  /** Image shown on the small card in the track; falls back to `image` if not set. */
+  cardImage?: string;
   title: string;
   subtitle: string;
   description: string;
@@ -176,6 +178,7 @@ export function FullscreenCarouselSection({ slides }: { slides: CarouselSlide[] 
     <div
       key={active}
       className={`flex flex-col justify-center ${textDirection === "up" ? "slide-text-up" : "slide-text-down"}`}
+      style={{ maxWidth: "85%" }}
     >
       <TitleLinesReveal
         text={slides[active].title}
@@ -235,12 +238,12 @@ export function FullscreenCarouselSection({ slides }: { slides: CarouselSlide[] 
               className="relative overflow-hidden rounded-2xl shadow-2xl shrink-0 cursor-pointer transition-[height] duration-500 ease-in-out"
               style={{ width: CARD_W, height: isSlotActive ? CARD_H_ACTIVE : CARD_H }}
             >
-              <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              <img src={s.cardImage ?? s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
               {showLabels && (
                 <>
                   <div
                     className="absolute inset-0"
-                    style={{ background: `linear-gradient(20deg, rgba(0,0,0,${isSlotActive ? 0.75 : 0.55}) 0%, rgba(0,0,0,0) 100%)` }}
+                    style={{ background: `linear-gradient(to top, rgba(0,0,0,${isSlotActive ? 0.6 : 0.5}) 0%, rgba(0,0,0,0) 60%)` }}
                   />
                   <div className="absolute inset-x-0 bottom-0 p-5 text-left">
                     <p className="font-sans text-xl font-bold text-white leading-tight text-left">{s.title}</p>
@@ -264,11 +267,17 @@ export function FullscreenCarouselSection({ slides }: { slides: CarouselSlide[] 
           className="absolute inset-0 transition-[opacity,transform] duration-[900ms] ease-out"
           style={{ opacity: active === i ? 1 : 0, transform: active === i ? "scale(1)" : "scale(1.08)" }}
         >
-          <img src={s.image} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <img
+            src={s.image}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            style={i === 0 || i === 1  || i === 2 || i === 3  ? { transform: "scaleX(-1)" } : undefined}
+          />
         </div>
       ))}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10 lg:bg-gradient-to-r" />
-      <div className="absolute inset-0 bg-black/45 lg:hidden" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-black/5 lg:bg-gradient-to-r" />
+      <div className="absolute inset-0 bg-black/25 lg:hidden" />
 
       {/* Vertical timeline (desktop only) */}
       <div className="hidden lg:flex absolute left-6 lg:left-10 top-1/2 -translate-y-1/2 z-20 h-[380px] flex-col items-center justify-between">
@@ -303,7 +312,7 @@ export function FullscreenCarouselSection({ slides }: { slides: CarouselSlide[] 
 
       {/* Desktop layout */}
       <div className="hidden lg:flex relative z-10 h-full items-center">
-        <div className="w-[40%] pl-16 md:pl-24 lg:pl-32 pr-10 lg:pr-16 shrink-0">
+        <div className="w-[50%] pl-16 md:pl-24 lg:pl-32 pr-10 lg:pr-16 shrink-0">
           <div className="relative min-h-[420px] overflow-hidden flex flex-col justify-center">
             {renderTextPanel("text-4xl md:text-6xl")}
           </div>

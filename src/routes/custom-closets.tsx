@@ -21,12 +21,16 @@ import storageEntertainment from "@/assets/storage-entertainment.png";
 import storageGarage from "@/assets/storage-garage.png";
 import storageOffice from "@/assets/storage-office.png";
 import storageMore from "@/assets/storage-more.png";
-import banner1 from "@/assets/banner-1.webp";
-import banner2 from "@/assets/banner-2.webp";
-import banner3 from "@/assets/banner-3.webp";
-import banner4 from "@/assets/banner-4.jpg";
+import banner2 from "@/assets/banner3.jpg";
+import banner3 from "@/assets/banner2.jpg";
+import banner4 from "@/assets/banner4.jpg";
 import banner5 from "@/assets/banner-5.webp";
-import banner6 from "@/assets/banner-6.jpg";
+//import banner6 from "@/assets/banner-6.jpg";
+import banner1 from "@/assets/big-banner-1.jpg";
+import cardHero1 from "@/assets/card-hero-1.jpg";
+import cardHero2 from "@/assets/card-hero-3.jpg";
+import cardHero3 from "@/assets/card-hero-2.jpg";
+import cardHero4 from "@/assets/card-hero-4.jpg";
 
 const SOLUTIONS: ProductSolution[] = [
   {
@@ -58,12 +62,12 @@ const FEATURES = [
 ];
 
 const SHOWCASE_SLIDES: CarouselSlide[] = [
-  { image: banner1, title: "Walk-In Closets", subtitle: "Custom Storage", description: "Luxury walk-in designs meticulously crafted to transform your space into a personal sanctuary." },
-  { image: banner2, title: "Reach-In Closets", subtitle: "Custom Storage", description: "Maximize every inch of your space with smart, tailored reach-in designs for your daily routine." },
-  { image: banner3, title: "Pantry Organization", subtitle: "Kitchen & Pantry", description: "Smart shelving and storage systems that keep your kitchen essentials organized and within reach." },
-  { image: banner4, title: "Home Office", subtitle: "Work Spaces", description: "Productive workspaces with built-in desks, shelving, and filing storage designed around your workflow." },
-  { image: banner5, title: "Garage Storage", subtitle: "Utility Spaces", description: "Durable cabinetry and overhead systems to reclaim your garage and keep everything in its place." },
-  { image: banner6, title: "Laundry Room", subtitle: "Utility Spaces", description: "Efficient cabinetry and folding stations that streamline laundry day from start to finish." },
+  { image: banner1, cardImage: cardHero1, title: "Project 1", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
+  { image: banner2, cardImage: cardHero2, title: "Project 2", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
+  { image: banner3, cardImage: cardHero3,title: "Project 3", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
+  { image: banner4, cardImage: cardHero4,title: "Project 4", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
+  { image: banner5, title: "Project 5", subtitle: "Utility Spaces", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
+  //{ image: banner6, title: "Project 6", subtitle: "Utility Spaces", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
 ];
 
 const FAQS: FaqItem[] = [
