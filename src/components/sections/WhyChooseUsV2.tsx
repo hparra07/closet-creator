@@ -36,7 +36,11 @@ function getCardStyle(i: number) {
   return { bg, textColor, descOpacity, isDark, isYellow };
 }
 
-export function WhyChooseUsV2({ title = "Why JL Closets?", cards = DEFAULT_CARDS }: { title?: string; cards?: WhyCard[] } = {}) {
+export function WhyChooseUsV2({
+  title = "Why JL Closets?",
+  cards = DEFAULT_CARDS,
+  backgroundImage = whyBg,
+}: { title?: string; cards?: WhyCard[]; backgroundImage?: string } = {}) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const mobileWrapperRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
@@ -136,7 +140,7 @@ export function WhyChooseUsV2({ title = "Why JL Closets?", cards = DEFAULT_CARDS
           style={{ borderRadius: "10px" }}
         >
           <div className="why-panel-inner h-full w-full">
-            <img src={whyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={backgroundImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/60" />
             <div className="absolute inset-0 flex flex-col items-center justify-center px-5 gap-14">
               <div className="flex items-center justify-between w-full px-8 opacity-90 text-white">
@@ -183,7 +187,7 @@ export function WhyChooseUsV2({ title = "Why JL Closets?", cards = DEFAULT_CARDS
       {/* DESKTOP: rising cards */}
       <section ref={sectionRef} className="relative hidden lg:block h-[240vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
-          <img src={whyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <img src={backgroundImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center px-5 gap-20">
