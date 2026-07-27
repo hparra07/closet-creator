@@ -1,34 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
-import { ProductSolutionsSection, type ProductSolution } from "@/components/sections/ProductSolutionsSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import { ProductFeaturesSection } from "@/components/sections/ProductFeaturesSection";
-import { FullscreenCarouselSection, type CarouselSlide } from "@/components/sections/FullscreenCarouselSection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSection";
-import { FaqSection, type FaqItem } from "@/components/sections/FaqSection";
-import { WhyChooseUsV2, type WhyCard } from "@/components/sections/WhyChooseUsV2";
-import { ProjectVideosSection, type ProjectVideo } from "@/components/sections/ProjectVideosSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
-import { VideoModal } from "@/components/modals/VideoModal";
+import { MainProductTemplate } from "@/components/templates/MainProductTemplate";
+import type { ProductSolution } from "@/components/sections/ProductSolutionsSection";
+import type { CarouselSlide } from "@/components/sections/FullscreenCarouselSection";
+import type { WhyCard } from "@/components/sections/WhyChooseUsV2";
+import type { ProjectVideo } from "@/components/sections/ProjectVideosSection";
+import type { FaqItem } from "@/components/sections/FaqSection";
+import { recommendedSlides } from "@/lib/storageCategories";
 import customClosetsImg from "@/assets/custom-closets-img.jpg";
 import closetImg from "@/assets/closet.jpg";
 import storageCloset from "@/assets/storage-closet.png";
-import storagePantry from "@/assets/storage-pantry.png";
-import storageMudroom from "@/assets/storage-mudroom.png";
-import storageLaundry from "@/assets/storage-laundry.png";
-import storageEntertainment from "@/assets/storage-entertainment.png";
-import storageGarage from "@/assets/storage-garage.png";
-import storageOffice from "@/assets/storage-office.png";
-import storageMore from "@/assets/storage-more.png";
 import banner2 from "@/assets/banner3.jpg";
 import banner3 from "@/assets/banner2.jpg";
 import banner4 from "@/assets/banner4.jpg";
 import banner5 from "@/assets/banner-5.webp";
-//import banner6 from "@/assets/banner-6.jpg";
 import banner1 from "@/assets/big-banner-1.jpg";
 import cardHero1 from "@/assets/card-hero-1.jpg";
 import cardHero2 from "@/assets/card-hero-3.jpg";
@@ -46,6 +30,7 @@ const SOLUTIONS: ProductSolution[] = [
     title: "Walk-In Closets",
     desc: "Luxury walk-in designs meticulously crafted to transform your space into a sanctuary.",
     images: [customClosetsImg, closetImg],
+    href: "/custom-closets/walk-in-closets",
   },
   {
     title: "Reach-In Closets",
@@ -57,17 +42,6 @@ const SOLUTIONS: ProductSolution[] = [
     desc: "Showcase and protect your collection with bespoke shelving, lighting, and versatile organization.",
     images: [storageCloset, customClosetsImg],
   },
-];
-
-const FEATURES = [
-  { src: storageCloset, label: "Custom Closets" },
-  { src: storagePantry, label: "Pantry Organization" },
-  { src: storageMudroom, label: "Mudroom Storage" },
-  { src: storageLaundry, label: "Laundry Room Organization" },
-  { src: storageEntertainment, label: "Entertainment Centers & Wall Units" },
-  { src: storageGarage, label: "Garage Storage" },
-  { src: storageOffice, label: "Home Office" },
-  { src: storageMore, label: "More Storage Ideas" },
 ];
 
 const WHY_CARDS: WhyCard[] = [
@@ -89,10 +63,9 @@ const PROJECT_VIDEOS: ProjectVideo[] = [
 const SHOWCASE_SLIDES: CarouselSlide[] = [
   { image: banner1, cardImage: cardHero1, title: "Project 1", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
   { image: banner2, cardImage: cardHero2, title: "Project 2", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
-  { image: banner3, cardImage: cardHero3,title: "Project 3", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
-  { image: banner4, cardImage: cardHero4,title: "Project 4", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
+  { image: banner3, cardImage: cardHero3, title: "Project 3", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
+  { image: banner4, cardImage: cardHero4, title: "Project 4", subtitle: "Custom Storage", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
   { image: banner5, title: "Project 5", subtitle: "Utility Spaces", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
-  //{ image: banner6, title: "Project 6", subtitle: "Utility Spaces", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
 ];
 
 const FAQS: FaqItem[] = [
@@ -165,74 +138,40 @@ export const Route = createFileRoute("/custom-closets")({
 });
 
 function CustomClosets() {
-  const [consultOpen, setConsultOpen] = useState(false);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    document.querySelectorAll(".reveal-up").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="bg-background text-foreground overflow-x-clip">
-      <Header onConsultOpen={() => setConsultOpen(true)} />
-
-      <main>
-        <ProductHeroSection
-          title="Custom Closets"
-          description="Turn your storage dreams into reality with high-end custom closets designed to optimize your space and reflect your unique style."
-          image={customClosetsImg}
-          imageAlt="Custom walk-in closet by JL Closets"
-        />
-
-        <ProductSolutionsSection
-          title="Custom Closets Florida – Smart Storage & Luxury Organization by JL Closets"
-          intro={
-            <>
-              Turn your <strong className="font-bold underline-animate">success into a sanctuary.</strong> Experience the <strong className="font-bold underline-animate">art of organized living</strong> with bespoke designs that bring luxury and calm to your daily routine.
-            </>
-          }
-          solutions={SOLUTIONS}
-        />
-
-        <ProjectVideosSection videos={PROJECT_VIDEOS} onVideoOpen={setVideoUrl} />
-
-        <ProcessSection />
-        <FullscreenCarouselSection slides={SHOWCASE_SLIDES} />
-        <SuccessStoriesSection />
-        <WhyChooseUsV2
-          title="Why JL Closets is Florida's Best Custom Closet Company"
-          backgroundImage={featuredBanner1}
-          cards={WHY_CARDS}
-        />
-        <ContactSection />
-        <FaqSection
-          faqs={FAQS}
-          title="FAQ: Your Custom Closet Questions Answered"
-          subtitle="You have questions, we have the answers."
-        />
-        <ProductFeaturesSection
-          title="Recommended For You"
-          subtitle="More Storage Solutions for Your Home"
-          slides={FEATURES}
-        />
-      </main>
-
-      <Footer />
-
-      <ConsultModal open={consultOpen} onClose={() => setConsultOpen(false)} />
-      <VideoModal url={videoUrl} onClose={() => setVideoUrl(null)} />
-    </div>
+    <MainProductTemplate
+      hero={{
+        title: "Custom Closets",
+        description: "Turn your storage dreams into reality with high-end custom closets designed to optimize your space and reflect your unique style.",
+        image: customClosetsImg,
+        imageAlt: "Custom walk-in closet by JL Closets",
+      }}
+      solutions={{
+        title: "Custom Closets Florida – Smart Storage & Luxury Organization by JL Closets",
+        intro: (
+          <>
+            Turn your <strong className="font-bold underline-animate">success into a sanctuary.</strong> Experience the <strong className="font-bold underline-animate">art of organized living</strong> with bespoke designs that bring luxury and calm to your daily routine.
+          </>
+        ),
+        items: SOLUTIONS,
+      }}
+      projectVideos={PROJECT_VIDEOS}
+      showcaseSlides={SHOWCASE_SLIDES}
+      whyChooseUs={{
+        title: "Why JL Closets is Florida's Best Custom Closet Company",
+        backgroundImage: featuredBanner1,
+        cards: WHY_CARDS,
+      }}
+      faq={{
+        title: "FAQ: Your Custom Closet Questions Answered",
+        subtitle: "You have questions, we have the answers.",
+        items: FAQS,
+      }}
+      features={{
+        title: "Recommended For You",
+        subtitle: "More Storage Solutions for Your Home",
+        slides: recommendedSlides("custom-closets"),
+      }}
+    />
   );
 }

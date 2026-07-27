@@ -40,12 +40,14 @@ export function HeroSection({ onConsultOpen }: { onConsultOpen?: () => void }) {
           )}px, 0)`,
         }}
       >
-        <p className="mb-6 opacity-90 text-[15px] font-medium">Let Us Create Your Calm™</p>
-        <h1 className="font-sans font-medium text-[26px] sm:text-3xl md:text-5xl leading-[1.15] mb-8">
+        <p className="mb-6 opacity-90 text-[15px] font-medium reveal-up" style={{ animationDelay: "0ms" }}>Let Us Create Your Calm™</p>
+        <h1 className="font-sans font-medium text-[26px] sm:text-3xl md:text-5xl leading-[1.15] mb-8 reveal-up" style={{ animationDelay: "150ms" }}>
           Custom Closet Systems &amp;<br />
           Storage Solutions in South Florida.
         </h1>
-        <YellowButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</YellowButton>
+        <div className="reveal-up" style={{ animationDelay: "300ms" }}>
+          <YellowButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</YellowButton>
+        </div>
       </div>
     </header>
   );

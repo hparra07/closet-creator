@@ -1,18 +1,20 @@
 export type NavItem = { label: string; href?: string };
-export type NavColumn = { heading?: string; items: NavItem[] };
+export type NavColumn = { heading?: string; headingHref?: string; items: NavItem[] };
 export type NavEntry = { label: string; href?: string; submenu?: NavColumn[] };
 
 export const NAV: NavEntry[] = [
   {
     label: "Closets & Storage",
     submenu: [
-      { heading: "Custom Storage", items: [{ label: "Custom Closets", href: "/custom-closets" }, { label: "Walk-In Closets" }, { label: "Reach-In Closets" }, { label: "Shoe Storage" }] },
+      { heading: "Custom Closets", headingHref: "/custom-closets", items: [{ label: "Walk In Closet", href: "/custom-closets/walk-in-closets" }, { label: "Reach In Closet" }, { label: "Custom Shoe Storage" }] },
+      { items: [{ label: "Entertainment Centers" }] },
+      { items: [{ label: "Home Office" }] },
       { heading: "Pantries", items: [{ label: "Pantry Cabinets" }, { label: "Pantry Shelving" }] },
+      { items: [{ label: "Mudroom" }] },
       { heading: "Laundry Room", items: [{ label: "Laundry Room Cabinets" }, { label: "Laundry Room Shelving" }] },
-      { heading: "Garage", items: [{ label: "Garage Cabinets & Shelving" }] },
+      { heading: "Garage", items: [{ label: "Garage Cabinets and Shelving" }] },
       { heading: "More Storage Ideas", items: [{ label: "Small Space Storage" }, { label: "Murphy Bed" }, { label: "Wine Racks" }] },
-      { heading: "Luxury", items: [{ label: "High End Wardrobe with Integrate Shoe Organizer" }] },
-      { items: [{ label: "Entertainment Center" }, { label: "Home Office" }, { label: "Mudroom" }] },
+      { heading: "Luxury", items: [{ label: "High End Wardrobe With Integrated Shoe Organizer" }] },
     ],
   },
   {

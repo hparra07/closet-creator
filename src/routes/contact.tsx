@@ -145,13 +145,13 @@ function Contact() {
 
         <SectionWrapper className="gsap-section">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-10 md:mb-14">
+            <div className="text-center mb-10 md:mb-14 reveal-up" style={{ animationDelay: "0ms" }}>
               <span className="rule eyebrow" style={{ color: "#313131" }}>Contact Us</span>
             </div>
-            <h1 className="font-sans text-3xl md:text-4xl leading-tight text-center mb-6 reveal-up" style={{ color: "#313131" }}>
+            <h1 className="font-sans text-3xl md:text-4xl leading-tight text-center mb-6 reveal-up" style={{ color: "#313131", animationDelay: "150ms" }}>
               <strong className="font-bold">Contact JL Closets</strong> — The Best Custom Closet Company Near You
             </h1>
-            <p className="text-base md:text-lg leading-relaxed text-center max-w-3xl mx-auto mb-14 reveal-up" style={{ color: "#313131" }}>
+            <p className="text-base md:text-lg leading-relaxed text-center max-w-3xl mx-auto mb-14 reveal-up" style={{ color: "#313131", animationDelay: "300ms" }}>
               At JL Closets Boca Raton, we design and install the best custom closets in South Florida. Known for luxury craftsmanship, premium materials, and expert closet design, we create tailored walk-in closets, reach-in storage, wardrobe systems, and home organization solutions that maximize space and style.
             </p>
 

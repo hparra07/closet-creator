@@ -35,10 +35,10 @@ export function ProductHeroSection({
         <div className="px-5 md:px-16 py-8 md:py-10">
           <div className="w-full h-px bg-white/40 mb-6" />
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h1 className="font-sans font-medium text-3xl md:text-5xl leading-[1.1] text-white">
+            <h1 className="font-sans font-medium text-3xl md:text-5xl leading-[1.1] text-white reveal-up" style={{ animationDelay: "0ms" }}>
               {title}
             </h1>
-            <p className="text-white text-sm md:text-base leading-relaxed max-w-sm">
+            <p className="text-white text-sm md:text-base leading-relaxed max-w-sm reveal-up" style={{ animationDelay: "150ms" }}>
               {description}
             </p>
           </div>

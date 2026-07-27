@@ -32,14 +32,14 @@ export function AboutHeroSection({ onConsultOpen }: { onConsultOpen?: () => void
       </div>
 
       <div className="absolute inset-0 flex flex-col justify-end px-5 md:px-16 pb-16 md:pb-24 max-w-4xl">
-        <p className="mb-4 opacity-90 text-[13px] font-medium text-white tracking-widest uppercase">Get to know us</p>
-        <h1 className="font-sans font-medium text-3xl sm:text-4xl md:text-6xl leading-[1.1] mb-6 text-white">
+        <p className="mb-4 opacity-90 text-[13px] font-medium text-white tracking-widest uppercase reveal-up" style={{ animationDelay: "0ms" }}>Get to know us</p>
+        <h1 className="font-sans font-medium text-3xl sm:text-4xl md:text-6xl leading-[1.1] mb-6 text-white reveal-up" style={{ animationDelay: "150ms" }}>
           The Best Custom Closet Company in South Florida.
         </h1>
-        <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl mb-8">
+        <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl mb-8 reveal-up" style={{ animationDelay: "300ms" }}>
           For over 30 years, we've been transforming homes across South Florida with expertly crafted closets, pantries, and storage systems.
         </p>
-        <div>
+        <div className="reveal-up" style={{ animationDelay: "450ms" }}>
           <YellowButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</YellowButton>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { SOCIAL_LINKS } from "@/lib/social";
 const FOOTER_LINKS: Record<string, string> = {
   "About Us": "/about",
   "Contact Us": "/contact",
+  "Custom Closets": "/custom-closets",
 };
 
 export function Footer() {

@@ -110,10 +110,15 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
                 </span>
               )}
               {n.submenu && (
-                <div className={`invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity absolute left-0 top-full bg-white text-foreground shadow-xl border border-foreground/10 p-6 z-50 ${n.submenu.length > 1 ? "grid grid-cols-2 gap-x-10 gap-y-4 w-[560px]" : "w-[280px]"}`}>
+                <div className={`invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity absolute left-0 top-full bg-white text-foreground shadow-xl border border-foreground/10 p-6 z-50 ${n.submenu.length > 4 ? "grid grid-cols-3 gap-x-10 gap-y-5 w-[760px]" : n.submenu.length > 1 ? "grid grid-cols-2 gap-x-10 gap-y-4 w-[560px]" : "w-[280px]"}`}>
                   {n.submenu.map((col, idx) => (
                     <div key={col.heading ?? `col-${idx}`}>
-                      {col.heading && <p className="text-[12px] font-medium text-foreground/50 mb-2">• {col.heading}</p>}
+                      {col.heading && (
+                        <p className="text-[12px] font-medium text-foreground/50 mb-2">
+                          •{" "}
+                          {col.headingHref ? <Link to={col.headingHref} className="hover:text-primary">{col.heading}</Link> : col.heading}
+                        </p>
+                      )}
                       <ul className="space-y-0.5">
                         {col.items.map((it) => (
                           <li key={it.label} className="text-[15px] font-semibold leading-tight hover:text-primary py-0.5">
@@ -185,7 +190,16 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
                     <div className="pb-4 space-y-4">
                       {n.submenu.map((col, idx) => (
                         <div key={col.heading ?? `col-${idx}`}>
-                          {col.heading && <p className="text-[12px] font-medium text-foreground/50 mb-2">• {col.heading}</p>}
+                          {col.heading && (
+                            <p className="text-[12px] font-medium text-foreground/50 mb-2">
+                              •{" "}
+                              {col.headingHref ? (
+                                <Link to={col.headingHref} onClick={() => toggleMobileMenu.current()}>{col.heading}</Link>
+                              ) : (
+                                col.heading
+                              )}
+                            </p>
+                          )}
                           <ul className="space-y-1">
                             {col.items.map((it) => (
                               <li key={it.label} className="text-[15px] font-semibold py-1">
