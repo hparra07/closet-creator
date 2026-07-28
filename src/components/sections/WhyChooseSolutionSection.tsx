@@ -80,7 +80,7 @@ export function WhyChooseSolutionSection({
 
   return (
     <SectionWrapper className="mt-8 md:mt-14">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div>
           <h2 className="font-sans text-3xl md:text-4xl leading-tight mb-6 reveal-up" style={{ color: "#313131" }}>
             {title}

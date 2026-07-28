@@ -133,7 +133,7 @@ export function DesignOptionsSection({
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(380px,560px)_1fr] gap-2 reveal-up">
         {/* Options panel */}
-        <div className="bg-ink p-8 md:p-11 rounded-b-2xl lg:rounded-br-none lg:rounded-l-2xl shadow-2xl order-2 lg:order-1">
+        <div className="w-full bg-ink p-8 md:p-11 rounded-b-2xl lg:rounded-br-none lg:rounded-l-2xl shadow-2xl order-2 lg:order-1">
           <p className="text-white/50 text-xs italic tracking-wide mb-6">
             Click on an option to explore it
           </p>
@@ -159,8 +159,10 @@ export function DesignOptionsSection({
           </ul>
         </div>
 
-        {/* Image slider (one per option) */}
-        <div className="relative min-h-[300px] aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto rounded-t-2xl lg:rounded-tl-none lg:rounded-r-2xl shadow-2xl order-1 lg:order-2 overflow-hidden">
+        {/* Image slider (one per option) — sticky on mobile/tablet so it
+            stays visible while the user scrolls through the option list
+            below, instead of being scrolled out of view. */}
+        <div className="relative w-full min-h-[300px] aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto rounded-t-2xl lg:rounded-tl-none lg:rounded-r-2xl shadow-2xl order-1 lg:order-2 overflow-hidden sticky top-24 lg:static z-10">
           {options.map((opt, i) =>
             opt.images.map((img, j) => (
               <div

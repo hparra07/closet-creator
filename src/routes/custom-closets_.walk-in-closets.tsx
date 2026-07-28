@@ -22,12 +22,14 @@ import doorsImg2 from "@/assets/walk-in-closets/closet-doors-and-drawers-2.webp"
 import doorsImg3 from "@/assets/walk-in-closets/closet-doors-and-drawers-3.jpg";
 import doorsImg4 from "@/assets/walk-in-closets/closet-doors-and-drawers-4.jpg";
 import doorsImg5 from "@/assets/walk-in-closets/closet-doors-and-drawers-5.jpg";
-import optionImg3 from "@/assets/custom-closets/banner4.jpg";
-import optionImg4 from "@/assets/custom-closets/big-banner-1.jpg";
-import optionImg5 from "@/assets/custom-closets/featured-banner-1.jpg";
-import optionImg8 from "@/assets/shared/why-frame-4.jpg";
-import optionImg11 from "@/assets/shared/why-frame-1.jpg";
-import optionImg12 from "@/assets/custom-closets/banner1.jpg";
+import islandImg1 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-1.jpg";
+import islandImg2 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-2.webp";
+import islandImg3 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-3.jpg";
+import islandImg4 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-4.jpg";
+import shelvingImg1 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-1.jpg"
+import shelvingImg2 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-2.jpg";
+import shelvingImg3 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-3.jpg";
+import shelvingImg4 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-4.jpg";
 
 const WHY_CHOOSE_REASONS = [
   {
@@ -66,12 +68,12 @@ const DESIGN_OPTIONS = [
   {
     title: "Custom Walk In Closet Islands",
     desc: "A functional, luxurious centerpiece for your closet — extra drawers and display space, comfortable seating, integrated hampers, and even built-in charging stations for your devices.",
-    images: [optionImg3, optionImg8, optionImg5],
+    images: [islandImg1, islandImg2, islandImg3, islandImg4],
   },
   {
     title: "Custom Shelving and Storage Solutions for Walk-In Closets",
     desc: "The backbone of an efficient walk-in closet — adjustable shelving, built-in shoe racks, double hanging rods, pull-out valet rods, and specialized storage for ties, belts, and scarves, all tailored to your space.",
-    images: [optionImg4, optionImg11, optionImg12],
+    images: [shelvingImg1, shelvingImg2, shelvingImg3, shelvingImg4],
   },
 ];
 
