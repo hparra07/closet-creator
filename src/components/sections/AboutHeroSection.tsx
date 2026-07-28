@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import aboutBanner from "@/assets/about-new.jpg";
+import aboutBanner from "@/assets/about/about-new.jpg";
 import { YellowButton } from "@/components/common/YellowButton";
 
 export function AboutHeroSection({ onConsultOpen }: { onConsultOpen?: () => void }) {

@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import carrers from "@/assets/carrers.jpg";
-import faq from "@/assets/faq.jpg";
-import warranty from "@/assets/warranty.jpg";
+import carrers from "@/assets/contact/carrers.jpg";
+import faq from "@/assets/contact/faq.jpg";
+import warranty from "@/assets/contact/warranty.jpg";
 
 const CARDS = [
   { title: "Careers", desc: "Join our growing team of experts", img: carrers, href: "#" },

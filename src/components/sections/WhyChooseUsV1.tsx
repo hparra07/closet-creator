@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import whyFrame1 from "@/assets/why-frame-1.jpg";
-import whyFrame2 from "@/assets/why-frame-2.jpg";
-import whyFrame3 from "@/assets/why-frame-3.jpg";
-import whyFrame4 from "@/assets/why-frame-4.jpg";
+import whyFrame1 from "@/assets/shared/why-frame-1.jpg";
+import whyFrame2 from "@/assets/shared/why-frame-2.jpg";
+import whyFrame3 from "@/assets/shared/why-frame-3.jpg";
+import whyFrame4 from "@/assets/shared/why-frame-4.jpg";
 
 export function WhyChooseUsV1() {
   const sectionRef = useRef<HTMLElement | null>(null);

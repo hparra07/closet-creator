@@ -1,13 +1,13 @@
 import { WorksCarousel } from "@/components/carousels/WorksCarousel";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import customClosets from "@/assets/custom-closets-img.jpg";
-import entertainmentCenter from "@/assets/entertainment-center.jpg";
-import garage from "@/assets/garage-img.jpg";
-import homeOffice from "@/assets/home-office-img.jpg";
-import laundry from "@/assets/laundry.jpg";
-import mudroom from "@/assets/mudroom.jpg";
-import murphyBed from "@/assets/murphy-bed.jpg";
-import wineRack from "@/assets/wine-rack.jpg";
+import customClosets from "@/assets/shared/custom-closets-img.jpg";
+import entertainmentCenter from "@/assets/home/entertainment-center.jpg";
+import garage from "@/assets/home/garage-img.jpg";
+import homeOffice from "@/assets/home/home-office-img.jpg";
+import laundry from "@/assets/home/laundry.jpg";
+import mudroom from "@/assets/home/mudroom.jpg";
+import murphyBed from "@/assets/home/murphy-bed.jpg";
+import wineRack from "@/assets/home/wine-rack.jpg";
 
 export function GallerySection() {
   return (

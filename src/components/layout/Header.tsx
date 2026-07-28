@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Phone, ChevronDown } from "lucide-react";
-import jlLogo from "@/assets/jl-logo.png";
+import jlLogo from "@/assets/global/jl-logo.png";
 import { NAV } from "@/lib/nav";
 import { YellowButton } from "@/components/common/YellowButton";
 import { SOCIAL_LINKS } from "@/lib/social";

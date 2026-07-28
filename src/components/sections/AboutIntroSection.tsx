@@ -1,5 +1,5 @@
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import ourStory from "@/assets/our-story.jpg";
+import ourStory from "@/assets/about/our-story.jpg";
 
 export function AboutIntroSection() {
   return (

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import whyBg from "@/assets/why-bg.jpg";
+import whyBg from "@/assets/shared/why-bg.jpg";
 
 function StarSparkle({ className = "" }: { className?: string }) {
   return (

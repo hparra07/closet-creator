@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import jlLogo from "@/assets/jl-logo.png";
-import library from "@/assets/library.jpg";
+import jlLogo from "@/assets/global/jl-logo.png";
+import library from "@/assets/global/library.jpg";
 import { YellowButton } from "@/components/common/YellowButton";
 import { SOCIAL_LINKS } from "@/lib/social";
 

@@ -7,11 +7,11 @@ import { AboutIntroSection } from "@/components/sections/AboutIntroSection";
 import { WhyChooseUsV2, type WhyCard } from "@/components/sections/WhyChooseUsV2";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { InspirationSection } from "@/components/sections/InspirationSection";
-import icon1 from "@/assets/icon-1.png";
-import icon2 from "@/assets/icon-2.png";
-import icon3 from "@/assets/icon-3.png";
-import icon4 from "@/assets/icon-4.png";
-import icon5 from "@/assets/icon-5.png";
+import icon1 from "@/assets/global/icon-1.png";
+import icon2 from "@/assets/global/icon-2.png";
+import icon3 from "@/assets/global/icon-3.png";
+import icon4 from "@/assets/global/icon-4.png";
+import icon5 from "@/assets/global/icon-5.png";
 
 const ABOUT_CARDS: WhyCard[] = [
   { title: "Over 30 Years of Expertise", desc: "We have been a trusted provider of custom storage solutions in South Florida since 1991, bringing over three decades of experience to every project we undertake.", icon: icon1 },

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import enjoyLife from "@/assets/enjoy-life.jpg";
-import designAndDrafting from "@/assets/design-and-drafting.jpg";
-import expertInstallations from "@/assets/expert-installations.jpg";
-import inHomeConsultation from "@/assets/in-home-consultation.jpg";
+import enjoyLife from "@/assets/shared/enjoy-life.jpg";
+import designAndDrafting from "@/assets/shared/design-and-drafting.jpg";
+import expertInstallations from "@/assets/shared/expert-installations.jpg";
+import inHomeConsultation from "@/assets/shared/in-home-consultation.jpg";
 
 type ProcessStep = { k: string; t: string; d: string; img: string };
 

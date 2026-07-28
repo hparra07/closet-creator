@@ -1,4 +1,4 @@
-import showroom from "@/assets/showroom.jpg";
+import showroom from "@/assets/contact/showroom.jpg";
 import { YellowButton } from "@/components/common/YellowButton";
 
 export function ShowroomSection() {

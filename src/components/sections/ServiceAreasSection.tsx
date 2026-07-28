@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import floridaSvgRawOriginal from "@/assets/florida-counties-names.svg?raw";
+import floridaSvgRawOriginal from "@/assets/global/florida-counties-names.svg?raw";
 
 const SERVICE_IDS = ["Indian_River", "St._Lucie", "Martin", "Okeechobee", "Palm_Beach_County", "Lee", "Broward", "Collier", "Miami-Dade"];
 

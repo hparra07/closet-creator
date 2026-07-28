@@ -3,11 +3,77 @@ import { SubProductTemplate } from "@/components/templates/SubProductTemplate";
 import type { FaqItem } from "@/components/sections/FaqSection";
 import type { AccessoryCard } from "@/components/sections/PremiumAccessoriesSection";
 import { recommendedSlides } from "@/lib/storageCategories";
-import customClosetsImg from "@/assets/walk-in-hero.webp";
-import closetAccessories from "@/assets/closet-accesories.jpeg";
-import cabinetFinishes from "@/assets/cabinet-finishes.jpeg";
-import closetLighting from "@/assets/closet-lighting.jpeg";
-import doorsDrawers from "@/assets/doors-drawers.jpeg";
+import customClosetsImg from "@/assets/walk-in-closets/walk-in-hero.webp";
+import closetAccessories from "@/assets/walk-in-closets/closet-accesories.jpeg";
+import cabinetFinishes from "@/assets/walk-in-closets/cabinet-finishes.jpeg";
+import closetLighting from "@/assets/walk-in-closets/closet-lighting.jpeg";
+import doorsDrawers from "@/assets/walk-in-closets/doors-drawers.jpeg";
+import stackImg1 from "@/assets/custom-closets/card-hero-1.jpg";
+import stackImg2 from "@/assets/custom-closets/card-hero-2.jpg";
+import stackImg3 from "@/assets/custom-closets/card-hero-3.jpg";
+import stackImg4 from "@/assets/custom-closets/card-hero-4.jpg";
+import stackImg5 from "@/assets/custom-closets/vert-banner-1.jpg";
+import lightingImg1 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-1.jpg";
+import lightingImg2 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-2.jpg";
+import lightingImg3 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-3.jpg";
+import lightingImg4 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-4.jpg";
+import doorsImg1 from "@/assets/walk-in-closets/closet-doors-and-drawers-1.jpg";
+import doorsImg2 from "@/assets/walk-in-closets/closet-doors-and-drawers-2.webp";
+import doorsImg3 from "@/assets/walk-in-closets/closet-doors-and-drawers-3.jpg";
+import doorsImg4 from "@/assets/walk-in-closets/closet-doors-and-drawers-4.jpg";
+import doorsImg5 from "@/assets/walk-in-closets/closet-doors-and-drawers-5.jpg";
+import optionImg3 from "@/assets/custom-closets/banner4.jpg";
+import optionImg4 from "@/assets/custom-closets/big-banner-1.jpg";
+import optionImg5 from "@/assets/custom-closets/featured-banner-1.jpg";
+import optionImg8 from "@/assets/shared/why-frame-4.jpg";
+import optionImg11 from "@/assets/shared/why-frame-1.jpg";
+import optionImg12 from "@/assets/custom-closets/banner1.jpg";
+
+const WHY_CHOOSE_REASONS = [
+  {
+    title: "Superior Quality and Durability",
+    desc: "Premium materials and expert craftsmanship built to last a lifetime.",
+  },
+  {
+    title: "Optimized Organization for Your Lifestyle",
+    desc: "Every shelf, rod, and drawer planned around your daily routine.",
+  },
+  {
+    title: "Increased Home Value and Appeal",
+    desc: "A smart investment that sets your home apart to future buyers.",
+  },
+  {
+    title: "Personalized Aesthetic that Complements Your Home",
+    desc: "Finishes and details tailored to match your style seamlessly.",
+  },
+  {
+    title: "Tailored to Your Unique Space and Needs",
+    desc: "Designed to make the most of every inch, no matter the layout.",
+  },
+];
+
+const DESIGN_OPTIONS = [
+  {
+    title: "Walk In Closet Lighting Systems",
+    desc: "Integrated lighting that enhances both function and ambiance — LED strips, recessed ceiling lights, accent and motion-activated lighting, plus dimmable options that make it effortless to find and coordinate your outfits while adding a touch of luxury.",
+    images: [lightingImg1, lightingImg2, lightingImg3, lightingImg4],
+  },
+  {
+    title: "Walk In Closet Doors and Drawers",
+    desc: "Doors and drawers that shape both the look and function of your closet — glass-front cabinets, soft-close drawers, mirrored doors, custom finishes, and pull-out organizers for jewelry, ties, and accessories.",
+    images: [doorsImg1, doorsImg2, doorsImg3, doorsImg4, doorsImg5],
+  },
+  {
+    title: "Custom Walk In Closet Islands",
+    desc: "A functional, luxurious centerpiece for your closet — extra drawers and display space, comfortable seating, integrated hampers, and even built-in charging stations for your devices.",
+    images: [optionImg3, optionImg8, optionImg5],
+  },
+  {
+    title: "Custom Shelving and Storage Solutions for Walk-In Closets",
+    desc: "The backbone of an efficient walk-in closet — adjustable shelving, built-in shoe racks, double hanging rods, pull-out valet rods, and specialized storage for ties, belts, and scarves, all tailored to your space.",
+    images: [optionImg4, optionImg11, optionImg12],
+  },
+];
 
 const ACCESSORY_CARDS: AccessoryCard[] = [
   { title: "Closet Accessories", desc: "Smart add-ons to maximize every inch of storage.", image: closetAccessories },
@@ -119,6 +185,34 @@ function WalkInClosets() {
         description: "Transform Your Space with Personalized Walk In Closet Designs by JL Closets",
         image: customClosetsImg,
         imageAlt: "Custom walk-in closet by JL Closets",
+      }}
+      designOptions={{
+        title: "Our Custom Walk-In Closet Design Options",
+        intro: (
+          <>
+            Customization is the <strong className="font-bold underline-animate">key to a walk-in closet</strong> that fits both your storage needs and your personal style. <strong className="font-bold underline-animate">From small walk-ins to luxury designs</strong>, the right combination of features can turn any closet — whatever its dimensions — into a <strong className="font-bold underline-animate">functional, beautiful part of your home</strong>.
+          </>
+        ),
+        options: DESIGN_OPTIONS,
+      }}
+      whyChoose={{
+        title: (
+          <>
+            <strong className="font-bold">5 Reasons</strong> Why Custom Walk-In Closets Outshine Prefabricated Options
+          </>
+        ),
+        intro: (
+          <>
+            <p>
+              When it comes to creating your dream storage space, custom walk-in closets offer advantages that prefabricated options simply can't match. These bespoke solutions go beyond basic storage, transforming your closet into a personalized haven that reflects your lifestyle and enhances your daily routine.
+            </p>
+            <p>
+              Let's explore why investing in a custom walk in closet might be the best choice for your home.
+            </p>
+          </>
+        ),
+        reasons: WHY_CHOOSE_REASONS,
+        images: [stackImg1, stackImg2, stackImg3, stackImg4, stackImg5],
       }}
       accessories={{
         title: "Premium Accessories",

@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import showroom from "@/assets/showroom.jpg";
+import showroom from "@/assets/contact/showroom.jpg";
 
 export function GoogleProfileSection() {
   return (
