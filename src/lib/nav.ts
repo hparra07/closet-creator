@@ -7,10 +7,10 @@ export const NAV: NavEntry[] = [
     label: "Closets & Storage",
     submenu: [
       { heading: "Custom Closets", headingHref: "/custom-closets", items: [{ label: "Walk In Closet", href: "/custom-closets/walk-in-closets" }, { label: "Reach In Closet" }, { label: "Custom Shoe Storage" }] },
-      { items: [{ label: "Entertainment Centers" }] },
-      { items: [{ label: "Home Office" }] },
       { heading: "Pantries", items: [{ label: "Pantry Cabinets" }, { label: "Pantry Shelving" }] },
-      { items: [{ label: "Mudroom" }] },
+      // Solo top-level categories (no children of their own) grouped into one
+      // column instead of each getting its own near-empty grid cell.
+      { items: [{ label: "Entertainment Centers" }, { label: "Home Office" }, { label: "Mudroom" }] },
       { heading: "Laundry Room", items: [{ label: "Laundry Room Cabinets" }, { label: "Laundry Room Shelving" }] },
       { heading: "Garage", items: [{ label: "Garage Cabinets and Shelving" }] },
       { heading: "More Storage Ideas", items: [{ label: "Small Space Storage" }, { label: "Murphy Bed" }, { label: "Wine Racks" }] },
@@ -74,9 +74,9 @@ export const NAV: NavEntry[] = [
       {
         heading: "Upgrade Your Space",
         items: [
-          { label: "Closet Lighting" },
+          { label: "Closet Lighting", href: "/accessories/closet-lighting" },
           { label: "Cabinet Finishes" },
-          { label: "Custom Closet Doors And Drawers" },
+          { label: "Doors And Drawers" },
           { label: "Closet Accessories" },
           { label: "Pantry Accessories" },
           { label: "Garage Accessories" },

@@ -20,6 +20,9 @@ export type ProductSolution = {
   // Discover details) instead of the solution's static title/desc/details
   // repeated across every slide.
   projects?: ProjectSlide[];
+  // When true, the card is a plain image + title + desc slider with no
+  // Discover button and no details panel at all.
+  noButton?: boolean;
 };
 
 export type SlideTransition = "diagonal" | "fade-right";
@@ -181,14 +184,16 @@ function SolutionCard({
 
       <div className="absolute inset-x-0 bottom-0 px-6 pb-20 z-20">
         <p className="font-sans text-2xl font-bold text-white mb-1">{solution.title}</p>
-        {slides.length > 1 && (
+        {solution.projects && slides.length > 1 && (
           <p className="text-primary text-xs font-bold tracking-widest mb-2">{slides[active].label}</p>
         )}
         <p className="text-white text-sm leading-relaxed mb-5 max-w-xs">{slides[active].desc}</p>
-        {activeDetails ? (
-          <YellowButton onClick={() => setShowDetails(true)}>Discover</YellowButton>
-        ) : (
-          <YellowButton href={solution.href ?? "#"}>Discover</YellowButton>
+        {!solution.noButton && (
+          activeDetails ? (
+            <YellowButton onClick={() => setShowDetails(true)}>Discover</YellowButton>
+          ) : (
+            <YellowButton href={solution.href ?? "#"}>Discover</YellowButton>
+          )
         )}
       </div>
 

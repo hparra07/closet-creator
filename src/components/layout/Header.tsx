@@ -114,15 +114,31 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
                   {n.submenu.map((col, idx) => (
                     <div key={col.heading ?? `col-${idx}`}>
                       {col.heading && (
-                        <p className="text-[12px] font-medium text-foreground/50 mb-2">
-                          •{" "}
-                          {col.headingHref ? <Link to={col.headingHref} className="hover:text-primary">{col.heading}</Link> : col.heading}
-                        </p>
+                        col.headingHref ? (
+                          <Link
+                            to={col.headingHref}
+                            className={`relative inline-flex font-bold text-foreground mb-2 hover:text-primary after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1.5px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full ${n.label === "Closets & Storage" ? "text-[16px]" : "text-[12px]"}`}
+                          >
+                            • {col.heading}
+                          </Link>
+                        ) : (
+                          <p className={`font-medium text-foreground/50 mb-2 ${n.label === "Closets & Storage" ? "text-[16px] font-bold" : "text-[12px]"}`}>
+                            • {col.heading}
+                          </p>
+                        )
                       )}
-                      <ul className="space-y-0.5">
+                      <ul className={`space-y-0.5 ${col.heading ? "pl-3" : ""}`}>
                         {col.items.map((it) => (
-                          <li key={it.label} className="text-[15px] font-semibold leading-tight hover:text-primary py-0.5">
-                            {it.href ? <Link to={it.href}>{it.label}</Link> : it.label}
+                          <li key={it.label} className="py-0.5">
+                            {it.href ? (
+                              <Link to={it.href} className="relative inline-flex text-[15px] font-medium leading-tight hover:text-primary after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">
+                                {it.label}
+                              </Link>
+                            ) : (
+                              <span className="relative inline-flex text-[15px] font-medium leading-tight hover:text-primary after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">
+                                {it.label}
+                              </span>
+                            )}
                           </li>
                         ))}
                       </ul>
@@ -191,18 +207,23 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
                       {n.submenu.map((col, idx) => (
                         <div key={col.heading ?? `col-${idx}`}>
                           {col.heading && (
-                            <p className="text-[12px] font-medium text-foreground/50 mb-2">
-                              •{" "}
-                              {col.headingHref ? (
-                                <Link to={col.headingHref} onClick={() => toggleMobileMenu.current()}>{col.heading}</Link>
-                              ) : (
-                                col.heading
-                              )}
-                            </p>
+                            col.headingHref ? (
+                              <Link
+                                to={col.headingHref}
+                                onClick={() => toggleMobileMenu.current()}
+                                className={`block font-bold text-foreground mb-2 ${n.label === "Closets & Storage" ? "text-[17px]" : "text-[12px]"}`}
+                              >
+                                • {col.heading}
+                              </Link>
+                            ) : (
+                              <p className={`font-medium text-foreground/50 mb-2 ${n.label === "Closets & Storage" ? "text-[17px] font-bold" : "text-[12px]"}`}>
+                                • {col.heading}
+                              </p>
+                            )
                           )}
-                          <ul className="space-y-1">
+                          <ul className={`space-y-1 ${col.heading ? "pl-3" : ""}`}>
                             {col.items.map((it) => (
-                              <li key={it.label} className="text-[15px] font-semibold py-1">
+                              <li key={it.label} className="text-[15px] font-medium py-1">
                                 {it.href ? <Link to={it.href} onClick={() => toggleMobileMenu.current()}>{it.label}</Link> : it.label}
                               </li>
                             ))}

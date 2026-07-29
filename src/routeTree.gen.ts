@@ -14,6 +14,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CustomClosetsWalkInClosetsRouteImport } from './routes/custom-closets_.walk-in-closets'
+import { Route as AccessoriesClosetLightingRouteImport } from './routes/accessories_.closet-lighting'
 
 const CustomClosetsRoute = CustomClosetsRouteImport.update({
   id: '/custom-closets',
@@ -41,12 +42,19 @@ const CustomClosetsWalkInClosetsRoute =
     path: '/custom-closets/walk-in-closets',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AccessoriesClosetLightingRoute =
+  AccessoriesClosetLightingRouteImport.update({
+    id: '/accessories_/closet-lighting',
+    path: '/accessories/closet-lighting',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/accessories/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
 }
 export interface FileRoutesByTo {
@@ -54,6 +62,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/accessories/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
 }
 export interface FileRoutesById {
@@ -62,6 +71,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/accessories_/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets_/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
 }
 export interface FileRouteTypes {
@@ -71,6 +81,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/accessories/closet-lighting'
     | '/custom-closets/walk-in-closets'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -78,6 +89,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/accessories/closet-lighting'
     | '/custom-closets/walk-in-closets'
   id:
     | '__root__'
@@ -85,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/accessories_/closet-lighting'
     | '/custom-closets_/walk-in-closets'
   fileRoutesById: FileRoutesById
 }
@@ -93,6 +106,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   CustomClosetsRoute: typeof CustomClosetsRoute
+  AccessoriesClosetLightingRoute: typeof AccessoriesClosetLightingRoute
   CustomClosetsWalkInClosetsRoute: typeof CustomClosetsWalkInClosetsRoute
 }
 
@@ -133,6 +147,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomClosetsWalkInClosetsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/accessories_/closet-lighting': {
+      id: '/accessories_/closet-lighting'
+      path: '/accessories/closet-lighting'
+      fullPath: '/accessories/closet-lighting'
+      preLoaderRoute: typeof AccessoriesClosetLightingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -141,6 +162,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   CustomClosetsRoute: CustomClosetsRoute,
+  AccessoriesClosetLightingRoute: AccessoriesClosetLightingRoute,
   CustomClosetsWalkInClosetsRoute: CustomClosetsWalkInClosetsRoute,
 }
 export const routeTree = rootRouteImport
