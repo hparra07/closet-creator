@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SubProductTemplate } from "@/components/templates/SubProductTemplate";
+import type { ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import type { FaqItem } from "@/components/sections/FaqSection";
 import type { AccessoryCard } from "@/components/sections/PremiumAccessoriesSection";
 import { recommendedSlides } from "@/lib/storageCategories";
@@ -13,6 +14,10 @@ import stackImg2 from "@/assets/custom-closets/card-hero-2.jpg";
 import stackImg3 from "@/assets/custom-closets/card-hero-3.jpg";
 import stackImg4 from "@/assets/custom-closets/card-hero-4.jpg";
 import stackImg5 from "@/assets/custom-closets/vert-banner-1.jpg";
+import closetImgFallback from "@/assets/custom-closets/closet.jpg";
+import projectExtra1 from "@/assets/misc/consult.jpg";
+import projectExtra2 from "@/assets/misc/dark-office.jpg";
+import projectExtra3 from "@/assets/misc/pantry.jpg";
 import lightingImg1 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-1.jpg";
 import lightingImg2 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-2.jpg";
 import lightingImg3 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-3.jpg";
@@ -30,6 +35,147 @@ import shelvingImg1 from "@/assets/walk-in-closets/walk-in-closet-with-custom-dr
 import shelvingImg2 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-2.jpg";
 import shelvingImg3 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-3.jpg";
 import shelvingImg4 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-4.jpg";
+
+const MODERN_DETAILS_1 = {
+  title: "Project 1",
+  intro:
+    "This modern walk-in closet blends clean lines with smart storage, featuring handleless cabinetry, open shelving, and a neutral palette that feels both minimal and functional.",
+  features: [
+    { label: "Sleek cabinetry", desc: "Handleless, flat-panel doors and drawers for a clean, modern look." },
+    { label: "Open shelving", desc: "Displays folded items and accessories while keeping the space airy." },
+    { label: "Integrated lighting", desc: "LED accents highlight every section and make outfits easy to find." },
+    { label: "Smart layout", desc: "Zones for hanging, folded, and accessory storage tailored to daily use." },
+  ],
+};
+
+const MODERN_DETAILS_2 = {
+  title: "Project 2",
+  intro:
+    "A fresh take on modern storage, this walk-in closet pairs two-tone cabinetry with open display niches for a curated, boutique feel.",
+  features: [
+    { label: "Two-tone finish", desc: "Contrasting cabinet tones add depth without breaking the modern look." },
+    { label: "Display niches", desc: "Open cubbies highlight favorite pieces and accessories." },
+    { label: "Soft-close hardware", desc: "Every drawer and door closes smoothly and quietly." },
+    { label: "Full-length mirror", desc: "Built in for quick outfit checks before heading out." },
+  ],
+};
+
+const MODERN_DETAILS_3 = {
+  title: "Project 3",
+  intro:
+    "Built around a central dressing area, this modern walk-in closet keeps hanging, folded, and accessory storage within easy reach of one spot.",
+  features: [
+    { label: "Central dressing zone", desc: "A clear, open area to get ready each morning." },
+    { label: "Adjustable rods", desc: "Hanging space that adapts as your wardrobe changes." },
+    { label: "Pull-out hampers", desc: "Discreet, built-in laundry storage." },
+    { label: "Task lighting", desc: "Bright, focused light over the dressing area." },
+  ],
+};
+
+const LUXURY_DETAILS_1 = {
+  title: "Project 1",
+  intro:
+    "Designed for those who want it all, this luxury walk-in closet combines rich finishes, a statement island, and boutique-style display with everyday functionality.",
+  features: [
+    { label: "Premium finishes", desc: "High-end wood, glass, and hardware throughout." },
+    { label: "Center island", desc: "Extra storage plus a spot to sit, fold, or plan outfits." },
+    { label: "Boutique display", desc: "Glass-front cabinets showcase shoes, bags, and accessories." },
+    { label: "Ambient lighting", desc: "Soft, layered lighting creates a showroom feel." },
+  ],
+};
+
+const LUXURY_DETAILS_2 = {
+  title: "Project 2",
+  intro:
+    "This luxury walk-in closet adds a plush seating lounge to the mix, turning everyday routines into a moment to slow down and enjoy.",
+  features: [
+    { label: "Seating lounge", desc: "A comfortable spot to relax, fold clothes, or plan outfits." },
+    { label: "Chandelier lighting", desc: "A statement fixture elevates the whole room." },
+    { label: "Custom drawer inserts", desc: "Velvet-lined compartments for jewelry and watches." },
+    { label: "Full-height mirrors", desc: "Multiple angles for a complete outfit view." },
+  ],
+};
+
+const LUXURY_DETAILS_3 = {
+  title: "Project 3",
+  intro:
+    "Part closet, part private suite, this design combines high-end storage with a dedicated area to dress, style, and get ready in comfort.",
+  features: [
+    { label: "Private dressing suite", desc: "A dedicated area separate from the storage walls." },
+    { label: "Illuminated display cases", desc: "Showcase handbags and accessories like a boutique." },
+    { label: "Custom vanity", desc: "Built-in space for makeup and grooming essentials." },
+    { label: "Rich hardware finishes", desc: "Brass and matte black accents throughout." },
+  ],
+};
+
+const SMALL_DETAILS_1 = {
+  title: "SProject 1",
+  intro:
+    "This small walk-in closet makes the most of a narrow space with high-end finishes, elegant storage, and integrated lighting — proving that luxury and function can fit in a compact footprint.",
+  features: [
+    { label: "Elegant storage", desc: "Custom cabinetry with glass doors keeps clothing organized and on display." },
+    { label: "Integrated lighting", desc: "Soft ambient lighting makes it easy to select outfits and highlights the space." },
+    { label: "Optimized narrow space", desc: "A smart layout makes the most of a tight footprint without feeling cramped." },
+    { label: "Glass display sections", desc: "Perfect for showcasing special garments with a touch of elegance." },
+  ],
+};
+
+const SMALL_DETAILS_2 = {
+  title: "Project 2",
+  intro:
+    "Every inch counts in this small walk-in closet, which tucks a fold-out vanity into the design without sacrificing storage.",
+  features: [
+    { label: "Fold-out vanity", desc: "A compact surface for makeup that folds away when not in use." },
+    { label: "Slim hanging rods", desc: "Maximize hanging space in a narrow footprint." },
+    { label: "Vertical drawers", desc: "Tall, narrow drawers make the most of tight corners." },
+    { label: "Mirror-backed doors", desc: "Add light and the feel of extra space." },
+  ],
+};
+
+const SMALL_DETAILS_3 = {
+  title: "Project 3",
+  intro:
+    "This small walk-in closet makes smart use of corner space with angled shelving, proving no square inch goes to waste.",
+  features: [
+    { label: "Corner shelving", desc: "Angled shelves turn awkward corners into usable storage." },
+    { label: "Compact shoe storage", desc: "Slim, tiered racks fit even the smallest layouts." },
+    { label: "Built-in lighting", desc: "Keeps every shelf visible despite the tight space." },
+    { label: "Light color palette", desc: "Bright finishes make the small space feel larger." },
+  ],
+};
+
+const WALK_IN_SOLUTIONS: ProductSolution[] = [
+  {
+    title: "Modern Walk In Closet",
+    desc: "Project 1 — Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    images: [stackImg1, stackImg2, projectExtra1],
+    projects: [
+      { image: stackImg1, label: "Project 1", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: MODERN_DETAILS_1 },
+      { image: stackImg2, label: "Project 2", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: MODERN_DETAILS_2 },
+      { image: projectExtra1, label: "Project 3", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: MODERN_DETAILS_3 },
+    ],
+  },
+  {
+    title: "Luxury Walk In Closet",
+    desc: "Project 1 — Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    images: [stackImg3, stackImg4, projectExtra2],
+    projects: [
+      { image: stackImg3, label: "Project 1", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: LUXURY_DETAILS_1 },
+      { image: stackImg4, label: "Project 2", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: LUXURY_DETAILS_2 },
+      { image: projectExtra2, label: "Project 3", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: LUXURY_DETAILS_3 },
+    ],
+  },
+  {
+    title: "Small Walk In Closet Ideas",
+    desc: "Project 1 — Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    images: [closetImgFallback, stackImg5, projectExtra3],
+    projects: [
+      { image: closetImgFallback, label: "Project 1", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: SMALL_DETAILS_1 },
+      { image: stackImg5, label: "Project 2", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: SMALL_DETAILS_2 },
+      { image: projectExtra3, label: "Project 3", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.", details: SMALL_DETAILS_3 },
+    ],
+  },
+];
 
 const WHY_CHOOSE_REASONS = [
   {
@@ -187,6 +333,16 @@ function WalkInClosets() {
         description: "Transform Your Space with Personalized Walk In Closet Designs by JL Closets",
         image: customClosetsImg,
         imageAlt: "Custom walk-in closet by JL Closets",
+      }}
+      solutions={{
+        title: "Best Custom Walk In Closet Company in South Florida",
+        introSize: "sm",
+        intro: (
+          <>
+            At JL Closets, we specialize in <strong className="font-bold underline-animate">custom walk-in closets that turn your storage vision into reality</strong> — from luxurious master bedroom retreats to compact, efficient designs for smaller spaces. Our expert designers and skilled craftsmen work closely with you to <strong className="font-bold underline-animate">maximize every inch of your space</strong>, and wherever you are in Southern Florida, we'll help you transform your closet into an <strong className="font-bold underline-animate">organized oasis you'll love for years to come</strong>.
+          </>
+        ),
+        items: WALK_IN_SOLUTIONS,
       }}
       designOptions={{
         title: "Our Custom Walk-In Closet Design Options",

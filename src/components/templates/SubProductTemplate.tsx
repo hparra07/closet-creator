@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
+import { ProductSolutionsSection, type ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
 import { ProductFeaturesSection } from "@/components/sections/ProductFeaturesSection";
 import { PremiumAccessoriesSection, type AccessoryCard } from "@/components/sections/PremiumAccessoriesSection";
@@ -19,6 +20,7 @@ import { ConsultModal } from "@/components/modals/ConsultModal";
 // content is defined, and every subcategory route picks them up automatically.
 export type SubProductTemplateProps = {
   hero: { title: string; description: string; image: string; imageAlt: string };
+  solutions?: { title?: string; intro: React.ReactNode; introSize?: "lg" | "sm"; items: ProductSolution[] };
   designOptions?: { title: string; intro?: React.ReactNode; options: DesignOption[] };
   whyChoose?: { title: React.ReactNode; intro: React.ReactNode; reasons: SolutionReason[]; images: string[] };
   accessories?: { title?: string; cards: AccessoryCard[] };
@@ -26,7 +28,7 @@ export type SubProductTemplateProps = {
   faq?: { title: string; subtitle?: string; items: FaqItem[] };
 };
 
-export function SubProductTemplate({ hero, designOptions, whyChoose, accessories, recommended, faq }: SubProductTemplateProps) {
+export function SubProductTemplate({ hero, solutions, designOptions, whyChoose, accessories, recommended, faq }: SubProductTemplateProps) {
   const [consultOpen, setConsultOpen] = useState(false);
 
   useEffect(() => {
@@ -56,6 +58,15 @@ export function SubProductTemplate({ hero, designOptions, whyChoose, accessories
           image={hero.image}
           imageAlt={hero.imageAlt}
         />
+
+        {solutions && (
+          <ProductSolutionsSection
+            title={solutions.title}
+            intro={solutions.intro}
+            introSize={solutions.introSize}
+            solutions={solutions.items}
+          />
+        )}
 
         {designOptions && (
           <DesignOptionsSection

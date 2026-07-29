@@ -1,13 +1,25 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import { X } from "lucide-react";
 import gsap from "gsap";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { YellowButton } from "@/components/common/YellowButton";
+
+export type ProjectFeature = { label: string; desc: string };
+export type ProjectDetails = { title: string; intro: string; features: ProjectFeature[] };
+
+export type ProjectSlide = { image: string; label: string; desc: string; details?: ProjectDetails };
 
 export type ProductSolution = {
   title: string;
   desc: string;
   images: string[];
   href?: string;
+  details?: ProjectDetails;
+  // Optional per-slide project label/desc/details — when set, each image in
+  // the card's own slider shows its own "Project N" caption (and its own
+  // Discover details) instead of the solution's static title/desc/details
+  // repeated across every slide.
+  projects?: ProjectSlide[];
 };
 
 export type SlideTransition = "diagonal" | "fade-right";
@@ -43,20 +55,34 @@ function diagonalClipPath(p: number, dir: 1 | -1) {
   return `polygon(${100 - p}% 100%, ${100 - p + DIAGONAL_SKEW}% 0%, 100% 0%, 100% 100%)`;
 }
 
-function SolutionCard({ solution, transition = "diagonal" }: { solution: ProductSolution; transition?: SlideTransition }) {
+function SolutionCard({
+  solution,
+  transition = "diagonal",
+}: {
+  solution: ProductSolution;
+  transition?: SlideTransition;
+}) {
+  const slides: ProjectSlide[] =
+    solution.projects ??
+    solution.images.map((img) => ({ image: img, label: solution.title, desc: solution.desc }));
+
   const [active, setActive] = useState(0);
-  const count = solution.images.length;
+  const [showDetails, setShowDetails] = useState(false);
+  const count = slides.length;
+  const activeDetails = slides[active].details ?? solution.details;
   const prevActiveRef = useRef(0);
   const directionRef = useRef<1 | -1>(1);
   const pageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const go = (dir: number) => {
     directionRef.current = dir >= 0 ? 1 : -1;
+    setShowDetails(false);
     setActive((a) => (a + dir + count) % count);
   };
 
   const goTo = (i: number) => {
     directionRef.current = i >= active ? 1 : -1;
+    setShowDetails(false);
     setActive(i);
   };
 
@@ -137,9 +163,9 @@ function SolutionCard({ solution, transition = "diagonal" }: { solution: Product
   return (
     <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl">
       {/* Transition stack */}
-      {solution.images.map((img, i) => (
+      {slides.map((slide, i) => (
         <div
-          key={img}
+          key={slide.image}
           ref={(el) => { pageRefs.current[i] = el; }}
           className="absolute inset-0"
           style={{
@@ -148,16 +174,59 @@ function SolutionCard({ solution, transition = "diagonal" }: { solution: Product
             pointerEvents: active === i ? "auto" : "none",
           }}
         >
-          <img src={img} alt={solution.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <img src={slide.image} alt={slide.label} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         </div>
       ))}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent pointer-events-none z-10" />
 
       <div className="absolute inset-x-0 bottom-0 px-6 pb-20 z-20">
-        <p className="font-sans text-2xl font-bold text-white mb-2">{solution.title}</p>
-        <p className="text-white text-sm leading-relaxed mb-5 max-w-xs">{solution.desc}</p>
-        <YellowButton href={solution.href ?? "#"}>Discover</YellowButton>
+        <p className="font-sans text-2xl font-bold text-white mb-1">{solution.title}</p>
+        {slides.length > 1 && (
+          <p className="text-primary text-xs font-bold tracking-widest mb-2">{slides[active].label}</p>
+        )}
+        <p className="text-white text-sm leading-relaxed mb-5 max-w-xs">{slides[active].desc}</p>
+        {activeDetails ? (
+          <YellowButton onClick={() => setShowDetails(true)}>Discover</YellowButton>
+        ) : (
+          <YellowButton href={solution.href ?? "#"}>Discover</YellowButton>
+        )}
       </div>
+
+      {/* Details panel — opens in place of the image, inside this same card.
+          Rounding + clipping live on the SAME element that animates in (not
+          a separate ancestor), since a border-radius/overflow-hidden on a
+          non-transformed parent can fail to clip a transformed child in
+          some browsers, leaving the corners uncovered. A dark translucent
+          background (rather than solid) keeps the project photo visible
+          underneath instead of hiding it completely. */}
+      {activeDetails && showDetails && (
+        <div className="details-slide-up absolute inset-0 z-30 rounded-2xl overflow-x-hidden overflow-y-auto bg-black/60 backdrop-blur-[4px] p-6 md:p-7">
+          <button
+            type="button"
+            aria-label="Close details"
+            onClick={() => setShowDetails(false)}
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-white hover:bg-white/10 transition cursor-pointer"
+          >
+            <X className="w-4 h-4" />
+          </button>
+          <p className="font-sans text-lg font-bold uppercase leading-snug mb-3 pr-8 text-white">
+            {activeDetails.title}
+          </p>
+          <p className="text-sm leading-relaxed mb-4 text-white/80">
+            {activeDetails.intro}
+          </p>
+          <ul className="space-y-2.5">
+            {activeDetails.features.map((f) => (
+              <li key={f.label} className="flex items-start gap-2.5">
+                <span className="text-primary mt-1.5 shrink-0 text-[10px]">●</span>
+                <span className="text-sm leading-relaxed text-white/90">
+                  <strong className="font-bold text-white">{f.label}:</strong> {f.desc}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Bottom navigation bar */}
       {count > 1 && (
@@ -174,7 +243,7 @@ function SolutionCard({ solution, transition = "diagonal" }: { solution: Product
           <div className="w-px bg-white/25 shrink-0" />
 
           <div className="flex-1 flex items-center justify-center gap-2">
-            {solution.images.map((_, i) => (
+            {slides.map((_, i) => (
               <button
                 key={i}
                 type="button"
@@ -197,6 +266,17 @@ function SolutionCard({ solution, transition = "diagonal" }: { solution: Product
           </button>
         </div>
       )}
+
+      <style>{`
+        @keyframes details-slide-up {
+          from { opacity: 0; transform: translateY(22px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .details-slide-up { animation: details-slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+        @media (prefers-reduced-motion: reduce) {
+          .details-slide-up { animation: none; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -204,10 +284,12 @@ function SolutionCard({ solution, transition = "diagonal" }: { solution: Product
 export function ProductSolutionsSection({
   title,
   intro,
+  introSize = "lg",
   solutions,
 }: {
   title?: string;
   intro: React.ReactNode;
+  introSize?: "lg" | "sm";
   solutions: ProductSolution[];
 }) {
   return (
@@ -217,13 +299,24 @@ export function ProductSolutionsSection({
           <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
         </div>
       )}
-      <p className="text-center max-w-2xl mx-auto font-sans text-2xl md:text-3xl leading-snug mb-10 md:mb-14 reveal-up" style={{ color: "#313131" }}>
+      <div
+        className={`text-center mx-auto reveal-up mb-10 md:mb-14 ${
+          introSize === "sm"
+            ? "max-w-6xl text-base md:text-lg leading-relaxed"
+            : "max-w-2xl font-sans text-2xl md:text-3xl leading-snug"
+        }`}
+        style={{ color: "#313131" }}
+      >
         {intro}
-      </p>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-up">
         {solutions.map((s, i) => (
-          <SolutionCard key={s.title} solution={s} transition={i === 0 ? "fade-right" : "diagonal"} />
+          <SolutionCard
+            key={s.title}
+            solution={s}
+            transition={i === 0 ? "fade-right" : "diagonal"}
+          />
         ))}
       </div>
     </SectionWrapper>
