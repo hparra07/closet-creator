@@ -16,16 +16,16 @@ SERVICE_IDS.forEach((id) => {
 });
 const floridaSvgRaw = processed;
 
-const SERVICE_COUNTIES: { id: string; name: string }[] = [
-  { id: "Indian_River",      name: "Indian River County" },
-  { id: "St._Lucie",         name: "St. Lucie County" },
-  { id: "Martin",            name: "Martin County" },
-  { id: "Okeechobee",        name: "Okeechobee County" },
-  { id: "Palm_Beach_County", name: "Palm Beach County" },
-  { id: "Lee",               name: "Lee County" },
-  { id: "Broward",           name: "Broward County" },
-  { id: "Collier",           name: "Collier County" },
-  { id: "Miami-Dade",        name: "Miami-Dade County" },
+const SERVICE_COUNTIES: { id: string; name: string; href: string }[] = [
+  { id: "Indian_River",      name: "Indian River County", href: "/service-areas/indian-river-county" },
+  { id: "St._Lucie",         name: "St. Lucie County",     href: "/service-areas/st-lucie-county" },
+  { id: "Martin",            name: "Martin County",        href: "/service-areas/martin-county" },
+  { id: "Okeechobee",        name: "Okeechobee County",    href: "/service-areas/okeechobee-county" },
+  { id: "Palm_Beach_County", name: "Palm Beach County",    href: "/service-areas/palm-beach-county" },
+  { id: "Lee",               name: "Lee County",           href: "/service-areas/lee-county" },
+  { id: "Broward",           name: "Broward County",       href: "/service-areas/broward-county" },
+  { id: "Collier",           name: "Collier County",       href: "/service-areas/collier-county" },
+  { id: "Miami-Dade",        name: "Miami-Dade County",    href: "/service-areas/miami-dade-county" },
 ];
 
 function ServiceAreasMap() {
@@ -98,15 +98,17 @@ function ServiceAreasMap() {
             <p className="eyebrow mb-4" style={{ color: "#313131" }}>Counties we serve</p>
             <ul className="flex flex-col gap-2.5 text-[14px]">
               {SERVICE_COUNTIES.map((area, i) => (
-                <li
-                  key={area.id}
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
-                  className={`cursor-default transition-opacity ${
-                    hovered === null || hovered === i ? "opacity-100" : "opacity-50"
-                  } ${i === hovered ? "font-semibold" : ""}`}
-                >
-                  {area.name}
+                <li key={area.id}>
+                  <a
+                    href={area.href}
+                    onMouseEnter={() => setHovered(i)}
+                    onMouseLeave={() => setHovered(null)}
+                    className={`cursor-pointer transition-opacity hover:underline ${
+                      hovered === null || hovered === i ? "opacity-100" : "opacity-50"
+                    } ${i === hovered ? "font-semibold" : ""}`}
+                  >
+                    {area.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -204,14 +206,16 @@ function ServiceAreasMap() {
                           onMouseEnter={() => setHovered(i)}
                           onMouseLeave={() => setHovered(null)}
                         >
-                          <path
-                            d="M10 0C4.5 0 0 4.5 0 10c0 7.5 10 18 10 18s10-10.5 10-18C20 4.5 15.5 0 10 0z"
-                            fill={i === hovered ? "#b91c1c" : "#DC2626"}
-                            stroke="#7f1d1d"
-                            strokeWidth={0.8}
-                            style={{ transition: "fill 0.2s", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.35))" }}
-                          />
-                          <circle cx={10} cy={10} r={3.5} fill="#fff" />
+                          <a href={SERVICE_COUNTIES[i].href}>
+                            <path
+                              d="M10 0C4.5 0 0 4.5 0 10c0 7.5 10 18 10 18s10-10.5 10-18C20 4.5 15.5 0 10 0z"
+                              fill={i === hovered ? "#b91c1c" : "#DC2626"}
+                              stroke="#7f1d1d"
+                              strokeWidth={0.8}
+                              style={{ transition: "fill 0.2s", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.35))" }}
+                            />
+                            <circle cx={10} cy={10} r={3.5} fill="#fff" />
+                          </a>
                         </g>
                       ))}
                     </g>
@@ -244,14 +248,16 @@ function ServiceAreasMap() {
                         onMouseEnter={() => setHovered(i)}
                         onMouseLeave={() => setHovered(null)}
                       >
-                        <path
-                          d="M10 0C4.5 0 0 4.5 0 10c0 7.5 10 18 10 18s10-10.5 10-18C20 4.5 15.5 0 10 0z"
-                          fill={i === hovered ? "#b91c1c" : "#DC2626"}
-                          stroke="#7f1d1d"
-                          strokeWidth={0.8}
-                          style={{ transition: "fill 0.2s", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.35))" }}
-                        />
-                        <circle cx={10} cy={10} r={3.5} fill="#fff" />
+                        <a href={SERVICE_COUNTIES[i].href}>
+                          <path
+                            d="M10 0C4.5 0 0 4.5 0 10c0 7.5 10 18 10 18s10-10.5 10-18C20 4.5 15.5 0 10 0z"
+                            fill={i === hovered ? "#b91c1c" : "#DC2626"}
+                            stroke="#7f1d1d"
+                            strokeWidth={0.8}
+                            style={{ transition: "fill 0.2s", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.35))" }}
+                          />
+                          <circle cx={10} cy={10} r={3.5} fill="#fff" />
+                        </a>
                       </g>
                     ))}
                   </g>
@@ -266,15 +272,17 @@ function ServiceAreasMap() {
           <p className="eyebrow mb-4" style={{ color: "#313131" }}>Counties we serve</p>
           <ul className="flex flex-col gap-2.5 text-[14px]">
             {SERVICE_COUNTIES.map((area, i) => (
-              <li
-                key={area.id}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                className={`cursor-default transition-opacity ${
-                  hovered === null || hovered === i ? "opacity-100" : "opacity-50"
-                } ${i === hovered ? "font-semibold" : ""}`}
-              >
-                {area.name}
+              <li key={area.id}>
+                <a
+                  href={area.href}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  className={`cursor-pointer transition-opacity hover:underline ${
+                    hovered === null || hovered === i ? "opacity-100" : "opacity-50"
+                  } ${i === hovered ? "font-semibold" : ""}`}
+                >
+                  {area.name}
+                </a>
               </li>
             ))}
           </ul>

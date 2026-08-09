@@ -50,6 +50,7 @@ export function AccessoryTemplate({ hero, pageKey, solutions }: AccessoryTemplat
           description={hero.description}
           image={hero.image}
           imageAlt={hero.imageAlt}
+          onConsultOpen={() => setConsultOpen(true)}
         />
 
         {solutions && (

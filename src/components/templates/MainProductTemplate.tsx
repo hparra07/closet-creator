@@ -66,6 +66,7 @@ export function MainProductTemplate({
           description={hero.description}
           image={hero.image}
           imageAlt={hero.imageAlt}
+          onConsultOpen={() => setConsultOpen(true)}
         />
 
         <ProductSolutionsSection

@@ -27,7 +27,13 @@ const TIMINGS = [
   { start: 0.10, end: 0.98 },
 ];
 
-function getCardStyle(i: number) {
+// Desktop: all cards share the same muted-cream treatment.
+function getCardStyle() {
+  return { bg: "rgba(238, 234, 226, 0.95)", textColor: "#313131", descOpacity: 0.75, isDark: false };
+}
+
+// Mobile: each card keeps its own alternating dark/yellow/light color.
+function getMobileCardStyle(i: number) {
   const isDark = i === 0 || i === 4;
   const isYellow = i === 1 || i === 3;
   const bg = isDark ? "rgba(0, 0, 0, 0.86)" : isYellow ? "rgba(241, 195, 58, 0.94)" : undefined;
@@ -161,7 +167,7 @@ export function WhyChooseUsV2({
         </section>
 
         {cards.map((c, i) => {
-          const s = getCardStyle(i);
+          const s = getMobileCardStyle(i);
           return (
             <section
               key={i}
@@ -188,7 +194,8 @@ export function WhyChooseUsV2({
       <section ref={sectionRef} className="relative hidden lg:block h-[240vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           <img src={backgroundImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/60" />
+          {/* Darkens gently as the cards rise in, instead of staying flat. */}
+          <div className="absolute inset-0 bg-black" style={{ opacity: Math.min(0.9, 0.65 + progress * 0.25) }} />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center px-5 gap-20">
             <div className="flex items-center justify-between w-full px-16 opacity-90 text-white">
@@ -209,7 +216,7 @@ export function WhyChooseUsV2({
           <div className="absolute left-0 right-0 bottom-0 px-4 pb-14">
             <div className="grid grid-cols-5 gap-6 w-full items-end">
               {cards.map((c, i) => {
-                const s = getCardStyle(i);
+                const s = getCardStyle();
                 return (
                   <div
                     key={i}

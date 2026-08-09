@@ -20,13 +20,12 @@ const ABOUT_CARDS: WhyCard[] = [
   { title: "Highest Customer Satisfaction", desc: "Almost 98% of positive direct, and 5-star reviews make us South Florida's top customer-rated custom closet company.", icon: icon4 },
   { title: "80% Referral Rate", desc: "With an 80% referral rate and 70% returning customers, we stand out as South Florida's most referred custom closet company.", icon: icon5 },
 ];
-import { ReviewsSection } from "@/components/sections/ReviewsSection";
+import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSection";
 import { ServiceAreasSection } from "@/components/sections/ServiceAreasSection";
 import { ShowroomSection } from "@/components/sections/ShowroomSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
-import { VideoModal } from "@/components/modals/VideoModal";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -43,7 +42,6 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [consultOpen, setConsultOpen] = useState(false);
 
   useEffect(() => {
@@ -71,7 +69,7 @@ function About() {
         <AboutIntroSection />
         <WhyChooseUsV2 title="Why Homeowners Choose JL Closets" cards={ABOUT_CARDS} />
         <ProcessSection />
-        <ReviewsSection onVideoOpen={setVideoUrl} />
+        <SuccessStoriesSection />
         <ShowroomSection />
         <ServiceAreasSection />
         <InspirationSection />
@@ -82,7 +80,6 @@ function About() {
       <Footer />
 
       <ConsultModal open={consultOpen} onClose={() => setConsultOpen(false)} />
-      <VideoModal url={videoUrl} onClose={() => setVideoUrl(null)} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import gsap from "gsap";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
@@ -61,9 +61,11 @@ function diagonalClipPath(p: number, dir: 1 | -1) {
 function SolutionCard({
   solution,
   transition = "diagonal",
+  shadow = true,
 }: {
   solution: ProductSolution;
   transition?: SlideTransition;
+  shadow?: boolean;
 }) {
   const slides: ProjectSlide[] =
     solution.projects ??
@@ -71,21 +73,41 @@ function SolutionCard({
 
   const [active, setActive] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
+  const [closingDetails, setClosingDetails] = useState(false);
   const count = slides.length;
   const activeDetails = slides[active].details ?? solution.details;
   const prevActiveRef = useRef(0);
   const directionRef = useRef<1 | -1>(1);
   const pageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const closeTimeoutRef = useRef<number | undefined>(undefined);
+
+  // Plays the slide-up entrance in reverse before actually unmounting the
+  // panel, instead of just snapping it away.
+  const closeDetails = () => {
+    if (!showDetails) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShowDetails(false);
+      return;
+    }
+    setClosingDetails(true);
+    window.clearTimeout(closeTimeoutRef.current);
+    closeTimeoutRef.current = window.setTimeout(() => {
+      setShowDetails(false);
+      setClosingDetails(false);
+    }, 450);
+  };
+
+  useEffect(() => () => window.clearTimeout(closeTimeoutRef.current), []);
 
   const go = (dir: number) => {
     directionRef.current = dir >= 0 ? 1 : -1;
-    setShowDetails(false);
+    closeDetails();
     setActive((a) => (a + dir + count) % count);
   };
 
   const goTo = (i: number) => {
     directionRef.current = i >= active ? 1 : -1;
-    setShowDetails(false);
+    closeDetails();
     setActive(i);
   };
 
@@ -164,7 +186,7 @@ function SolutionCard({
   }, [active, transition]);
 
   return (
-    <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl">
+    <div className={`relative aspect-[4/5] overflow-hidden rounded-2xl ${shadow ? "shadow-2xl" : ""}`}>
       {/* Transition stack */}
       {slides.map((slide, i) => (
         <div
@@ -204,12 +226,14 @@ function SolutionCard({
           some browsers, leaving the corners uncovered. A dark translucent
           background (rather than solid) keeps the project photo visible
           underneath instead of hiding it completely. */}
-      {activeDetails && showDetails && (
-        <div className="details-slide-up absolute inset-0 z-30 rounded-2xl overflow-x-hidden overflow-y-auto bg-black/60 backdrop-blur-[4px] p-6 md:p-7">
+      {activeDetails && (showDetails || closingDetails) && (
+        <div
+          className={`absolute inset-0 z-30 rounded-2xl overflow-x-hidden overflow-y-auto bg-black/60 backdrop-blur-[4px] p-6 md:p-7 ${closingDetails ? "details-slide-down" : "details-slide-up"}`}
+        >
           <button
             type="button"
             aria-label="Close details"
-            onClick={() => setShowDetails(false)}
+            onClick={closeDetails}
             className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-white hover:bg-white/10 transition cursor-pointer"
           >
             <X className="w-4 h-4" />
@@ -277,9 +301,14 @@ function SolutionCard({
           from { opacity: 0; transform: translateY(22px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes details-slide-down {
+          from { opacity: 1; transform: translateY(0); }
+          to { opacity: 0; transform: translateY(22px); }
+        }
         .details-slide-up { animation: details-slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+        .details-slide-down { animation: details-slide-down 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         @media (prefers-reduced-motion: reduce) {
-          .details-slide-up { animation: none; }
+          .details-slide-up, .details-slide-down { animation: none; }
         }
       `}</style>
     </div>
@@ -291,12 +320,31 @@ export function ProductSolutionsSection({
   intro,
   introSize = "lg",
   solutions,
+  layout = "grid",
 }: {
   title?: string;
   intro: React.ReactNode;
   introSize?: "lg" | "sm";
   solutions: ProductSolution[];
+  // "carousel" is for longer lists (e.g. a county's page recommending all 8
+  // main product categories) — a horizontally scrollable row instead of a
+  // grid that would otherwise wrap into several rows.
+  layout?: "grid" | "carousel";
 }) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  // Advance by exactly one card's width (+ gap), not the whole viewport, so
+  // multiple cards stay visible but the arrows step through them one at a
+  // time instead of jumping past 2-3 at once.
+  const scrollCarousel = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const firstCard = el.firstElementChild as HTMLElement | null;
+    const gap = 24;
+    const step = firstCard ? firstCard.getBoundingClientRect().width + gap : el.clientWidth;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
   return (
     <SectionWrapper className="!pt-24 md:!pt-32">
       {title && (
@@ -315,15 +363,51 @@ export function ProductSolutionsSection({
         {intro}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-up">
-        {solutions.map((s, i) => (
-          <SolutionCard
-            key={s.title}
-            solution={s}
-            transition={i === 0 ? "fade-right" : "diagonal"}
-          />
-        ))}
-      </div>
+      {layout === "carousel" ? (
+        <div className="reveal-up">
+          <div
+            ref={scrollerRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {solutions.map((s, i) => (
+              <div key={s.title} className="snap-start shrink-0 w-[85%] sm:w-[60%] lg:w-[31%]">
+                <SolutionCard solution={s} transition={i === 0 ? "fade-right" : "diagonal"} shadow={false} />
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-center gap-3 mt-8">
+            <button
+              type="button"
+              aria-label="Previous"
+              onClick={() => scrollCarousel(-1)}
+              className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
+              style={{ color: "#313131" }}
+            >
+              <LongArrow direction="left" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next"
+              onClick={() => scrollCarousel(1)}
+              className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
+              style={{ color: "#313131" }}
+            >
+              <LongArrow direction="right" />
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-up">
+          {solutions.map((s, i) => (
+            <SolutionCard
+              key={s.title}
+              solution={s}
+              transition={i === 0 ? "fade-right" : "diagonal"}
+            />
+          ))}
+        </div>
+      )}
     </SectionWrapper>
   );
 }

@@ -9,22 +9,22 @@ import mudroom from "@/assets/home/mudroom.jpg";
 import murphyBed from "@/assets/home/murphy-bed.jpg";
 import wineRack from "@/assets/home/wine-rack.jpg";
 
-export function GallerySection() {
+export function GallerySection({ title = "Works" }: { title?: string }) {
   return (
     <SectionWrapper>
       <div className="text-center mb-14 md:mb-20">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>Works</span>
+        <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
       </div>
       <WorksCarousel
         items={[
-          { src: customClosets, label: "Custom Closets" },
-          { src: entertainmentCenter, label: "Entertainment Centers" },
-          { src: garage, label: "Garage Storage" },
-          { src: homeOffice, label: "Home Office" },
-          { src: laundry, label: "Laundry Room" },
-          { src: mudroom, label: "Mudroom Storage" },
-          { src: murphyBed, label: "Murphy Beds" },
-          { src: wineRack, label: "Wine Racks" },
+          { src: customClosets, label: "Custom Closets", href: "/custom-closets" },
+          { src: entertainmentCenter, label: "Entertainment Centers", href: "#" },
+          { src: garage, label: "Garage Storage", href: "#" },
+          { src: homeOffice, label: "Home Office", href: "#" },
+          { src: laundry, label: "Laundry Room", href: "#" },
+          { src: mudroom, label: "Mudroom Storage", href: "#" },
+          { src: murphyBed, label: "Murphy Beds", href: "#" },
+          { src: wineRack, label: "Wine Racks", href: "#" },
         ]}
       />
     </SectionWrapper>

@@ -21,7 +21,7 @@ export function ProductFeaturesSection({
         )}
       </div>
       <div className="reveal-up">
-        <CaterpillarCarousel slides={slides} />
+        <CaterpillarCarousel slides={slides} arrowsOverlay />
       </div>
     </SectionWrapper>
   );

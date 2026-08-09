@@ -57,6 +57,7 @@ export function SubProductTemplate({ hero, solutions, designOptions, whyChoose, 
           description={hero.description}
           image={hero.image}
           imageAlt={hero.imageAlt}
+          onConsultOpen={() => setConsultOpen(true)}
         />
 
         {solutions && (

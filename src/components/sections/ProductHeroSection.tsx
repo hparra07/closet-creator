@@ -1,13 +1,17 @@
+import { YellowButton } from "@/components/common/YellowButton";
+
 export function ProductHeroSection({
   title,
   description,
   image,
   imageAlt,
+  onConsultOpen,
 }: {
-  title: string;
+  title: React.ReactNode;
   description: string;
   image: string;
   imageAlt: string;
+  onConsultOpen?: () => void;
 }) {
   return (
     <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
@@ -42,6 +46,11 @@ export function ProductHeroSection({
               {description}
             </p>
           </div>
+          {onConsultOpen && (
+            <div className="md:hidden mt-6 reveal-up" style={{ animationDelay: "300ms" }}>
+              <YellowButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</YellowButton>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -116,8 +116,8 @@ export function ContactForm() {
   return (
     <div className="md:col-span-9">
       {/* Progress */}
-      <div className="flex items-center gap-3 mb-10">
-        <span className="eyebrow text-foreground/60">STEP {String(step + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}</span>
+      <div className="flex items-center gap-3 mb-5">
+        <span className="eyebrow text-xs md:text-base text-foreground/60">STEP {String(step + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}</span>
         <div className="flex-1 h-px bg-foreground/15 relative">
           <div
             className="absolute left-0 top-0 h-full bg-primary transition-all duration-500"
@@ -127,10 +127,10 @@ export function ContactForm() {
       </div>
 
       {/* Question */}
-      <h3 className="font-display text-2xl md:text-3xl leading-tight mb-2 font-bold" style={{ color: "#313131" }}>
+      <h3 className="font-display text-lg md:text-3xl leading-tight mb-2 font-bold" style={{ color: "#313131" }}>
         {current.question}
       </h3>
-      {current.hint && <p className="text-sm text-foreground/60 mb-8">{current.hint}</p>}
+      {current.hint && <p className="text-sm text-foreground/60 mb-5">{current.hint}</p>}
       {!current.hint && <div className="mb-8" />}
 
       {/* Body */}
@@ -225,7 +225,7 @@ export function ContactForm() {
       </div>
 
       {/* Footer / nav */}
-      <div className="flex items-center justify-between mt-12 pt-6 border-t border-foreground/15">
+      <div className="flex items-center justify-between mt-6 pt-6 border-t border-foreground/15">
         <button
           type="button"
           onClick={back}

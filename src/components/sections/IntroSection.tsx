@@ -36,6 +36,7 @@ export function IntroSection() {
               { src: storageOffice, label: "Home Office" },
               { src: storageMore, label: "More Storage Ideas" },
             ]}
+            arrowsOverlay
           />
         </div>
       </div>

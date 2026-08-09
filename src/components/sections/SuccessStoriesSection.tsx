@@ -1,16 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { YellowButton } from "@/components/common/YellowButton";
-
-const TEXT_REVIEWS = [
-  { quote: "JL closets staff are EXTREMELY professional, helpful, flexible and most of all, SUPER friendly! Not to mention that the closets look AMAZING! I will recommend them to anyone who needs to update or custom design their closets. They do free estimates, including a 3D design of what you want. Thanks JL closets! ...", a: "Luis Emmanuelli", loc: "West Palm Beach, FL", source: "Google", url: "https://www.google.com/search?q=JL+Closets+reviews" },
-  { quote: "Most competitive pricing and excellent and timely work! 10/10 would recommend for custom closets and shelving!", a: "Sarah Jackson", loc: "FL", source: "Houzz", url: "https://www.houzz.com/professionals/closet-designers-and-professional-organizers/jl-closets" },
-  { quote: "First class company with great design and workmanship. Andrea and Sophia are an awesome team.", a: "Tod Edward Highfield", loc: "Boca Raton, FL", source: "Angi", url: "https://www.angi.com" },
-  { quote: "Truly the most considered cabinetry we've owned. Every detail was thought through and the install was flawless.", a: "Marisol R.", loc: "Boca Raton, FL", source: "Best Pick Reports", url: "https://www.bestpickreports.com" },
-  { quote: "From sketch to install, every step felt like an art form. We couldn't be happier with our new closet.", a: "James K.", loc: "Coral Gables, FL", source: "Google", url: "https://www.google.com/search?q=JL+Closets+reviews" },
-  { quote: "A pantry we now plan dinners around. Functional, beautiful, and exactly what we envisioned.", a: "Lena & Tom", loc: "Palm Beach, FL", source: "Facebook", url: "https://www.facebook.com/jlclosets" },
-];
-
-type Review = typeof TEXT_REVIEWS[number];
+import { getRandomReviews, type Review } from "@/lib/reviews";
 
 const FLOAT = [
   { duration: "6s", delay: "0s" },
@@ -107,19 +97,22 @@ export function SuccessStoriesSection() {
   const [revealed, setRevealed] = useState(false);
   const textScrollerRef = useRef<HTMLDivElement | null>(null);
   const [textIdx, setTextIdx] = useState(0);
+  // Picked once per mount, so each page shows a different random set of
+  // reviews instead of the same fixed 4 everywhere.
+  const [reviews] = useState(() => getRandomReviews(4));
 
   const onCarouselScroll = () => {
     const el = textScrollerRef.current;
     if (!el) return;
-    const cardW = el.scrollWidth / TEXT_REVIEWS.length;
+    const cardW = el.scrollWidth / reviews.length;
     const i = Math.round(el.scrollLeft / cardW);
-    setTextIdx(Math.min(Math.max(i, 0), TEXT_REVIEWS.length - 1));
+    setTextIdx(Math.min(Math.max(i, 0), reviews.length - 1));
   };
 
   const goToCard = (i: number) => {
     const el = textScrollerRef.current;
     if (!el) return;
-    const cardW = el.scrollWidth / TEXT_REVIEWS.length;
+    const cardW = el.scrollWidth / reviews.length;
     el.scrollTo({ left: cardW * i, behavior: "smooth" });
   };
 
@@ -142,7 +135,7 @@ export function SuccessStoriesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-8 md:py-10 overflow-hidden">
+    <section ref={sectionRef} className="relative py-16 md:py-24 overflow-hidden">
       <div className="lg:hidden flex flex-col items-center justify-center text-center px-4 mb-10">
         <span className="rule eyebrow mb-6" style={{ color: "#313131", fontSize: "20px" }}>SUCCESS STORIES</span>
         <p className="font-sans text-lg leading-snug max-w-md" style={{ color: "#313131" }}>
@@ -152,7 +145,7 @@ export function SuccessStoriesSection() {
 
       <div className="hidden lg:grid mx-auto grid-cols-[1fr_minmax(280px,360px)_1fr] gap-x-10 items-center" style={{ maxWidth: "1400px" }}>
         <div className="flex flex-col gap-6">
-          {[TEXT_REVIEWS[0], TEXT_REVIEWS[2], TEXT_REVIEWS[4]].map((r, i) => (
+          {[reviews[0], reviews[2]].map((r, i) => (
             <ReviewCard key={r.a} review={r} revealed={revealed} index={i * 2} />
           ))}
         </div>
@@ -162,13 +155,13 @@ export function SuccessStoriesSection() {
           <p className="font-sans text-xl leading-snug mb-8" style={{ color: "#313131" }}>
             <strong className="font-bold">Experience home transformation</strong> through our client's eyes. <strong className="font-bold">Quality and trust</strong> in every project.
           </p>
-          <YellowButton onClick={() => window.open("https://www.google.com/search?q=JL+Closets+reviews", "_blank", "noopener,noreferrer")}>
+          <YellowButton onClick={() => window.open("https://jlclosets.com/jlclosets-reviews/", "_blank", "noopener,noreferrer")}>
             View More Reviews
           </YellowButton>
         </div>
 
         <div className="flex flex-col gap-6">
-          {[TEXT_REVIEWS[1], TEXT_REVIEWS[3], TEXT_REVIEWS[5]].map((r, i) => (
+          {[reviews[1], reviews[3]].map((r, i) => (
             <ReviewCard key={r.a} review={r} revealed={revealed} index={i * 2 + 1} />
           ))}
         </div>
@@ -182,7 +175,7 @@ export function SuccessStoriesSection() {
           className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth gap-4 px-5 pb-2"
           style={{ scrollbarWidth: "none" }}
         >
-          {TEXT_REVIEWS.map((r, i) => (
+          {reviews.map((r, i) => (
             <div key={i} className="snap-center shrink-0 w-[82vw] md:w-[55vw] max-w-[420px] p-6" style={{ backgroundColor: "#F1F1F1", borderRadius: "10px", color: "#313131", userSelect: "text" }}>
               <div className="flex items-start justify-between gap-3 mb-3">
                 <div>
@@ -208,7 +201,7 @@ export function SuccessStoriesSection() {
         </div>
 
         <div className="flex items-center justify-center gap-2 -mt-4">
-          {TEXT_REVIEWS.map((_, i) => (
+          {reviews.map((_, i) => (
             <button
               key={i}
               type="button"
@@ -220,7 +213,7 @@ export function SuccessStoriesSection() {
         </div>
 
         <div className="flex justify-center pt-2">
-          <YellowButton onClick={() => window.open("https://www.google.com/search?q=JL+Closets+reviews", "_blank", "noopener,noreferrer")}>
+          <YellowButton onClick={() => window.open("https://jlclosets.com/jlclosets-reviews/", "_blank", "noopener,noreferrer")}>
             View More Reviews
           </YellowButton>
         </div>

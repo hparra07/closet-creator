@@ -33,6 +33,7 @@ export function InspirationSection() {
               { src: storageOffice, label: "Home Office" },
               { src: storageMore, label: "More Storage Ideas" },
             ]}
+            arrowsOverlay
           />
         </div>
       </div>

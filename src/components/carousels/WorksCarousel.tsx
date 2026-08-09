@@ -1,16 +1,36 @@
 import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from "react";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 
 gsap.registerPlugin(Flip);
 
-export type WorksItem = { src: string; label?: string };
+export type WorksItem = { src: string; label?: string; href?: string };
 
 export function WorksCarousel({ items }: { items: WorksItem[] }) {
   const images = items.map((i) => i.src);
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [lightboxClosing, setLightboxClosing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const lightboxCloseTimeoutRef = useRef<number | undefined>(undefined);
+
+  // Plays the fade-in in reverse before actually unmounting the lightbox.
+  const closeLightbox = () => {
+    if (lightbox === null) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setLightbox(null);
+      return;
+    }
+    setLightboxClosing(true);
+    window.clearTimeout(lightboxCloseTimeoutRef.current);
+    lightboxCloseTimeoutRef.current = window.setTimeout(() => {
+      setLightbox(null);
+      setLightboxClosing(false);
+    }, 250);
+  };
+
+  useEffect(() => () => window.clearTimeout(lightboxCloseTimeoutRef.current), []);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
@@ -166,8 +186,20 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
                 }}
               >
                 <img src={images[idx]} alt="" loading="lazy" draggable={false} />
-                {isActive && items[idx].label && (
-                  <figcaption className="works-caption">{items[idx].label}</figcaption>
+                {isActive && (items[idx].label || items[idx].href) && (
+                  <figcaption className="works-caption">
+                    {items[idx].label && <span className="works-caption-label">{items[idx].label}</span>}
+                    {items[idx].href && (
+                      <a
+                        href={items[idx].href}
+                        onClick={(e) => e.stopPropagation()}
+                        className="works-caption-discover"
+                      >
+                        Discover
+                        <ArrowRight className="w-3.5 h-3.5 works-caption-arrow" />
+                      </a>
+                    )}
+                  </figcaption>
                 )}
               </figure>
             );
@@ -204,8 +236,8 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
 
       {lightbox !== null && (
         <div
-          className="works-lightbox"
-          onClick={() => setLightbox(null)}
+          className={`works-lightbox ${lightboxClosing ? "works-lightbox-closing" : ""}`}
+          onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
         >
@@ -215,7 +247,7 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
             className="works-lightbox-close"
             onClick={(e) => {
               e.stopPropagation();
-              setLightbox(null);
+              closeLightbox();
             }}
           >
             ×
@@ -292,16 +324,44 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
           bottom: 0;
           margin: 0;
           padding: 28px 20px 18px;
-          background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+          background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
           color: #fff;
           font-family: var(--font-sans);
+          pointer-events: none;
+        }
+        .works-caption-label {
+          display: block;
           font-size: 15px;
           font-weight: 600;
           letter-spacing: 0.01em;
-          pointer-events: none;
+          margin-bottom: 8px;
+        }
+        .works-caption-discover {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          color: var(--color-primary);
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          pointer-events: auto;
+          cursor: pointer;
+          transition: color 0.3s ease;
+        }
+        .works-caption-discover:hover {
+          color: #fff;
+          text-decoration: underline;
+        }
+        .works-caption-arrow {
+          transition: transform 0.3s ease;
+        }
+        .works-caption-discover:hover .works-caption-arrow {
+          transform: translateX(3px);
         }
         @media (min-width: 768px) {
-          .works-caption { font-size: 18px; padding: 40px 24px 22px; }
+          .works-caption { padding: 40px 24px 22px; }
+          .works-caption-label { font-size: 18px; margin-bottom: 10px; }
         }
 
         .works-item.is-far {
@@ -366,6 +426,12 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
           padding: 40px;
           animation: works-fade 0.25s ease;
         }
+        .works-lightbox-closing {
+          animation: works-fade-out 0.25s ease forwards;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .works-lightbox, .works-lightbox-closing { animation: none; }
+        }
         .works-lightbox-figure {
           display: flex;
           flex-direction: column;
@@ -413,6 +479,7 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
         .works-lightbox-prev { left: 16px; }
         .works-lightbox-next { right: 16px; }
         @keyframes works-fade { from { opacity: 0 } to { opacity: 1 } }
+        @keyframes works-fade-out { from { opacity: 1 } to { opacity: 0 } }
       `}</style>
     </>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 gsap.registerPlugin(Flip);
 
@@ -21,12 +22,12 @@ function useVisibleCount() {
   return count;
 }
 
-export function CaterpillarCarousel({ slides }: { slides: Slide[] }) {
+export function CaterpillarCarousel({ slides, arrowsOverlay = false }: { slides: Slide[]; arrowsOverlay?: boolean }) {
   const visible = useVisibleCount();
-  return <CarouselInner key={visible} slides={slides} visible={visible} />;
+  return <CarouselInner key={visible} slides={slides} visible={visible} arrowsOverlay={arrowsOverlay} />;
 }
 
-function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }) {
+function CarouselInner({ slides, visible, arrowsOverlay }: { slides: Slide[]; visible: number; arrowsOverlay: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
   const nextIndex = useRef(visible % slides.length);
@@ -123,35 +124,93 @@ function CarouselInner({ slides, visible }: { slides: Slide[]; visible: number }
   const cardWidth = visible === 2 ? "calc((100% - 5px) / 2)" : "calc((100% - 10px) / 3)";
 
   return (
-    <div className="caterpillar-wrapper">
-      <div ref={containerRef} className="caterpillar-container">
-        {slides.slice(0, visible).map((s, i) => (
-          <div key={`${s.src}-${i}`} className="cat-card">
-            <img src={s.src} alt={s.label ?? ""} />
-            {s.label ? <span className="cat-label">{s.label}</span> : null}
-          </div>
-        ))}
+    <div className={`caterpillar-wrapper ${arrowsOverlay ? "caterpillar-wrapper--overlay" : ""}`}>
+      <div className="caterpillar-stage">
+        <div ref={containerRef} className="caterpillar-container">
+          {slides.slice(0, visible).map((s, i) => (
+            <div key={`${s.src}-${i}`} className="cat-card">
+              <img src={s.src} alt={s.label ?? ""} />
+              {s.label ? <span className="cat-label">{s.label}</span> : null}
+            </div>
+          ))}
+        </div>
+
+        {arrowsOverlay && (
+          <>
+            <button
+              type="button"
+              aria-label="Previous"
+              onClick={() => updateCaterpillar(false)}
+              className="caterpillar-arrow caterpillar-arrow--left"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next"
+              onClick={() => updateCaterpillar(true)}
+              className="caterpillar-arrow caterpillar-arrow--right"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </>
+        )}
       </div>
 
-      <div className="caterpillar-buttons">
-        <button
-          type="button"
-          id="prev"
-          onClick={() => updateCaterpillar(false)}
-          className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
-        >
-          Previous
-        </button>
-        <button
-          type="button"
-          id="next"
-          onClick={() => updateCaterpillar(true)}
-          className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
-        >
-          Next
-        </button>
-      </div>
+      {!arrowsOverlay && (
+        <div className="caterpillar-buttons">
+          <button
+            type="button"
+            id="prev"
+            onClick={() => updateCaterpillar(false)}
+            className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            id="next"
+            onClick={() => updateCaterpillar(true)}
+            className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
+          >
+            Next
+          </button>
+        </div>
+      )}
       <style>{`
+        .caterpillar-stage {
+          position: relative;
+          width: 100%;
+        }
+
+        .caterpillar-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 5;
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 9999px;
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(4px);
+          color: #313131;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+          cursor: pointer;
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .caterpillar-arrow:hover {
+          background: var(--primary);
+          color: var(--primary-foreground);
+        }
+        .caterpillar-arrow--left { left: 12px; }
+        .caterpillar-arrow--right { right: 12px; }
+        @media (min-width: 768px) {
+          .caterpillar-arrow--left { left: 20px; }
+          .caterpillar-arrow--right { right: 20px; }
+        }
         .caterpillar-wrapper {
           width: 100%;
           display: flex;

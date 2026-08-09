@@ -97,9 +97,12 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
         <ul className="hidden lg:flex flex-1 items-center justify-center gap-[clamp(12px,calc(6.135vw_-_50.822px),32px)] text-[clamp(12px,calc(1.227vw_-_0.564px),16px)] font-medium">
           {NAV.map((n) => (
             <li key={n.label} className="relative cursor-pointer group py-6">
-              {n.href && !n.submenu ? (
+              {n.href ? (
                 <Link to={n.href} className="relative inline-flex items-center gap-1 whitespace-nowrap after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1.5px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 group-hover:after:w-full">
                   {n.label}
+                  {n.submenu && (
+                    <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+                  )}
                 </Link>
               ) : (
                 <span className="relative inline-flex items-center gap-1 whitespace-nowrap after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1.5px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 group-hover:after:w-full">
@@ -191,6 +194,24 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
                     >
                       {n.label}
                     </Link>
+                  ) : n.href ? (
+                    <div className="flex items-center justify-between py-3">
+                      <Link
+                        to={n.href}
+                        className="text-left text-[22px] font-semibold tracking-tight"
+                        onClick={() => toggleMobileMenu.current()}
+                      >
+                        {n.label}
+                      </Link>
+                      <button
+                        type="button"
+                        aria-label={isSectionOpen ? `Collapse ${n.label}` : `Expand ${n.label}`}
+                        className="p-2 -m-2 cursor-pointer"
+                        onClick={() => setOpenSection(isSectionOpen ? null : n.label)}
+                      >
+                        <ChevronDown className={`w-4 h-4 transition-transform ${isSectionOpen ? "rotate-180" : ""}`} />
+                      </button>
+                    </div>
                   ) : (
                     <button
                       className="w-full flex items-center justify-between py-3 text-left text-[22px] font-semibold tracking-tight cursor-pointer"

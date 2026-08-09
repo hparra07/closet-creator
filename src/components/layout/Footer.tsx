@@ -8,6 +8,15 @@ const FOOTER_LINKS: Record<string, string> = {
   "About Us": "/about",
   "Contact Us": "/contact",
   "Custom Closets": "/custom-closets",
+  "Broward County": "/service-areas/broward-county",
+  "Collier County": "/service-areas/collier-county",
+  "Indian River County": "/service-areas/indian-river-county",
+  "Lee County": "/service-areas/lee-county",
+  "Martin County": "/service-areas/martin-county",
+  "Miami Dade County": "/service-areas/miami-dade-county",
+  "Okeechobee County": "/service-areas/okeechobee-county",
+  "Palm Beach County": "/service-areas/palm-beach-county",
+  "St Lucie County": "/service-areas/st-lucie-county",
 };
 
 export function Footer() {
@@ -101,6 +110,7 @@ export function Footer() {
               },
               {
                 heading: "Areas Served",
+                headingHref: "/service-areas",
                 items: [
                   "Broward County",
                   "Collier County",
@@ -115,7 +125,9 @@ export function Footer() {
               },
             ].map((col) => (
               <div key={col.heading}>
-                <p className="eyebrow mb-4 font-bold text-ink-foreground">{col.heading}</p>
+                <p className="eyebrow mb-4 font-bold text-ink-foreground">
+                  {col.headingHref ? <Link to={col.headingHref} className="hover:text-primary transition">{col.heading}</Link> : col.heading}
+                </p>
                 <ul className="space-y-2 text-ink-foreground/75">
                   {col.items.map((item) => (
                     <li key={item} className="hover:text-primary cursor-pointer transition">

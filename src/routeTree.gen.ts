@@ -9,13 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ServiceAreasRouteImport } from './routes/service-areas'
 import { Route as CustomClosetsRouteImport } from './routes/custom-closets'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServiceAreasStLucieCountyRouteImport } from './routes/service-areas_.st-lucie-county'
+import { Route as ServiceAreasPalmBeachCountyRouteImport } from './routes/service-areas_.palm-beach-county'
+import { Route as ServiceAreasOkeechobeeCountyRouteImport } from './routes/service-areas_.okeechobee-county'
+import { Route as ServiceAreasMiamiDadeCountyRouteImport } from './routes/service-areas_.miami-dade-county'
+import { Route as ServiceAreasMartinCountyRouteImport } from './routes/service-areas_.martin-county'
+import { Route as ServiceAreasLeeCountyRouteImport } from './routes/service-areas_.lee-county'
+import { Route as ServiceAreasIndianRiverCountyRouteImport } from './routes/service-areas_.indian-river-county'
+import { Route as ServiceAreasCollierCountyRouteImport } from './routes/service-areas_.collier-county'
+import { Route as ServiceAreasBrowardCountyRouteImport } from './routes/service-areas_.broward-county'
 import { Route as CustomClosetsWalkInClosetsRouteImport } from './routes/custom-closets_.walk-in-closets'
 import { Route as AccessoriesClosetLightingRouteImport } from './routes/accessories_.closet-lighting'
 
+const ServiceAreasRoute = ServiceAreasRouteImport.update({
+  id: '/service-areas',
+  path: '/service-areas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CustomClosetsRoute = CustomClosetsRouteImport.update({
   id: '/custom-closets',
   path: '/custom-closets',
@@ -36,6 +51,59 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServiceAreasStLucieCountyRoute =
+  ServiceAreasStLucieCountyRouteImport.update({
+    id: '/service-areas_/st-lucie-county',
+    path: '/service-areas/st-lucie-county',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasPalmBeachCountyRoute =
+  ServiceAreasPalmBeachCountyRouteImport.update({
+    id: '/service-areas_/palm-beach-county',
+    path: '/service-areas/palm-beach-county',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasOkeechobeeCountyRoute =
+  ServiceAreasOkeechobeeCountyRouteImport.update({
+    id: '/service-areas_/okeechobee-county',
+    path: '/service-areas/okeechobee-county',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasMiamiDadeCountyRoute =
+  ServiceAreasMiamiDadeCountyRouteImport.update({
+    id: '/service-areas_/miami-dade-county',
+    path: '/service-areas/miami-dade-county',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasMartinCountyRoute =
+  ServiceAreasMartinCountyRouteImport.update({
+    id: '/service-areas_/martin-county',
+    path: '/service-areas/martin-county',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasLeeCountyRoute = ServiceAreasLeeCountyRouteImport.update({
+  id: '/service-areas_/lee-county',
+  path: '/service-areas/lee-county',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiceAreasIndianRiverCountyRoute =
+  ServiceAreasIndianRiverCountyRouteImport.update({
+    id: '/service-areas_/indian-river-county',
+    path: '/service-areas/indian-river-county',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasCollierCountyRoute =
+  ServiceAreasCollierCountyRouteImport.update({
+    id: '/service-areas_/collier-county',
+    path: '/service-areas/collier-county',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasBrowardCountyRoute =
+  ServiceAreasBrowardCountyRouteImport.update({
+    id: '/service-areas_/broward-county',
+    path: '/service-areas/broward-county',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CustomClosetsWalkInClosetsRoute =
   CustomClosetsWalkInClosetsRouteImport.update({
     id: '/custom-closets_/walk-in-closets',
@@ -54,16 +122,36 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/service-areas': typeof ServiceAreasRoute
   '/accessories/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
+  '/service-areas/broward-county': typeof ServiceAreasBrowardCountyRoute
+  '/service-areas/collier-county': typeof ServiceAreasCollierCountyRoute
+  '/service-areas/indian-river-county': typeof ServiceAreasIndianRiverCountyRoute
+  '/service-areas/lee-county': typeof ServiceAreasLeeCountyRoute
+  '/service-areas/martin-county': typeof ServiceAreasMartinCountyRoute
+  '/service-areas/miami-dade-county': typeof ServiceAreasMiamiDadeCountyRoute
+  '/service-areas/okeechobee-county': typeof ServiceAreasOkeechobeeCountyRoute
+  '/service-areas/palm-beach-county': typeof ServiceAreasPalmBeachCountyRoute
+  '/service-areas/st-lucie-county': typeof ServiceAreasStLucieCountyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/service-areas': typeof ServiceAreasRoute
   '/accessories/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
+  '/service-areas/broward-county': typeof ServiceAreasBrowardCountyRoute
+  '/service-areas/collier-county': typeof ServiceAreasCollierCountyRoute
+  '/service-areas/indian-river-county': typeof ServiceAreasIndianRiverCountyRoute
+  '/service-areas/lee-county': typeof ServiceAreasLeeCountyRoute
+  '/service-areas/martin-county': typeof ServiceAreasMartinCountyRoute
+  '/service-areas/miami-dade-county': typeof ServiceAreasMiamiDadeCountyRoute
+  '/service-areas/okeechobee-county': typeof ServiceAreasOkeechobeeCountyRoute
+  '/service-areas/palm-beach-county': typeof ServiceAreasPalmBeachCountyRoute
+  '/service-areas/st-lucie-county': typeof ServiceAreasStLucieCountyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,8 +159,18 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/service-areas': typeof ServiceAreasRoute
   '/accessories_/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets_/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
+  '/service-areas_/broward-county': typeof ServiceAreasBrowardCountyRoute
+  '/service-areas_/collier-county': typeof ServiceAreasCollierCountyRoute
+  '/service-areas_/indian-river-county': typeof ServiceAreasIndianRiverCountyRoute
+  '/service-areas_/lee-county': typeof ServiceAreasLeeCountyRoute
+  '/service-areas_/martin-county': typeof ServiceAreasMartinCountyRoute
+  '/service-areas_/miami-dade-county': typeof ServiceAreasMiamiDadeCountyRoute
+  '/service-areas_/okeechobee-county': typeof ServiceAreasOkeechobeeCountyRoute
+  '/service-areas_/palm-beach-county': typeof ServiceAreasPalmBeachCountyRoute
+  '/service-areas_/st-lucie-county': typeof ServiceAreasStLucieCountyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,24 +179,54 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/service-areas'
     | '/accessories/closet-lighting'
     | '/custom-closets/walk-in-closets'
+    | '/service-areas/broward-county'
+    | '/service-areas/collier-county'
+    | '/service-areas/indian-river-county'
+    | '/service-areas/lee-county'
+    | '/service-areas/martin-county'
+    | '/service-areas/miami-dade-county'
+    | '/service-areas/okeechobee-county'
+    | '/service-areas/palm-beach-county'
+    | '/service-areas/st-lucie-county'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/service-areas'
     | '/accessories/closet-lighting'
     | '/custom-closets/walk-in-closets'
+    | '/service-areas/broward-county'
+    | '/service-areas/collier-county'
+    | '/service-areas/indian-river-county'
+    | '/service-areas/lee-county'
+    | '/service-areas/martin-county'
+    | '/service-areas/miami-dade-county'
+    | '/service-areas/okeechobee-county'
+    | '/service-areas/palm-beach-county'
+    | '/service-areas/st-lucie-county'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/service-areas'
     | '/accessories_/closet-lighting'
     | '/custom-closets_/walk-in-closets'
+    | '/service-areas_/broward-county'
+    | '/service-areas_/collier-county'
+    | '/service-areas_/indian-river-county'
+    | '/service-areas_/lee-county'
+    | '/service-areas_/martin-county'
+    | '/service-areas_/miami-dade-county'
+    | '/service-areas_/okeechobee-county'
+    | '/service-areas_/palm-beach-county'
+    | '/service-areas_/st-lucie-county'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,12 +234,29 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   CustomClosetsRoute: typeof CustomClosetsRoute
+  ServiceAreasRoute: typeof ServiceAreasRoute
   AccessoriesClosetLightingRoute: typeof AccessoriesClosetLightingRoute
   CustomClosetsWalkInClosetsRoute: typeof CustomClosetsWalkInClosetsRoute
+  ServiceAreasBrowardCountyRoute: typeof ServiceAreasBrowardCountyRoute
+  ServiceAreasCollierCountyRoute: typeof ServiceAreasCollierCountyRoute
+  ServiceAreasIndianRiverCountyRoute: typeof ServiceAreasIndianRiverCountyRoute
+  ServiceAreasLeeCountyRoute: typeof ServiceAreasLeeCountyRoute
+  ServiceAreasMartinCountyRoute: typeof ServiceAreasMartinCountyRoute
+  ServiceAreasMiamiDadeCountyRoute: typeof ServiceAreasMiamiDadeCountyRoute
+  ServiceAreasOkeechobeeCountyRoute: typeof ServiceAreasOkeechobeeCountyRoute
+  ServiceAreasPalmBeachCountyRoute: typeof ServiceAreasPalmBeachCountyRoute
+  ServiceAreasStLucieCountyRoute: typeof ServiceAreasStLucieCountyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/service-areas': {
+      id: '/service-areas'
+      path: '/service-areas'
+      fullPath: '/service-areas'
+      preLoaderRoute: typeof ServiceAreasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/custom-closets': {
       id: '/custom-closets'
       path: '/custom-closets'
@@ -140,6 +285,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/service-areas_/st-lucie-county': {
+      id: '/service-areas_/st-lucie-county'
+      path: '/service-areas/st-lucie-county'
+      fullPath: '/service-areas/st-lucie-county'
+      preLoaderRoute: typeof ServiceAreasStLucieCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas_/palm-beach-county': {
+      id: '/service-areas_/palm-beach-county'
+      path: '/service-areas/palm-beach-county'
+      fullPath: '/service-areas/palm-beach-county'
+      preLoaderRoute: typeof ServiceAreasPalmBeachCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas_/okeechobee-county': {
+      id: '/service-areas_/okeechobee-county'
+      path: '/service-areas/okeechobee-county'
+      fullPath: '/service-areas/okeechobee-county'
+      preLoaderRoute: typeof ServiceAreasOkeechobeeCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas_/miami-dade-county': {
+      id: '/service-areas_/miami-dade-county'
+      path: '/service-areas/miami-dade-county'
+      fullPath: '/service-areas/miami-dade-county'
+      preLoaderRoute: typeof ServiceAreasMiamiDadeCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas_/martin-county': {
+      id: '/service-areas_/martin-county'
+      path: '/service-areas/martin-county'
+      fullPath: '/service-areas/martin-county'
+      preLoaderRoute: typeof ServiceAreasMartinCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas_/lee-county': {
+      id: '/service-areas_/lee-county'
+      path: '/service-areas/lee-county'
+      fullPath: '/service-areas/lee-county'
+      preLoaderRoute: typeof ServiceAreasLeeCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas_/indian-river-county': {
+      id: '/service-areas_/indian-river-county'
+      path: '/service-areas/indian-river-county'
+      fullPath: '/service-areas/indian-river-county'
+      preLoaderRoute: typeof ServiceAreasIndianRiverCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas_/collier-county': {
+      id: '/service-areas_/collier-county'
+      path: '/service-areas/collier-county'
+      fullPath: '/service-areas/collier-county'
+      preLoaderRoute: typeof ServiceAreasCollierCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas_/broward-county': {
+      id: '/service-areas_/broward-county'
+      path: '/service-areas/broward-county'
+      fullPath: '/service-areas/broward-county'
+      preLoaderRoute: typeof ServiceAreasBrowardCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/custom-closets_/walk-in-closets': {
       id: '/custom-closets_/walk-in-closets'
       path: '/custom-closets/walk-in-closets'
@@ -162,8 +370,18 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   CustomClosetsRoute: CustomClosetsRoute,
+  ServiceAreasRoute: ServiceAreasRoute,
   AccessoriesClosetLightingRoute: AccessoriesClosetLightingRoute,
   CustomClosetsWalkInClosetsRoute: CustomClosetsWalkInClosetsRoute,
+  ServiceAreasBrowardCountyRoute: ServiceAreasBrowardCountyRoute,
+  ServiceAreasCollierCountyRoute: ServiceAreasCollierCountyRoute,
+  ServiceAreasIndianRiverCountyRoute: ServiceAreasIndianRiverCountyRoute,
+  ServiceAreasLeeCountyRoute: ServiceAreasLeeCountyRoute,
+  ServiceAreasMartinCountyRoute: ServiceAreasMartinCountyRoute,
+  ServiceAreasMiamiDadeCountyRoute: ServiceAreasMiamiDadeCountyRoute,
+  ServiceAreasOkeechobeeCountyRoute: ServiceAreasOkeechobeeCountyRoute,
+  ServiceAreasPalmBeachCountyRoute: ServiceAreasPalmBeachCountyRoute,
+  ServiceAreasStLucieCountyRoute: ServiceAreasStLucieCountyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
