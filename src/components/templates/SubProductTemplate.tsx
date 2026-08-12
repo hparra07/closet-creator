@@ -10,7 +10,11 @@ import { WhyChooseSolutionSection, type SolutionReason } from "@/components/sect
 import { DesignOptionsSection, type DesignOption } from "@/components/sections/DesignOptionsSection";
 import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSection";
 import { FaqSection, type FaqItem } from "@/components/sections/FaqSection";
+import { BeforeAfterSection } from "@/components/sections/BeforeAfterSection";
+import { BEFORE_AFTER_EXAMPLES } from "@/lib/beforeAfterExamples";
+import { ProjectVideosSection, type ProjectVideo } from "@/components/sections/ProjectVideosSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
+import { VideoModal } from "@/components/modals/VideoModal";
 
 // Page layout for a subcategory page nested under a main product (e.g. Walk-In
 // Closets under Custom Closets). Lighter than MainProductTemplate: hero,
@@ -23,13 +27,15 @@ export type SubProductTemplateProps = {
   solutions?: { title?: string; intro: React.ReactNode; introSize?: "lg" | "sm"; items: ProductSolution[] };
   designOptions?: { title: string; intro?: React.ReactNode; options: DesignOption[] };
   whyChoose?: { title: React.ReactNode; intro: React.ReactNode; reasons: SolutionReason[]; images: string[] };
+  projectVideos?: ProjectVideo[];
   accessories?: { title?: string; cards: AccessoryCard[] };
   recommended?: { title: string; subtitle?: string; slides: { src: string; label: string }[] };
   faq?: { title: string; subtitle?: string; items: FaqItem[] };
 };
 
-export function SubProductTemplate({ hero, solutions, designOptions, whyChoose, accessories, recommended, faq }: SubProductTemplateProps) {
+export function SubProductTemplate({ hero, solutions, designOptions, whyChoose, projectVideos, accessories, recommended, faq }: SubProductTemplateProps) {
   const [consultOpen, setConsultOpen] = useState(false);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -77,6 +83,10 @@ export function SubProductTemplate({ hero, solutions, designOptions, whyChoose, 
           />
         )}
 
+        {projectVideos && (
+          <ProjectVideosSection videos={projectVideos} onVideoOpen={setVideoUrl} />
+        )}
+
         {whyChoose && (
           <WhyChooseSolutionSection
             title={whyChoose.title}
@@ -85,6 +95,8 @@ export function SubProductTemplate({ hero, solutions, designOptions, whyChoose, 
             images={whyChoose.images}
           />
         )}
+
+        <BeforeAfterSection items={BEFORE_AFTER_EXAMPLES} />
 
         {accessories && (
           <PremiumAccessoriesSection title={accessories.title} cards={accessories.cards} />
@@ -114,6 +126,7 @@ export function SubProductTemplate({ hero, solutions, designOptions, whyChoose, 
       <Footer />
 
       <ConsultModal open={consultOpen} onClose={() => setConsultOpen(false)} />
+      <VideoModal url={videoUrl} onClose={() => setVideoUrl(null)} />
     </div>
   );
 }

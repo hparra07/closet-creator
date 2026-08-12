@@ -11,20 +11,18 @@ import { GallerySection } from "@/components/sections/GallerySection";
 import { WhyChooseUsV2 } from "@/components/sections/WhyChooseUsV2";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
-import heroImg from "@/assets/shared/why-frame-1.jpg";
-import storyImg from "@/assets/shared/in-home-consultation.jpg";
+import heroImg from "@/assets/shared/why-frame-1.webp";
+import { pageHead, SITE_URL } from "@/lib/pageHead";
+import storyImg from "@/assets/shared/in-home-consultation.webp";
 
 export const Route = createFileRoute("/service-areas")({
-  head: () => ({
-    meta: [
-      { title: "Service Areas | JL Closets Custom Storage Across South Florida" },
-      {
-        name: "description",
-        content:
-          "JL Closets designs and installs custom closets and storage solutions across Broward, Palm Beach, Miami-Dade, and every South Florida county we serve.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Service Areas | JL Closets Custom Storage Across South Florida",
+      description: "JL Closets designs and installs custom closets and storage solutions across Broward, Palm Beach, Miami-Dade, and every South Florida county we serve.",
+      path: "/service-areas",
+      image: `${SITE_URL}${heroImg}`,
+    }),
   component: ServiceAreas,
 });
 

@@ -1,19 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { pageHead } from "@/lib/pageHead";
 import { CountyTemplate } from "@/components/templates/CountyTemplate";
 import { COUNTY_PRODUCTS, stackImg1, stackImg2, stackImg3, stackImg4, stackImg5 } from "@/lib/countyProducts";
 import { defaultCountyFaqs, defaultCountyReasons } from "@/lib/countyPageDefaults";
 
 export const Route = createFileRoute("/service-areas_/martin-county")({
-  head: () => ({
-    meta: [
-      { title: "Custom Storage Solutions in Martin County | JL Closets" },
-      {
-        name: "description",
-        content:
-          "JL Closets designs and installs custom closets and storage solutions across Martin County — Stuart's waterfront charm and beyond.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Custom Storage Solutions in Martin County | JL Closets",
+      description: "JL Closets designs and installs custom closets and storage solutions across Martin County — Stuart's waterfront charm and beyond.",
+      path: "/service-areas/martin-county",
+    }),
   component: MartinCounty,
 });
 

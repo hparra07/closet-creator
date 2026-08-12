@@ -13,7 +13,7 @@ export function ProductFeaturesSection({
   return (
     <SectionWrapper>
       <div className="text-center mb-10 md:mb-14 reveal-up">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
+        <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
         {subtitle && (
           <p className="mt-4 font-sans text-lg md:text-xl leading-snug" style={{ color: "#313131" }}>
             {subtitle}

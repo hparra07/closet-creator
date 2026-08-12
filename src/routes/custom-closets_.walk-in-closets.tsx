@@ -3,38 +3,40 @@ import { SubProductTemplate } from "@/components/templates/SubProductTemplate";
 import type { ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import type { FaqItem } from "@/components/sections/FaqSection";
 import type { AccessoryCard } from "@/components/sections/PremiumAccessoriesSection";
+import type { ProjectVideo } from "@/components/sections/ProjectVideosSection";
 import { recommendedSlides } from "@/lib/storageCategories";
 import customClosetsImg from "@/assets/walk-in-closets/walk-in-hero.webp";
-import closetAccessories from "@/assets/walk-in-closets/closet-accesories.jpeg";
-import cabinetFinishes from "@/assets/walk-in-closets/cabinet-finishes.jpeg";
-import closetLighting from "@/assets/walk-in-closets/closet-lighting.jpeg";
-import doorsDrawers from "@/assets/walk-in-closets/doors-drawers.jpeg";
-import stackImg1 from "@/assets/custom-closets/card-hero-1.jpg";
-import stackImg2 from "@/assets/custom-closets/card-hero-2.jpg";
-import stackImg3 from "@/assets/custom-closets/card-hero-3.jpg";
-import stackImg4 from "@/assets/custom-closets/card-hero-4.jpg";
-import stackImg5 from "@/assets/custom-closets/vert-banner-1.jpg";
-import closetImgFallback from "@/assets/custom-closets/closet.jpg";
-import projectExtra1 from "@/assets/misc/consult.jpg";
-import projectExtra2 from "@/assets/misc/dark-office.jpg";
-import projectExtra3 from "@/assets/misc/pantry.jpg";
-import lightingImg1 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-1.jpg";
-import lightingImg2 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-2.jpg";
-import lightingImg3 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-3.jpg";
-import lightingImg4 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-4.jpg";
-import doorsImg1 from "@/assets/walk-in-closets/closet-doors-and-drawers-1.jpg";
+import { pageHead, SITE_URL } from "@/lib/pageHead";
+import closetAccessories from "@/assets/walk-in-closets/closet-accesories.webp";
+import cabinetFinishes from "@/assets/walk-in-closets/cabinet-finishes.webp";
+import closetLighting from "@/assets/walk-in-closets/closet-lighting.webp";
+import doorsDrawers from "@/assets/walk-in-closets/doors-drawers.webp";
+import stackImg1 from "@/assets/custom-closets/card-hero-1.webp";
+import stackImg2 from "@/assets/custom-closets/card-hero-2.webp";
+import stackImg3 from "@/assets/custom-closets/card-hero-3.webp";
+import stackImg4 from "@/assets/custom-closets/card-hero-4.webp";
+import stackImg5 from "@/assets/custom-closets/vert-banner-1.webp";
+import closetImgFallback from "@/assets/custom-closets/closet.webp";
+import projectExtra1 from "@/assets/misc/consult.webp";
+import projectExtra2 from "@/assets/misc/dark-office.webp";
+import projectExtra3 from "@/assets/misc/pantry.webp";
+import lightingImg1 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-1.webp";
+import lightingImg2 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-2.webp";
+import lightingImg3 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-3.webp";
+import lightingImg4 from "@/assets/walk-in-closets/closet-lighting-solutions-custom-closets-4.webp";
+import doorsImg1 from "@/assets/walk-in-closets/closet-doors-and-drawers-1.webp";
 import doorsImg2 from "@/assets/walk-in-closets/closet-doors-and-drawers-2.webp";
-import doorsImg3 from "@/assets/walk-in-closets/closet-doors-and-drawers-3.jpg";
-import doorsImg4 from "@/assets/walk-in-closets/closet-doors-and-drawers-4.jpg";
-import doorsImg5 from "@/assets/walk-in-closets/closet-doors-and-drawers-5.jpg";
-import islandImg1 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-1.jpg";
+import doorsImg3 from "@/assets/walk-in-closets/closet-doors-and-drawers-3.webp";
+import doorsImg4 from "@/assets/walk-in-closets/closet-doors-and-drawers-4.webp";
+import doorsImg5 from "@/assets/walk-in-closets/closet-doors-and-drawers-5.webp";
+import islandImg1 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-1.webp";
 import islandImg2 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-2.webp";
-import islandImg3 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-3.jpg";
-import islandImg4 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-4.jpg";
-import shelvingImg1 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-1.jpg"
-import shelvingImg2 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-2.jpg";
-import shelvingImg3 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-3.jpg";
-import shelvingImg4 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-4.jpg";
+import islandImg3 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-3.webp";
+import islandImg4 from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-4.webp";
+import shelvingImg1 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-1.webp"
+import shelvingImg2 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-2.webp";
+import shelvingImg3 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-3.webp";
+import shelvingImg4 from "@/assets/walk-in-closets/walk-in-closet-with-custom-drawers-and-shelving-storage-4.webp";
 
 const MODERN_DETAILS_1 = {
   title: "Project 1",
@@ -223,6 +225,14 @@ const DESIGN_OPTIONS = [
   },
 ];
 
+const PROJECT_VIDEOS: ProjectVideo[] = [
+  { thumbnail: stackImg1, video: "https://www.youtube.com/watch?v=Hyq4t6QsdzE", label: "Modern Walk-In Reveal" },
+  { thumbnail: stackImg3, video: "https://www.youtube.com/watch?v=yi5TaJ2haOU", label: "Luxury Walk-In Walkthrough" },
+  { thumbnail: closetImgFallback, video: "https://www.youtube.com/watch?v=0Nc5hP68mLs", label: "Small Space Walk-In" },
+  { thumbnail: lightingImg1, video: "#", label: "Lighting Detail" },
+  { thumbnail: islandImg1, video: "#", label: "Island Feature" },
+];
+
 const ACCESSORY_CARDS: AccessoryCard[] = [
   { title: "Closet Accessories", desc: "Smart add-ons to maximize every inch of storage.", image: closetAccessories },
   { title: "Cabinet Finishes", desc: "Premium finishes to match your personal style.", image: cabinetFinishes },
@@ -301,7 +311,8 @@ const FAQS: FaqItem[] = [
     a: (
       <>
         <p>
-          Scheduling a consultation for your custom walk-in closet project is easy. Simply call our office at 561.912.9881 or visit our website to fill out a contact form. Our friendly team will assist you in setting up a convenient time for a free, no-obligation consultation. During this meeting, we'll discuss your walk-in closet ideas, assess your space, and start crafting a design that meets your needs and budget.
+          Scheduling a consultation for your custom walk-in closet project is easy. Simply call our office at{" "}
+          <a href="tel:+15619129881" className="text-primary hover:underline">(561) 912-9881</a> or visit our website to fill out a contact form. Our friendly team will assist you in setting up a convenient time for a free, no-obligation consultation. During this meeting, we'll discuss your walk-in closet ideas, assess your space, and start crafting a design that meets your needs and budget.
         </p>
         <p>
           As South Florida's highest-rated custom closet company, we're excited to help bring your walk-in closet dreams to life. Our expert designers are ready to share their knowledge and create a tailored solution for your space. Don't wait to transform your closet – reach out today.
@@ -312,16 +323,13 @@ const FAQS: FaqItem[] = [
 ];
 
 export const Route = createFileRoute("/custom-closets_/walk-in-closets")({
-  head: () => ({
-    meta: [
-      { title: "Walk-In Closets in South Florida | JL Closets" },
-      {
-        name: "description",
-        content:
-          "Luxury walk-in closet designs meticulously crafted to transform your space into a personal sanctuary. Custom storage solutions across South Florida.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Walk-In Closets in South Florida | JL Closets",
+      description: "Luxury walk-in closet designs meticulously crafted to transform your space into a personal sanctuary. Custom storage solutions across South Florida.",
+      path: "/custom-closets/walk-in-closets",
+      image: `${SITE_URL}${customClosetsImg}`,
+    }),
   component: WalkInClosets,
 });
 
@@ -353,6 +361,7 @@ function WalkInClosets() {
         ),
         options: DESIGN_OPTIONS,
       }}
+      projectVideos={PROJECT_VIDEOS}
       whyChoose={{
         title: (
           <>

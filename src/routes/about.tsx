@@ -7,11 +7,11 @@ import { AboutIntroSection } from "@/components/sections/AboutIntroSection";
 import { WhyChooseUsV2, type WhyCard } from "@/components/sections/WhyChooseUsV2";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { InspirationSection } from "@/components/sections/InspirationSection";
-import icon1 from "@/assets/global/icon-1.png";
-import icon2 from "@/assets/global/icon-2.png";
-import icon3 from "@/assets/global/icon-3.png";
-import icon4 from "@/assets/global/icon-4.png";
-import icon5 from "@/assets/global/icon-5.png";
+import icon1 from "@/assets/global/icon-1.webp";
+import icon2 from "@/assets/global/icon-2.webp";
+import icon3 from "@/assets/global/icon-3.webp";
+import icon4 from "@/assets/global/icon-4.webp";
+import icon5 from "@/assets/global/icon-5.webp";
 
 const ABOUT_CARDS: WhyCard[] = [
   { title: "Over 30 Years of Expertise", desc: "We have been a trusted provider of custom storage solutions in South Florida since 1991, bringing over three decades of experience to every project we undertake.", icon: icon1 },
@@ -26,18 +26,15 @@ import { ShowroomSection } from "@/components/sections/ShowroomSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
+import { pageHead } from "@/lib/pageHead";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About JL Closets | South Florida's Most Trusted Custom Closet Company" },
-      {
-        name: "description",
-        content:
-          "Learn about JL Closets — over 30 years designing and installing custom closets, pantries, and storage systems across South Florida.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "About JL Closets | South Florida's Most Trusted Custom Closet Company",
+      description: "Learn about JL Closets — over 30 years designing and installing custom closets, pantries, and storage systems across South Florida.",
+      path: "/about",
+    }),
   component: About,
 });
 

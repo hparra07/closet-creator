@@ -15,7 +15,7 @@ export function PremiumAccessoriesSection({
   return (
     <SectionWrapper>
       <div className="text-center mb-10 md:mb-14 reveal-up">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
+        <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
       </div>
       <p className="text-center max-w-2xl mx-auto font-sans text-2xl md:text-3xl leading-snug mb-10 md:mb-14 reveal-up" style={{ color: "#313131" }}>
         Select from our <strong className="font-bold underline-animate">curated collection</strong> of smart accessories to <strong className="font-bold underline-animate">personalize your space</strong> and refine your daily organization.

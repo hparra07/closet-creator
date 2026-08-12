@@ -1,4 +1,4 @@
-import ctaBg from "@/assets/global/cta-background.jpeg";
+import ctaBg from "@/assets/global/cta-background.webp";
 import { YellowButton } from "@/components/common/YellowButton";
 
 export function CtaBannerSection({ onConsultOpen }: { onConsultOpen: () => void }) {

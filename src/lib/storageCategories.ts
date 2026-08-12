@@ -1,11 +1,11 @@
-import storageCloset from "@/assets/shared/storage-closet.png";
-import storagePantry from "@/assets/shared/storage-pantry.png";
-import storageMudroom from "@/assets/shared/storage-mudroom.png";
-import storageLaundry from "@/assets/shared/storage-laundry.png";
-import storageEntertainment from "@/assets/shared/storage-entertainment.png";
-import storageGarage from "@/assets/shared/storage-garage.png";
-import storageOffice from "@/assets/shared/storage-office.png";
-import storageMore from "@/assets/shared/storage-more.png";
+import storageCloset from "@/assets/shared/storage-closet.webp";
+import storagePantry from "@/assets/shared/storage-pantry.webp";
+import storageMudroom from "@/assets/shared/storage-mudroom.webp";
+import storageLaundry from "@/assets/shared/storage-laundry.webp";
+import storageEntertainment from "@/assets/shared/storage-entertainment.webp";
+import storageGarage from "@/assets/shared/storage-garage.webp";
+import storageOffice from "@/assets/shared/storage-office.webp";
+import storageMore from "@/assets/shared/storage-more.webp";
 
 // Every main product category, used to build the "Recommended For You" carousel
 // shown on category and subcategory pages. Keyed so a page can exclude its own

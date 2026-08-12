@@ -11,6 +11,8 @@ import {
 
 import appCss from "../styles.css?url";
 import { BackToTopButton } from "@/components/common/BackToTopButton";
+import { LOCAL_BUSINESS_SCHEMA } from "@/lib/localBusiness";
+import { pageHead } from "@/lib/pageHead";
 
 function NotFoundComponent() {
   return (
@@ -70,27 +72,28 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Custom Closets & Storage Systems in Florida | JL Closets" },
-      { name: "description", content: "South Florida's highest-rated custom closet company, providing expertly crafted custom closets and storage systems. Schedule your free design consultation" },
-      { name: "author", content: "JL Closets" },
-      { property: "og:title", content: "Custom Closets & Storage Systems in Florida | JL Closets" },
-      { property: "og:description", content: "South Florida's highest-rated custom closet company, providing expertly crafted custom closets and storage systems. Schedule your free design consultation" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Custom Closets & Storage Systems in Florida | JL Closets" },
-      { name: "twitter:description", content: "South Florida's highest-rated custom closet company, providing expertly crafted custom closets and storage systems. Schedule your free design consultation" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
+  head: () => {
+    const fallback = pageHead({
+      title: "Custom Closets & Storage Systems in Florida | JL Closets",
+      description: "South Florida's highest-rated custom closet company, providing expertly crafted custom closets and storage systems. Schedule your free design consultation",
+      path: "/",
+    });
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "author", content: "JL Closets" },
+        ...fallback.meta,
+      ],
+      links: [
+        {
+          rel: "stylesheet",
+          href: appCss,
+        },
+        ...fallback.links,
+      ],
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -102,6 +105,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(LOCAL_BUSINESS_SCHEMA) }}
+        />
       </head>
       <body>
         {children}

@@ -1,9 +1,9 @@
-import closetLighting from "@/assets/walk-in-closets/closet-lighting.jpeg";
-import cabinetFinishes from "@/assets/walk-in-closets/cabinet-finishes.jpeg";
-import doorsDrawers from "@/assets/walk-in-closets/doors-drawers.jpeg";
-import closetAccessories from "@/assets/walk-in-closets/closet-accesories.jpeg";
-import pantryImg from "@/assets/accessories/PWS1-wine-glass-storage.jpg";
-import garageImg from "@/assets/accessories/GLD3-garage-light-duty-hooks-organizer-wall-system.jpg";
+import closetLighting from "@/assets/walk-in-closets/closet-lighting.webp";
+import cabinetFinishes from "@/assets/walk-in-closets/cabinet-finishes.webp";
+import doorsDrawers from "@/assets/walk-in-closets/doors-drawers.webp";
+import closetAccessories from "@/assets/walk-in-closets/closet-accesories.webp";
+import pantryImg from "@/assets/accessories/PWS1-wine-glass-storage.webp";
+import garageImg from "@/assets/accessories/GLD3-garage-light-duty-hooks-organizer-wall-system.webp";
 
 // Every accessory category, used to build the "More Custom Closet
 // Accessories" grid shown on each accessory page. Keyed so a page can

@@ -6,24 +6,25 @@ import type { WhyCard } from "@/components/sections/WhyChooseUsV2";
 import type { ProjectVideo } from "@/components/sections/ProjectVideosSection";
 import type { FaqItem } from "@/components/sections/FaqSection";
 import { recommendedSlides } from "@/lib/storageCategories";
-import customClosetsImg from "@/assets/shared/custom-closets-img.jpg";
-import closetImg from "@/assets/custom-closets/closet.jpg";
-import storageCloset from "@/assets/shared/storage-closet.png";
-import banner2 from "@/assets/custom-closets/banner3.jpg";
-import banner3 from "@/assets/custom-closets/banner2.jpg";
-import banner4 from "@/assets/custom-closets/banner4.jpg";
+import customClosetsImg from "@/assets/shared/custom-closets-img.webp";
+import { pageHead, SITE_URL } from "@/lib/pageHead";
+import closetImg from "@/assets/custom-closets/closet.webp";
+import storageCloset from "@/assets/shared/storage-closet.webp";
+import banner2 from "@/assets/custom-closets/banner3.webp";
+import banner3 from "@/assets/custom-closets/banner2.webp";
+import banner4 from "@/assets/custom-closets/banner4.webp";
 import banner5 from "@/assets/custom-closets/banner-5.webp";
-import banner1 from "@/assets/custom-closets/big-banner-1.jpg";
-import cardHero1 from "@/assets/custom-closets/card-hero-1.jpg";
-import cardHero2 from "@/assets/custom-closets/card-hero-3.jpg";
-import cardHero3 from "@/assets/custom-closets/card-hero-2.jpg";
-import cardHero4 from "@/assets/custom-closets/card-hero-4.jpg";
-import featuredBanner1 from "@/assets/custom-closets/featured-banner-1.jpg";
-import icon1 from "@/assets/global/icon-1.png";
-import icon2 from "@/assets/global/icon-2.png";
-import icon3 from "@/assets/global/icon-3.png";
-import icon4 from "@/assets/global/icon-4.png";
-import icon5 from "@/assets/global/icon-5.png";
+import banner1 from "@/assets/custom-closets/big-banner-1.webp";
+import cardHero1 from "@/assets/custom-closets/card-hero-1.webp";
+import cardHero2 from "@/assets/custom-closets/card-hero-3.webp";
+import cardHero3 from "@/assets/custom-closets/card-hero-2.webp";
+import cardHero4 from "@/assets/custom-closets/card-hero-4.webp";
+import featuredBanner1 from "@/assets/custom-closets/featured-banner-1.webp";
+import icon1 from "@/assets/global/icon-1.webp";
+import icon2 from "@/assets/global/icon-2.webp";
+import icon3 from "@/assets/global/icon-3.webp";
+import icon4 from "@/assets/global/icon-4.webp";
+import icon5 from "@/assets/global/icon-5.webp";
 
 const SOLUTIONS: ProductSolution[] = [
   {
@@ -124,16 +125,13 @@ const FAQS: FaqItem[] = [
 ];
 
 export const Route = createFileRoute("/custom-closets")({
-  head: () => ({
-    meta: [
-      { title: "Custom Closets in South Florida | JL Closets" },
-      {
-        name: "description",
-        content:
-          "High-end custom closets designed to optimize your space and reflect your unique style. Walk-in closets, reach-in closets, and custom shoe storage across South Florida.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Custom Closets in South Florida | JL Closets",
+      description: "High-end custom closets designed to optimize your space and reflect your unique style. Walk-in closets, reach-in closets, and custom shoe storage across South Florida.",
+      path: "/custom-closets",
+      image: `${SITE_URL}${customClosetsImg}`,
+    }),
   component: CustomClosets,
 });
 

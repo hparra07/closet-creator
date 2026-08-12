@@ -5,6 +5,8 @@ import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
 import { ProductSolutionsSection, type ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ProductFeaturesSection } from "@/components/sections/ProductFeaturesSection";
+import { BeforeAfterSection } from "@/components/sections/BeforeAfterSection";
+import { BEFORE_AFTER_EXAMPLES } from "@/lib/beforeAfterExamples";
 import { FullscreenCarouselSection, type CarouselSlide } from "@/components/sections/FullscreenCarouselSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSection";
@@ -76,6 +78,8 @@ export function MainProductTemplate({
         />
 
         <ProjectVideosSection videos={projectVideos} onVideoOpen={setVideoUrl} />
+
+        <BeforeAfterSection items={BEFORE_AFTER_EXAMPLES} />
 
         <ProcessSection />
         <FullscreenCarouselSection slides={showcaseSlides} />

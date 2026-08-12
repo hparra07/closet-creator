@@ -346,10 +346,10 @@ export function ProductSolutionsSection({
   };
 
   return (
-    <SectionWrapper className="!pt-24 md:!pt-32">
+    <SectionWrapper>
       {title && (
         <div className="text-center mb-10 md:mb-14 reveal-up">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
+          <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
         </div>
       )}
       <div

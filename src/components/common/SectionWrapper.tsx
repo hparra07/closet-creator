@@ -8,7 +8,7 @@ export function SectionWrapper({
   className?: string;
 }) {
   return (
-    <section className={`relative px-5 md:px-10 lg:px-16 py-14 md:py-20 ${className}`}>
+    <section className={`relative px-5 md:px-10 lg:px-16 py-10 md:py-14 ${className}`}>
       {children}
     </section>
   );

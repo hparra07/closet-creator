@@ -2,35 +2,36 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CountyTemplate } from "@/components/templates/CountyTemplate";
 import type { ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import type { FaqItem } from "@/components/sections/FaqSection";
-import customClosetsImg from "@/assets/custom-closets/closet.jpg";
-import customClosetsImg2 from "@/assets/custom-closets/card-hero-1.jpg";
-import customClosetsImg3 from "@/assets/custom-closets/card-hero-2.jpg";
-import entertainmentImg from "@/assets/home/entertainment-center.jpg";
-import entertainmentImg2 from "@/assets/custom-closets/card-hero-3.jpg";
-import entertainmentImg3 from "@/assets/custom-closets/banner2.jpg";
-import homeOfficeImg from "@/assets/home/home-office-img.jpg";
-import homeOfficeImg2 from "@/assets/shared/design-and-drafting.jpg";
-import homeOfficeImg3 from "@/assets/custom-closets/card-hero-4.jpg";
-import pantryImg from "@/assets/misc/pantry.jpg";
-import pantryImg2 from "@/assets/shared/enjoy-life.jpg";
-import pantryImg3 from "@/assets/custom-closets/banner3.jpg";
-import mudroomImg from "@/assets/home/mudroom.jpg";
-import mudroomImg2 from "@/assets/shared/expert-installations.jpg";
-import mudroomImg3 from "@/assets/custom-closets/banner4.jpg";
-import laundryImg from "@/assets/home/laundry.jpg";
-import laundryImg2 from "@/assets/shared/in-home-consultation.jpg";
-import laundryImg3 from "@/assets/custom-closets/vert-banner-1.jpg";
-import garageImg from "@/assets/home/garage-img.jpg";
-import garageImg2 from "@/assets/shared/why-frame-2.jpg";
-import garageImg3 from "@/assets/shared/why-frame-3.jpg";
-import moreStorageImg from "@/assets/home/wine-rack.jpg";
-import moreStorageImg2 from "@/assets/home/murphy-bed.jpg";
-import moreStorageImg3 from "@/assets/custom-closets/big-banner-1.jpg";
-import stackImg1 from "@/assets/custom-closets/card-hero-1.jpg";
-import stackImg2 from "@/assets/custom-closets/card-hero-2.jpg";
-import stackImg3 from "@/assets/custom-closets/card-hero-3.jpg";
-import stackImg4 from "@/assets/custom-closets/card-hero-4.jpg";
-import stackImg5 from "@/assets/custom-closets/vert-banner-1.jpg";
+import customClosetsImg from "@/assets/custom-closets/closet.webp";
+import { pageHead, SITE_URL } from "@/lib/pageHead";
+import customClosetsImg2 from "@/assets/custom-closets/card-hero-1.webp";
+import customClosetsImg3 from "@/assets/custom-closets/card-hero-2.webp";
+import entertainmentImg from "@/assets/home/entertainment-center.webp";
+import entertainmentImg2 from "@/assets/custom-closets/card-hero-3.webp";
+import entertainmentImg3 from "@/assets/custom-closets/banner2.webp";
+import homeOfficeImg from "@/assets/home/home-office-img.webp";
+import homeOfficeImg2 from "@/assets/shared/design-and-drafting.webp";
+import homeOfficeImg3 from "@/assets/custom-closets/card-hero-4.webp";
+import pantryImg from "@/assets/misc/pantry.webp";
+import pantryImg2 from "@/assets/shared/enjoy-life.webp";
+import pantryImg3 from "@/assets/custom-closets/banner3.webp";
+import mudroomImg from "@/assets/home/mudroom.webp";
+import mudroomImg2 from "@/assets/shared/expert-installations.webp";
+import mudroomImg3 from "@/assets/custom-closets/banner4.webp";
+import laundryImg from "@/assets/home/laundry.webp";
+import laundryImg2 from "@/assets/shared/in-home-consultation.webp";
+import laundryImg3 from "@/assets/custom-closets/vert-banner-1.webp";
+import garageImg from "@/assets/home/garage-img.webp";
+import garageImg2 from "@/assets/shared/why-frame-2.webp";
+import garageImg3 from "@/assets/shared/why-frame-3.webp";
+import moreStorageImg from "@/assets/home/wine-rack.webp";
+import moreStorageImg2 from "@/assets/home/murphy-bed.webp";
+import moreStorageImg3 from "@/assets/custom-closets/big-banner-1.webp";
+import stackImg1 from "@/assets/custom-closets/card-hero-1.webp";
+import stackImg2 from "@/assets/custom-closets/card-hero-2.webp";
+import stackImg3 from "@/assets/custom-closets/card-hero-3.webp";
+import stackImg4 from "@/assets/custom-closets/card-hero-4.webp";
+import stackImg5 from "@/assets/custom-closets/vert-banner-1.webp";
 
 const BROWARD_PRODUCTS: ProductSolution[] = [
   {
@@ -119,16 +120,13 @@ const BROWARD_FAQS: FaqItem[] = [
 ];
 
 export const Route = createFileRoute("/service-areas_/broward-county")({
-  head: () => ({
-    meta: [
-      { title: "Custom Storage Solutions in Broward County | JL Closets" },
-      {
-        name: "description",
-        content:
-          "JL Closets designs and installs custom closets and storage solutions across Broward County — oceanfront condos, family homes, and urban neighborhoods.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Custom Storage Solutions in Broward County | JL Closets",
+      description: "JL Closets designs and installs custom closets and storage solutions across Broward County — oceanfront condos, family homes, and urban neighborhoods.",
+      path: "/service-areas/broward-county",
+      image: `${SITE_URL}${customClosetsImg}`,
+    }),
   component: BrowardCounty,
 });
 

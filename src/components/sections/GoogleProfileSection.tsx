@@ -1,13 +1,13 @@
 import { Star } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import showroom from "@/assets/contact/showroom.jpg";
+import showroom from "@/assets/contact/showroom.webp";
 
 export function GoogleProfileSection() {
   return (
     <SectionWrapper className="bg-[#f8f7f4]">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10 md:mb-14">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>Visit Our Google Business Profile</span>
+          <h2 className="rule eyebrow" style={{ color: "#313131" }}>Visit Our Google Business Profile</h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-0 overflow-hidden rounded-lg shadow-xl">
@@ -67,7 +67,7 @@ export function GoogleProfileSection() {
               </div>
               <div className="flex items-start gap-3">
                 <svg className="w-4 h-4 mt-0.5 shrink-0 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                <span>(561) 912 9881</span>
+                <a href="tel:+15619129881" className="hover:text-primary transition-colors">(561) 912-9881</a>
               </div>
             </div>
 

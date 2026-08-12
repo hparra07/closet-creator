@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, Children, isValidElement, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 
 export type FaqItem = { q: string; a: React.ReactNode };
+
+function nodeToText(node: ReactNode): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return Children.toArray(node).map(nodeToText).join(" ");
+  if (isValidElement(node)) return nodeToText((node.props as { children?: ReactNode }).children);
+  return "";
+}
 
 const DEFAULT_FAQS: FaqItem[] = [
   {
@@ -15,7 +23,12 @@ const DEFAULT_FAQS: FaqItem[] = [
   },
   {
     q: "What areas of South Florida do you serve?",
-    a: "We proudly serve a wide area across South Florida, including Palm Beach, Lee, Martin, Broward, Collier, and Miami-Dade counties. Whether you're in Boca Raton, Fort Lauderdale, Miami, Naples, or any surrounding areas, our team is ready to bring exceptional custom storage solutions right to your doorstep. If you are outside of our service areas, please give us a call at 561-912-9881 to discuss the particulars.",
+    a: (
+      <p>
+        We proudly serve a wide area across South Florida, including Palm Beach, Lee, Martin, Broward, Collier, and Miami-Dade counties. Whether you're in Boca Raton, Fort Lauderdale, Miami, Naples, or any surrounding areas, our team is ready to bring exceptional custom storage solutions right to your doorstep. If you are outside of our service areas, please give us a call at{" "}
+        <a href="tel:+15619129881" className="text-primary hover:underline">(561) 912-9881</a> to discuss the particulars.
+      </p>
+    ),
   },
   {
     q: "Can you work with small or awkward spaces?",
@@ -40,11 +53,25 @@ export function FaqSection({
 } = {}) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: nodeToText(faq.a).replace(/\s+/g, " ").trim(),
+      },
+    })),
+  };
+
   return (
     <SectionWrapper>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10 md:mb-14">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
+          <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
           {subtitle && (
             <p className="mt-4 font-sans text-lg md:text-xl leading-snug" style={{ color: "#313131" }}>
               {subtitle}
@@ -57,17 +84,20 @@ export function FaqSection({
             const isOpen = openIdx === i;
             return (
               <div key={i}>
-                <button
-                  className="w-full flex items-center justify-between py-5 md:py-6 text-left cursor-pointer group"
-                  onClick={() => setOpenIdx(isOpen ? null : i)}
-                >
-                  <span className="font-sans text-base md:text-lg font-semibold pr-8 leading-snug group-hover:opacity-70 transition-opacity">
-                    {faq.q}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
+                <h3 className="m-0">
+                  <button
+                    className="w-full flex items-center justify-between py-5 md:py-6 text-left cursor-pointer group"
+                    onClick={() => setOpenIdx(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="font-sans text-base md:text-lg font-semibold pr-8 leading-snug group-hover:opacity-70 transition-opacity">
+                      {faq.q}
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                </h3>
                 <div
                   className="overflow-hidden transition-all duration-300"
                   style={{

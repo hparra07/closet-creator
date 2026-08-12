@@ -59,7 +59,7 @@ export function CountyAreasSection({
   return (
     <SectionWrapper>
       <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14 reveal-up">
-        <span className="rule eyebrow mb-6" style={{ color: "#313131" }}>{title}</span>
+        <h2 className="rule eyebrow mb-6" style={{ color: "#313131" }}>{title}</h2>
         <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>{intro}</p>
       </div>
 

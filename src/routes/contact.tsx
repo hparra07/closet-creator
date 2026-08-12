@@ -13,6 +13,7 @@ import { FaqSection, type FaqItem } from "@/components/sections/FaqSection";
 import { LearnMoreSection } from "@/components/sections/LearnMoreSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
 import { VideoModal } from "@/components/modals/VideoModal";
+import { pageHead } from "@/lib/pageHead";
 
 const CONTACT_FAQS: FaqItem[] = [
   {
@@ -46,16 +47,12 @@ const CONTACT_FAQS: FaqItem[] = [
 ];
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact JL Closets | Schedule Your Free Consultation" },
-      {
-        name: "description",
-        content:
-          "Contact JL Closets in Boca Raton. Schedule a free in-home consultation for custom closets, pantries, and storage solutions across South Florida.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Contact JL Closets | Schedule Your Free Consultation",
+      description: "Contact JL Closets in Boca Raton. Schedule a free in-home consultation for custom closets, pantries, and storage solutions across South Florida.",
+      path: "/contact",
+    }),
   component: Contact,
 });
 

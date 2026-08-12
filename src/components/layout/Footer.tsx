@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import jlLogo from "@/assets/global/jl-logo.png";
-import library from "@/assets/global/library.jpg";
+import jlLogo from "@/assets/global/jl-logo.webp";
+import library from "@/assets/global/library.webp";
 import { YellowButton } from "@/components/common/YellowButton";
 import { SOCIAL_LINKS } from "@/lib/social";
 
@@ -51,17 +51,16 @@ export function Footer() {
             <div className="grid grid-cols-2 lg:grid-cols-1 gap-5">
               <div>
                 <p className="eyebrow mb-1 font-bold text-ink-foreground">Telephone</p>
-                <p>(561) 912 9881</p>
+                <p><a href="tel:+15619129881" className="hover:text-primary transition-colors">(561) 912-9881</a></p>
               </div>
               <div>
                 <p className="eyebrow mb-1 font-bold text-ink-foreground">Email</p>
-                <p>leads@jlclosets.com</p>
+                <p><a href="mailto:leads@jlclosets.com" className="hover:text-primary transition-colors">leads@jlclosets.com</a></p>
               </div>
               <div>
                 <p className="eyebrow mb-1 font-bold text-ink-foreground">Opening Hours</p>
-                <p>Monday–Friday 9:00AM–6:00PM</p>
-                <p>Saturday 9:00AM–1:00PM</p>
-                <p>Sunday by appointment</p>
+                <p>Monday–Friday 8:00AM–5:00PM</p>
+                <p>Saturday–Sunday Closed</p>
               </div>
               <div>
                 <p className="eyebrow mb-1 font-bold text-ink-foreground">Showroom</p>

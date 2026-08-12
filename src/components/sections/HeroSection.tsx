@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import heroKitchen from "@/assets/home/hero-kitchen.jpg";
+import heroKitchen from "@/assets/home/hero-kitchen.webp";
 import { YellowButton } from "@/components/common/YellowButton";
 
 export function HeroSection({ onConsultOpen }: { onConsultOpen?: () => void }) {

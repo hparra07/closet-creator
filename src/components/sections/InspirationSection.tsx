@@ -1,19 +1,19 @@
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { CaterpillarCarousel } from "@/components/carousels/CaterpillarCarousel";
-import storageCloset from "@/assets/shared/storage-closet.png";
-import storagePantry from "@/assets/shared/storage-pantry.png";
-import storageMudroom from "@/assets/shared/storage-mudroom.png";
-import storageLaundry from "@/assets/shared/storage-laundry.png";
-import storageEntertainment from "@/assets/shared/storage-entertainment.png";
-import storageGarage from "@/assets/shared/storage-garage.png";
-import storageOffice from "@/assets/shared/storage-office.png";
-import storageMore from "@/assets/shared/storage-more.png";
+import storageCloset from "@/assets/shared/storage-closet.webp";
+import storagePantry from "@/assets/shared/storage-pantry.webp";
+import storageMudroom from "@/assets/shared/storage-mudroom.webp";
+import storageLaundry from "@/assets/shared/storage-laundry.webp";
+import storageEntertainment from "@/assets/shared/storage-entertainment.webp";
+import storageGarage from "@/assets/shared/storage-garage.webp";
+import storageOffice from "@/assets/shared/storage-office.webp";
+import storageMore from "@/assets/shared/storage-more.webp";
 
 export function InspirationSection() {
   return (
     <SectionWrapper>
       <div className="text-center mb-14 md:mb-20">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>Get Inspired</span>
+        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Get Inspired</h2>
       </div>
       <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
         <div className="max-w-xs md:max-w-lg lg:max-w-xs mx-auto lg:mx-0 mb-12 lg:mb-0 lg:shrink-0">

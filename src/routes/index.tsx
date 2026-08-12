@@ -8,24 +8,23 @@ import { ProcessSection } from "@/components/sections/ProcessSection";
 import { WhyChooseUsV1 } from "@/components/sections/WhyChooseUsV1";
 import { WhyChooseUsV2 } from "@/components/sections/WhyChooseUsV2";
 import { GallerySection } from "@/components/sections/GallerySection";
+import { BeforeAfterSection } from "@/components/sections/BeforeAfterSection";
+import { BEFORE_AFTER_EXAMPLES } from "@/lib/beforeAfterExamples";
 import { ServiceAreasSection } from "@/components/sections/ServiceAreasSection";
 import { ShowroomSection } from "@/components/sections/ShowroomSection";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
 import { VideoModal } from "@/components/modals/VideoModal";
+import { pageHead } from "@/lib/pageHead";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Custom Closet Systems & Storage Solutions in South Florida" },
-      {
-        name: "description",
-        content:
-          "Bespoke closets, pantries, and storage systems designed and installed across South Florida.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Custom Closet Systems & Storage Solutions in South Florida",
+      description: "Bespoke closets, pantries, and storage systems designed and installed across South Florida.",
+      path: "/",
+    }),
   component: Index,
 });
 
@@ -69,6 +68,7 @@ function Index() {
         <WhyChooseUsV2 />
 
         <GallerySection />
+        <BeforeAfterSection items={BEFORE_AFTER_EXAMPLES} />
         <ServiceAreasSection />
         <ShowroomSection />
         <ReviewsSection onVideoOpen={setVideoUrl} />

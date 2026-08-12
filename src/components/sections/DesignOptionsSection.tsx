@@ -226,9 +226,9 @@ export function DesignOptionsSection({
   );
 
   return (
-    <SectionWrapper className="mt-8 md:mt-14">
+    <SectionWrapper>
       <div className="text-center mb-6 md:mb-8 reveal-up">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
+        <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
       </div>
       {intro && (
         <p className="text-center max-w-3xl mx-auto text-base md:text-lg leading-relaxed mb-10 md:mb-14 reveal-up" style={{ color: "#313131" }}>

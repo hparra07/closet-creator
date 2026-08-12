@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# AI assistants / answer engines — explicitly welcomed rather than left to
+# crawler-default behavior, since being citable in AI Overviews / ChatGPT /
+# Perplexity search matters for this site.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://jlclosets.com/sitemap.xml

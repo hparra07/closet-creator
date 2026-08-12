@@ -11,7 +11,7 @@ import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSecti
 import { FaqSection, type FaqItem } from "@/components/sections/FaqSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
-import heroImg from "@/assets/shared/why-frame-1.jpg";
+import heroImg from "@/assets/shared/why-frame-1.webp";
 
 // Page for a single county under Service Areas. `hero` and `solutions` are
 // optional overrides — counties without their own copy yet just fall back

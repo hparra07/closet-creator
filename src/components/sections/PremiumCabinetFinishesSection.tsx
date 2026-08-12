@@ -170,7 +170,7 @@ export function PremiumCabinetFinishesSection() {
   return (
     <SectionWrapper>
       <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14 reveal-up">
-        <span className="rule eyebrow mb-6" style={{ color: "#313131" }}>Premium Cabinet Finishes</span>
+        <h2 className="rule eyebrow mb-6" style={{ color: "#313131" }}>Premium Cabinet Finishes</h2>
         <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>
           Enhance your luxury walk-in wardrobe with our premium cabinet finishes, crafted from high-quality
           materials like textured wood, specialty linen, matte, and gloss finishes — a perfect balance of

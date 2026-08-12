@@ -1,19 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { pageHead } from "@/lib/pageHead";
 import { CountyTemplate } from "@/components/templates/CountyTemplate";
 import { COUNTY_PRODUCTS, stackImg1, stackImg2, stackImg3, stackImg4, stackImg5 } from "@/lib/countyProducts";
 import { defaultCountyFaqs, defaultCountyReasons } from "@/lib/countyPageDefaults";
 
 export const Route = createFileRoute("/service-areas_/miami-dade-county")({
-  head: () => ({
-    meta: [
-      { title: "Custom Storage Solutions in Miami-Dade County | JL Closets" },
-      {
-        name: "description",
-        content:
-          "JL Closets designs and installs custom closets and storage solutions across Miami-Dade County — from Miami's high-rises to Homestead's family neighborhoods.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Custom Storage Solutions in Miami-Dade County | JL Closets",
+      description: "JL Closets designs and installs custom closets and storage solutions across Miami-Dade County — from Miami's high-rises to Homestead's family neighborhoods.",
+      path: "/service-areas/miami-dade-county",
+    }),
   component: MiamiDadeCounty,
 });
 

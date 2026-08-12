@@ -22,7 +22,7 @@ export function ProjectVideosSection({
   return (
     <SectionWrapper>
       <div className="text-center mb-10 md:mb-14 reveal-up">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>Project Videos</span>
+        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Project Videos</h2>
       </div>
       <p className="text-center max-w-2xl mx-auto font-sans text-2xl md:text-3xl leading-snug mb-10 md:mb-14 reveal-up" style={{ color: "#313131" }}>
         See our <strong className="font-bold underline-animate">craftsmanship in motion.</strong> Watch{" "}

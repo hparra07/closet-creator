@@ -296,7 +296,7 @@ export function ServiceAreasSection({ className }: { className?: string } = {}) 
   return (
     <SectionWrapper className={className}>
       <div className="text-center mb-14 md:mb-20">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>Service Areas</span>
+        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Service Areas</h2>
       </div>
       <ServiceAreasMap />
     </SectionWrapper>

@@ -131,9 +131,9 @@ export function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => 
   ];
 
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative py-10 md:py-14 overflow-hidden">
       <div className="xl:hidden flex flex-col items-center justify-center text-center px-4 mb-10">
-        <span className="rule eyebrow mb-6" style={{ color: "#313131", fontSize: "20px" }}>SUCCESS STORIES</span>
+        <h2 className="rule eyebrow mb-6" style={{ color: "#313131", fontSize: "20px" }}>SUCCESS STORIES</h2>
         <p className="font-sans text-lg leading-snug max-w-md" style={{ color: "#313131" }}>
           <strong className="font-bold">Experience home transformation</strong> through our client's eyes. <strong className="font-bold">Quality and trust</strong> in every project.
         </p>
@@ -141,7 +141,7 @@ export function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => 
 
       <div className="hidden xl:block relative mx-auto" style={{ maxWidth: "1400px", height: "780px" }}>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-20 pointer-events-none">
-          <span className="rule eyebrow mb-8 pointer-events-auto" style={{ color: "#313131", fontSize: "22px" }}>SUCCESS STORIES</span>
+          <h2 className="rule eyebrow mb-8 pointer-events-auto" style={{ color: "#313131", fontSize: "22px" }}>SUCCESS STORIES</h2>
           <p className="font-sans text-xl lg:text-2xl leading-snug max-w-lg mb-8 pointer-events-auto" style={{ color: "#313131" }}>
             <strong className="font-bold">Experience home transformation</strong> through our client's eyes. <strong className="font-bold">Quality and trust</strong> in every project.
           </p>
@@ -200,7 +200,7 @@ export function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => 
                   style={{ borderRadius: "10px" }}
                   onClick={() => onVideoOpen(card.data.video)}
                 >
-                  <img src={card.data.gif} alt="Client video" className="w-full aspect-square object-cover block pointer-events-none" />
+                  <img src={card.data.gif} alt={`${card.data.name} client testimonial video, ${card.data.loc}`} className="w-full aspect-square object-cover block pointer-events-none" />
                   <div className="absolute bottom-0 left-0 right-0 pt-10 pb-4 px-4 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.85))" }}>
                     <p className="font-sans text-base font-semibold text-white leading-tight">{card.data.name}</p>
                     <p className="font-sans text-xs text-white/80 leading-tight">{card.data.loc}</p>
@@ -276,7 +276,7 @@ export function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => 
               style={{ borderRadius: "10px" }}
               onClick={() => onVideoOpen(v.video)}
             >
-              <img src={v.gif} alt="Client video" className="w-full aspect-square object-cover block pointer-events-none" />
+              <img src={v.gif} alt={`${v.name} client testimonial video, ${v.loc}`} className="w-full aspect-square object-cover block pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 pt-8 pb-3 px-4 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.85))" }}>
                 <p className="font-sans text-sm font-semibold text-white leading-tight">{v.name}</p>
                 <p className="font-sans text-xs text-white/80 leading-tight">{v.loc}</p>

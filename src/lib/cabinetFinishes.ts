@@ -1,33 +1,33 @@
-import espressoTextured from "@/assets/cabinet-finishes/espresso-textured-custom-closet-and-cabinet-finish.jpg";
-import lightOakTextured from "@/assets/cabinet-finishes/light-oak-custom-closet-and-cabinet-finish.jpg";
-import bleachedWhiteTextured from "@/assets/cabinet-finishes/bleached-white-textured-custom-closet-and-cabinet-finish.jpg";
-import grayTextured from "@/assets/cabinet-finishes/gray-textured-custom-closet-and-cabinet-finish.jpg";
-import darkGrayTextured from "@/assets/cabinet-finishes/dark-gray-textured-custom-closet-and-cabinet-finish.jpg";
-import beigeOakTextured from "@/assets/cabinet-finishes/beige-oak-textured-custom-closet-and-cabinet-finish.jpg";
+import espressoTextured from "@/assets/cabinet-finishes/espresso-textured-custom-closet-and-cabinet-finish.webp";
+import lightOakTextured from "@/assets/cabinet-finishes/light-oak-custom-closet-and-cabinet-finish.webp";
+import bleachedWhiteTextured from "@/assets/cabinet-finishes/bleached-white-textured-custom-closet-and-cabinet-finish.webp";
+import grayTextured from "@/assets/cabinet-finishes/gray-textured-custom-closet-and-cabinet-finish.webp";
+import darkGrayTextured from "@/assets/cabinet-finishes/dark-gray-textured-custom-closet-and-cabinet-finish.webp";
+import beigeOakTextured from "@/assets/cabinet-finishes/beige-oak-textured-custom-closet-and-cabinet-finish.webp";
 
-import stripedGray from "@/assets/cabinet-finishes/striped-gray-custom-closet-and-cabinet-finish.jpg";
-import grayCloth from "@/assets/cabinet-finishes/gray-cloth-custom-closet-and-cabinet-finish.jpg";
-import lightGrayFlat from "@/assets/cabinet-finishes/light-gray-custom-closet-and-cabinet-finish.jpg";
-import lightWalnut from "@/assets/cabinet-finishes/light-walnut-custom-closet-and-cabinet-finish.jpg";
-import sunnyElme from "@/assets/cabinet-finishes/sunny-elme-custom-closet-and-cabinet-finish.jpg";
-import eveningElme from "@/assets/cabinet-finishes/evening-elme-custom-closet-and-cabinet-finish.jpg";
-import sandLinen from "@/assets/cabinet-finishes/sand-linen-custom-closet-and-cabinet-finish.jpg";
-import ironGrayLinen from "@/assets/cabinet-finishes/iron-gray-linen-custom-closet-and-cabinet-finish.jpg";
-import bleachedLinen from "@/assets/cabinet-finishes/bleached-linen-custom-closet-and-cabinet-finish.jpg";
-import featheredLinen from "@/assets/cabinet-finishes/feathered-linen-custom-closet-and-cabinet-finish.jpg";
-import walnut from "@/assets/cabinet-finishes/walnut-custom-closet-and-cabinet-finish.jpg";
-import onyx from "@/assets/cabinet-finishes/onyx-custom-closet-and-cabinet-finish.jpg";
+import stripedGray from "@/assets/cabinet-finishes/striped-gray-custom-closet-and-cabinet-finish.webp";
+import grayCloth from "@/assets/cabinet-finishes/gray-cloth-custom-closet-and-cabinet-finish.webp";
+import lightGrayFlat from "@/assets/cabinet-finishes/light-gray-custom-closet-and-cabinet-finish.webp";
+import lightWalnut from "@/assets/cabinet-finishes/light-walnut-custom-closet-and-cabinet-finish.webp";
+import sunnyElme from "@/assets/cabinet-finishes/sunny-elme-custom-closet-and-cabinet-finish.webp";
+import eveningElme from "@/assets/cabinet-finishes/evening-elme-custom-closet-and-cabinet-finish.webp";
+import sandLinen from "@/assets/cabinet-finishes/sand-linen-custom-closet-and-cabinet-finish.webp";
+import ironGrayLinen from "@/assets/cabinet-finishes/iron-gray-linen-custom-closet-and-cabinet-finish.webp";
+import bleachedLinen from "@/assets/cabinet-finishes/bleached-linen-custom-closet-and-cabinet-finish.webp";
+import featheredLinen from "@/assets/cabinet-finishes/feathered-linen-custom-closet-and-cabinet-finish.webp";
+import walnut from "@/assets/cabinet-finishes/walnut-custom-closet-and-cabinet-finish.webp";
+import onyx from "@/assets/cabinet-finishes/onyx-custom-closet-and-cabinet-finish.webp";
 
-import darkGraySuperMatte from "@/assets/cabinet-finishes/dark-gray-super-matte-custom-closet-and-cabinet-finish.jpg";
-import lightGraySuperMatte from "@/assets/cabinet-finishes/light-gray-super-matte-custom-closet-and-cabinet-finish.jpg";
-import stormyGrayMatte from "@/assets/cabinet-finishes/stormy-gray-matte-custom-closet-and-cabinet-finish.jpg";
-import latteSuperMatte from "@/assets/cabinet-finishes/latte-super-matte-custom-closet-and-cabinet-finish.jpg";
+import darkGraySuperMatte from "@/assets/cabinet-finishes/dark-gray-super-matte-custom-closet-and-cabinet-finish.webp";
+import lightGraySuperMatte from "@/assets/cabinet-finishes/light-gray-super-matte-custom-closet-and-cabinet-finish.webp";
+import stormyGrayMatte from "@/assets/cabinet-finishes/stormy-gray-matte-custom-closet-and-cabinet-finish.webp";
+import latteSuperMatte from "@/assets/cabinet-finishes/latte-super-matte-custom-closet-and-cabinet-finish.webp";
 
-import snowWhite from "@/assets/cabinet-finishes/snow-white-custom-closet-and-cabinet-finish.jpg";
-import winterWhite from "@/assets/cabinet-finishes/winter-white-custom-closet-and-cabinet-finish.jpg";
+import snowWhite from "@/assets/cabinet-finishes/snow-white-custom-closet-and-cabinet-finish.webp";
+import winterWhite from "@/assets/cabinet-finishes/winter-white-custom-closet-and-cabinet-finish.webp";
 
-import taupeGloss from "@/assets/cabinet-finishes/taupe-gloss-custom-closet-and-cabinet-finish.jpg";
-import glacialGloss from "@/assets/cabinet-finishes/glacial-gloss-custom-closet-and-cabinet-finish.jpg";
+import taupeGloss from "@/assets/cabinet-finishes/taupe-gloss-custom-closet-and-cabinet-finish.webp";
+import glacialGloss from "@/assets/cabinet-finishes/glacial-gloss-custom-closet-and-cabinet-finish.webp";
 
 export type CabinetFinish = { name: string; image: string };
 export type CabinetFinishCategory = { title: string; description: string; finishes: CabinetFinish[] };

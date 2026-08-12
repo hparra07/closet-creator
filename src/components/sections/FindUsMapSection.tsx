@@ -7,7 +7,7 @@ export function FindUsMapSection() {
   return (
     <SectionWrapper>
       <div className="max-w-4xl mx-auto text-center mb-10 md:mb-14 reveal-up">
-        <span className="rule eyebrow mb-6" style={{ color: "#313131" }}>Find Us</span>
+        <h2 className="rule eyebrow mb-6" style={{ color: "#313131" }}>Find Us</h2>
         <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>
           We proudly serve <strong className="font-bold underline-animate">a wide swath of South Florida</strong> — from Miami to Naples, our custom storage solutions are just around the corner.
         </p>

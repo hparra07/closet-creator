@@ -1,5 +1,5 @@
 import { StoryIntroSection } from "@/components/sections/StoryIntroSection";
-import ourStory from "@/assets/about/our-story.jpg";
+import ourStory from "@/assets/about/our-story.webp";
 
 export function AboutIntroSection() {
   return (

@@ -27,7 +27,7 @@ export function AreaSearchSection() {
     <SectionWrapper className="!pt-0 !pb-10">
       <div className="max-w-xl mx-auto text-center">
         <div className="mb-6">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>Find Your Area</span>
+          <h2 className="rule eyebrow" style={{ color: "#313131" }}>Find Your Area</h2>
         </div>
         <p className="text-base leading-relaxed mb-8" style={{ color: "#313131" }}>
           Use the search form below to find the nearest location we serve.
@@ -56,7 +56,8 @@ export function AreaSearchSection() {
               ))
             ) : (
               <div className="px-4 py-3 text-sm text-foreground/50">
-                No matching service areas found. Call us at (561) 912 9881 to discuss your location.
+                No matching service areas found. Call us at{" "}
+                <a href="tel:+15619129881" className="text-primary hover:underline">(561) 912-9881</a> to discuss your location.
               </div>
             )}
           </div>

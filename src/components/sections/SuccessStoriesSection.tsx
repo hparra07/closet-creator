@@ -135,9 +135,9 @@ export function SuccessStoriesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-16 md:py-24 overflow-hidden">
+    <section ref={sectionRef} className="relative py-10 md:py-14 overflow-hidden">
       <div className="lg:hidden flex flex-col items-center justify-center text-center px-4 mb-10">
-        <span className="rule eyebrow mb-6" style={{ color: "#313131", fontSize: "20px" }}>SUCCESS STORIES</span>
+        <h2 className="rule eyebrow mb-6" style={{ color: "#313131", fontSize: "20px" }}>SUCCESS STORIES</h2>
         <p className="font-sans text-lg leading-snug max-w-md" style={{ color: "#313131" }}>
           <strong className="font-bold">Experience home transformation</strong> through our client's eyes. <strong className="font-bold">Quality and trust</strong> in every project.
         </p>
@@ -151,7 +151,7 @@ export function SuccessStoriesSection() {
         </div>
 
         <div className="flex flex-col items-center text-center px-2 py-8">
-          <span className="rule eyebrow mb-8" style={{ color: "#313131", fontSize: "22px" }}>SUCCESS STORIES</span>
+          <h2 className="rule eyebrow mb-8" style={{ color: "#313131", fontSize: "22px" }}>SUCCESS STORIES</h2>
           <p className="font-sans text-xl leading-snug mb-8" style={{ color: "#313131" }}>
             <strong className="font-bold">Experience home transformation</strong> through our client's eyes. <strong className="font-bold">Quality and trust</strong> in every project.
           </p>

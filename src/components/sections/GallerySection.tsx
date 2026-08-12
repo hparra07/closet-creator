@@ -1,19 +1,19 @@
 import { WorksCarousel } from "@/components/carousels/WorksCarousel";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import customClosets from "@/assets/shared/custom-closets-img.jpg";
-import entertainmentCenter from "@/assets/home/entertainment-center.jpg";
-import garage from "@/assets/home/garage-img.jpg";
-import homeOffice from "@/assets/home/home-office-img.jpg";
-import laundry from "@/assets/home/laundry.jpg";
-import mudroom from "@/assets/home/mudroom.jpg";
-import murphyBed from "@/assets/home/murphy-bed.jpg";
-import wineRack from "@/assets/home/wine-rack.jpg";
+import customClosets from "@/assets/shared/custom-closets-img.webp";
+import entertainmentCenter from "@/assets/home/entertainment-center.webp";
+import garage from "@/assets/home/garage-img.webp";
+import homeOffice from "@/assets/home/home-office-img.webp";
+import laundry from "@/assets/home/laundry.webp";
+import mudroom from "@/assets/home/mudroom.webp";
+import murphyBed from "@/assets/home/murphy-bed.webp";
+import wineRack from "@/assets/home/wine-rack.webp";
 
 export function GallerySection({ title = "Works" }: { title?: string }) {
   return (
     <SectionWrapper>
       <div className="text-center mb-14 md:mb-20">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>{title}</span>
+        <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
       </div>
       <WorksCarousel
         items={[

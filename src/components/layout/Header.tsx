@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Phone, ChevronDown } from "lucide-react";
-import jlLogo from "@/assets/global/jl-logo.png";
+import jlLogo from "@/assets/global/jl-logo.webp";
 import { NAV } from "@/lib/nav";
 import { YellowButton } from "@/components/common/YellowButton";
 import { SOCIAL_LINKS } from "@/lib/social";
@@ -154,13 +154,14 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
         </ul>
         <div className="hidden lg:flex items-center gap-[clamp(0px,calc(3.681vw_-_37.69px),12px)] font-medium ml-2">
           <YellowButton onClick={openConsult} className="![font-size:clamp(12px,calc(0.614vw_+_5.718px),14px)] !px-[clamp(12px,calc(4.908vw_-_38.256px),28px)] !py-[clamp(8px,calc(0.614vw_+_1.718px),10px)] !rounded-none min-[1350px]:!rounded-md !rounded-l-md whitespace-nowrap">FREE Consultation</YellowButton>
-          <button
+          <a
+            href="tel:+15619129881"
             aria-label="Call Us"
             className="bg-ink text-ink-foreground px-[clamp(12px,calc(4.908vw_-_38.256px),28px)] py-[clamp(8px,calc(0.614vw_+_1.718px),10px)] inline-flex items-center justify-center gap-1.5 [font-size:clamp(12px,calc(0.614vw_+_5.718px),14px)] font-semibold font-sans cursor-pointer whitespace-nowrap rounded-none min-[1350px]:!rounded-md rounded-r-md"
           >
             <Phone className="w-4 h-4" />
             <span className="hidden min-[1350px]:inline">CALL US!</span>
-          </button>
+          </a>
         </div>
         <button
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -263,19 +264,20 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
         <div className="mnav-panel relative bg-primary text-primary-foreground rounded-xl border border-primary px-7 py-6" style={{ transform: "translateX(101%)" }}>
           <div className="mnav-bottom-content flex flex-col gap-3">
             <YellowButton className="!w-full" onClick={() => { toggleMobileMenu.current(); openConsult(); }}>FREE Consultation</YellowButton>
-            <button
+            <a
+              href="tel:+15619129881"
               className="bg-ink text-ink-foreground px-7 py-2.5 inline-flex justify-center items-center gap-2 text-sm font-semibold font-sans w-full cursor-pointer rounded-lg"
               onClick={() => toggleMobileMenu.current()}
             >
               <Phone className="w-4 h-4" /> CALL US!
-            </button>
+            </a>
           </div>
         </div>
 
         {/* Bottom panel — social / info */}
         <div className="mnav-panel relative bg-ink text-ink-foreground rounded-xl border border-ink-foreground/20 px-7 py-5" style={{ transform: "translateX(101%)" }}>
           <div className="mnav-bottom-content flex items-center justify-between">
-            <p className="text-xs text-ink-foreground/60">(561) 912 9881</p>
+            <a href="tel:+15619129881" className="text-xs text-ink-foreground/60 hover:text-primary transition-colors">(561) 912-9881</a>
             <div className="flex gap-3">
               {SOCIAL_LINKS.filter((s) => ["Facebook", "Instagram", "YouTube", "LinkedIn"].includes(s.label)).map(({ Icon, label, url }) => (
                 <a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-8 h-8 rounded-full border border-ink-foreground/30 flex items-center justify-center">

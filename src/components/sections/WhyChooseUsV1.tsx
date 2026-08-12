@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import whyFrame1 from "@/assets/shared/why-frame-1.jpg";
-import whyFrame2 from "@/assets/shared/why-frame-2.jpg";
-import whyFrame3 from "@/assets/shared/why-frame-3.jpg";
-import whyFrame4 from "@/assets/shared/why-frame-4.jpg";
+import whyFrame1 from "@/assets/shared/why-frame-1.webp";
+import whyFrame2 from "@/assets/shared/why-frame-2.webp";
+import whyFrame3 from "@/assets/shared/why-frame-3.webp";
+import whyFrame4 from "@/assets/shared/why-frame-4.webp";
 
 export function WhyChooseUsV1() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -64,9 +64,9 @@ export function WhyChooseUsV1() {
         ))}
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/40 to-transparent md:hidden" />
         <div className="relative h-full w-full flex flex-col">
-          <p className="eyebrow text-center pt-24 md:pt-32 text-ink-foreground rule mx-auto w-fit">
+          <h2 className="eyebrow text-center pt-24 md:pt-32 text-ink-foreground rule mx-auto w-fit">
             WHY CHOOSE US
-          </p>
+          </h2>
           <div
             className="absolute left-1/2 -translate-x-1/2 top-40 md:top-48 flex flex-col items-center gap-2 text-ink-foreground/80 pointer-events-none transition-opacity duration-300"
             style={{ opacity: Math.max(0, 1 - progress * 4) }}

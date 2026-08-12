@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import enjoyLife from "@/assets/shared/enjoy-life.jpg";
-import designAndDrafting from "@/assets/shared/design-and-drafting.jpg";
-import expertInstallations from "@/assets/shared/expert-installations.jpg";
-import inHomeConsultation from "@/assets/shared/in-home-consultation.jpg";
+import enjoyLife from "@/assets/shared/enjoy-life.webp";
+import designAndDrafting from "@/assets/shared/design-and-drafting.webp";
+import expertInstallations from "@/assets/shared/expert-installations.webp";
+import inHomeConsultation from "@/assets/shared/in-home-consultation.webp";
 
 type ProcessStep = { k: string; t: string; d: string; img: string };
 
@@ -119,7 +119,7 @@ export function ProcessSection() {
   return (
     <SectionWrapper>
       <div className="text-center mb-10 md:mb-14 reveal-up">
-        <span className="rule eyebrow" style={{ color: "#313131" }}>Our Process</span>
+        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Our Process</h2>
       </div>
       <p className="text-center max-w-2xl mx-auto font-sans text-2xl md:text-3xl leading-snug mb-10 md:mb-14 reveal-up">
         From the first sketch to the final installation, our step-by-step approach ensures a seamless experience and a storage solution tailored to your life.

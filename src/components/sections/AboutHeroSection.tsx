@@ -1,4 +1,4 @@
-import aboutBanner from "@/assets/about/about-new.jpg";
+import aboutBanner from "@/assets/about/about-new.webp";
 import { ParallaxHeroSection } from "@/components/sections/ParallaxHeroSection";
 
 export function AboutHeroSection({ onConsultOpen }: { onConsultOpen?: () => void }) {

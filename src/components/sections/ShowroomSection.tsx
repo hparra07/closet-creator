@@ -1,4 +1,4 @@
-import showroom from "@/assets/contact/showroom.jpg";
+import showroom from "@/assets/contact/showroom.webp";
 import { YellowButton } from "@/components/common/YellowButton";
 
 export function ShowroomSection() {
@@ -23,11 +23,11 @@ export function ShowroomSection() {
           <div className="grid grid-cols-2 gap-x-10 gap-y-6 text-sm mb-8 max-w-xl">
             <div className="reveal-up" style={{ animationDelay: "240ms" }}>
               <p className="font-bold mb-2">Phone</p>
-              <p className="opacity-90">(561) 912 9881</p>
+              <p className="opacity-90"><a href="tel:+15619129881" className="hover:text-primary transition-colors">(561) 912-9881</a></p>
             </div>
             <div className="reveal-up" style={{ animationDelay: "320ms" }}>
               <p className="font-bold mb-2">Email</p>
-              <p className="opacity-90">leads@jlclosets.com</p>
+              <p className="opacity-90"><a href="mailto:leads@jlclosets.com" className="hover:text-primary transition-colors">leads@jlclosets.com</a></p>
             </div>
             <div className="reveal-up" style={{ animationDelay: "400ms" }}>
               <p className="font-bold mb-2">Showroom</p>
@@ -38,9 +38,8 @@ export function ShowroomSection() {
             </div>
             <div className="reveal-up" style={{ animationDelay: "480ms" }}>
               <p className="font-bold mb-2">Opening hours</p>
-              <p className="opacity-90">Monday–Friday 9:00AM–6:00PM</p>
-              <p className="opacity-90">Saturday 9:00AM–1:00PM</p>
-              <p className="opacity-90">Sunday by appointment</p>
+              <p className="opacity-90">Monday–Friday 8:00AM–5:00PM</p>
+              <p className="opacity-90">Saturday–Sunday Closed</p>
             </div>
           </div>
         </div>
