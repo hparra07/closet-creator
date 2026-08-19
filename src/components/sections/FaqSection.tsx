@@ -70,14 +70,16 @@ export function FaqSection({
     <SectionWrapper>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
-          {subtitle && (
-            <p className="mt-4 font-sans text-lg md:text-xl leading-snug" style={{ color: "#313131" }}>
-              {subtitle}
-            </p>
-          )}
-        </div>
+        {title && (
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
+            {subtitle && (
+              <p className="mt-4 font-sans text-lg md:text-xl leading-snug" style={{ color: "#313131" }}>
+                {subtitle}
+              </p>
+            )}
+          </div>
+        )}
 
         <div className="divide-y divide-foreground/10">
           {faqs.map((faq, i) => {

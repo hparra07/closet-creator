@@ -9,7 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShowroomRouteImport } from './routes/showroom'
 import { Route as ServiceAreasRouteImport } from './routes/service-areas'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CustomClosetsRouteImport } from './routes/custom-closets'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -26,9 +29,24 @@ import { Route as ServiceAreasBrowardCountyRouteImport } from './routes/service-
 import { Route as CustomClosetsWalkInClosetsRouteImport } from './routes/custom-closets_.walk-in-closets'
 import { Route as AccessoriesClosetLightingRouteImport } from './routes/accessories_.closet-lighting'
 
+const ShowroomRoute = ShowroomRouteImport.update({
+  id: '/showroom',
+  path: '/showroom',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServiceAreasRoute = ServiceAreasRouteImport.update({
   id: '/service-areas',
   path: '/service-areas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CustomClosetsRoute = CustomClosetsRouteImport.update({
@@ -122,7 +140,10 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/faq': typeof FaqRoute
+  '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
+  '/showroom': typeof ShowroomRoute
   '/accessories/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
   '/service-areas/broward-county': typeof ServiceAreasBrowardCountyRoute
@@ -140,7 +161,10 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/faq': typeof FaqRoute
+  '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
+  '/showroom': typeof ShowroomRoute
   '/accessories/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
   '/service-areas/broward-county': typeof ServiceAreasBrowardCountyRoute
@@ -159,7 +183,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/faq': typeof FaqRoute
+  '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
+  '/showroom': typeof ShowroomRoute
   '/accessories_/closet-lighting': typeof AccessoriesClosetLightingRoute
   '/custom-closets_/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
   '/service-areas_/broward-county': typeof ServiceAreasBrowardCountyRoute
@@ -179,7 +206,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/faq'
+    | '/portfolio'
     | '/service-areas'
+    | '/showroom'
     | '/accessories/closet-lighting'
     | '/custom-closets/walk-in-closets'
     | '/service-areas/broward-county'
@@ -197,7 +227,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/faq'
+    | '/portfolio'
     | '/service-areas'
+    | '/showroom'
     | '/accessories/closet-lighting'
     | '/custom-closets/walk-in-closets'
     | '/service-areas/broward-county'
@@ -215,7 +248,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/custom-closets'
+    | '/faq'
+    | '/portfolio'
     | '/service-areas'
+    | '/showroom'
     | '/accessories_/closet-lighting'
     | '/custom-closets_/walk-in-closets'
     | '/service-areas_/broward-county'
@@ -234,7 +270,10 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   CustomClosetsRoute: typeof CustomClosetsRoute
+  FaqRoute: typeof FaqRoute
+  PortfolioRoute: typeof PortfolioRoute
   ServiceAreasRoute: typeof ServiceAreasRoute
+  ShowroomRoute: typeof ShowroomRoute
   AccessoriesClosetLightingRoute: typeof AccessoriesClosetLightingRoute
   CustomClosetsWalkInClosetsRoute: typeof CustomClosetsWalkInClosetsRoute
   ServiceAreasBrowardCountyRoute: typeof ServiceAreasBrowardCountyRoute
@@ -250,11 +289,32 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/showroom': {
+      id: '/showroom'
+      path: '/showroom'
+      fullPath: '/showroom'
+      preLoaderRoute: typeof ShowroomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/service-areas': {
       id: '/service-areas'
       path: '/service-areas'
       fullPath: '/service-areas'
       preLoaderRoute: typeof ServiceAreasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/custom-closets': {
@@ -370,7 +430,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   CustomClosetsRoute: CustomClosetsRoute,
+  FaqRoute: FaqRoute,
+  PortfolioRoute: PortfolioRoute,
   ServiceAreasRoute: ServiceAreasRoute,
+  ShowroomRoute: ShowroomRoute,
   AccessoriesClosetLightingRoute: AccessoriesClosetLightingRoute,
   CustomClosetsWalkInClosetsRoute: CustomClosetsWalkInClosetsRoute,
   ServiceAreasBrowardCountyRoute: ServiceAreasBrowardCountyRoute,

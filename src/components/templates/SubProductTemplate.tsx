@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
 import { ProductSolutionsSection, type ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
@@ -65,6 +66,7 @@ export function SubProductTemplate({ hero, solutions, designOptions, whyChoose, 
           imageAlt={hero.imageAlt}
           onConsultOpen={() => setConsultOpen(true)}
         />
+        <PageBreadcrumbs />
 
         {solutions && (
           <ProductSolutionsSection

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { ShowroomSection } from "@/components/sections/ShowroomSection";
@@ -139,6 +140,7 @@ function Contact() {
 
       <main ref={mainRef}>
         <div className="pt-32 md:pt-40" />
+        <PageBreadcrumbs />
 
         <SectionWrapper className="gsap-section">
           <div className="max-w-6xl mx-auto">

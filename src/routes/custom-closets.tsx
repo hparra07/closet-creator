@@ -130,7 +130,7 @@ export const Route = createFileRoute("/custom-closets")({
       title: "Custom Closets in South Florida | JL Closets",
       description: "High-end custom closets designed to optimize your space and reflect your unique style. Walk-in closets, reach-in closets, and custom shoe storage across South Florida.",
       path: "/custom-closets",
-      image: `${SITE_URL}${customClosetsImg}`,
+      image: `${SITE_URL}${banner1}`,
     }),
   component: CustomClosets,
 });

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { ParallaxHeroSection } from "@/components/sections/ParallaxHeroSection";
 import { StoryIntroSection } from "@/components/sections/StoryIntroSection";
 import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSection";
@@ -58,6 +59,7 @@ function ServiceAreas() {
           imageAlt="Custom closet system installed by JL Closets"
           onConsultOpen={() => setConsultOpen(true)}
         />
+        <PageBreadcrumbs />
 
         <StoryIntroSection
           eyebrow="Where We Work"

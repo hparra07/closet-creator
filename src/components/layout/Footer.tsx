@@ -7,6 +7,9 @@ import { SOCIAL_LINKS } from "@/lib/social";
 const FOOTER_LINKS: Record<string, string> = {
   "About Us": "/about",
   "Contact Us": "/contact",
+  "Our Showroom": "/showroom",
+  "Portfolio": "/portfolio",
+  "FAQs": "/faq",
   "Custom Closets": "/custom-closets",
   "Broward County": "/service-areas/broward-county",
   "Collier County": "/service-areas/collier-county",

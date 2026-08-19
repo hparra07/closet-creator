@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { YellowButton } from "@/components/common/YellowButton";
 import { getRandomReviews, type Review } from "@/lib/reviews";
 
@@ -97,9 +98,11 @@ export function SuccessStoriesSection() {
   const [revealed, setRevealed] = useState(false);
   const textScrollerRef = useRef<HTMLDivElement | null>(null);
   const [textIdx, setTextIdx] = useState(0);
-  // Picked once per mount, so each page shows a different random set of
-  // reviews instead of the same fixed 4 everywhere.
-  const [reviews] = useState(() => getRandomReviews(4));
+  // Seeded by the page path (not Math.random()) so each page shows a
+  // different set of reviews, but server and client always agree on which
+  // ones — a true-random pick here would mismatch during hydration.
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [reviews] = useState(() => getRandomReviews(4, pathname));
 
   const onCarouselScroll = () => {
     const el = textScrollerRef.current;

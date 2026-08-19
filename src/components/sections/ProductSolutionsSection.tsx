@@ -5,9 +5,9 @@ import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { YellowButton } from "@/components/common/YellowButton";
 
 export type ProjectFeature = { label: string; desc: string };
-export type ProjectDetails = { title: string; intro: string; features: ProjectFeature[] };
+export type ProjectDetails = { title: string; intro: React.ReactNode; features: ProjectFeature[] };
 
-export type ProjectSlide = { image: string; label: string; desc: string; details?: ProjectDetails };
+export type ProjectSlide = { image: string; label: string; desc: string; details?: ProjectDetails; alt?: string };
 
 export type ProductSolution = {
   title: string;
@@ -58,14 +58,20 @@ function diagonalClipPath(p: number, dir: 1 | -1) {
   return `polygon(${100 - p}% 100%, ${100 - p + DIAGONAL_SKEW}% 0%, 100% 0%, 100% 100%)`;
 }
 
-function SolutionCard({
+export function SolutionCard({
   solution,
   transition = "diagonal",
   shadow = true,
+  onImageClick,
+  className = "",
 }: {
   solution: ProductSolution;
   transition?: SlideTransition;
   shadow?: boolean;
+  // When provided, clicking the currently-active photo calls this with its
+  // index (e.g. to open a fullscreen lightbox) instead of doing nothing.
+  onImageClick?: (index: number) => void;
+  className?: string;
 }) {
   const slides: ProjectSlide[] =
     solution.projects ??
@@ -186,26 +192,27 @@ function SolutionCard({
   }, [active, transition]);
 
   return (
-    <div className={`relative aspect-[4/5] overflow-hidden rounded-2xl ${shadow ? "shadow-2xl" : ""}`}>
+    <div className={`relative aspect-[4/5] overflow-hidden rounded-2xl ${shadow ? "shadow-2xl" : ""} ${className}`}>
       {/* Transition stack */}
       {slides.map((slide, i) => (
         <div
           key={slide.image}
           ref={(el) => { pageRefs.current[i] = el; }}
-          className="absolute inset-0"
+          className={`absolute inset-0 ${onImageClick ? "cursor-zoom-in" : ""}`}
           style={{
             opacity: active === i ? 1 : 0,
             zIndex: active === i ? 1 : 0,
             pointerEvents: active === i ? "auto" : "none",
           }}
+          onClick={onImageClick ? () => onImageClick(active) : undefined}
         >
-          <img src={slide.image} alt={slide.label} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <img src={slide.image} alt={slide.alt ?? slide.label} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         </div>
       ))}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent pointer-events-none z-10" />
 
       <div className="absolute inset-x-0 bottom-0 px-6 pb-20 z-20">
-        <p className="font-sans text-2xl font-bold text-white mb-1">{solution.title}</p>
+        <h3 className="font-sans text-2xl font-bold text-white mb-1">{solution.title}</h3>
         {solution.projects && slides.length > 1 && (
           <p className="text-primary text-xs font-bold tracking-widest mb-2">{slides[active].label}</p>
         )}
@@ -238,12 +245,12 @@ function SolutionCard({
           >
             <X className="w-4 h-4" />
           </button>
-          <p className="font-sans text-lg font-bold uppercase leading-snug mb-3 pr-8 text-white">
+          <h3 className="font-sans text-lg font-bold uppercase leading-snug mb-3 pr-8 text-white">
             {activeDetails.title}
-          </p>
-          <p className="text-sm leading-relaxed mb-4 text-white/80">
+          </h3>
+          <div className="text-sm leading-relaxed mb-4 text-white/80 space-y-3">
             {activeDetails.intro}
-          </p>
+          </div>
           <ul className="space-y-2.5">
             {activeDetails.features.map((f) => (
               <li key={f.label} className="flex items-start gap-2.5">

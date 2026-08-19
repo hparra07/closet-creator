@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
 import { ProductSolutionsSection, type ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import { PremiumAccessoriesSection } from "@/components/sections/PremiumAccessoriesSection";
@@ -52,6 +53,7 @@ export function AccessoryTemplate({ hero, pageKey, solutions }: AccessoryTemplat
           imageAlt={hero.imageAlt}
           onConsultOpen={() => setConsultOpen(true)}
         />
+        <PageBreadcrumbs />
 
         {solutions && (
           <ProductSolutionsSection

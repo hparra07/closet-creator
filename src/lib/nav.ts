@@ -27,8 +27,8 @@ export const NAV: NavEntry[] = [
           { label: "Custom Storage Solutions" },
           { label: "About", href: "/about" },
           { label: "Contact Us", href: "/contact" },
-          { label: "Our Showroom" },
-          { label: "FAQ" },
+          { label: "Our Showroom", href: "/showroom" },
+          { label: "FAQ", href: "/faq" },
           { label: "Design Process" },
           { label: "Customer Service" },
           { label: "Careers" },
@@ -45,7 +45,7 @@ export const NAV: NavEntry[] = [
     submenu: [
       {
         heading: "See Our Work",
-        items: [{ label: "Home Organization Idea Gallery" }, { label: "Portfolio" }],
+        items: [{ label: "Home Organization Idea Gallery" }, { label: "Portfolio", href: "/portfolio" }],
       },
     ],
   },

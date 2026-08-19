@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { AboutHeroSection } from "@/components/sections/AboutHeroSection";
 import { AboutIntroSection } from "@/components/sections/AboutIntroSection";
 import { WhyChooseUsV2, type WhyCard } from "@/components/sections/WhyChooseUsV2";
@@ -63,6 +64,7 @@ function About() {
 
       <main>
         <AboutHeroSection onConsultOpen={() => setConsultOpen(true)} />
+        <PageBreadcrumbs />
         <AboutIntroSection />
         <WhyChooseUsV2 title="Why Homeowners Choose JL Closets" cards={ABOUT_CARDS} />
         <ProcessSection />

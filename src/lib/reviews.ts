@@ -30,8 +30,37 @@ export const REVIEWS_POOL: Review[] = [
   { quote: "Top-notch quality and attention to detail. Worth every penny.", a: "Robert S.", loc: "South Florida", source: "Best Pick Reports", url: "https://www.bestpickreports.com/closet-kitchen-and-garage-organizers/south-florida/jl-closets" },
 ];
 
-/** Picks `count` random, non-repeating reviews from the pool. */
-export function getRandomReviews(count: number): Review[] {
-  const shuffled = [...REVIEWS_POOL].sort(() => Math.random() - 0.5);
+function hashString(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return hash;
+}
+
+// A tiny seeded PRNG (mulberry32) so the "random" order is reproducible from
+// the same seed — Math.random() here would pick a different set on the
+// server than on the client's first render, which React's hydration flags
+// as a text mismatch since the two renders show different reviewer names.
+function seededRandom(seed: number) {
+  let s = seed >>> 0;
+  return () => {
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/**
+ * Picks `count` non-repeating reviews from the pool, in an order seeded by
+ * `seed` (e.g. the current page path) — different pages show a different
+ * mix, but the same page always resolves to the same set, so server-rendered
+ * and client-hydrated output match.
+ */
+export function getRandomReviews(count: number, seed: string = ""): Review[] {
+  const rand = seededRandom(hashString(seed) || 1);
+  const shuffled = [...REVIEWS_POOL].sort(() => rand() - 0.5);
   return shuffled.slice(0, count);
 }

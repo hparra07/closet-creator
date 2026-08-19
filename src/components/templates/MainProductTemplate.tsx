@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
 import { ProductSolutionsSection, type ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
@@ -70,6 +71,7 @@ export function MainProductTemplate({
           imageAlt={hero.imageAlt}
           onConsultOpen={() => setConsultOpen(true)}
         />
+        <PageBreadcrumbs />
 
         <ProductSolutionsSection
           title={solutions.title}

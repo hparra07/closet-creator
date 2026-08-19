@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
 import { ProductSolutionsSection, type ProductSolution } from "@/components/sections/ProductSolutionsSection";
 import { WhyChooseSolutionSection, type SolutionReason } from "@/components/sections/WhyChooseSolutionSection";
@@ -64,6 +65,7 @@ export function CountyTemplate({ county, hero, solutions, whyChoose, areas, faq 
           imageAlt={`Custom closet by JL Closets in ${county}`}
           onConsultOpen={() => setConsultOpen(true)}
         />
+        <PageBreadcrumbs />
 
         {solutions && (
           <ProductSolutionsSection intro={solutions.intro} solutions={solutions.items} layout="carousel" />

@@ -125,7 +125,7 @@ export const Route = createFileRoute("/service-areas_/broward-county")({
       title: "Custom Storage Solutions in Broward County | JL Closets",
       description: "JL Closets designs and installs custom closets and storage solutions across Broward County — oceanfront condos, family homes, and urban neighborhoods.",
       path: "/service-areas/broward-county",
-      image: `${SITE_URL}${customClosetsImg}`,
+      image: `${SITE_URL}${moreStorageImg3}`,
     }),
   component: BrowardCounty,
 });
