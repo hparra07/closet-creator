@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Trophy, TrendingUp, Coins, GraduationCap, HeartHandshake, type LucideIcon } from "lucide-react";
+import { Trophy, TrendingUp, Coins, GraduationCap, HeartHandshake, ShieldCheck, type LucideIcon } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 
 type Reason = { title: string; desc: string; icon: LucideIcon };
@@ -10,6 +10,7 @@ const REASONS: Reason[] = [
   { title: "Competitive Pay & Commission", desc: "Industry-leading compensation with real earning potential tied directly to your performance.", icon: Coins },
   { title: "Training & Mentorship", desc: "Hands-on training from designers and installers who are invested in your success, not just your output.", icon: GraduationCap },
   { title: "A Team That Feels Like Family", desc: "Health coverage, paid time off, and a tight-knit crew that actually has your back.", icon: HeartHandshake },
+  { title: "Stability You Can Build On", desc: "Over 30 years in business means real job security in an industry that's still growing.", icon: ShieldCheck },
 ];
 
 export function WhyJoinUsSection() {

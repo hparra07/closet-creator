@@ -7,8 +7,9 @@ import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
 import { YellowButton } from "@/components/common/YellowButton";
 import { WhyJoinUsSection } from "@/components/sections/WhyJoinUsSection";
-import { OpenPositionsSection } from "@/components/sections/OpenPositionsSection";
+import { OpenPositionsSection, POSITIONS } from "@/components/sections/OpenPositionsSection";
 import { ConsultModal } from "@/components/modals/ConsultModal";
+import { CareerModal } from "@/components/modals/CareerModal";
 import { pageHead, SITE_URL } from "@/lib/pageHead";
 
 import heroImg from "@/assets/contact/carrers.webp";
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/careers")({
 
 function Careers() {
   const [consultOpen, setConsultOpen] = useState(false);
+  const [careerModalOpen, setCareerModalOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -68,12 +70,17 @@ function Careers() {
 
         <WhyJoinUsSection />
 
-        <OpenPositionsSection />
+        <OpenPositionsSection onApplyClick={() => setCareerModalOpen(true)} />
       </main>
 
       <Footer />
 
       <ConsultModal open={consultOpen} onClose={() => setConsultOpen(false)} />
+      <CareerModal
+        open={careerModalOpen}
+        onClose={() => setCareerModalOpen(false)}
+        positions={POSITIONS.map((p) => p.title)}
+      />
     </div>
   );
 }

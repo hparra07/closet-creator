@@ -30,6 +30,7 @@ import { Route as ServiceAreasIndianRiverCountyRouteImport } from './routes/serv
 import { Route as ServiceAreasCollierCountyRouteImport } from './routes/service-areas_.collier-county'
 import { Route as ServiceAreasBrowardCountyRouteImport } from './routes/service-areas_.broward-county'
 import { Route as CustomClosetsWalkInClosetsRouteImport } from './routes/custom-closets_.walk-in-closets'
+import { Route as CareersClosetDesignerRouteImport } from './routes/careers_.closet-designer'
 import { Route as AccessoriesClosetLightingRouteImport } from './routes/accessories_.closet-lighting'
 
 const ShowroomRoute = ShowroomRouteImport.update({
@@ -146,6 +147,11 @@ const CustomClosetsWalkInClosetsRoute =
     path: '/custom-closets/walk-in-closets',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CareersClosetDesignerRoute = CareersClosetDesignerRouteImport.update({
+  id: '/careers_/closet-designer',
+  path: '/careers/closet-designer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessoriesClosetLightingRoute =
   AccessoriesClosetLightingRouteImport.update({
     id: '/accessories_/closet-lighting',
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/service-areas': typeof ServiceAreasRoute
   '/showroom': typeof ShowroomRoute
   '/accessories/closet-lighting': typeof AccessoriesClosetLightingRoute
+  '/careers/closet-designer': typeof CareersClosetDesignerRoute
   '/custom-closets/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
   '/service-areas/broward-county': typeof ServiceAreasBrowardCountyRoute
   '/service-areas/collier-county': typeof ServiceAreasCollierCountyRoute
@@ -190,6 +197,7 @@ export interface FileRoutesByTo {
   '/service-areas': typeof ServiceAreasRoute
   '/showroom': typeof ShowroomRoute
   '/accessories/closet-lighting': typeof AccessoriesClosetLightingRoute
+  '/careers/closet-designer': typeof CareersClosetDesignerRoute
   '/custom-closets/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
   '/service-areas/broward-county': typeof ServiceAreasBrowardCountyRoute
   '/service-areas/collier-county': typeof ServiceAreasCollierCountyRoute
@@ -215,6 +223,7 @@ export interface FileRoutesById {
   '/service-areas': typeof ServiceAreasRoute
   '/showroom': typeof ShowroomRoute
   '/accessories_/closet-lighting': typeof AccessoriesClosetLightingRoute
+  '/careers_/closet-designer': typeof CareersClosetDesignerRoute
   '/custom-closets_/walk-in-closets': typeof CustomClosetsWalkInClosetsRoute
   '/service-areas_/broward-county': typeof ServiceAreasBrowardCountyRoute
   '/service-areas_/collier-county': typeof ServiceAreasCollierCountyRoute
@@ -241,6 +250,7 @@ export interface FileRouteTypes {
     | '/service-areas'
     | '/showroom'
     | '/accessories/closet-lighting'
+    | '/careers/closet-designer'
     | '/custom-closets/walk-in-closets'
     | '/service-areas/broward-county'
     | '/service-areas/collier-county'
@@ -265,6 +275,7 @@ export interface FileRouteTypes {
     | '/service-areas'
     | '/showroom'
     | '/accessories/closet-lighting'
+    | '/careers/closet-designer'
     | '/custom-closets/walk-in-closets'
     | '/service-areas/broward-county'
     | '/service-areas/collier-county'
@@ -289,6 +300,7 @@ export interface FileRouteTypes {
     | '/service-areas'
     | '/showroom'
     | '/accessories_/closet-lighting'
+    | '/careers_/closet-designer'
     | '/custom-closets_/walk-in-closets'
     | '/service-areas_/broward-county'
     | '/service-areas_/collier-county'
@@ -314,6 +326,7 @@ export interface RootRouteChildren {
   ServiceAreasRoute: typeof ServiceAreasRoute
   ShowroomRoute: typeof ShowroomRoute
   AccessoriesClosetLightingRoute: typeof AccessoriesClosetLightingRoute
+  CareersClosetDesignerRoute: typeof CareersClosetDesignerRoute
   CustomClosetsWalkInClosetsRoute: typeof CustomClosetsWalkInClosetsRoute
   ServiceAreasBrowardCountyRoute: typeof ServiceAreasBrowardCountyRoute
   ServiceAreasCollierCountyRoute: typeof ServiceAreasCollierCountyRoute
@@ -475,6 +488,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomClosetsWalkInClosetsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers_/closet-designer': {
+      id: '/careers_/closet-designer'
+      path: '/careers/closet-designer'
+      fullPath: '/careers/closet-designer'
+      preLoaderRoute: typeof CareersClosetDesignerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/accessories_/closet-lighting': {
       id: '/accessories_/closet-lighting'
       path: '/accessories/closet-lighting'
@@ -498,6 +518,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServiceAreasRoute: ServiceAreasRoute,
   ShowroomRoute: ShowroomRoute,
   AccessoriesClosetLightingRoute: AccessoriesClosetLightingRoute,
+  CareersClosetDesignerRoute: CareersClosetDesignerRoute,
   CustomClosetsWalkInClosetsRoute: CustomClosetsWalkInClosetsRoute,
   ServiceAreasBrowardCountyRoute: ServiceAreasBrowardCountyRoute,
   ServiceAreasCollierCountyRoute: ServiceAreasCollierCountyRoute,

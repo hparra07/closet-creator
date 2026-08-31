@@ -1,6 +1,8 @@
-import { Link } from "@tanstack/react-router";
 import { MapPin, Clock, BadgeDollarSign } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
+import { HiringBannerSection } from "@/components/sections/HiringBannerSection";
+import { YellowButton } from "@/components/common/YellowButton";
+import { OutlineButton } from "@/components/common/OutlineButton";
 import teamImg from "@/assets/shared/expert-installations.webp";
 
 type Position = {
@@ -14,7 +16,7 @@ type Position = {
   responsibilities: string[];
 };
 
-const POSITIONS: Position[] = [
+export const POSITIONS: Position[] = [
   {
     slug: "closet-designer",
     title: "Closet Designer (Design Consultant)",
@@ -33,7 +35,7 @@ const POSITIONS: Position[] = [
   },
 ];
 
-export function OpenPositionsSection() {
+export function OpenPositionsSection({ onApplyClick }: { onApplyClick: () => void }) {
   return (
     <div id="open-positions">
       <SectionWrapper className="!pb-0">
@@ -67,20 +69,8 @@ export function OpenPositionsSection() {
 
               <div className="flex flex-wrap items-center gap-4">
                 {/* Links to the individual job page — not built yet */}
-                <a
-                  href={`/careers/${p.slug}`}
-                  className="inline-flex items-center gap-2 px-7 py-2.5 font-sans text-sm font-semibold border transition-colors"
-                  style={{ color: "#313131", borderColor: "#31313130" }}
-                >
-                  View Details
-                </a>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center px-7 py-2.5 font-sans text-sm font-semibold transition-colors duration-300 bg-primary hover:bg-primary/80"
-                  style={{ color: "#313131" }}
-                >
-                  Apply Now
-                </Link>
+                <OutlineButton href={`/careers/${p.slug}`} showArrow>View Details</OutlineButton>
+                <YellowButton onClick={onApplyClick}>Apply Now</YellowButton>
               </div>
             </div>
           ))}
@@ -107,23 +97,13 @@ export function OpenPositionsSection() {
               <p className="text-sm md:text-base leading-relaxed mb-7 text-white/85">
                 Many of our best team members didn't come from a job board — they came from taking initiative.
               </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-7 py-2.5 font-sans text-sm font-semibold bg-primary hover:bg-primary/80 transition-colors"
-                style={{ color: "#313131" }}
-              >
-                Introduce Yourself
-              </Link>
+              <YellowButton onClick={onApplyClick}>Introduce Yourself</YellowButton>
             </div>
           </div>
         </div>
       </section>
 
-      <SectionWrapper className="!py-24 md:!py-32">
-        <p className="reveal-up max-w-3xl mx-auto text-center font-display text-2xl md:text-4xl font-bold leading-snug" style={{ color: "#313131" }}>
-          South Florida's Most Awarded Custom Closet Company Is Hiring.
-        </p>
-      </SectionWrapper>
+      <HiringBannerSection />
     </div>
   );
 }
