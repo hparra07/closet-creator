@@ -13,8 +13,11 @@ import { Route as ShowroomRouteImport } from './routes/showroom'
 import { Route as ServiceAreasRouteImport } from './routes/service-areas'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DesignProcessRouteImport } from './routes/design-process'
+import { Route as CustomerServiceRouteImport } from './routes/customer-service'
 import { Route as CustomClosetsRouteImport } from './routes/custom-closets'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServiceAreasStLucieCountyRouteImport } from './routes/service-areas_.st-lucie-county'
@@ -49,6 +52,16 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignProcessRoute = DesignProcessRouteImport.update({
+  id: '/design-process',
+  path: '/design-process',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerServiceRoute = CustomerServiceRouteImport.update({
+  id: '/customer-service',
+  path: '/customer-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CustomClosetsRoute = CustomClosetsRouteImport.update({
   id: '/custom-closets',
   path: '/custom-closets',
@@ -57,6 +70,11 @@ const CustomClosetsRoute = CustomClosetsRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -138,8 +156,11 @@ const AccessoriesClosetLightingRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/customer-service': typeof CustomerServiceRoute
+  '/design-process': typeof DesignProcessRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
@@ -159,8 +180,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/customer-service': typeof CustomerServiceRoute
+  '/design-process': typeof DesignProcessRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
@@ -181,8 +205,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
+  '/customer-service': typeof CustomerServiceRoute
+  '/design-process': typeof DesignProcessRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
@@ -204,8 +231,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/careers'
     | '/contact'
     | '/custom-closets'
+    | '/customer-service'
+    | '/design-process'
     | '/faq'
     | '/portfolio'
     | '/service-areas'
@@ -225,8 +255,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/careers'
     | '/contact'
     | '/custom-closets'
+    | '/customer-service'
+    | '/design-process'
     | '/faq'
     | '/portfolio'
     | '/service-areas'
@@ -246,8 +279,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/careers'
     | '/contact'
     | '/custom-closets'
+    | '/customer-service'
+    | '/design-process'
     | '/faq'
     | '/portfolio'
     | '/service-areas'
@@ -268,8 +304,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   CustomClosetsRoute: typeof CustomClosetsRoute
+  CustomerServiceRoute: typeof CustomerServiceRoute
+  DesignProcessRoute: typeof DesignProcessRoute
   FaqRoute: typeof FaqRoute
   PortfolioRoute: typeof PortfolioRoute
   ServiceAreasRoute: typeof ServiceAreasRoute
@@ -317,6 +356,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/design-process': {
+      id: '/design-process'
+      path: '/design-process'
+      fullPath: '/design-process'
+      preLoaderRoute: typeof DesignProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer-service': {
+      id: '/customer-service'
+      path: '/customer-service'
+      fullPath: '/customer-service'
+      preLoaderRoute: typeof CustomerServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/custom-closets': {
       id: '/custom-closets'
       path: '/custom-closets'
@@ -329,6 +382,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -428,8 +488,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   CustomClosetsRoute: CustomClosetsRoute,
+  CustomerServiceRoute: CustomerServiceRoute,
+  DesignProcessRoute: DesignProcessRoute,
   FaqRoute: FaqRoute,
   PortfolioRoute: PortfolioRoute,
   ServiceAreasRoute: ServiceAreasRoute,

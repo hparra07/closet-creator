@@ -1,15 +1,25 @@
 import { Phone } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 
-export function FaqCtaSection({ image, imageAlt }: { image: string; imageAlt: string }) {
+export function FaqCtaSection({
+  image,
+  imageAlt,
+  title = "Didn't See Your Question?",
+  subtitle = "Feel free to reach out by calling us.",
+}: {
+  image: string;
+  imageAlt: string;
+  title?: string;
+  subtitle?: string;
+}) {
   return (
     <SectionWrapper>
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="font-sans text-3xl md:text-4xl font-bold mb-3 reveal-up" style={{ color: "#313131" }}>
-          Didn't See Your Question?
+          {title}
         </h2>
         <p className="text-base md:text-lg mb-7 reveal-up" style={{ color: "#313131" }}>
-          Feel free to reach out by calling us.
+          {subtitle}
         </p>
         <a
           href="tel:+15619129881"

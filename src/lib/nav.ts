@@ -29,9 +29,9 @@ export const NAV: NavEntry[] = [
           { label: "Contact Us", href: "/contact" },
           { label: "Our Showroom", href: "/showroom" },
           { label: "FAQ", href: "/faq" },
-          { label: "Design Process" },
-          { label: "Customer Service" },
-          { label: "Careers" },
+          { label: "Design Process", href: "/design-process" },
+          { label: "Customer Service", href: "/customer-service" },
+          { label: "Careers", href: "/careers" },
         ],
       },
       {

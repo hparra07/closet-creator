@@ -27,6 +27,9 @@ const LABEL_OVERRIDES: Record<string, string> = {
   "martin-county": "Martin County",
   "okeechobee-county": "Okeechobee County",
   "faq": "FAQ",
+  "design-process": "Design Process",
+  "customer-service": "Customer Service",
+  "careers": "Careers",
 };
 
 function labelFor(slug: string) {

@@ -5,8 +5,8 @@ import faq from "@/assets/contact/faq.webp";
 import warranty from "@/assets/contact/warranty.webp";
 
 const CARDS = [
-  { title: "Careers", desc: "Join our growing team of experts", img: carrers, href: "#" },
-  { title: "FAQ", desc: "Answers to common questions", img: faq, href: "/about" },
+  { title: "Careers", desc: "Join our growing team of experts", img: carrers, href: "/careers" },
+  { title: "FAQ", desc: "Answers to common questions", img: faq, href: "/faq" },
   { title: "Warranty", desc: "Our commitment to quality", img: warranty, href: "#" },
 ];
 
