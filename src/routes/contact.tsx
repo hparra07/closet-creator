@@ -12,7 +12,7 @@ import { ServiceAreasSection } from "@/components/sections/ServiceAreasSection";
 import { AreaSearchSection } from "@/components/sections/AreaSearchSection";
 import { FaqSection, type FaqItem } from "@/components/sections/FaqSection";
 import { LearnMoreSection } from "@/components/sections/LearnMoreSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { VideoModal } from "@/components/modals/VideoModal";
 import { pageHead } from "@/lib/pageHead";
 

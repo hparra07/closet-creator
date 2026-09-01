@@ -8,7 +8,7 @@ import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { YellowButton } from "@/components/common/YellowButton";
 import { JobApplicationForm } from "@/components/forms/JobApplicationForm";
 import { POSITIONS } from "@/components/sections/OpenPositionsSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { pageHead, SITE_URL } from "@/lib/pageHead";
 
 import heroImg from "@/assets/shared/design-and-drafting.webp";

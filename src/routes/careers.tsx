@@ -8,7 +8,7 @@ import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
 import { YellowButton } from "@/components/common/YellowButton";
 import { WhyJoinUsSection } from "@/components/sections/WhyJoinUsSection";
 import { OpenPositionsSection, POSITIONS } from "@/components/sections/OpenPositionsSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { CareerModal } from "@/components/modals/CareerModal";
 import { pageHead, SITE_URL } from "@/lib/pageHead";
 

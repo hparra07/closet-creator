@@ -11,7 +11,7 @@ import { ServiceAreasSection } from "@/components/sections/ServiceAreasSection";
 import { GallerySection } from "@/components/sections/GallerySection";
 import { WhyChooseUsV2 } from "@/components/sections/WhyChooseUsV2";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import heroImg from "@/assets/shared/why-frame-1.webp";
 import { pageHead, SITE_URL } from "@/lib/pageHead";
 import storyImg from "@/assets/shared/in-home-consultation.webp";

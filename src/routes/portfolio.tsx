@@ -7,7 +7,7 @@ import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { SolutionCard } from "@/components/sections/ProductSolutionsSection";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { YellowButton } from "@/components/common/YellowButton";
 import { pageHead, SITE_URL } from "@/lib/pageHead";
 import { PORTFOLIO_SOLUTIONS } from "@/lib/portfolioSolutions";

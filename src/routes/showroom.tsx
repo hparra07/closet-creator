@@ -10,7 +10,7 @@ import { FindUsMapSection } from "@/components/sections/FindUsMapSection";
 import { GallerySection } from "@/components/sections/GallerySection";
 import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { pageHead, SITE_URL } from "@/lib/pageHead";
 
 import heroImg from "@/assets/contact/showroom.webp";

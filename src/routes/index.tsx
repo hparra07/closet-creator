@@ -14,7 +14,7 @@ import { ServiceAreasSection } from "@/components/sections/ServiceAreasSection";
 import { ShowroomSection } from "@/components/sections/ShowroomSection";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { VideoModal } from "@/components/modals/VideoModal";
 import { pageHead } from "@/lib/pageHead";
 

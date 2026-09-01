@@ -9,7 +9,7 @@ import { FaqCtaSection } from "@/components/sections/FaqCtaSection";
 import { SuccessStoriesSection } from "@/components/sections/SuccessStoriesSection";
 import { AboutIntroSection } from "@/components/sections/AboutIntroSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { pageHead } from "@/lib/pageHead";
 import { FAQ_PAGE_FAQS } from "@/lib/faqData";
 

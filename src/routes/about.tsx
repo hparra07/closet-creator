@@ -26,7 +26,7 @@ import { ServiceAreasSection } from "@/components/sections/ServiceAreasSection";
 import { ShowroomSection } from "@/components/sections/ShowroomSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
-import { ConsultModal } from "@/components/modals/ConsultModal";
+import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { pageHead } from "@/lib/pageHead";
 
 export const Route = createFileRoute("/about")({
