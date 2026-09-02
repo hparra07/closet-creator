@@ -12,7 +12,7 @@ import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { CareerModal } from "@/components/modals/CareerModal";
 import { pageHead, SITE_URL } from "@/lib/pageHead";
 
-import heroImg from "@/assets/contact/carrers.webp";
+import heroImg from "@/assets/hero-careers.jpg";
 
 export const Route = createFileRoute("/careers")({
   head: () =>

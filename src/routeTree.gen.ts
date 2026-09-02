@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ShowroomRouteImport } from './routes/showroom'
 import { Route as ServiceAreasRouteImport } from './routes/service-areas'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as HomeOrganizationIdeaGalleryRouteImport } from './routes/home-organization-idea-gallery'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DesignProcessRouteImport } from './routes/design-process'
 import { Route as CustomerServiceRouteImport } from './routes/customer-service'
@@ -48,6 +49,12 @@ const PortfolioRoute = PortfolioRouteImport.update({
   path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeOrganizationIdeaGalleryRoute =
+  HomeOrganizationIdeaGalleryRouteImport.update({
+    id: '/home-organization-idea-gallery',
+    path: '/home-organization-idea-gallery',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -168,6 +175,7 @@ export interface FileRoutesByFullPath {
   '/customer-service': typeof CustomerServiceRoute
   '/design-process': typeof DesignProcessRoute
   '/faq': typeof FaqRoute
+  '/home-organization-idea-gallery': typeof HomeOrganizationIdeaGalleryRoute
   '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
   '/showroom': typeof ShowroomRoute
@@ -193,6 +201,7 @@ export interface FileRoutesByTo {
   '/customer-service': typeof CustomerServiceRoute
   '/design-process': typeof DesignProcessRoute
   '/faq': typeof FaqRoute
+  '/home-organization-idea-gallery': typeof HomeOrganizationIdeaGalleryRoute
   '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
   '/showroom': typeof ShowroomRoute
@@ -219,6 +228,7 @@ export interface FileRoutesById {
   '/customer-service': typeof CustomerServiceRoute
   '/design-process': typeof DesignProcessRoute
   '/faq': typeof FaqRoute
+  '/home-organization-idea-gallery': typeof HomeOrganizationIdeaGalleryRoute
   '/portfolio': typeof PortfolioRoute
   '/service-areas': typeof ServiceAreasRoute
   '/showroom': typeof ShowroomRoute
@@ -246,6 +256,7 @@ export interface FileRouteTypes {
     | '/customer-service'
     | '/design-process'
     | '/faq'
+    | '/home-organization-idea-gallery'
     | '/portfolio'
     | '/service-areas'
     | '/showroom'
@@ -271,6 +282,7 @@ export interface FileRouteTypes {
     | '/customer-service'
     | '/design-process'
     | '/faq'
+    | '/home-organization-idea-gallery'
     | '/portfolio'
     | '/service-areas'
     | '/showroom'
@@ -296,6 +308,7 @@ export interface FileRouteTypes {
     | '/customer-service'
     | '/design-process'
     | '/faq'
+    | '/home-organization-idea-gallery'
     | '/portfolio'
     | '/service-areas'
     | '/showroom'
@@ -322,6 +335,7 @@ export interface RootRouteChildren {
   CustomerServiceRoute: typeof CustomerServiceRoute
   DesignProcessRoute: typeof DesignProcessRoute
   FaqRoute: typeof FaqRoute
+  HomeOrganizationIdeaGalleryRoute: typeof HomeOrganizationIdeaGalleryRoute
   PortfolioRoute: typeof PortfolioRoute
   ServiceAreasRoute: typeof ServiceAreasRoute
   ShowroomRoute: typeof ShowroomRoute
@@ -360,6 +374,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-organization-idea-gallery': {
+      id: '/home-organization-idea-gallery'
+      path: '/home-organization-idea-gallery'
+      fullPath: '/home-organization-idea-gallery'
+      preLoaderRoute: typeof HomeOrganizationIdeaGalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -514,6 +535,7 @@ const rootRouteChildren: RootRouteChildren = {
   CustomerServiceRoute: CustomerServiceRoute,
   DesignProcessRoute: DesignProcessRoute,
   FaqRoute: FaqRoute,
+  HomeOrganizationIdeaGalleryRoute: HomeOrganizationIdeaGalleryRoute,
   PortfolioRoute: PortfolioRoute,
   ServiceAreasRoute: ServiceAreasRoute,
   ShowroomRoute: ShowroomRoute,

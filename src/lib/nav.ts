@@ -45,7 +45,7 @@ export const NAV: NavEntry[] = [
     submenu: [
       {
         heading: "See Our Work",
-        items: [{ label: "Home Organization Idea Gallery" }, { label: "Portfolio", href: "/portfolio" }],
+        items: [{ label: "Home Organization Idea Gallery", href: "/home-organization-idea-gallery" }, { label: "Portfolio", href: "/portfolio" }],
       },
     ],
   },

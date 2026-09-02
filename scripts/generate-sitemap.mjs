@@ -17,6 +17,7 @@ const ROUTES = [
   { path: "/custom-closets/walk-in-closets", priority: "0.8", changefreq: "monthly" },
   { path: "/accessories/closet-lighting", priority: "0.7", changefreq: "monthly" },
   { path: "/portfolio", priority: "0.7", changefreq: "monthly" },
+  { path: "/home-organization-idea-gallery", priority: "0.7", changefreq: "monthly" },
   { path: "/showroom", priority: "0.6", changefreq: "monthly" },
   { path: "/faq", priority: "0.6", changefreq: "monthly" },
   { path: "/design-process", priority: "0.6", changefreq: "monthly" },
