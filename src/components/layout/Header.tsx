@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, ChevronDown } from "lucide-react";
 import jlLogo from "@/assets/global/jl-logo.webp";
 import { NAV } from "@/lib/nav";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { SOCIAL_LINKS } from "@/lib/social";
 
 export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: () => void; variant?: "dark" | "light" }) {
@@ -83,7 +83,7 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
           mobileOpen ? "z-[200] bg-transparent border-transparent px-3" : "z-50 px-6"
         } ${
           !mobileOpen && scrolled
-            ? "bg-white border-black/10 shadow-lg text-black"
+            ? "bg-background border-black/10 shadow-lg text-black"
             : !mobileOpen ? `bg-transparent border-transparent ${variant === "light" ? "text-black" : "text-ink-foreground"}` : ""
         }`}
       >
@@ -113,7 +113,7 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
                 </span>
               )}
               {n.submenu && (
-                <div className={`invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity absolute left-0 top-full bg-white text-foreground shadow-xl border border-foreground/10 p-6 z-50 ${n.submenu.length > 4 ? "grid grid-cols-3 gap-x-10 gap-y-5 w-[760px]" : n.submenu.length > 1 ? "grid grid-cols-2 gap-x-10 gap-y-4 w-[560px]" : "w-[280px]"}`}>
+                <div className={`invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity absolute left-0 top-full bg-background text-foreground shadow-xl border border-foreground/10 rounded-lg p-6 z-50 ${n.submenu.length > 4 ? "grid grid-cols-3 gap-x-10 gap-y-5 w-[760px]" : n.submenu.length > 1 ? "grid grid-cols-2 gap-x-10 gap-y-4 w-[560px]" : "w-[280px]"}`}>
                   {n.submenu.map((col, idx) => (
                     <div key={col.heading ?? `col-${idx}`}>
                       {col.heading && (
@@ -153,11 +153,11 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
           ))}
         </ul>
         <div className="hidden lg:flex items-center gap-[clamp(0px,calc(3.681vw_-_37.69px),12px)] font-medium ml-2">
-          <YellowButton onClick={openConsult} className="![font-size:clamp(12px,calc(0.614vw_+_5.718px),14px)] !px-[clamp(12px,calc(4.908vw_-_38.256px),28px)] !py-[clamp(8px,calc(0.614vw_+_1.718px),10px)] !rounded-none min-[1350px]:!rounded-md !rounded-l-md whitespace-nowrap">FREE Consultation</YellowButton>
+          <PrimaryButton onClick={openConsult} className="![font-size:clamp(12px,calc(0.614vw_+_5.718px),14px)] !px-[clamp(12px,calc(4.908vw_-_38.256px),28px)] !py-[clamp(8px,calc(0.614vw_+_1.718px),10px)] !rounded-lg whitespace-nowrap">FREE Consultation</PrimaryButton>
           <a
             href="tel:+15619129881"
             aria-label="Call Us"
-            className="bg-ink text-ink-foreground px-[clamp(12px,calc(4.908vw_-_38.256px),28px)] py-[clamp(8px,calc(0.614vw_+_1.718px),10px)] inline-flex items-center justify-center gap-1.5 [font-size:clamp(12px,calc(0.614vw_+_5.718px),14px)] font-semibold font-sans cursor-pointer whitespace-nowrap rounded-none min-[1350px]:!rounded-md rounded-r-md"
+            className="bg-ink text-ink-foreground px-[clamp(12px,calc(4.908vw_-_38.256px),28px)] py-[clamp(8px,calc(0.614vw_+_1.718px),10px)] inline-flex items-center justify-center gap-1.5 [font-size:clamp(12px,calc(0.614vw_+_5.718px),14px)] font-semibold font-sans cursor-pointer whitespace-nowrap rounded-lg"
           >
             <Phone className="w-4 h-4" />
             <span className="hidden min-[1350px]:inline">CALL US!</span>
@@ -165,7 +165,7 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
         </div>
         <button
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          className={`lg:hidden p-2.5 cursor-pointer z-[310] rounded-full ${mobileOpen ? "bg-white shadow-md" : ""}`}
+          className={`lg:hidden p-2.5 cursor-pointer z-[310] rounded-full ${mobileOpen ? "bg-background shadow-md" : ""}`}
           onClick={() => toggleMobileMenu.current()}
         >
           <svg width="26" height="26" viewBox="0 0 20 20" fill="none">
@@ -263,7 +263,7 @@ export function Header({ onConsultOpen, variant = "dark" }: { onConsultOpen?: ()
         {/* Middle panel — CTA */}
         <div className="mnav-panel relative bg-primary text-primary-foreground rounded-xl border border-primary px-7 py-6" style={{ transform: "translateX(101%)" }}>
           <div className="mnav-bottom-content flex flex-col gap-3">
-            <YellowButton className="!w-full" onClick={() => { toggleMobileMenu.current(); openConsult(); }}>FREE Consultation</YellowButton>
+            <PrimaryButton className="!w-full" onClick={() => { toggleMobileMenu.current(); openConsult(); }}>FREE Consultation</PrimaryButton>
             <a
               href="tel:+15619129881"
               className="bg-ink text-ink-foreground px-7 py-2.5 inline-flex justify-center items-center gap-2 text-sm font-semibold font-sans w-full cursor-pointer rounded-lg"

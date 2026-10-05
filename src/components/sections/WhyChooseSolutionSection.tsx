@@ -82,10 +82,10 @@ export function WhyChooseSolutionSection({
     <SectionWrapper>
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div>
-          <h2 className="font-sans text-3xl md:text-4xl leading-tight mb-6 reveal-up" style={{ color: "#313131" }}>
+          <h2 className="font-sans text-3xl md:text-4xl leading-tight mb-6 reveal-up" style={{ color: "#1B1B1B" }}>
             {title}
           </h2>
-          <div className="space-y-4 text-base leading-relaxed reveal-up" style={{ color: "#313131" }}>
+          <div className="space-y-4 text-base leading-relaxed reveal-up" style={{ color: "#1B1B1B" }}>
             {intro}
           </div>
         </div>
@@ -116,7 +116,7 @@ export function WhyChooseSolutionSection({
               type="button"
               aria-label="Previous card"
               onClick={() => shuffle("prev")}
-              className="w-11 h-11 flex items-center justify-center rounded-full border border-[#313131]/40 text-[#313131] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-500 ease-out cursor-pointer shrink-0"
+              className="w-11 h-11 flex items-center justify-center rounded-full border border-[#1B1B1B]/40 text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-500 ease-out cursor-pointer shrink-0"
             >
               <LongArrow direction="left" />
             </button>
@@ -124,7 +124,7 @@ export function WhyChooseSolutionSection({
               type="button"
               aria-label="Next card"
               onClick={() => shuffle("next")}
-              className="w-11 h-11 flex items-center justify-center rounded-full border border-[#313131]/40 text-[#313131] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-500 ease-out cursor-pointer shrink-0"
+              className="w-11 h-11 flex items-center justify-center rounded-full border border-[#1B1B1B]/40 text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-500 ease-out cursor-pointer shrink-0"
             >
               <LongArrow direction="right" />
             </button>
@@ -178,7 +178,7 @@ export function WhyChooseSolutionSection({
         }
         .stack-num {
           display: block;
-          color: var(--color-primary);
+          color: #fff;
           font-family: var(--font-sans);
           font-size: 13px;
           font-weight: 700;

@@ -61,10 +61,10 @@ function CustomerService() {
 
         <SectionWrapper className="!pb-0">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="rule eyebrow mb-6" style={{ color: "#313131" }}>How Can We Help?</span>
-            <p className="text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#313131" }}>
+            <span className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>How Can We Help?</span>
+            <p className="text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#1B1B1B" }}>
               Whether you're planning your first project or need support after installation, here's the fastest way to get what you need — or call us directly at{" "}
-              <a href="tel:+15619129881" className="font-semibold underline-offset-2 hover:underline" style={{ color: "#313131" }}>
+              <a href="tel:+15619129881" className="font-semibold underline-offset-2 hover:underline" style={{ color: "#1B1B1B" }}>
                 (561) 912-9881
               </a>.
             </p>

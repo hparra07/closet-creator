@@ -29,7 +29,7 @@ const TIMINGS = [
 
 // Desktop: all cards share the same muted-cream treatment.
 function getCardStyle() {
-  return { bg: "rgba(238, 234, 226, 0.95)", textColor: "#313131", descOpacity: 0.75, isDark: false };
+  return { bg: "rgba(238, 234, 226, 0.95)", textColor: "#1B1B1B", descOpacity: 0.75, isDark: false };
 }
 
 // Mobile: each card keeps its own alternating dark/yellow/light color.
@@ -37,7 +37,7 @@ function getMobileCardStyle(i: number) {
   const isDark = i === 0 || i === 4;
   const isYellow = i === 1 || i === 3;
   const bg = isDark ? "rgba(0, 0, 0, 0.86)" : isYellow ? "rgba(241, 195, 58, 0.94)" : undefined;
-  const textColor = isDark ? "#FFFFFF" : "#313131";
+  const textColor = isDark ? "#FFFFFF" : "#1B1B1B";
   const descOpacity = isYellow ? 1 : isDark ? 0.85 : 0.75;
   return { bg, textColor, descOpacity, isDark, isYellow };
 }
@@ -143,7 +143,7 @@ export function WhyChooseUsV2({
       <div ref={mobileWrapperRef} className="lg:hidden">
         <section
           className="why-panel w-full h-screen flex items-center justify-center relative overflow-hidden"
-          style={{ borderRadius: "10px" }}
+          style={{ borderRadius: "8px" }}
         >
           <div className="why-panel-inner h-full w-full">
             <img src={backgroundImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -172,7 +172,7 @@ export function WhyChooseUsV2({
             <section
               key={i}
               className="why-panel w-full h-screen flex items-center justify-center relative overflow-hidden"
-              style={{ background: s.bg || "#F5F0E8", borderRadius: "10px" }}
+              style={{ background: s.bg || "#F5F0E8", borderRadius: "8px" }}
             >
               <div className="why-panel-inner h-full flex flex-col items-center justify-center px-8 text-center">
                 <div className="flex flex-col items-center gap-6">
@@ -224,7 +224,7 @@ export function WhyChooseUsV2({
                     style={{
                       transform: `translateY(${cardOffset(i)}vh)`,
                       willChange: "transform",
-                      borderRadius: "10px",
+                      borderRadius: "8px",
                       minHeight: "320px",
                       background: s.bg,
                       boxShadow: "0 24px 48px -12px rgba(0,0,0,0.45), 0 8px 16px -8px rgba(0,0,0,0.35)",

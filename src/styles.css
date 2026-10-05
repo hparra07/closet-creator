@@ -27,13 +27,15 @@
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  /* A single corner radius across the whole UI: every step of the scale
+     resolves to --radius so buttons, cards, inputs and media all match. */
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
+  --radius-4xl: var(--radius);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -75,30 +77,31 @@
 }
 
 :root {
-  --radius: 0.125rem;
-  /* Cream / off-white editorial background */
-  --background: oklch(0.975 0.008 85);
-  --foreground: oklch(0.31 0 0);
-  --card: oklch(0.985 0.006 85);
+  --radius: 0.5rem;
+  /* Very light pink editorial background (#FAF3F4) */
+  --background: oklch(0.970 0.008 7.3);
+  --foreground: oklch(0.222 0 0);
+  /* Cards sit on the same ground as the page; the border defines them. */
+  --card: oklch(0.970 0.008 7.3);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  /* Amber/yellow accent matching design */
-  --primary: oklch(0.82 0.17 88);
-  --primary-foreground: oklch(0.31 0 0);
+  /* Wine accent (#7B1A30) */
+  --primary: oklch(0.389 0.131 13.1);
+  --primary-foreground: oklch(1 0 0);
   --ink: oklch(0.16 0.01 60);
-  --ink-foreground: oklch(0.96 0.008 85);
-  --muted-cream: oklch(0.94 0.012 85);
+  --ink-foreground: oklch(0.970 0.008 7.3);
+  --muted-cream: oklch(0.945 0.010 7.3);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --muted-foreground: oklch(0.450 0 0);
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
+  --border: oklch(0.885 0 0);
+  --input: oklch(0.885 0 0);
   --ring: oklch(0.704 0.04 256.788);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);

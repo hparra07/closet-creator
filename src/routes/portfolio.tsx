@@ -8,7 +8,7 @@ import { SolutionCard } from "@/components/sections/ProductSolutionsSection";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
 import { ConsultModal } from "@/components/modals/LazyConsultModal";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { pageHead, SITE_URL } from "@/lib/pageHead";
 import { PORTFOLIO_SOLUTIONS } from "@/lib/portfolioSolutions";
 
@@ -119,10 +119,10 @@ function Portfolio() {
 
         <SectionWrapper>
           <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14 reveal-up">
-            <h2 className="font-sans text-2xl md:text-3xl font-bold leading-snug mb-4" style={{ color: "#313131" }}>
+            <h2 className="font-sans text-2xl md:text-3xl font-bold leading-snug mb-4" style={{ color: "#1B1B1B" }}>
               High-End Custom Closets and Storage Systems for Every Space
             </h2>
-            <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>
+            <p className="text-base md:text-lg leading-relaxed" style={{ color: "#1B1B1B" }}>
               The JL Closets Portfolio highlights our most exceptional custom storage solutions, from luxurious walk-in closets to innovative pantries and multifunctional spaces. Every project is{" "}
               <strong className="font-bold underline-animate">crafted to combine elegance and practicality</strong>, built to stand the test of time.
             </p>
@@ -141,7 +141,7 @@ function Portfolio() {
 
           {PORTFOLIO_SOLUTIONS.length > MOBILE_VISIBLE_COUNT && !showAllMobile && (
             <div className="mt-8 flex justify-center md:hidden">
-              <YellowButton onClick={() => setShowAllMobile(true)}>View More Projects</YellowButton>
+              <PrimaryButton onClick={() => setShowAllMobile(true)}>View More Projects</PrimaryButton>
             </div>
           )}
         </SectionWrapper>

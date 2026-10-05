@@ -42,8 +42,8 @@ export function CareerModal({
       >
         <div className="flex items-start justify-between mb-2">
           <div>
-            <h3 className="font-display text-2xl md:text-3xl font-bold" style={{ color: "#313131" }}>Apply To JL Closets</h3>
-            <p className="text-sm mt-1" style={{ color: "#313131", opacity: 0.7 }}>
+            <h3 className="font-display text-2xl md:text-3xl font-bold" style={{ color: "#1B1B1B" }}>Apply To JL Closets</h3>
+            <p className="text-sm mt-1" style={{ color: "#1B1B1B", opacity: 0.7 }}>
               Fill out the form below and we'll get back to you as soon as possible.
             </p>
           </div>

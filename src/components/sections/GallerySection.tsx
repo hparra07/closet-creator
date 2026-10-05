@@ -13,7 +13,7 @@ export function GallerySection({ title = "Works" }: { title?: string }) {
   return (
     <SectionWrapper>
       <div className="text-center mb-14 md:mb-20">
-        <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
+        <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>{title}</h2>
       </div>
       <WorksCarousel
         items={[

@@ -71,7 +71,7 @@ export function PageBreadcrumbs() {
         <BreadcrumbList className="text-xs md:text-sm">
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link to="/" className="relative inline-flex text-[#5a5a5a] hover:text-primary after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Home</Link>
+              <Link to="/" className="relative inline-flex text-[#555555] hover:text-primary after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Home</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           {crumbs.map((c) => (
@@ -79,10 +79,10 @@ export function PageBreadcrumbs() {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 {c.isLast ? (
-                  <BreadcrumbPage style={{ color: "#313131" }}>{c.label}</BreadcrumbPage>
+                  <BreadcrumbPage style={{ color: "#1B1B1B" }}>{c.label}</BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink asChild>
-                    <Link to={c.href} className="relative inline-flex text-[#5a5a5a] hover:text-primary after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">{c.label}</Link>
+                    <Link to={c.href} className="relative inline-flex text-[#555555] hover:text-primary after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1px] after:bg-current after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">{c.label}</Link>
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>

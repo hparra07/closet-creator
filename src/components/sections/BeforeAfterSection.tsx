@@ -15,15 +15,15 @@ export function BeforeAfterSection({
   return (
     <SectionWrapper>
       <div className="max-w-2xl mx-auto text-center mb-10 md:mb-14 reveal-up">
-        <h2 className="rule eyebrow mb-6" style={{ color: "#313131" }}>{title}</h2>
-        <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>{intro}</p>
+        <h2 className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>{title}</h2>
+        <p className="text-base md:text-lg leading-relaxed" style={{ color: "#1B1B1B" }}>{intro}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-up">
         {items.map((item) => (
           <div key={item.title}>
             <BeforeAfterSlider beforeImage={item.before} afterImage={item.after} beforeFilter={item.beforeFilter} />
-            <p className="mt-4 text-center font-sans text-lg font-bold" style={{ color: "#313131" }}>
+            <p className="mt-4 text-center font-sans text-lg font-bold" style={{ color: "#1B1B1B" }}>
               {item.title}
             </p>
           </div>

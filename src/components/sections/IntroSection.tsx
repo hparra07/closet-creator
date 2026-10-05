@@ -13,11 +13,11 @@ export function IntroSection() {
   return (
     <SectionWrapper>
       <div className="text-center mb-14 md:mb-20">
-        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Custom Storage Solutions</h2>
+        <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Custom Storage Solutions</h2>
       </div>
       <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
         <div className="max-w-xs md:max-w-lg lg:max-w-xs mx-auto lg:mx-0 mb-12 lg:mb-0 lg:shrink-0">
-          <p className="font-sans text-[15px] md:text-[18px] lg:text-[20px] leading-relaxed reveal-up" style={{ color: "#313131" }}>
+          <p className="font-sans text-[15px] md:text-[18px] lg:text-[20px] leading-relaxed reveal-up" style={{ color: "#1B1B1B" }}>
             <span className="underline-animate">
               From custom closets to garages, pantries, home offices and more, JL Closets designs tailored storage solutions for every space in your home—guided
             </span>{" "}

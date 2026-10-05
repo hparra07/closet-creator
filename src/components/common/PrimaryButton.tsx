@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useRollingText } from "@/lib/useRollingText";
 
-export function YellowButton({
+export function PrimaryButton({
   children,
   className = "",
   onClick,
@@ -20,7 +20,7 @@ export function YellowButton({
 
   const sizeClass =
     size === "lg" ? "px-9 py-3.5 text-base" : size === "sm" ? "px-5 py-2 text-xs" : "px-7 py-2.5 text-sm";
-  const classes = `bg-primary font-semibold transition-colors duration-500 ease-out hover:bg-white font-sans cursor-pointer inline-flex items-center justify-center ${sizeClass} ${className}`;
+  const classes = `bg-primary rounded-lg font-semibold transition-colors duration-500 ease-out hover:bg-[#62142A] font-sans cursor-pointer inline-flex items-center justify-center ${sizeClass} ${className}`;
 
   if (href) {
     return (
@@ -29,7 +29,7 @@ export function YellowButton({
         href={href}
         onClick={onClick}
         className={classes}
-        style={{ color: "#313131" }}
+        style={{ color: "#FFFFFF" }}
       >
         <span ref={textRef}>{children}</span>
       </a>
@@ -41,7 +41,7 @@ export function YellowButton({
       ref={btnRef as React.RefObject<HTMLButtonElement>}
       onClick={onClick}
       className={classes}
-      style={{ color: "#313131" }}
+      style={{ color: "#FFFFFF" }}
     >
       <span ref={textRef}>{children}</span>
     </button>

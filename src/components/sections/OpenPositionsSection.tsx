@@ -1,7 +1,7 @@
 import { MapPin, Clock, BadgeDollarSign } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { HiringBannerSection } from "@/components/sections/HiringBannerSection";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { OutlineButton } from "@/components/common/OutlineButton";
 import teamImg from "@/assets/shared/expert-installations.webp";
 
@@ -40,8 +40,8 @@ export function OpenPositionsSection({ onApplyClick }: { onApplyClick: () => voi
     <div id="open-positions">
       <SectionWrapper className="!pb-0">
         <div className="max-w-4xl mx-auto text-center mb-10 md:mb-14 reveal-up">
-          <h2 className="rule eyebrow mb-6" style={{ color: "#313131" }}>Open Positions</h2>
-          <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>
+          <h2 className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>Open Positions</h2>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: "#1B1B1B" }}>
             We're actively growing and have the following roles we're looking to fill.
           </p>
         </div>
@@ -50,27 +50,27 @@ export function OpenPositionsSection({ onApplyClick }: { onApplyClick: () => voi
           {POSITIONS.map((p) => (
             <div key={p.title} className="reveal-up p-8 rounded-2xl border border-foreground/10 bg-card">
               <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-                <h3 className="font-display text-2xl font-bold" style={{ color: "#313131" }}>{p.title}</h3>
+                <h3 className="font-display text-2xl font-bold" style={{ color: "#1B1B1B" }}>{p.title}</h3>
                 <span
                   className="shrink-0 text-xs font-semibold px-3 py-1 rounded-full"
-                  style={{ background: "rgba(241,195,58,0.15)", color: "#8a6d1a" }}
+                  style={{ background: "rgba(241,195,58,0.15)", color: "#7B1A30" }}
                 >
                   {p.tag}
                 </span>
               </div>
 
-              <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 text-sm" style={{ color: "#313131", opacity: 0.7 }}>
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 text-sm" style={{ color: "#1B1B1B", opacity: 0.7 }}>
                 <span className="inline-flex items-center gap-1.5"><MapPin className="w-4 h-4" /> {p.location}</span>
                 <span className="inline-flex items-center gap-1.5"><Clock className="w-4 h-4" /> {p.type}</span>
                 <span className="inline-flex items-center gap-1.5"><BadgeDollarSign className="w-4 h-4" /> {p.pay}</span>
               </div>
 
-              <p className="text-base leading-relaxed mb-6" style={{ color: "#313131", opacity: 0.8 }}>{p.desc}</p>
+              <p className="text-base leading-relaxed mb-6" style={{ color: "#1B1B1B", opacity: 0.8 }}>{p.desc}</p>
 
               <div className="flex flex-wrap items-center gap-4">
                 {/* Links to the individual job page — not built yet */}
                 <OutlineButton href={`/careers/${p.slug}`} showArrow>View Details</OutlineButton>
-                <YellowButton onClick={onApplyClick}>Apply Now</YellowButton>
+                <PrimaryButton onClick={onApplyClick}>Apply Now</PrimaryButton>
               </div>
             </div>
           ))}
@@ -97,7 +97,7 @@ export function OpenPositionsSection({ onApplyClick }: { onApplyClick: () => voi
               <p className="text-sm md:text-base leading-relaxed mb-7 text-white/85">
                 Many of our best team members didn't come from a job board — they came from taking initiative.
               </p>
-              <YellowButton onClick={onApplyClick}>Introduce Yourself</YellowButton>
+              <PrimaryButton onClick={onApplyClick}>Introduce Yourself</PrimaryButton>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import heroKitchen from "@/assets/home/hero-kitchen.webp";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 export function HeroSection({ onConsultOpen }: { onConsultOpen?: () => void }) {
   const [scrollY, setScrollY] = useState(0);
@@ -46,7 +46,7 @@ export function HeroSection({ onConsultOpen }: { onConsultOpen?: () => void }) {
           Storage Solutions in South Florida.
         </h1>
         <div className="reveal-up" style={{ animationDelay: "300ms" }}>
-          <YellowButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</YellowButton>
+          <PrimaryButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</PrimaryButton>
         </div>
       </div>
     </header>

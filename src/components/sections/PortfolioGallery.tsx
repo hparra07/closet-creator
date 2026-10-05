@@ -46,8 +46,7 @@ function ProjectCarousel({ project, onOpenLightbox }: { project: PortfolioProjec
               type="button"
               aria-label="Previous photo"
               onClick={() => setIndex((i) => wrap(i - 1))}
-              className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/90 shadow-lg hover:bg-primary hover:text-primary-foreground transition-colors duration-300 cursor-pointer"
-              style={{ color: "#313131" }}
+              className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/90 shadow-lg text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground transition-colors duration-300 cursor-pointer"
             >
               <LongArrow direction="left" />
             </button>
@@ -55,8 +54,7 @@ function ProjectCarousel({ project, onOpenLightbox }: { project: PortfolioProjec
               type="button"
               aria-label="Next photo"
               onClick={() => setIndex((i) => wrap(i + 1))}
-              className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/90 shadow-lg hover:bg-primary hover:text-primary-foreground transition-colors duration-300 cursor-pointer"
-              style={{ color: "#313131" }}
+              className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/90 shadow-lg text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground transition-colors duration-300 cursor-pointer"
             >
               <LongArrow direction="right" />
             </button>
@@ -68,14 +66,14 @@ function ProjectCarousel({ project, onOpenLightbox }: { project: PortfolioProjec
                   type="button"
                   aria-label={`Go to photo ${i + 1}`}
                   onClick={() => setIndex(i)}
-                  className={`h-1.5 rounded-full transition-all cursor-pointer ${i === index ? "w-6 bg-primary" : "w-1.5 bg-white/70"}`}
+                  className={`h-1.5 rounded-full transition-all cursor-pointer ${i === index ? "w-6 bg-white" : "w-1.5 bg-white/50"}`}
                 />
               ))}
             </div>
           </>
         )}
       </div>
-      <p className="text-center mt-5 font-sans text-lg font-bold" style={{ color: "#313131" }}>
+      <p className="text-center mt-5 font-sans text-lg font-bold" style={{ color: "#1B1B1B" }}>
         {project.name}
       </p>
     </div>
@@ -155,12 +153,12 @@ export function PortfolioGallery({
       {(title || intro) && (
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14 reveal-up">
           {title && (
-            <h2 className="font-sans text-2xl md:text-3xl font-bold leading-snug mb-4" style={{ color: "#313131" }}>
+            <h2 className="font-sans text-2xl md:text-3xl font-bold leading-snug mb-4" style={{ color: "#1B1B1B" }}>
               {title}
             </h2>
           )}
           {intro && (
-            <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>
+            <p className="text-base md:text-lg leading-relaxed" style={{ color: "#1B1B1B" }}>
               {intro}
             </p>
           )}
@@ -181,7 +179,7 @@ export function PortfolioGallery({
                 ? "bg-primary text-primary-foreground border-primary"
                 : "border-foreground/25 hover:border-primary"
             }`}
-            style={i === activeProject ? undefined : { color: "#313131" }}
+            style={i === activeProject ? undefined : { color: "#1B1B1B" }}
           >
             {p.name}
           </button>

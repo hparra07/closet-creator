@@ -56,7 +56,7 @@ export function HiringBannerSection() {
       <h2
         ref={textRef}
         className="max-w-4xl mx-auto font-display font-bold leading-tight"
-        style={{ color: "#313131", fontSize: "clamp(1.75rem, 5vw, 3.5rem)", opacity: 0 }}
+        style={{ color: "#1B1B1B", fontSize: "clamp(1.75rem, 5vw, 3.5rem)", opacity: 0 }}
       >
         {TEXT}
       </h2>

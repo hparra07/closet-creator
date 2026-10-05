@@ -1,4 +1,4 @@
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 export function ProductHeroSection({
   title,
@@ -48,7 +48,7 @@ export function ProductHeroSection({
           </div>
           {onConsultOpen && (
             <div className="md:hidden mt-6 reveal-up" style={{ animationDelay: "300ms" }}>
-              <YellowButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</YellowButton>
+              <PrimaryButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</PrimaryButton>
             </div>
           )}
         </div>

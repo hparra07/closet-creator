@@ -20,11 +20,11 @@ export function StoryIntroSection({
     <SectionWrapper>
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         <div>
-          <span className="rule eyebrow mb-6" style={{ color: "#313131" }}>{eyebrow}</span>
+          <span className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>{eyebrow}</span>
           <h2 className="font-sans text-3xl md:text-4xl leading-tight mb-6 reveal-up">
             {title}
           </h2>
-          <div className="space-y-4 text-base leading-relaxed" style={{ color: "#313131" }}>
+          <div className="space-y-4 text-base leading-relaxed" style={{ color: "#1B1B1B" }}>
             {paragraphs.map((p, i) => (
               <p key={i} className="reveal-up">
                 {p}

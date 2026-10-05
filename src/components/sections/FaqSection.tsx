@@ -72,9 +72,9 @@ export function FaqSection({
       <div className="max-w-3xl mx-auto">
         {title && (
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
+            <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>{title}</h2>
             {subtitle && (
-              <p className="mt-4 font-sans text-lg md:text-xl leading-snug" style={{ color: "#313131" }}>
+              <p className="mt-4 font-sans text-lg md:text-xl leading-snug" style={{ color: "#1B1B1B" }}>
                 {subtitle}
               </p>
             )}
@@ -107,7 +107,7 @@ export function FaqSection({
                     opacity: isOpen ? 1 : 0,
                   }}
                 >
-                  <div className="pb-6 text-base leading-relaxed pr-12 space-y-3" style={{ color: "#313131" }}>
+                  <div className="pb-6 text-base leading-relaxed pr-12 space-y-3" style={{ color: "#1B1B1B" }}>
                     {faq.a}
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export function FaqSection({
         </div>
 
         {footer !== undefined ? footer : (
-          <p className="italic text-sm leading-relaxed mt-10" style={{ color: "#313131" }}>
+          <p className="italic text-sm leading-relaxed mt-10" style={{ color: "#1B1B1B" }}>
             At JL Closets, we're more than just a custom storage solution provider – we're your partner in creating a home that's beautifully organized, functional, and uniquely yours. Let us help you simplify your life and transform your space. Contact us today to get started on your custom storage journey.
           </p>
         )}

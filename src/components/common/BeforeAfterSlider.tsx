@@ -85,8 +85,8 @@ export function BeforeAfterSlider({
         className="absolute top-1/2 z-10 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center pointer-events-none"
         style={{ left: `${percent}%`, transform: "translate(-50%, -50%)" }}
       >
-        <ChevronLeft className="w-4 h-4 -mr-1" style={{ color: "#313131" }} />
-        <ChevronRight className="w-4 h-4 -ml-1" style={{ color: "#313131" }} />
+        <ChevronLeft className="w-4 h-4 -mr-1" style={{ color: "#1B1B1B" }} />
+        <ChevronRight className="w-4 h-4 -ml-1" style={{ color: "#1B1B1B" }} />
       </div>
     </div>
   );

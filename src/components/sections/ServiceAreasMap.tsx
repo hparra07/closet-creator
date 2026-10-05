@@ -4,13 +4,24 @@ import { SERVICE_COUNTIES } from "@/lib/serviceCounties";
 
 const FLORIDA_STYLES = `<style>
   svg path[id] { fill: #FFFFFF !important; stroke: #B5B5B5 !important; stroke-width: 0.5 !important; stroke-linejoin: round !important; transition: fill 0.3s ease-out, stroke 0.3s ease-out, stroke-width 0.3s ease-out, opacity 0.3s ease-out !important; }
-  svg path.service { fill: #F6C33A !important; stroke: #FFFFFF !important; stroke-width: 0.6 !important; }
+  svg path.service { fill: #7B1A30 !important; stroke: #FFFFFF !important; stroke-width: 0.6 !important; }
+  svg text.service-label, svg text.service-label tspan { fill: #FFFFFF !important; }
 </style>`;
 
 let processed = floridaSvgRawOriginal.replace(/(<svg[^>]*>)/, `$1${FLORIDA_STYLES}`);
 SERVICE_COUNTIES.forEach(({ id }) => {
   const re = new RegExp(`(<path\\b[^>]*\\bid="${id.replace(/[.\\]/g, (m) => "\\" + m)}")`, "g");
   processed = processed.replace(re, `$1 class="service"`);
+});
+
+// The counties we serve are filled wine, so their engraved names need to flip
+// to white. Match each <text> block by the name it renders rather than by the
+// SVG's generated ids, which carry no meaning and could change on re-export.
+const SERVED_LABELS = SERVICE_COUNTIES.map((c) => c.name.replace(/ County$/, ""));
+processed = processed.replace(/<text\b[^>]*>[\s\S]*?<\/text>/g, (block) => {
+  const plain = block.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+  const served = SERVED_LABELS.some((n) => plain.toLowerCase() === n.toLowerCase());
+  return served ? block.replace(/<text\b/, '<text class="service-label"') : block;
 });
 const floridaSvgRaw = processed;
 
@@ -78,7 +89,7 @@ export function ServiceAreasMap({
       {hovered !== null && (
         <style>{`
           svg path[id="${SERVICE_COUNTIES[hovered].id}"] {
-            stroke: #313131 !important;
+            stroke: #1B1B1B !important;
             stroke-width: 1.8 !important;
           }
           svg path.service:not([id="${SERVICE_COUNTIES[hovered].id}"]) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 export function ContactForm() {
   const [step, setStep] = useState(0);
@@ -20,7 +20,7 @@ export function ContactForm() {
   };
 
   const inputCls =
-    "w-full bg-transparent text-foreground placeholder:text-foreground/40 px-4 py-2 md:px-5 md:py-3.5 text-base border border-foreground/30 hover:border-foreground/60 focus:border-foreground focus:outline-none focus:ring-0 transition font-sans";
+    "w-full bg-transparent rounded-lg text-foreground placeholder:text-foreground/40 px-4 py-2 md:px-5 md:py-3.5 text-base border border-foreground/30 hover:border-foreground/60 focus:border-foreground focus:outline-none focus:ring-0 transition font-sans";
 
   const formatPhone = (raw: string) => {
     const d = raw.replace(/\D/g, "").slice(0, 10);
@@ -65,7 +65,7 @@ export function ContactForm() {
     <button
       type="button"
       onClick={onClick}
-      className={`px-4 py-2 md:px-5 md:py-3 text-sm font-medium border transition cursor-pointer ${
+      className={`px-4 py-2 md:px-5 md:py-3 rounded-lg text-sm font-medium border transition cursor-pointer ${
         active
           ? "bg-ink text-ink-foreground border-ink"
           : "bg-transparent text-foreground border-foreground/30 hover:border-foreground"
@@ -105,9 +105,9 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="md:col-span-9 border border-foreground/15 p-10 md:p-14 text-center">
-        <p className="eyebrow mb-4" style={{ color: "#313131" }}>— THANK YOU —</p>
-        <h3 className="font-display text-3xl md:text-4xl mb-4 font-bold" style={{ color: "#313131" }}>We've received your inquiry.</h3>
+      <div className="md:col-span-9 border rounded-lg border-foreground/15 p-10 md:p-14 text-center">
+        <p className="eyebrow mb-4" style={{ color: "#1B1B1B" }}>— THANK YOU —</p>
+        <h3 className="font-display text-3xl md:text-4xl mb-4 font-bold" style={{ color: "#1B1B1B" }}>We've received your inquiry.</h3>
         <p className="text-foreground/70 max-w-md mx-auto">Our team will reach out within one business day to schedule your free consultation.</p>
       </div>
     );
@@ -127,7 +127,7 @@ export function ContactForm() {
       </div>
 
       {/* Question */}
-      <h3 className="font-display text-lg md:text-3xl leading-tight mb-2 font-bold" style={{ color: "#313131" }}>
+      <h3 className="font-display text-lg md:text-3xl leading-tight mb-2 font-bold" style={{ color: "#1B1B1B" }}>
         {current.question}
       </h3>
       {current.hint && <p className="text-sm text-foreground/60 mb-5">{current.hint}</p>}
@@ -196,7 +196,7 @@ export function ContactForm() {
             </div>
             {consultFor === "My home" && (
               <div className="mt-8 pt-8 border-t border-foreground/15">
-                <p className="font-sans text-base font-medium mb-1" style={{ color: "#313131" }}>
+                <p className="font-sans text-base font-medium mb-1" style={{ color: "#1B1B1B" }}>
                   Which areas of your home are you interested in?
                 </p>
                 <p className="text-sm text-foreground/60 mb-4">Choose all that apply.</p>
@@ -234,9 +234,9 @@ export function ContactForm() {
         >
           ← Back
         </button>
-        <YellowButton onClick={canAdvance() ? next : undefined} className={!canAdvance() ? "opacity-40 cursor-not-allowed" : ""}>
+        <PrimaryButton onClick={canAdvance() ? next : undefined} className={!canAdvance() ? "opacity-40 cursor-not-allowed" : ""}>
           {isLast ? "Submit Inquiry" : "Continue"}
-        </YellowButton>
+        </PrimaryButton>
       </div>
     </div>
   );

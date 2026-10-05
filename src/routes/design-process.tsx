@@ -60,8 +60,8 @@ function DesignProcess() {
 
         <SectionWrapper className="!pb-0 !pt-20 lg:!pt-24">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="rule eyebrow mb-3" style={{ color: "#313131" }}>How We Work</span>
-            <p className="text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#313131" }}>
+            <span className="rule eyebrow mb-3" style={{ color: "#1B1B1B" }}>How We Work</span>
+            <p className="text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#1B1B1B" }}>
               For over 30 years we've been South Florida's premier choice for custom storage solutions. Our team of experienced designers and skilled artisans doesn't just follow industry best practices — we set the standard for custom closets, pantries, garages, and home offices across the region.
             </p>
           </div>
@@ -70,7 +70,7 @@ function DesignProcess() {
         <DesignProcessSection />
 
         <div className="text-center py-6 md:py-8 border-y border-foreground/10 mt-10 md:mt-14">
-          <span className="rule eyebrow" style={{ color: "#313131" }}>Option 2 — Horizontal Slides</span>
+          <span className="rule eyebrow" style={{ color: "#1B1B1B" }}>Option 2 — Horizontal Slides</span>
         </div>
 
         <DesignProcessSectionV2 />

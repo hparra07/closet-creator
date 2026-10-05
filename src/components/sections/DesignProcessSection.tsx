@@ -89,7 +89,7 @@ export function DesignProcessSection() {
         gsap.set(stepRefs.current[0], { opacity: 1 });
         gsap.set(fillRefs.current, { scaleY: 0 });
         numRefs.current.forEach((el, i) => {
-          if (el) el.style.color = i === 0 ? "#F1C33A" : "#31313166";
+          if (el) el.style.color = i === 0 ? "#7B1A30" : "#1B1B1B66";
         });
 
         // The image column is a native CSS `sticky` element (no GSAP pin
@@ -120,7 +120,7 @@ export function DesignProcessSection() {
               const imgOpacity = i === floorIdx ? 1 - t : i === floorIdx + 1 ? t : 0;
               if (imgRefs.current[i]) gsap.set(imgRefs.current[i], { opacity: imgOpacity, scale: 1.08 - 0.08 * imgOpacity });
               if (stepRefs.current[i]) gsap.set(stepRefs.current[i], { opacity: 0.35 + 0.65 * local });
-              if (numRefs.current[i]) numRefs.current[i]!.style.color = i === idx ? "#F1C33A" : "#31313166";
+              if (numRefs.current[i]) numRefs.current[i]!.style.color = i === idx ? "#7B1A30" : "#1B1B1B66";
               if (fillRefs.current[i]) fillRefs.current[i]!.style.transform = `scaleY(${i <= idx ? 1 : 0})`;
             }
           },
@@ -146,12 +146,12 @@ export function DesignProcessSection() {
               <img src={s.img} alt={s.imgAlt} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="flex items-center gap-2 mb-2">
-              <s.icon className="w-5 h-5" style={{ color: "#F1C33A" }} />
-              <span className="font-sans text-sm font-bold" style={{ color: "#F1C33A" }}>{s.num}</span>
+              <s.icon className="w-5 h-5" style={{ color: "#7B1A30" }} />
+              <span className="font-sans text-sm font-bold" style={{ color: "#7B1A30" }}>{s.num}</span>
             </div>
-            <h3 className="font-display text-3xl leading-tight mb-4 font-bold" style={{ color: "#313131" }}>{s.title}</h3>
+            <h3 className="font-display text-3xl leading-tight mb-4 font-bold" style={{ color: "#1B1B1B" }}>{s.title}</h3>
             {s.paragraphs.map((p, pi) => (
-              <p key={pi} className="text-base leading-relaxed mb-3" style={{ color: "#313131", opacity: 0.8 }}>{p}</p>
+              <p key={pi} className="text-base leading-relaxed mb-3" style={{ color: "#1B1B1B", opacity: 0.8 }}>{p}</p>
             ))}
           </div>
         ))}
@@ -180,21 +180,21 @@ export function DesignProcessSection() {
               {STEPS.map((s, i) => (
                 <div key={i} ref={(el) => { stepRefs.current[i] = el; }} className="flex items-start gap-6">
                   <div className="flex flex-col items-center gap-3 pt-1 shrink-0">
-                    <s.icon className="w-6 h-6" style={{ color: "#F1C33A" }} />
+                    <s.icon className="w-6 h-6" style={{ color: "#7B1A30" }} />
                     <span ref={(el) => { numRefs.current[i] = el; }} className="font-sans text-sm font-bold">
                       {s.num}
                     </span>
-                    <div className="relative w-[2px] h-14 rounded-full overflow-hidden" style={{ background: "#31313120" }}>
+                    <div className="relative w-[2px] h-14 rounded-full overflow-hidden" style={{ background: "#1B1B1B20" }}>
                       <div
                         ref={(el) => { fillRefs.current[i] = el; }}
                         className="absolute inset-0 origin-top"
-                        style={{ background: "#F1C33A" }}
+                        style={{ background: "#7B1A30" }}
                       />
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-display text-2xl lg:text-3xl leading-tight mb-2 font-bold" style={{ color: "#313131" }}>{s.title}</h3>
-                    <p className="text-sm lg:text-base leading-relaxed max-w-sm" style={{ color: "#313131", opacity: 0.75 }}>{s.blurb}</p>
+                    <h3 className="font-display text-2xl lg:text-3xl leading-tight mb-2 font-bold" style={{ color: "#1B1B1B" }}>{s.title}</h3>
+                    <p className="text-sm lg:text-base leading-relaxed max-w-sm" style={{ color: "#1B1B1B", opacity: 0.75 }}>{s.blurb}</p>
                   </div>
                 </div>
               ))}

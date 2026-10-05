@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import gsap from "gsap";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 export type ProjectFeature = { label: string; desc: string };
 export type ProjectDetails = { title: string; intro: React.ReactNode; features: ProjectFeature[] };
@@ -214,14 +214,14 @@ export function SolutionCard({
       <div className="absolute inset-x-0 bottom-0 px-6 pb-20 z-20">
         <h3 className="font-sans text-2xl font-bold text-white mb-1">{solution.title}</h3>
         {solution.projects && slides.length > 1 && (
-          <p className="text-primary text-xs font-bold tracking-widest mb-2">{slides[active].label}</p>
+          <p className="text-white text-xs font-bold tracking-widest mb-2">{slides[active].label}</p>
         )}
         <p className="text-white text-sm leading-relaxed mb-5 max-w-xs">{slides[active].desc}</p>
         {!solution.noButton && (
           activeDetails ? (
-            <YellowButton onClick={() => setShowDetails(true)}>Discover</YellowButton>
+            <PrimaryButton onClick={() => setShowDetails(true)}>Discover</PrimaryButton>
           ) : (
-            <YellowButton href={solution.href ?? "#"}>Discover</YellowButton>
+            <PrimaryButton href={solution.href ?? "#"}>Discover</PrimaryButton>
           )
         )}
       </div>
@@ -254,7 +254,7 @@ export function SolutionCard({
           <ul className="space-y-2.5">
             {activeDetails.features.map((f) => (
               <li key={f.label} className="flex items-start gap-2.5">
-                <span className="text-primary mt-1.5 shrink-0 text-[10px]">●</span>
+                <span className="text-white mt-1.5 shrink-0 text-[10px]">●</span>
                 <span className="text-sm leading-relaxed text-white/90">
                   <strong className="font-bold text-white">{f.label}:</strong> {f.desc}
                 </span>
@@ -285,7 +285,7 @@ export function SolutionCard({
                 type="button"
                 aria-label={`Go to image ${i + 1}`}
                 onClick={() => goTo(i)}
-                className={`h-1.5 rounded-full transition-all cursor-pointer ${active === i ? "w-6 bg-primary" : "w-1.5 bg-white/40"}`}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${active === i ? "w-6 bg-white" : "w-1.5 bg-white/40"}`}
               />
             ))}
           </div>
@@ -356,7 +356,7 @@ export function ProductSolutionsSection({
     <SectionWrapper>
       {title && (
         <div className="text-center mb-10 md:mb-14 reveal-up">
-          <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
+          <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>{title}</h2>
         </div>
       )}
       <div
@@ -365,7 +365,7 @@ export function ProductSolutionsSection({
             ? "max-w-6xl text-base md:text-lg leading-relaxed"
             : "max-w-2xl font-sans text-2xl md:text-3xl leading-snug"
         }`}
-        style={{ color: "#313131" }}
+        style={{ color: "#1B1B1B" }}
       >
         {intro}
       </div>
@@ -388,8 +388,7 @@ export function ProductSolutionsSection({
               type="button"
               aria-label="Previous"
               onClick={() => scrollCarousel(-1)}
-              className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
-              style={{ color: "#313131" }}
+              className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
             >
               <LongArrow direction="left" />
             </button>
@@ -397,8 +396,7 @@ export function ProductSolutionsSection({
               type="button"
               aria-label="Next"
               onClick={() => scrollCarousel(1)}
-              className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
-              style={{ color: "#313131" }}
+              className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
             >
               <LongArrow direction="right" />
             </button>

@@ -73,7 +73,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
               <img src={s.img} alt={s.t} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
             </div>
             <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
-            <h3 className="font-display text-4xl leading-tight mb-4 font-bold text-[#313131]">{s.t}</h3>
+            <h3 className="font-display text-4xl leading-tight mb-4 font-bold text-[#1B1B1B]">{s.t}</h3>
             <p className="text-base leading-relaxed text-foreground/70">{s.d}</p>
           </div>
         ))}
@@ -105,7 +105,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
               style={{ opacity: active === i ? 1 : 0.2 }}
             >
               <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
-              <h3 className="font-display text-4xl md:text-5xl leading-tight mb-4 font-bold text-[#313131]">{s.t}</h3>
+              <h3 className="font-display text-4xl md:text-5xl leading-tight mb-4 font-bold text-[#1B1B1B]">{s.t}</h3>
               <p className="text-base md:text-lg leading-relaxed max-w-md text-foreground/70">{s.d}</p>
             </div>
           ))}
@@ -119,7 +119,7 @@ export function ProcessSection() {
   return (
     <SectionWrapper>
       <div className="text-center mb-10 md:mb-14 reveal-up">
-        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Our Process</h2>
+        <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Our Process</h2>
       </div>
       <p className="text-center max-w-2xl mx-auto font-sans text-2xl md:text-3xl leading-snug mb-10 md:mb-14 reveal-up">
         From the first sketch to the final installation, our step-by-step approach ensures a seamless experience and a storage solution tailored to your life.

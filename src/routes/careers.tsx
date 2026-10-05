@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { WhyJoinUsSection } from "@/components/sections/WhyJoinUsSection";
 import { OpenPositionsSection, POSITIONS } from "@/components/sections/OpenPositionsSection";
 import { ConsultModal } from "@/components/modals/LazyConsultModal";
@@ -60,11 +60,11 @@ function Careers() {
 
         <SectionWrapper className="!pb-0">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="rule eyebrow mb-6" style={{ color: "#313131" }}>Join Our Team</span>
-            <p className="text-base md:text-lg leading-relaxed mb-8 reveal-up" style={{ color: "#313131" }}>
+            <span className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>Join Our Team</span>
+            <p className="text-base md:text-lg leading-relaxed mb-8 reveal-up" style={{ color: "#1B1B1B" }}>
               We're South Florida's most awarded custom-closet company, trusted for precision, craftsmanship, and a level of service that keeps clients returning for decades. As we grow, we're looking for driven, skilled people who want work that has impact, ideas that get heard, and a career that genuinely advances.
             </p>
-            <YellowButton href="#open-positions" className="reveal-up">View Open Positions ↓</YellowButton>
+            <PrimaryButton href="#open-positions" className="reveal-up">View Open Positions ↓</PrimaryButton>
           </div>
         </SectionWrapper>
 

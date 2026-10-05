@@ -23,8 +23,8 @@ export function OutlineButton({
 
   const sizeClass =
     size === "lg" ? "px-9 py-3.5 text-base" : size === "sm" ? "px-5 py-2 text-xs" : "px-7 py-2.5 text-sm";
-  const classes = `group inline-flex items-center gap-2 border font-semibold transition-colors duration-300 hover:bg-foreground/5 font-sans cursor-pointer ${sizeClass} ${className}`;
-  const style = { color: "#313131", borderColor: "#31313130" };
+  const classes = `group inline-flex items-center gap-2 border rounded-lg font-semibold transition-colors duration-300 hover:bg-[#FAF3F4] font-sans cursor-pointer ${sizeClass} ${className}`;
+  const style = { color: "#7B1A30", borderColor: "#7B1A3040" };
 
   const content = (
     <>

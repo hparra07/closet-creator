@@ -14,7 +14,7 @@ export function LearnMoreSection() {
   return (
     <SectionWrapper>
       <div className="max-w-5xl mx-auto">
-        <h2 className="font-sans text-2xl md:text-3xl font-bold text-center mb-10 md:mb-14" style={{ color: "#313131" }}>
+        <h2 className="font-sans text-2xl md:text-3xl font-bold text-center mb-10 md:mb-14" style={{ color: "#1B1B1B" }}>
           Learn more about us.
         </h2>
 

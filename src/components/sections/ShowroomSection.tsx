@@ -1,5 +1,5 @@
 import showroom from "@/assets/contact/showroom.webp";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 export function ShowroomSection() {
   return (
@@ -33,7 +33,7 @@ export function ShowroomSection() {
               <p className="font-bold mb-2">Showroom</p>
               <p className="opacity-90">160 NW 16th St,<br />Boca Raton, FL 33432</p>
               <div className="mt-3">
-                <YellowButton onClick={() => window.open("https://maps.app.goo.gl/Va4K8JrFK4sX4vxu8", "_blank", "noopener,noreferrer")}>Google Maps</YellowButton>
+                <PrimaryButton onClick={() => window.open("https://maps.app.goo.gl/Va4K8JrFK4sX4vxu8", "_blank", "noopener,noreferrer")}>Google Maps</PrimaryButton>
               </div>
             </div>
             <div className="reveal-up" style={{ animationDelay: "480ms" }}>

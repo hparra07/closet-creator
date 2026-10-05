@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 // Full-bleed hero with a slow parallax background and staggered text
 // reveal — shared by About Us, Service Areas, and any other "story" page
@@ -56,7 +56,7 @@ export function ParallaxHeroSection({
           {description}
         </p>
         <div className="reveal-up" style={{ animationDelay: "450ms" }}>
-          <YellowButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</YellowButton>
+          <PrimaryButton onClick={onConsultOpen} size="lg">Schedule a FREE Consultation</PrimaryButton>
         </div>
       </div>
     </section>

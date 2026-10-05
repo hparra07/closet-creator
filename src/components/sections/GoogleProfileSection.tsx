@@ -7,7 +7,7 @@ export function GoogleProfileSection() {
     <SectionWrapper className="bg-[#f8f7f4]">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10 md:mb-14">
-          <h2 className="rule eyebrow" style={{ color: "#313131" }}>Visit Our Google Business Profile</h2>
+          <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Visit Our Google Business Profile</h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-0 overflow-hidden rounded-lg shadow-xl">
@@ -40,7 +40,7 @@ export function GoogleProfileSection() {
           <div className="bg-white p-8 md:p-10 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <span className="font-sans text-5xl font-bold" style={{ color: "#313131" }}>4.8</span>
+                <span className="font-sans text-5xl font-bold" style={{ color: "#1B1B1B" }}>4.8</span>
                 <div>
                   <div className="flex gap-0.5 mb-1">
                     {Array.from({ length: 5 }).map((_, i) => (
@@ -51,12 +51,12 @@ export function GoogleProfileSection() {
                 </div>
               </div>
 
-              <p className="text-sm leading-relaxed mt-4 mb-6" style={{ color: "#313131", opacity: 0.7 }}>
+              <p className="text-sm leading-relaxed mt-4 mb-6" style={{ color: "#1B1B1B", opacity: 0.7 }}>
                 "JL Closets exceeded all expectations. Professional team, stunning craftsmanship, and they finished ahead of schedule. Highly recommended!"
               </p>
             </div>
 
-            <div className="space-y-3 text-sm mb-6" style={{ color: "#313131" }}>
+            <div className="space-y-3 text-sm mb-6" style={{ color: "#1B1B1B" }}>
               <div className="flex items-start gap-3">
                 <svg className="w-4 h-4 mt-0.5 shrink-0 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 <span>160 NW 16th St, Boca Raton, FL 33432</span>

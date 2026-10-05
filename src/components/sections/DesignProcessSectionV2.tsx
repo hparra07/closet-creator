@@ -121,12 +121,12 @@ export function DesignProcessSectionV2() {
               <img src={s.img} alt={s.imgAlt} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="flex items-center gap-2 mb-2">
-              <s.icon className="w-5 h-5" style={{ color: "#F1C33A" }} />
-              <span className="font-sans text-base font-bold" style={{ color: "#F1C33A" }}>{i + 1}/{STEPS.length}</span>
+              <s.icon className="w-5 h-5" style={{ color: "#7B1A30" }} />
+              <span className="font-sans text-base font-bold" style={{ color: "#7B1A30" }}>{i + 1}/{STEPS.length}</span>
             </div>
-            <h3 className="font-display text-4xl leading-tight mb-4 font-bold" style={{ color: "#313131" }}>{s.title}</h3>
+            <h3 className="font-display text-4xl leading-tight mb-4 font-bold" style={{ color: "#1B1B1B" }}>{s.title}</h3>
             {s.paragraphs.map((p, pi) => (
-              <p key={pi} className="text-lg leading-relaxed mb-3" style={{ color: "#313131", opacity: 0.8 }}>{p}</p>
+              <p key={pi} className="text-lg leading-relaxed mb-3" style={{ color: "#1B1B1B", opacity: 0.8 }}>{p}</p>
             ))}
           </div>
         ))}
@@ -154,8 +154,8 @@ export function DesignProcessSectionV2() {
                   className="absolute inset-x-0 bottom-0 px-12 lg:px-20 pb-16 lg:pb-20"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <s.icon className="w-6 h-6 lg:w-7 lg:h-7 text-primary drop-shadow-md" />
-                    <span className="font-sans text-base lg:text-lg font-bold text-primary">{i + 1}/{STEPS.length}</span>
+                    <s.icon className="w-6 h-6 lg:w-7 lg:h-7 text-white drop-shadow-md" />
+                    <span className="font-sans text-base lg:text-lg font-bold text-white">{i + 1}/{STEPS.length}</span>
                   </div>
                   <h3 className="font-display text-4xl lg:text-6xl leading-tight mb-5 font-bold text-white drop-shadow-md whitespace-nowrap">{s.title}</h3>
                   <p className="text-base lg:text-xl leading-relaxed text-white max-w-lg drop-shadow-md">{s.blurb}</p>

@@ -5,7 +5,7 @@ export function ContactSection() {
   return (
     <SectionWrapper>
       <div className="text-center mb-14 md:mb-20 reveal-up">
-        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Start your transformation</h2>
+        <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Start your transformation</h2>
       </div>
       <div className="grid md:grid-cols-12 gap-12 max-w-6xl mx-auto reveal-up">
         <div className="md:col-span-3">

@@ -59,8 +59,8 @@ export function CountyAreasSection({
   return (
     <SectionWrapper>
       <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14 reveal-up">
-        <h2 className="rule eyebrow mb-6" style={{ color: "#313131" }}>{title}</h2>
-        <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>{intro}</p>
+        <h2 className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>{title}</h2>
+        <p className="text-base md:text-lg leading-relaxed" style={{ color: "#1B1B1B" }}>{intro}</p>
       </div>
 
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-stretch reveal-up">
@@ -84,7 +84,7 @@ export function CountyAreasSection({
 
         <div className="h-full bg-ink rounded-2xl shadow-2xl p-8 md:p-11 flex flex-col">
           <div className="flex items-center gap-3 mb-1">
-            <span className="font-display text-4xl md:text-5xl font-bold text-primary tabular-nums">
+            <span className="font-display text-4xl md:text-5xl font-bold text-white tabular-nums">
               <AnimatedCount target={areas.length} />
             </span>
             <span className="text-white text-base md:text-lg font-semibold uppercase tracking-wide">
@@ -97,8 +97,8 @@ export function CountyAreasSection({
           <ul className="columns-2 sm:columns-3 gap-x-6">
             {areas.map((area) => (
               <li key={area} className="group flex items-center gap-1.5 text-sm leading-relaxed mb-2.5 break-inside-avoid">
-                <MapPin className="w-3.5 h-3.5 shrink-0 text-primary" />
-                <span className="text-white/85 transition-colors duration-200 group-hover:text-primary">{area}</span>
+                <MapPin className="w-3.5 h-3.5 shrink-0 text-white/70" />
+                <span className="text-white/85 transition-colors duration-200 group-hover:text-white">{area}</span>
               </li>
             ))}
           </ul>

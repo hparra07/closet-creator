@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import { CABINET_FINISH_CATEGORIES, type CabinetFinish } from "@/lib/cabinetFinishes";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 
@@ -39,8 +39,7 @@ function ArrowButtons({ onPrev, onNext, className = "" }: { onPrev: () => void; 
         type="button"
         aria-label="Previous"
         onClick={onPrev}
-        className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
-        style={{ color: "#313131" }}
+        className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
       >
         <LongArrow direction="left" />
       </button>
@@ -48,8 +47,7 @@ function ArrowButtons({ onPrev, onNext, className = "" }: { onPrev: () => void; 
         type="button"
         aria-label="Next"
         onClick={onNext}
-        className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
-        style={{ color: "#313131" }}
+        className="w-11 h-11 flex items-center justify-center rounded-full border border-foreground/30 text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
       >
         <LongArrow direction="right" />
       </button>
@@ -90,31 +88,14 @@ function StaticFinishRow({ finishes }: { finishes: CabinetFinish[] }) {
   );
 }
 
-// Endless, draggable carousel for longer categories (Wood, Linen): the list
-// is tripled so there's always a full extra set buffered on each side, and
-// the scroll position silently jumps back into the middle set whenever it
-// nears an edge — the sets are identical so the jump is invisible, giving
-// the illusion of an infinite loop. Grab-to-drag is added on top of native
-// touch scrolling since overflow-x:auto alone only pans via touch/trackpad.
-function InfiniteFinishCarousel({ finishes }: { finishes: CabinetFinish[] }) {
+// Draggable carousel for longer categories (Wood, Linen). It deliberately
+// does NOT loop: reaching the last finish should feel like the end of the
+// list, so you can tell you have seen everything. Grab-to-drag is added on
+// top of native touch scrolling, since overflow-x:auto alone only pans via
+// touch/trackpad.
+function FinishCarousel({ finishes }: { finishes: CabinetFinish[] }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const drag = useRef({ startX: 0, startScroll: 0, dragging: false });
-  const tripled = [...finishes, ...finishes, ...finishes];
-
-  const recenter = (el: HTMLDivElement) => {
-    const setWidth = el.scrollWidth / 3;
-    if (el.scrollLeft < setWidth * 0.5) el.scrollLeft += setWidth;
-    else if (el.scrollLeft > setWidth * 1.5) el.scrollLeft -= setWidth;
-  };
-
-  useLayoutEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    el.scrollLeft = el.scrollWidth / 3;
-    const onResize = () => { el.scrollLeft = el.scrollWidth / 3; };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [finishes]);
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = scrollerRef.current;
@@ -129,8 +110,6 @@ function InfiniteFinishCarousel({ finishes }: { finishes: CabinetFinish[] }) {
   };
   const endDrag = () => {
     drag.current.dragging = false;
-    const el = scrollerRef.current;
-    if (el) recenter(el);
   };
 
   const scrollCarousel = (dir: 1 | -1) => {
@@ -140,7 +119,6 @@ function InfiniteFinishCarousel({ finishes }: { finishes: CabinetFinish[] }) {
     const gap = 24;
     const step = firstCard ? firstCard.getBoundingClientRect().width + gap : el.clientWidth;
     el.scrollBy({ left: dir * step, behavior: "smooth" });
-    window.setTimeout(() => recenter(el), 500);
   };
 
   return (
@@ -151,12 +129,11 @@ function InfiniteFinishCarousel({ finishes }: { finishes: CabinetFinish[] }) {
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
-        onScroll={() => { const el = scrollerRef.current; if (el && !drag.current.dragging) recenter(el); }}
         className="flex gap-6 overflow-x-auto cursor-grab active:cursor-grabbing select-none"
         style={{ scrollbarWidth: "none" }}
       >
-        {tripled.map((finish, i) => (
-          <div key={`${finish.name}-${i}`} className="group shrink-0 w-[70%] sm:w-[38%] lg:w-[22%]">
+        {finishes.map((finish) => (
+          <div key={finish.name} className="group shrink-0 w-[70%] sm:w-[38%] lg:w-[22%]">
             <FinishCard finish={finish} />
           </div>
         ))}
@@ -170,8 +147,8 @@ export function PremiumCabinetFinishesSection() {
   return (
     <SectionWrapper>
       <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14 reveal-up">
-        <h2 className="rule eyebrow mb-6" style={{ color: "#313131" }}>Premium Cabinet Finishes</h2>
-        <p className="text-base md:text-lg leading-relaxed" style={{ color: "#313131" }}>
+        <h2 className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>Premium Cabinet Finishes</h2>
+        <p className="text-base md:text-lg leading-relaxed" style={{ color: "#1B1B1B" }}>
           Enhance your luxury walk-in wardrobe with our premium cabinet finishes, crafted from high-quality
           materials like textured wood, specialty linen, matte, and gloss finishes — a perfect balance of
           elegance and durability for your custom closet.
@@ -181,16 +158,16 @@ export function PremiumCabinetFinishesSection() {
       <div className="space-y-16 md:space-y-20">
         {CABINET_FINISH_CATEGORIES.map((category) => (
           <div key={category.title} className="reveal-up">
-            <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-center" style={{ color: "#313131" }}>
+            <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-center" style={{ color: "#1B1B1B" }}>
               {category.title}
             </h3>
-            <p className="text-sm md:text-base leading-relaxed max-w-3xl mx-auto mb-7 text-center" style={{ color: "#5a5a5a" }}>
+            <p className="text-sm md:text-base leading-relaxed max-w-3xl mx-auto mb-7 text-center" style={{ color: "#555555" }}>
               {category.description}
             </p>
             {category.finishes.length <= 4 ? (
               <StaticFinishRow finishes={category.finishes} />
             ) : (
-              <InfiniteFinishCarousel finishes={category.finishes} />
+              <FinishCarousel finishes={category.finishes} />
             )}
           </div>
         ))}

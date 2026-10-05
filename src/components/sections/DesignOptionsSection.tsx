@@ -207,7 +207,7 @@ export function DesignOptionsSection({
             type="button"
             aria-label={`Go to image ${i + 1}`}
             onClick={() => goToImage(i)}
-            className={`h-1.5 rounded-full transition-all cursor-pointer ${imgIdx === i ? "w-6 bg-primary" : "w-1.5 bg-white/40"}`}
+            className={`h-1.5 rounded-full transition-all cursor-pointer ${imgIdx === i ? "w-6 bg-white" : "w-1.5 bg-white/40"}`}
           />
         ))}
       </div>
@@ -228,10 +228,10 @@ export function DesignOptionsSection({
   return (
     <SectionWrapper>
       <div className="text-center mb-6 md:mb-8 reveal-up">
-        <h2 className="rule eyebrow" style={{ color: "#313131" }}>{title}</h2>
+        <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>{title}</h2>
       </div>
       {intro && (
-        <p className="text-center max-w-3xl mx-auto text-base md:text-lg leading-relaxed mb-10 md:mb-14 reveal-up" style={{ color: "#313131" }}>
+        <p className="text-center max-w-3xl mx-auto text-base md:text-lg leading-relaxed mb-10 md:mb-14 reveal-up" style={{ color: "#1B1B1B" }}>
           {intro}
         </p>
       )}
@@ -253,9 +253,9 @@ export function DesignOptionsSection({
                     active === i ? "opacity-100" : "opacity-40 hover:opacity-75"
                   }`}
                 >
-                  <span className="text-primary mt-1 shrink-0 text-xs">●</span>
+                  <span className="text-white mt-1 shrink-0 text-xs">●</span>
                   <span className="text-sm md:text-base leading-relaxed text-white">
-                    <strong className="text-primary font-bold">{opt.title}:</strong>{" "}
+                    <strong className="text-white font-bold">{opt.title}:</strong>{" "}
                     {opt.desc}
                   </span>
                 </button>
@@ -312,7 +312,7 @@ export function DesignOptionsSection({
                 aria-expanded={isOpen}
                 className="w-full flex items-center justify-between gap-3 p-5 text-left cursor-pointer"
               >
-                <span className={`text-sm font-bold ${isOpen ? "text-primary" : "text-white"}`}>
+                <span className={`text-sm font-bold ${isOpen ? "text-white" : "text-white/70"}`}>
                   {opt.title}
                 </span>
                 <ChevronIcon open={isOpen} />

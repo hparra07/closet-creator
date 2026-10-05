@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import jlLogo from "@/assets/global/jl-logo.webp";
 import library from "@/assets/global/library.webp";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { SOCIAL_LINKS } from "@/lib/social";
 
 const FOOTER_LINKS: Record<string, string> = {
@@ -10,6 +10,7 @@ const FOOTER_LINKS: Record<string, string> = {
   "Our Showroom": "/showroom",
   "Portfolio": "/portfolio",
   "Home Organization Idea Gallery": "/home-organization-idea-gallery",
+  "22 Reasons to Choose Us": "/best-custom-closet-systems",
   "FAQs": "/faq",
   "Design Process": "/design-process",
   "Customer Services": "/customer-service",
@@ -47,7 +48,7 @@ export function Footer() {
                 placeholder="Sign Up for our latest news and exclusive deals."
                 className="flex-1 bg-transparent border-b border-ink-foreground/30 py-2 text-sm placeholder:text-white text-white focus:outline-none focus:border-primary font-thin"
               />
-              <YellowButton>Subscribe</YellowButton>
+              <PrimaryButton>Subscribe</PrimaryButton>
             </div>
           </div>
         </div>
@@ -75,7 +76,7 @@ export function Footer() {
               </div>
             </div>
             <div className="mt-5">
-              <YellowButton>Google Maps</YellowButton>
+              <PrimaryButton>Google Maps</PrimaryButton>
             </div>
           </div>
 

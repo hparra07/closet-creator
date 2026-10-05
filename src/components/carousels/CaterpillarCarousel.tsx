@@ -196,7 +196,7 @@ function CarouselInner({ slides, visible, arrowsOverlay }: { slides: Slide[]; vi
           border-radius: 9999px;
           background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(4px);
-          color: #313131;
+          color: #1B1B1B;
           box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
           cursor: pointer;
           transition: background-color 0.3s ease, color 0.3s ease;

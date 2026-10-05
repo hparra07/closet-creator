@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 export type CarouselSlide = {
   image: string;
@@ -189,7 +189,7 @@ export function FullscreenCarouselSection({ slides }: { slides: CarouselSlide[] 
         className="text-white/80 text-sm md:text-base leading-relaxed mb-7"
       />
       <ButtonReveal>
-        <YellowButton href={slides[active].href ?? "#"}>Explore</YellowButton>
+        <PrimaryButton href={slides[active].href ?? "#"}>Explore</PrimaryButton>
       </ButtonReveal>
     </div>
   );

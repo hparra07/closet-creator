@@ -14,15 +14,25 @@ export type CountyBBox = { x: number; y: number; width: number; height: number }
 
 const FLORIDA_STYLES = `<style>
   svg path[id] { fill: #FFFFFF !important; stroke: #B5B5B5 !important; stroke-width: 0.5 !important; }
-  svg path.service { fill: #F6C33A !important; stroke: #FFFFFF !important; stroke-width: 0.8 !important; }
+  svg path.service { fill: #7B1A30 !important; stroke: #FFFFFF !important; stroke-width: 0.8 !important; }
+  svg text.service-label, svg text.service-label tspan { fill: #FFFFFF !important; }
 </style>`;
 const floridaSvgRaw = floridaSvgRawOriginal.replace(/(<svg[^>]*>)/, `$1${FLORIDA_STYLES}`);
 
 function svgRef(el: HTMLDivElement | null, countyId: string) {
   if (!el) return;
   const svg = el.querySelector("svg");
-  const node = svg?.querySelector<SVGGraphicsElement>(`[id="${countyId}"]`);
-  node?.classList.add("service");
+  if (!svg) return;
+  svg.querySelector<SVGGraphicsElement>(`[id="${countyId}"]`)?.classList.add("service");
+
+  // The county is filled wine, so its engraved name has to flip to white.
+  // Match on the rendered name rather than the SVG's generated text ids,
+  // which carry no meaning and could change if the file is re-exported.
+  const label = countyId.replace(/_/g, " ").replace(/ County$/, "").trim().toLowerCase();
+  svg.querySelectorAll("text").forEach((t) => {
+    const plain = (t.textContent ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+    if (plain === label) t.classList.add("service-label");
+  });
 }
 
 // Zooms the sitewide Florida county SVG into a single county's shape and
@@ -96,7 +106,7 @@ export function CountyPinMap({
               textAnchor="middle"
               fontSize="13"
               fontWeight="700"
-              fill="#313131"
+              fill="#1B1B1B"
               stroke="#fff"
               strokeWidth={4}
               paintOrder="stroke"

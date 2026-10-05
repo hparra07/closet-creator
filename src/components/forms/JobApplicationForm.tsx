@@ -38,7 +38,7 @@ export function JobApplicationForm({ positions = [], defaultPosition = "" }: { p
   }, [submitted]);
 
   const inputCls =
-    "w-full bg-transparent text-foreground placeholder:text-foreground/40 px-4 py-2.5 md:py-3 text-base border border-foreground/30 hover:border-foreground/60 focus:border-foreground focus:outline-none focus:ring-0 transition font-sans";
+    "w-full bg-transparent rounded-lg text-foreground placeholder:text-foreground/40 px-4 py-2.5 md:py-3 text-base border border-foreground/30 hover:border-foreground/60 focus:border-foreground focus:outline-none focus:ring-0 transition font-sans";
 
   const formatPhone = (raw: string) => {
     const d = raw.replace(/\D/g, "").slice(0, 10);
@@ -63,7 +63,7 @@ export function JobApplicationForm({ positions = [], defaultPosition = "" }: { p
         <div ref={iconRef} className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ background: "#e8f7ee", opacity: 0 }}>
           <CheckCircle2 className="w-9 h-9" style={{ color: "#1f9d55" }} strokeWidth={2} />
         </div>
-        <h3 ref={headingRef} className="font-display text-2xl md:text-3xl mb-4 font-bold" style={{ color: "#313131", opacity: 0 }}>We've received your application.</h3>
+        <h3 ref={headingRef} className="font-display text-2xl md:text-3xl mb-4 font-bold" style={{ color: "#1B1B1B", opacity: 0 }}>We've received your application.</h3>
         <p ref={bodyRef} className="text-foreground/70 max-w-md mx-auto" style={{ opacity: 0 }}>Our team will review it and reach out if there's a fit.</p>
       </div>
     );
@@ -75,19 +75,19 @@ export function JobApplicationForm({ positions = [], defaultPosition = "" }: { p
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#313131" }}>Full Name *</label>
+          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1B1B1B" }}>Full Name *</label>
           <input type="text" required placeholder="Name" value={fullName} onChange={(e) => setFullName(e.target.value)} className={inputCls} />
         </div>
         <div>
-          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#313131" }}>Email *</label>
+          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1B1B1B" }}>Email *</label>
           <input type="email" required placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} />
         </div>
         <div>
-          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#313131" }}>Phone Number *</label>
+          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1B1B1B" }}>Phone Number *</label>
           <input type="tel" inputMode="numeric" required placeholder="(555) 000-0000" value={phone} onChange={(e) => onPhoneChange(e.target.value)} className={inputCls} />
         </div>
         <div>
-          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#313131" }}>Position Interested In</label>
+          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1B1B1B" }}>Position Interested In</label>
           <select value={position} onChange={(e) => setPosition(e.target.value)} className={inputCls}>
             <option value="">Please select one</option>
             {positions.map((p) => (
@@ -97,15 +97,15 @@ export function JobApplicationForm({ positions = [], defaultPosition = "" }: { p
           </select>
         </div>
         <div>
-          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#313131" }}>Portfolio URL</label>
+          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1B1B1B" }}>Portfolio URL</label>
           <input type="url" placeholder="https://drive.google.com/..." value={portfolioUrl} onChange={(e) => setPortfolioUrl(e.target.value)} className={inputCls} />
         </div>
         <div>
-          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#313131" }}>LinkedIn URL</label>
+          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1B1B1B" }}>LinkedIn URL</label>
           <input type="url" placeholder="https://www.linkedin.com/..." value={linkedinUrl} onChange={(e) => setLinkedinUrl(e.target.value)} className={inputCls} />
         </div>
         <div className="sm:col-span-2">
-          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#313131" }}>Tell us about yourself</label>
+          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1B1B1B" }}>Tell us about yourself</label>
           <textarea
             rows={4}
             placeholder="Share your background, experience, and what excites you about joining JL Closets..."
@@ -115,17 +115,17 @@ export function JobApplicationForm({ positions = [], defaultPosition = "" }: { p
           />
         </div>
         <div className="sm:col-span-2">
-          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#313131" }}>Attach your Resume in .pdf or .doc format *</label>
+          <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1B1B1B" }}>Attach your Resume in .pdf or .doc format *</label>
           <div className="flex items-center gap-4">
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="shrink-0 px-4 py-2 text-sm font-semibold border border-foreground/30 bg-transparent hover:border-foreground/60 transition cursor-pointer font-sans"
-              style={{ color: "#313131" }}
+              className="shrink-0 px-4 py-2 rounded-lg text-sm font-semibold border border-foreground/30 bg-transparent hover:border-foreground/60 transition cursor-pointer font-sans"
+              style={{ color: "#1B1B1B" }}
             >
               Choose File
             </button>
-            <span className="text-sm truncate" style={{ color: "#31313199" }}>
+            <span className="text-sm truncate" style={{ color: "#1B1B1B99" }}>
               {resume ? resume.name : "No file chosen"}
             </span>
             <input
@@ -144,7 +144,7 @@ export function JobApplicationForm({ positions = [], defaultPosition = "" }: { p
         type="submit"
         disabled={!canSubmit}
         className={`mt-6 w-full inline-flex items-center justify-center gap-2 px-7 py-3.5 font-sans text-sm font-semibold transition-colors ${canSubmit ? "cursor-pointer hover:opacity-90" : "opacity-40 cursor-not-allowed"}`}
-        style={{ background: "#1a1a1a", color: "#fff" }}
+        style={{ background: "#1B1B1B", color: "#fff" }}
       >
         Submit Application
         <Send className="w-4 h-4" />

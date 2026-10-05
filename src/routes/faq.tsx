@@ -54,11 +54,11 @@ function Faq() {
 
         <SectionWrapper className="!pb-0">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="rule eyebrow mb-6" style={{ color: "#313131" }}>FAQ</span>
-            <h1 className="font-sans text-3xl md:text-4xl leading-tight mb-6 reveal-up" style={{ color: "#313131" }}>
+            <span className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>FAQ</span>
+            <h1 className="font-sans text-3xl md:text-4xl leading-tight mb-6 reveal-up" style={{ color: "#1B1B1B" }}>
               <strong className="font-bold">JL CLOSETS FAQ</strong>
             </h1>
-            <p className="text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#313131" }}>
+            <p className="text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#1B1B1B" }}>
               Everything you need to know about designing, building, and living with a JL Closets custom storage system — straight from the questions our clients ask us most.
             </p>
           </div>

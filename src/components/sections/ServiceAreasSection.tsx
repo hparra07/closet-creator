@@ -51,13 +51,13 @@ export function ServiceAreasSection({ className }: { className?: string } = {}) 
   return (
     <SectionWrapper className={className}>
       <div className="text-center mb-14 md:mb-20">
-        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Service Areas</h2>
+        <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Service Areas</h2>
       </div>
 
       <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12">
         {/* Left column: text + county list (server-rendered, links crawlable) */}
         <div className="lg:max-w-xs lg:shrink-0 mb-12 lg:mb-0">
-          <p className="font-sans text-[15px] lg:text-[20px] leading-relaxed reveal-up max-w-xs mx-auto lg:mx-0" style={{ color: "#313131" }}>
+          <p className="font-sans text-[15px] lg:text-[20px] leading-relaxed reveal-up max-w-xs mx-auto lg:mx-0" style={{ color: "#1B1B1B" }}>
             <span className="underline-animate">
               We proudly serve the entire South Florida region
             </span>
@@ -66,7 +66,7 @@ export function ServiceAreasSection({ className }: { className?: string } = {}) 
 
           <div className="hidden lg:block mt-8">
             <div className="bg-primary text-primary-foreground p-6 w-full">
-              <p className="eyebrow mb-4" style={{ color: "#313131" }}>Counties we serve</p>
+              <p className="eyebrow mb-4">Counties we serve</p>
               <CountyList hovered={hovered} onHover={setHovered} />
             </div>
           </div>
@@ -84,7 +84,7 @@ export function ServiceAreasSection({ className }: { className?: string } = {}) 
 
           {/* County list — mobile/tablet only */}
           <div className="lg:hidden bg-primary text-primary-foreground p-6 w-full max-w-xs">
-            <p className="eyebrow mb-4" style={{ color: "#313131" }}>Counties we serve</p>
+            <p className="eyebrow mb-4">Counties we serve</p>
             <CountyList hovered={hovered} onHover={setHovered} />
           </div>
         </div>

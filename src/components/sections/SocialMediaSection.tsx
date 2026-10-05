@@ -6,7 +6,7 @@ export function SocialMediaSection() {
     <SectionWrapper className="!pt-0 !pb-6 md:!pb-6">
       <div className="max-w-2xl mx-auto text-center">
         <div className="mb-10">
-          <h2 className="rule eyebrow" style={{ color: "#313131" }}>Connect With Us On Social Media</h2>
+          <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Connect With Us On Social Media</h2>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-4 gsap-stagger">
           {SOCIAL_LINKS.map(({ Icon, label, url }) => (

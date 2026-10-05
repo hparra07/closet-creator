@@ -75,17 +75,17 @@ export function WhyJoinUsSection() {
     <SectionWrapper>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16 reveal-up">
-          <h2 className="rule eyebrow" style={{ color: "#313131" }}>Why Join JL Closets?</h2>
+          <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Why Join JL Closets?</h2>
         </div>
 
         {/* Mobile / tablet: stacked rows, icon beside text */}
         <div className="md:hidden divide-y divide-foreground/10">
           {REASONS.map((r) => (
             <div key={r.title} className="py-8 flex items-start gap-5">
-              <r.icon className="w-8 h-8 shrink-0 mt-0.5" strokeWidth={1.5} style={{ color: "#F1C33A" }} />
+              <r.icon className="w-8 h-8 shrink-0 mt-0.5" strokeWidth={1.5} style={{ color: "#7B1A30" }} />
               <div>
-                <h3 className="font-display text-xl font-bold mb-2" style={{ color: "#313131" }}>{r.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#313131", opacity: 0.75 }}>{r.desc}</p>
+                <h3 className="font-display text-xl font-bold mb-2" style={{ color: "#1B1B1B" }}>{r.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#1B1B1B", opacity: 0.75 }}>{r.desc}</p>
               </div>
             </div>
           ))}
@@ -98,13 +98,13 @@ export function WhyJoinUsSection() {
               key={r.title}
               ref={(el) => { colRefs.current[i] = el; }}
               className={`flex flex-col ${i % 3 !== 0 ? "md:pl-12 lg:pl-16 md:border-l" : ""}`}
-              style={{ borderColor: "#F1C33A66" }}
+              style={{ borderColor: "#7B1A3066" }}
             >
               <div className="flex items-center gap-4 mb-3">
-                <r.icon className="why-row-icon w-8 h-8 lg:w-9 lg:h-9 shrink-0" strokeWidth={1.5} style={{ color: "#F1C33A" }} />
-                <h3 className="font-display text-lg lg:text-xl font-bold leading-tight" style={{ color: "#313131" }}>{r.title}</h3>
+                <r.icon className="why-row-icon w-8 h-8 lg:w-9 lg:h-9 shrink-0" strokeWidth={1.5} style={{ color: "#7B1A30" }} />
+                <h3 className="font-display text-lg lg:text-xl font-bold leading-tight" style={{ color: "#1B1B1B" }}>{r.title}</h3>
               </div>
-              <p className="text-sm leading-relaxed w-full" style={{ color: "#313131", opacity: 0.75 }}>{r.desc}</p>
+              <p className="text-sm leading-relaxed w-full" style={{ color: "#1B1B1B", opacity: 0.75 }}>{r.desc}</p>
             </div>
           ))}
         </div>

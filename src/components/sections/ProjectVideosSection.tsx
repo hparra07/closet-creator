@@ -22,9 +22,9 @@ export function ProjectVideosSection({
   return (
     <SectionWrapper>
       <div className="text-center mb-10 md:mb-14 reveal-up">
-        <h2 className="rule eyebrow" style={{ color: "#313131" }}>Project Videos</h2>
+        <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Project Videos</h2>
       </div>
-      <p className="text-center max-w-2xl mx-auto font-sans text-2xl md:text-3xl leading-snug mb-10 md:mb-14 reveal-up" style={{ color: "#313131" }}>
+      <p className="text-center max-w-2xl mx-auto font-sans text-2xl md:text-3xl leading-snug mb-10 md:mb-14 reveal-up" style={{ color: "#1B1B1B" }}>
         See our <strong className="font-bold underline-animate">craftsmanship in motion.</strong> Watch{" "}
         <strong className="font-bold underline-animate">real installations</strong> and client walkthroughs of custom closets built by JL Closets.
       </p>

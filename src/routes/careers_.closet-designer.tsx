@@ -5,7 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PageBreadcrumbs } from "@/components/common/PageBreadcrumbs";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
-import { YellowButton } from "@/components/common/YellowButton";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { JobApplicationForm } from "@/components/forms/JobApplicationForm";
 import { POSITIONS } from "@/components/sections/OpenPositionsSection";
 import { ConsultModal } from "@/components/modals/LazyConsultModal";
@@ -69,8 +69,8 @@ export const Route = createFileRoute("/careers_/closet-designer")({
 function ChecklistItem({ lead, rest }: { lead: string; rest?: string }) {
   return (
     <li className="flex items-start gap-3">
-      <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#F1C33A" }} />
-      <p className="text-base leading-relaxed" style={{ color: "#313131", opacity: 0.85 }}>
+      <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#7B1A30" }} />
+      <p className="text-base leading-relaxed" style={{ color: "#1B1B1B", opacity: 0.85 }}>
         <strong className="font-semibold" style={{ opacity: 1 }}>{lead}</strong>{rest ? ` ${rest}` : ""}
       </p>
     </li>
@@ -124,20 +124,20 @@ function ClosetDesignerJob() {
               <span className="inline-flex items-center gap-1.5"><BadgeDollarSign className="w-4 h-4" /> $65,000–$130,000+ per year</span>
             </div>
 
-            <YellowButton
+            <PrimaryButton
               size="lg"
               onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth", block: "start" })}
             >
               Apply for this Position
-            </YellowButton>
+            </PrimaryButton>
           </div>
         </section>
 
         {/* Stat highlight strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4" style={{ background: "#1a1a1a" }}>
+        <div className="grid grid-cols-2 md:grid-cols-4" style={{ background: "#1B1B1B" }}>
           {STATS.map((s) => (
             <div key={s.label} className="px-4 py-8 md:py-10 text-center border-r border-white/10 last:border-r-0">
-              <p className="font-display text-2xl md:text-3xl font-bold mb-1" style={{ color: "#F1C33A" }}>{s.value}</p>
+              <p className="font-display text-2xl md:text-3xl font-bold mb-1" style={{ color: "#7B1A30" }}>{s.value}</p>
               <p className="text-xs md:text-sm text-white/70 leading-snug">{s.label}</p>
             </div>
           ))}
@@ -146,7 +146,7 @@ function ClosetDesignerJob() {
         <PageBreadcrumbs />
 
         <SectionWrapper className="!pb-0">
-          <p className="max-w-3xl mx-auto text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#313131" }}>
+          <p className="max-w-3xl mx-auto text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#1B1B1B" }}>
             JL Closets is expanding our award-winning design team. We're looking for experienced, relationship-driven Closet Designers who understand both the art of design and the discipline of sales. Our designers don't just create beautiful spaces — they build trust, lead meaningful conversations, and close with confidence.
           </p>
         </SectionWrapper>
@@ -154,7 +154,7 @@ function ClosetDesignerJob() {
         <SectionWrapper>
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8 reveal-up">
-              <h2 className="rule eyebrow" style={{ color: "#313131" }}>What We Offer</h2>
+              <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>What We Offer</h2>
             </div>
             <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-5 reveal-up">
               {OFFER.map((item) => <ChecklistItem key={item.lead} {...item} />)}
@@ -165,7 +165,7 @@ function ClosetDesignerJob() {
         <SectionWrapper className="!pt-0">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8 reveal-up">
-              <h2 className="rule eyebrow" style={{ color: "#313131" }}>Who You Are</h2>
+              <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Who You Are</h2>
             </div>
             <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-5 reveal-up">
               {WHO_YOU_ARE.map((item) => <ChecklistItem key={item.lead} {...item} />)}
@@ -176,20 +176,20 @@ function ClosetDesignerJob() {
         <SectionWrapper className="!pt-0">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8 reveal-up">
-              <h2 className="rule eyebrow" style={{ color: "#313131" }}>Skills &amp; Experience</h2>
+              <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Skills &amp; Experience</h2>
             </div>
             <ul className="space-y-4 reveal-up">
               {SKILLS.map((item) => (
                 <li key={item.lead} className="flex items-start justify-between gap-4 pb-4 border-b border-foreground/10 last:border-b-0">
-                  <p className="text-base leading-relaxed" style={{ color: "#313131", opacity: 0.85 }}>
+                  <p className="text-base leading-relaxed" style={{ color: "#1B1B1B", opacity: 0.85 }}>
                     <strong className="font-semibold" style={{ opacity: 1 }}>{item.lead}</strong>{item.rest ? ` ${item.rest}` : ""}
                   </p>
                   <span
                     className="shrink-0 text-xs font-bold px-3 py-1 mt-0.5"
                     style={
                       item.badge === "Required"
-                        ? { background: "#1a1a1a", color: "#fff" }
-                        : { background: "transparent", color: "#8a6d1a", border: "1px solid #F1C33A66" }
+                        ? { background: "#1B1B1B", color: "#fff" }
+                        : { background: "transparent", color: "#7B1A30", border: "1px solid #7B1A3066" }
                     }
                   >
                     {item.badge}
@@ -204,9 +204,9 @@ function ClosetDesignerJob() {
           <SectionWrapper className="!pt-0">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-4 reveal-up">
-                <h2 className="rule eyebrow" style={{ color: "#313131" }}>How To Apply</h2>
+                <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>How To Apply</h2>
               </div>
-              <p className="text-base leading-relaxed mb-8 reveal-up" style={{ color: "#313131", opacity: 0.8 }}>
+              <p className="text-base leading-relaxed mb-8 reveal-up" style={{ color: "#1B1B1B", opacity: 0.8 }}>
                 Please fill out this application form and submit your resume (required). A portfolio isn't required at this stage — if you move forward in the process, you'll be asked to provide one before the final interview.
               </p>
               <div className="reveal-up p-6 md:p-10 border border-foreground/10 bg-card">

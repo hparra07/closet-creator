@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import gsap from "gsap";
 
 // Splits a button's text into per-character spans and rolls them
-// vertically in/out on hover. Shared by YellowButton and other CTA
+// vertically in/out on hover. Shared by PrimaryButton and other CTA
 // buttons that want the same hover treatment.
 export function useRollingText(textRef: React.RefObject<HTMLSpanElement | null>, btnRef: React.RefObject<HTMLElement | null>) {
   useEffect(() => {

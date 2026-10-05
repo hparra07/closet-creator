@@ -27,9 +27,9 @@ export function AreaSearchSection() {
     <SectionWrapper className="!pt-0 !pb-10">
       <div className="max-w-xl mx-auto text-center">
         <div className="mb-6">
-          <h2 className="rule eyebrow" style={{ color: "#313131" }}>Find Your Area</h2>
+          <h2 className="rule eyebrow" style={{ color: "#1B1B1B" }}>Find Your Area</h2>
         </div>
-        <p className="text-base leading-relaxed mb-8" style={{ color: "#313131" }}>
+        <p className="text-base leading-relaxed mb-8" style={{ color: "#1B1B1B" }}>
           Use the search form below to find the nearest location we serve.
         </p>
 
@@ -50,7 +50,7 @@ export function AreaSearchSection() {
           <div className="mt-4 text-left border border-foreground/10 divide-y divide-foreground/10">
             {filtered.length > 0 ? (
               filtered.map((area) => (
-                <div key={area} className="px-4 py-3 text-sm font-medium" style={{ color: "#313131" }}>
+                <div key={area} className="px-4 py-3 text-sm font-medium" style={{ color: "#1B1B1B" }}>
                   {area}
                 </div>
               ))
