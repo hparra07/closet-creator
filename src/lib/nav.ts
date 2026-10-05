@@ -36,7 +36,7 @@ export const NAV: NavEntry[] = [
       },
       {
         heading: "Why We Are The Best",
-        items: [{ label: "Best Custom Closet Systems" }, { label: "Awards" }, { label: "JL Closets Reviews" }],
+        items: [{ label: "Best Custom Closet Systems", href: "/best-custom-closet-systems" }, { label: "Awards" }, { label: "JL Closets Reviews" }],
       },
     ],
   },

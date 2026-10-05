@@ -19,6 +19,7 @@ import { Route as CustomerServiceRouteImport } from './routes/customer-service'
 import { Route as CustomClosetsRouteImport } from './routes/custom-closets'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as BestCustomClosetSystemsRouteImport } from './routes/best-custom-closet-systems'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServiceAreasStLucieCountyRouteImport } from './routes/service-areas_.st-lucie-county'
@@ -83,6 +84,11 @@ const ContactRoute = ContactRouteImport.update({
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestCustomClosetSystemsRoute = BestCustomClosetSystemsRouteImport.update({
+  id: '/best-custom-closet-systems',
+  path: '/best-custom-closet-systems',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -169,6 +175,7 @@ const AccessoriesClosetLightingRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/best-custom-closet-systems': typeof BestCustomClosetSystemsRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
@@ -195,6 +202,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/best-custom-closet-systems': typeof BestCustomClosetSystemsRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
@@ -222,6 +230,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/best-custom-closet-systems': typeof BestCustomClosetSystemsRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/custom-closets': typeof CustomClosetsRoute
@@ -250,6 +259,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/best-custom-closet-systems'
     | '/careers'
     | '/contact'
     | '/custom-closets'
@@ -276,6 +286,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/best-custom-closet-systems'
     | '/careers'
     | '/contact'
     | '/custom-closets'
@@ -302,6 +313,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/best-custom-closet-systems'
     | '/careers'
     | '/contact'
     | '/custom-closets'
@@ -329,6 +341,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BestCustomClosetSystemsRoute: typeof BestCustomClosetSystemsRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   CustomClosetsRoute: typeof CustomClosetsRoute
@@ -423,6 +436,13 @@ declare module '@tanstack/react-router' {
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-custom-closet-systems': {
+      id: '/best-custom-closet-systems'
+      path: '/best-custom-closet-systems'
+      fullPath: '/best-custom-closet-systems'
+      preLoaderRoute: typeof BestCustomClosetSystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -529,6 +549,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BestCustomClosetSystemsRoute: BestCustomClosetSystemsRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   CustomClosetsRoute: CustomClosetsRoute,
