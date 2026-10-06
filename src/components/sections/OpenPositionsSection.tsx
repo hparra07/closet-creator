@@ -53,7 +53,7 @@ export function OpenPositionsSection({ onApplyClick }: { onApplyClick: () => voi
                 <h3 className="font-display text-2xl font-bold" style={{ color: "#1B1B1B" }}>{p.title}</h3>
                 <span
                   className="shrink-0 text-xs font-semibold px-3 py-1 rounded-full"
-                  style={{ background: "rgba(241,195,58,0.15)", color: "#7B1A30" }}
+                  style={{ background: "rgba(123,26,48,0.10)", color: "#7B1A30" }}
                 >
                   {p.tag}
                 </span>

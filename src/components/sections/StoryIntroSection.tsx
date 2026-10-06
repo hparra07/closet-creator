@@ -36,7 +36,7 @@ export function StoryIntroSection({
           <img
             src={image}
             alt={imageAlt}
-            className="w-full aspect-[4/5] object-cover"
+            className="w-full aspect-[4/5] object-cover rounded-lg"
             loading="lazy"
           />
         </div>

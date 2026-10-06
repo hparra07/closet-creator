@@ -69,7 +69,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
       <div className="md:hidden space-y-16">
         {steps.map((s, i) => (
           <div key={i}>
-            <div className="relative w-full aspect-[4/3] overflow-hidden mb-6">
+            <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg mb-6">
               <img src={s.img} alt={s.t} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
             </div>
             <p className="eyebrow mb-3 text-foreground/60">{s.k}</p>
@@ -81,7 +81,7 @@ function ProcessScroller({ steps }: { steps: ProcessStep[] }) {
 
       <div className="hidden md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
         <div className="md:sticky md:top-0 md:h-screen md:max-h-[900px] md:flex md:items-center md:pt-4">
-          <div className="relative w-full aspect-[4/5] max-h-full overflow-hidden">
+          <div className="relative w-full aspect-[4/5] max-h-full overflow-hidden rounded-lg">
             {steps.map((s, i) => (
               <img
                 key={i}

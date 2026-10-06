@@ -3,7 +3,7 @@ import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 export function ShowroomSection() {
   return (
-    <section className="relative">
+    <section className="relative overflow-hidden">
       <img src={showroom} alt="JL Closets showroom in Boca Raton at dusk" className="w-full h-screen md:h-[110vh] object-cover" loading="lazy" />
       <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/35 to-transparent" />
       <div className="md:hidden absolute inset-0 bg-ink/45" />

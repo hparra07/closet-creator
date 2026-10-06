@@ -304,6 +304,7 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
           top: 50%;
           margin: 0;
           overflow: hidden;
+          border-radius: var(--radius);
           cursor: pointer;
           will-change: transform, width, height, filter;
         }
@@ -340,7 +341,9 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          color: var(--color-primary);
+          /* Sits on the photo caption, where the dark wine does not read —
+             and on touch there is no hover state to recover it. */
+          color: #fff;
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 0.08em;
@@ -438,6 +441,9 @@ export function WorksCarousel({ items }: { items: WorksItem[] }) {
           align-items: center;
           max-width: 92vw;
           max-height: 88vh;
+        }
+        .works-lightbox-figure img {
+          border-radius: var(--radius);
         }
         .works-lightbox img {
           max-width: 92vw;

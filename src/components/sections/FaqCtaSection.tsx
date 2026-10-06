@@ -23,7 +23,7 @@ export function FaqCtaSection({
         </p>
         <a
           href="tel:+15619129881"
-          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border font-sans text-sm font-semibold text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground hover:border-primary transition reveal-up"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg border font-sans text-sm font-semibold text-[#1B1B1B] hover:bg-primary hover:text-primary-foreground hover:border-primary transition reveal-up"
           style={{ borderColor: "#1B1B1B30" }}
         >
           <Phone className="w-4 h-4" />

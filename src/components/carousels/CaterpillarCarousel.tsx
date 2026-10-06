@@ -225,7 +225,7 @@ function CarouselInner({ slides, visible, arrowsOverlay }: { slides: Slide[]; vi
           padding: 5px;
           gap: 5px;
           border: 1px solid color-mix(in oklab, var(--foreground) 30%, transparent);
-          border-radius: 0;
+          border-radius: var(--radius);
         }
 
         .caterpillar-container .cat-card {
@@ -233,6 +233,7 @@ function CarouselInner({ slides, visible, arrowsOverlay }: { slides: Slide[]; vi
           width: ${cardWidth};
           aspect-ratio: 3 / 5;
           overflow: hidden;
+          border-radius: var(--radius);
         }
 
         @media (min-width: 768px) {

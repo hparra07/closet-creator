@@ -29,17 +29,16 @@ const TIMINGS = [
 
 // Desktop: all cards share the same muted-cream treatment.
 function getCardStyle() {
-  return { bg: "rgba(238, 234, 226, 0.95)", textColor: "#1B1B1B", descOpacity: 0.75, isDark: false };
+  return { bg: "rgba(250, 243, 244, 0.95)", textColor: "#1B1B1B", descOpacity: 0.75, isDark: false };
 }
 
-// Mobile: each card keeps its own alternating dark/yellow/light color.
+// Mobile alternates a dark card against the page ground for rhythm.
 function getMobileCardStyle(i: number) {
   const isDark = i === 0 || i === 4;
-  const isYellow = i === 1 || i === 3;
-  const bg = isDark ? "rgba(0, 0, 0, 0.86)" : isYellow ? "rgba(241, 195, 58, 0.94)" : undefined;
+  const bg = isDark ? "rgba(0, 0, 0, 0.86)" : "rgba(250, 243, 244, 0.95)";
   const textColor = isDark ? "#FFFFFF" : "#1B1B1B";
-  const descOpacity = isYellow ? 1 : isDark ? 0.85 : 0.75;
-  return { bg, textColor, descOpacity, isDark, isYellow };
+  const descOpacity = isDark ? 0.85 : 0.75;
+  return { bg, textColor, descOpacity, isDark, isYellow: false };
 }
 
 export function WhyChooseUsV2({

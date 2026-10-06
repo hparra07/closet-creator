@@ -33,7 +33,7 @@ export function AreaSearchSection() {
           Use the search form below to find the nearest location we serve.
         </p>
 
-        <div className="flex items-center border border-foreground/20 overflow-hidden">
+        <div className="flex items-center border border-foreground/20 rounded-lg overflow-hidden">
           <input
             type="text"
             value={query}

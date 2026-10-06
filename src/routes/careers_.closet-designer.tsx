@@ -137,7 +137,7 @@ function ClosetDesignerJob() {
         <div className="grid grid-cols-2 md:grid-cols-4" style={{ background: "#1B1B1B" }}>
           {STATS.map((s) => (
             <div key={s.label} className="px-4 py-8 md:py-10 text-center border-r border-white/10 last:border-r-0">
-              <p className="font-display text-2xl md:text-3xl font-bold mb-1" style={{ color: "#7B1A30" }}>{s.value}</p>
+              <p className="font-display text-2xl md:text-3xl font-bold mb-1 text-white">{s.value}</p>
               <p className="text-xs md:text-sm text-white/70 leading-snug">{s.label}</p>
             </div>
           ))}

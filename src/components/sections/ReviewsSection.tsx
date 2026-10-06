@@ -6,9 +6,7 @@ const TEXT_REVIEWS = [
   { quote: "JL closets staff are EXTREMELY professional, helpful, flexible and most of all, SUPER friendly! Not to mention that the closets look AMAZING! I will recommend them to anyone who needs to update or custom design their closets. They do free estimates, including a 3D design of what you want. Thanks JL closets! ...", a: "Luis Emmanuelli", loc: "West Palm Beach, FL", source: "Google", url: "https://www.google.com/search?q=JL+Closets+reviews" },
   { quote: "Most competitive pricing and excellent and timely work! 10/10 would recommend for custom closets and shelving!", a: "Sarah Jackson", loc: "FL", source: "Houzz", url: "https://www.houzz.com/professionals/closet-designers-and-professional-organizers/jl-closets" },
   { quote: "First class company with great design and workmanship. Andrea and Sophia are an awesome team.", a: "Tod Edward Highfield", loc: "Boca Raton, FL", source: "Angi", url: "https://www.angi.com" },
-  { quote: "Truly the most considered cabinetry we've owned. Every detail was thought through and the install was flawless.", a: "Marisol R.", loc: "Boca Raton, FL", source: "Best Pick Reports", url: "https://www.bestpickreports.com" },
-  { quote: "From sketch to install, every step felt like an art form. We couldn't be happier with our new closet.", a: "James K.", loc: "Coral Gables, FL", source: "Google", url: "https://www.google.com/search?q=JL+Closets+reviews" },
-  { quote: "A pantry we now plan dinners around. Functional, beautiful, and exactly what we envisioned.", a: "Lena & Tom", loc: "Palm Beach, FL", source: "Facebook", url: "https://www.facebook.com/jlclosets" },
+  { quote: "JL Closets were awesome. If you are looking for a great company look no further. Thank you so much, we love our closets!!", a: "Lourdes Loreti", loc: "Boynton Beach, FL", source: "Google", url: "https://maps.app.goo.gl/j1RS7X7B8PDehUUv7" },
 ];
 
 const VIDEO_REVIEWS = [
@@ -18,20 +16,20 @@ const VIDEO_REVIEWS = [
   { gif: "https://jlclosets.com/wp-content/uploads/2025/03/YG-master-closet-renovation-happy-customer-jl-closets-gif.gif", video: "https://www.youtube.com/watch?v=QtiUUEzsaFI", name: "Yvonne Graber", loc: "South Palm Beach, FL" },
 ];
 
-const TEXT_SLOTS = [
-  { top: "2%",  left: "0%",  w: "380px", tx: "-60px", ty: "-40px", float: "6s",   delay: "0s"   },
-  { top: "2%",  left: "72%", w: "380px", tx: "60px",  ty: "-40px", float: "7s",   delay: "0.3s" },
-  { top: "43%", left: "0%",  w: "380px", tx: "-60px", ty: "0px",   float: "6.5s", delay: "0.6s" },
-  { top: "43%", left: "72%", w: "380px", tx: "60px",  ty: "0px",   float: "5.8s", delay: "0.9s" },
-  { top: "84%", left: "0%",  w: "380px", tx: "-60px", ty: "40px",  float: "7.2s", delay: "1.2s" },
-  { top: "84%", left: "72%", w: "380px", tx: "60px",  ty: "40px",  float: "6.2s", delay: "0.5s" },
+type Slot = { top?: string; bottom?: string; left: string; w: string; tx: string; ty: string; float: string; delay: string };
+
+const TEXT_SLOTS: Slot[] = [
+  { top: "4%",    left: "0%",  w: "380px", tx: "-60px", ty: "-40px", float: "6s",   delay: "0s"   },
+  { top: "4%",    left: "72%", w: "380px", tx: "60px",  ty: "-40px", float: "7s",   delay: "0.3s" },
+  { bottom: "4%", left: "0%",  w: "380px", tx: "-60px", ty: "40px",  float: "7.2s", delay: "1.2s" },
+  { bottom: "4%", left: "72%", w: "380px", tx: "60px",  ty: "40px",  float: "6.2s", delay: "0.5s" },
 ];
 
-const VIDEO_SLOTS = [
-  { top: "3%",  left: "34%",  w: "200px", tx: "0px", ty: "-50px", float: "6s",   delay: "0.4s" },
-  { top: "3%",  left: "52%",  w: "200px", tx: "0px", ty: "-50px", float: "5.5s", delay: "0.7s" },
-  { top: "78%", left: "34%",  w: "200px", tx: "0px", ty: "50px",  float: "7s",   delay: "1.1s" },
-  { top: "78%", left: "52%",  w: "200px", tx: "0px", ty: "50px",  float: "6.8s", delay: "0.2s" },
+const VIDEO_SLOTS: Slot[] = [
+  { top: "6%",    left: "34%",  w: "200px", tx: "0px", ty: "-50px", float: "6s",   delay: "0.4s" },
+  { top: "6%",    left: "52%",  w: "200px", tx: "0px", ty: "-50px", float: "5.5s", delay: "0.7s" },
+  { bottom: "6%", left: "34%",  w: "200px", tx: "0px", ty: "50px",  float: "7s",   delay: "1.1s" },
+  { bottom: "6%", left: "52%",  w: "200px", tx: "0px", ty: "50px",  float: "6.8s", delay: "0.2s" },
 ];
 
 export function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => void }) {
@@ -121,6 +119,7 @@ export function ReviewsSection({ onVideoOpen }: { onVideoOpen: (url: string) => 
               style={{
                 position: "absolute",
                 top: slot.top,
+                bottom: slot.bottom,
                 left: slot.left,
                 width: slot.w,
                 opacity: revealed ? 1 : 0,

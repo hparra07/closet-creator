@@ -284,7 +284,7 @@ export function DesignOptionsSection({
                   onClick={() => setLightbox(true)}
                   className="absolute inset-0 w-full h-full cursor-zoom-in"
                 >
-                  <img src={img} alt={opt.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                  <img src={img} alt={opt.title} className="absolute inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
                 </button>
               </div>
             ))
@@ -345,7 +345,7 @@ export function DesignOptionsSection({
                               onClick={() => setLightbox(true)}
                               className="absolute inset-0 w-full h-full cursor-zoom-in"
                             >
-                              <img src={img} alt={opt.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                              <img src={img} alt={opt.title} className="absolute inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
                             </button>
                           </div>
                         ))}
@@ -398,7 +398,7 @@ export function DesignOptionsSection({
             <img
               src={options[active].images[imgIdx]}
               alt={options[active].title}
-              className="max-w-[90vw] max-h-[78vh] object-contain"
+              className="max-w-[90vw] max-h-[78vh] object-contain rounded-lg"
             />
             <figcaption className="mt-4 text-white font-sans font-semibold text-base md:text-lg text-center">
               {options[active].title}
