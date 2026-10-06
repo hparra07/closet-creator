@@ -1,4 +1,5 @@
 import { SectionWrapper } from "@/components/common/SectionWrapper";
+import { MobileCarousel } from "@/components/common/MobileCarousel";
 
 export type ProjectVideo = { thumbnail: string; video: string; label?: string };
 
@@ -11,6 +12,37 @@ const BENTO_SPANS = [
   "col-span-2 md:col-span-1 md:row-span-1",
   "col-span-2 md:col-span-2 md:row-span-1",
 ];
+
+function VideoTile({
+  video: v,
+  onOpen,
+  className = "",
+}: {
+  video: { thumbnail: string; video: string; label?: string };
+  onOpen: (url: string) => void;
+  className?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(v.video)}
+      className={`relative group overflow-hidden rounded-lg cursor-pointer w-full ${className}`}
+    >
+      <img src={v.thumbnail} alt={v.label ?? ""} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+      <div className="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition-colors" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-white/10 backdrop-blur-sm group-hover:scale-110 transition-transform">
+          <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </div>
+      {v.label && (
+        <p className="absolute bottom-3 left-3 text-white text-sm font-semibold text-left">{v.label}</p>
+      )}
+    </button>
+  );
+}
 
 export function ProjectVideosSection({
   videos,
@@ -29,27 +61,17 @@ export function ProjectVideosSection({
         <strong className="font-bold underline-animate">real installations</strong> and client walkthroughs of custom closets built by JL Closets.
       </p>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-1 rounded-2xl overflow-hidden reveal-up md:h-[560px]">
+      {/* The bento grid only earns its space on desktop; on a phone it becomes
+          five stacked tiles, so mobile gets one video per slide. */}
+      <MobileCarousel count={Math.min(videos.length, 5)} label="video" className="md:hidden reveal-up">
         {videos.slice(0, 5).map((v, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => onVideoOpen(v.video)}
-            className={`relative group overflow-hidden cursor-pointer aspect-video md:aspect-auto ${BENTO_SPANS[i]}`}
-          >
-            <img src={v.thumbnail} alt={v.label ?? ""} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <div className="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition-colors" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-white/10 backdrop-blur-sm group-hover:scale-110 transition-transform">
-                <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </div>
-            {v.label && (
-              <p className="absolute bottom-3 left-3 text-white text-sm font-semibold text-left">{v.label}</p>
-            )}
-          </button>
+          <VideoTile key={i} video={v} onOpen={onVideoOpen} className="aspect-video" />
+        ))}
+      </MobileCarousel>
+
+      <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 gap-1 rounded-2xl overflow-hidden reveal-up md:h-[560px]">
+        {videos.slice(0, 5).map((v, i) => (
+          <VideoTile key={i} video={v} onOpen={onVideoOpen} className={BENTO_SPANS[i]} />
         ))}
       </div>
     </SectionWrapper>

@@ -1,5 +1,6 @@
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 import { BeforeAfterSlider } from "@/components/common/BeforeAfterSlider";
+import { MobileCarousel } from "@/components/common/MobileCarousel";
 
 export type BeforeAfterItem = { title: string; before: string; after: string; beforeFilter?: string };
 
@@ -19,7 +20,20 @@ export function BeforeAfterSection({
         <p className="text-base md:text-lg leading-relaxed" style={{ color: "#1B1B1B" }}>{intro}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-up">
+      {/* Stacking three sliders makes for a very long scroll on a phone, so
+          mobile gets one slider per slide instead. */}
+      <MobileCarousel count={items.length} label="before and after" className="md:hidden reveal-up" arrows>
+        {items.map((item) => (
+          <div key={item.title}>
+            <BeforeAfterSlider beforeImage={item.before} afterImage={item.after} beforeFilter={item.beforeFilter} />
+            <p className="mt-4 text-center font-sans text-lg font-bold" style={{ color: "#1B1B1B" }}>
+              {item.title}
+            </p>
+          </div>
+        ))}
+      </MobileCarousel>
+
+      <div className="hidden md:grid md:grid-cols-3 gap-8 reveal-up">
         {items.map((item) => (
           <div key={item.title}>
             <BeforeAfterSlider beforeImage={item.before} afterImage={item.after} beforeFilter={item.beforeFilter} />

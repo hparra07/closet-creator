@@ -49,7 +49,7 @@ export function BeforeAfterSlider({
       onPointerMove={onPointerMove}
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
-      className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-2xl select-none cursor-ew-resize touch-none"
+      className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-lg select-none cursor-ew-resize touch-none"
     >
       <img
         src={afterImage}
