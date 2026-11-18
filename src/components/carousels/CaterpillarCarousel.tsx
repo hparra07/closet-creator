@@ -163,7 +163,7 @@ function CarouselInner({ slides, visible, arrowsOverlay }: { slides: Slide[]; vi
             type="button"
             id="prev"
             onClick={() => updateCaterpillar(false)}
-            className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
+            className="bg-primary text-primary-foreground px-7 py-2.5 rounded-lg text-sm font-semibold font-sans hover:opacity-90 transition"
           >
             Previous
           </button>
@@ -171,7 +171,7 @@ function CarouselInner({ slides, visible, arrowsOverlay }: { slides: Slide[]; vi
             type="button"
             id="next"
             onClick={() => updateCaterpillar(true)}
-            className="bg-primary text-primary-foreground px-7 py-2.5 text-sm font-semibold font-sans hover:opacity-90 transition"
+            className="bg-primary text-primary-foreground px-7 py-2.5 rounded-lg text-sm font-semibold font-sans hover:opacity-90 transition"
           >
             Next
           </button>

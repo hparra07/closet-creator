@@ -16,6 +16,8 @@ import { ConsultModal } from "@/components/modals/LazyConsultModal";
 import { VideoModal } from "@/components/modals/VideoModal";
 import { pageHead } from "@/lib/pageHead";
 
+import heroImg from "@/assets/walk-in-closets/custom-walk-in-closet-with-center-island-1.webp";
+
 const CONTACT_FAQS: FaqItem[] = [
   {
     q: "How do I schedule a design consultation?",
@@ -90,7 +92,10 @@ function Contact() {
       gsap.registerPlugin(ScrollTrigger);
 
       ctx = gsap.context(() => {
-        const sections = gsap.utils.toArray<HTMLElement>("section, .gsap-section", mainRef.current!);
+        const sections = gsap.utils.toArray<HTMLElement>(
+          "section:not([data-no-reveal]), .gsap-section",
+          mainRef.current!
+        );
         sections.forEach((section) => {
           gsap.fromTo(
             section,
@@ -139,29 +144,44 @@ function Contact() {
       <Header onConsultOpen={() => setConsultOpen(true)} variant="light" />
 
       <main ref={mainRef}>
-        <div className="pt-32 md:pt-40" />
+        {/* Split hero: photo flush to the left edge, the lead form on the right. */}
+        <section data-no-reveal className="pt-24 lg:pt-28 grid lg:grid-cols-[1.05fr_1fr]">
+          <div className="relative h-[300px] sm:h-[400px] lg:h-auto lg:min-h-[640px]">
+            <img
+              src={heroImg}
+              alt="Custom walk-in closet with a center island by JL Closets"
+              className="w-full h-full object-cover lg:absolute lg:inset-0"
+            />
+          </div>
+
+          <div className="px-5 py-12 lg:px-12 xl:px-16 lg:py-16">
+            <span className="eyebrow block mb-5" style={{ color: "#555555", fontSize: "12px", letterSpacing: "0.18em" }}>
+              Custom Closets | Organized Living | A More Beautiful Home
+            </span>
+            <h1 className="font-display text-3xl sm:text-4xl xl:text-5xl font-normal leading-tight mb-8" style={{ color: "#1B1B1B" }}>
+              Contact JL Closets — the best custom closet company near you
+            </h1>
+
+            <ContactForm className="" />
+
+            <p className="mt-6 text-center text-sm" style={{ color: "#555555" }}>
+              Call for a free consultation{" "}
+              <span aria-hidden="true" className="mx-1">·</span>{" "}
+              <a href="tel:+15619129881" className="font-semibold underline underline-offset-4" style={{ color: "#7B1A30" }}>
+                561.912.9881
+              </a>
+            </p>
+          </div>
+        </section>
+
         <PageBreadcrumbs />
 
         <SectionWrapper className="gsap-section">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-10 md:mb-14 reveal-up" style={{ animationDelay: "0ms" }}>
-              <span className="rule eyebrow" style={{ color: "#1B1B1B" }}>Contact Us</span>
-            </div>
-            <h1 className="font-sans text-3xl md:text-4xl leading-tight text-center mb-6 reveal-up" style={{ color: "#1B1B1B", animationDelay: "150ms" }}>
-              <strong className="font-bold">Contact JL Closets</strong> — The Best Custom Closet Company Near You
-            </h1>
-            <p className="text-base md:text-lg leading-relaxed text-center max-w-3xl mx-auto mb-14 reveal-up" style={{ color: "#1B1B1B", animationDelay: "300ms" }}>
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="rule eyebrow mb-6" style={{ color: "#1B1B1B" }}>Contact Us</span>
+            <p className="text-base md:text-lg leading-relaxed reveal-up" style={{ color: "#1B1B1B" }}>
               At JL Closets Boca Raton, we design and install the best custom closets in South Florida. Known for luxury craftsmanship, premium materials, and expert closet design, we create tailored walk-in closets, reach-in storage, wardrobe systems, and home organization solutions that maximize space and style.
             </p>
-
-            <div className="grid md:grid-cols-12 gap-12">
-              <div className="md:col-span-3">
-                <p className="font-sans text-2xl md:text-3xl leading-snug mb-4">
-                  Book a <strong className="font-bold">complimentary consultation</strong> now.
-                </p>
-              </div>
-              <ContactForm />
-            </div>
           </div>
         </SectionWrapper>
 

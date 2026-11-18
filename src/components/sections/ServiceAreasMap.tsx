@@ -103,19 +103,19 @@ export function ServiceAreasMap({
           <button
             type="button"
             onClick={() => { zoomRef.current = Math.min(zoomRef.current * 1.3, 4); applyTransform(); }}
-            className="w-9 h-9 bg-ink text-ink-foreground text-lg font-semibold shadow-lg cursor-pointer flex items-center justify-center"
+            className="w-9 h-9 bg-ink text-ink-foreground rounded-lg text-lg font-semibold shadow-lg cursor-pointer flex items-center justify-center"
             aria-label="Zoom in"
           >+</button>
           <button
             type="button"
             onClick={() => { zoomRef.current = Math.max(zoomRef.current / 1.3, 1); applyTransform(); }}
-            className="w-9 h-9 bg-ink text-ink-foreground text-lg font-semibold shadow-lg cursor-pointer flex items-center justify-center"
+            className="w-9 h-9 bg-ink text-ink-foreground rounded-lg text-lg font-semibold shadow-lg cursor-pointer flex items-center justify-center"
             aria-label="Zoom out"
           >−</button>
           <button
             type="button"
             onClick={() => { zoomRef.current = 1; panRef.current = { x: 0, y: 0 }; applyTransform(); }}
-            className="w-9 h-9 bg-ink text-ink-foreground text-xs font-semibold shadow-lg cursor-pointer flex items-center justify-center"
+            className="w-9 h-9 bg-ink text-ink-foreground rounded-lg text-xs font-semibold shadow-lg cursor-pointer flex items-center justify-center"
             aria-label="Reset"
           >⤾</button>
         </div>

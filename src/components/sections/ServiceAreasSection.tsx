@@ -65,7 +65,7 @@ export function ServiceAreasSection({ className }: { className?: string } = {}) 
           </p>
 
           <div className="hidden lg:block mt-8">
-            <div className="bg-primary text-primary-foreground p-6 w-full">
+            <div className="bg-primary text-primary-foreground p-6 w-full rounded-lg">
               <p className="eyebrow mb-4">Counties we serve</p>
               <CountyList hovered={hovered} onHover={setHovered} />
             </div>
@@ -83,7 +83,7 @@ export function ServiceAreasSection({ className }: { className?: string } = {}) 
           </div>
 
           {/* County list — mobile/tablet only */}
-          <div className="lg:hidden bg-primary text-primary-foreground p-6 w-full max-w-xs">
+          <div className="lg:hidden bg-primary text-primary-foreground p-6 w-full max-w-xs rounded-lg">
             <p className="eyebrow mb-4">Counties we serve</p>
             <CountyList hovered={hovered} onHover={setHovered} />
           </div>

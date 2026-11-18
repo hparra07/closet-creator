@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 
-export function ContactForm() {
+export function ContactForm({ className = "md:col-span-9" }: { className?: string } = {}) {
   const [step, setStep] = useState(0);
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
@@ -105,7 +105,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="md:col-span-9 border rounded-lg border-foreground/15 p-10 md:p-14 text-center">
+      <div className={`${className} border rounded-lg border-foreground/15 p-10 md:p-14 text-center`}>
         <p className="eyebrow mb-4" style={{ color: "#1B1B1B" }}>— THANK YOU —</p>
         <h3 className="font-display text-3xl md:text-4xl mb-4 font-bold" style={{ color: "#1B1B1B" }}>We've received your inquiry.</h3>
         <p className="text-foreground/70 max-w-md mx-auto">Our team will reach out within one business day to schedule your free consultation.</p>
@@ -114,7 +114,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="md:col-span-9">
+    <div className={className}>
       {/* Progress */}
       <div className="flex items-center gap-3 mb-5">
         <span className="eyebrow text-xs md:text-base text-foreground/60">STEP {String(step + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}</span>
